@@ -25,11 +25,13 @@
     $resultado = InsertQuery("curso", $dados);
     if($resultado){
         echo "<script>
+                    window.location.href = '../../OnePage.html';
                     alert('".$Sucess."');
                 </script>";
     }
     else{
         echo "<script>
+                    window.location.href = '../../OnePage.html';
                     alert('".$Failed."');
                 </script>";
     }

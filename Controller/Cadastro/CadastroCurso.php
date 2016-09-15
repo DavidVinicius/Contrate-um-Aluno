@@ -13,13 +13,13 @@
     $diretorio = "../../Images/ImagensUser/";
     $localFull = $diretorio.$nomeOriginal;
     move_uploaded_file($nomeTemporario, $localFull); #Move o arquivo temporário para pasta
-                                                    ##permanente
+                                                     ##permanente
 
     $dados = array(
-        "nome" => (isset($_POST["nomeCurso"])) ? $_POST["nomeCurso"] : $msg,
-        "escola" => (isset($_POST["escola"])) ? $_POST["escola"] : $msg,
+        "nome" => ( isset($_POST["nomeCurso"]) ) ? $_POST["nomeCurso"] : $msg,
+        "escola" => ( isset($_POST["escola"]) ) ? $_POST["escola"] : $msg,
         "gradeCurricular" => $localFull,
-        "periodo" => (isset($_POST["periodo"])) ? $_POST["periodo"] : $msg
+        "periodo" => ( isset($_POST["periodo"]) ) ? $_POST["periodo"] : $msg
     );
 
     $resultado = InsertQuery("curso", $dados);

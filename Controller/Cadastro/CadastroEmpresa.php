@@ -1,6 +1,7 @@
 <?php
     session_start();
     include("../Banco/funcoesBanco.php");
+    include_once("../../Util.php");
 
     $dados = array(
         "nome"          => (isset($_POST["nome"]))      ? $_POST["nome"] : $msg,
@@ -15,14 +16,14 @@
 
     if($resultado){
         echo "<script>
-                    window.location.href = '../firstPage.php';
-                    alert('".$sucesso."');
+                    window.location.href = '../../OnePage.html';
+                    alert('".$Sucess."');
                 </script>";
     }
     else{
         echo "<script>
-                    window.location.href = '../firstPage.php';
-                    alert('".$falha."');
+                    window.location.href = '../../OnePage.html';
+                    alert('".$Sucess."');
                 </script>";
     }
 ?>

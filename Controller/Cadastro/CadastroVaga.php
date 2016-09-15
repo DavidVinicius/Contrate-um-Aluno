@@ -1,6 +1,7 @@
 <?php
-    include("../Banco/funcoesBanco.php");
     session_start();
+    include_once("../../Model/DataBase.class.php");
+    include_once("../../Util.php");
 
     $tabela     = "vaga";
     $id         = $_SESSION['id'];
@@ -22,12 +23,12 @@
 
     if($resultado){
         echo "<script>
-                    alert('".$sucesso."');
+                    alert('".$Sucess."');
                 </script>";
     }
     else{
         echo "<script>
-                    alert('".$falha."');
+                    alert('".$Failed."');
                 </script>";
     }
 ?>

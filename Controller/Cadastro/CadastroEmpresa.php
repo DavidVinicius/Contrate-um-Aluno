@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include("../Banco/funcoesBanco.php");
+    include_once("../Banco/funcoesBanco.php");
     include_once("../../Util.php");
 
     $dados = array(

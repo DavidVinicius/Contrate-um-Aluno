@@ -1,5 +1,6 @@
 <?php
-    include("../Banco/funcoesBanco.php");
+    include_once("../../Model/DataBase.class.php");
+    include_once("../../Util.php");
 
     $tabela = "professor";
     $dados = array(
@@ -12,12 +13,14 @@
                                             ####0 se não cadastrou
     if($resultado){
         echo "<script>
-                    alert('".$sucesso."');
+                    window.location.href = '../../OnePage.html';
+                    alert('".$Sucess."');
                 </script>";
     }
     else{
         echo "<script>
-                    alert('".$falha."');
+                    window.location.href = '../../OnePage.html';
+                    alert('".$Failed."');
                 </script>";
     }
 ?>

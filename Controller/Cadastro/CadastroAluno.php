@@ -1,7 +1,7 @@
 <?php
+    session_start();
     include_once("../../Model/DataBase.class.php");
     include_once("../../Util.php");
-    session_start();
 
     $nomeOriginal   = $_FILES['foto']['name']; #Nome do arquivo original
     $tipo           = $_FILES['foto']['type']; #O tipo do arquivo

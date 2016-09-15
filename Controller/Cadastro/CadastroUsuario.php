@@ -1,5 +1,6 @@
 <?php
-    include("../Banco/funcoesBanco.php");
+    include_once("../../Model/DataBase.class.php");
+    include_once("../../Util.php");
 
     $tabela = "usuario";
     $senha = $_POST['senha'];
@@ -16,19 +17,19 @@
 
         if($resultado){
             echo "<script>
-                    window.location.href = '../onePage.html'; 
-                    alert('".$sucesso."');
+                    window.location.href = '../../OnePage.html'; 
+                    alert('".$Sucess."');
                 </script>";
         }else{
             echo "<script>
-                    window.location.href = '../onePage.html';
-                    alert('".$falha."');
+                    window.location.href = '../../OnePage.html';
+                    alert('".$Failed."');
                 </script>";
         }
 
     } else {
         echo "<script>
-                    window.location.href = '../onePage.html'; 
+                    window.location.href = '../../OnePage.html'; 
                     alert('Senhas não correspondem');
                 </script>";
     }

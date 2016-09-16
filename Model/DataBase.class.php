@@ -39,6 +39,16 @@
             return $Result;
         }
 
+        public function UpdateQuery($Table, $Field, $NewValue, $Condition = null)
+        {
+            #UPDATE {table} SET {campoAlterar = valorNovo} WHERE id = {idUser}
+            $Connection = $this->ConnectDataBase();
+            $Query      = "UPDATE {$Table} SET {$Field} = {$NewValue} $Condition";
+            $Result     = $this->ExecuteQuery($Connection, $Query);
+            $this->CloseConnectionDataBase($Connection);
+            return $Result;
+        }
+
         public function InsertQuery($Table, array $Data)
         {
             $Connection = $this->ConnectDataBase();
@@ -46,7 +56,7 @@
             $Values = "'".implode("', '", $Data)."'";    #Pega o array dados e transforma em apenas 1 variável, separadas por vírgula
 
             $Query = "INSERT INTO {$Table} ({$Fields}) VALUES({$Values})";
-            $Result = ExecutarQuery($Query);  #Executa a query, e guarda 1 pra executado, 0 pra falha
+            $Result = ExecutarQuery($Connection, $Query);  #Executa a query, e guarda 1 pra executado, 0 pra falha
             $this->CloseConnectionDataBase($Connection);
             return $Result;
         }
@@ -55,7 +65,7 @@
         {
             $Connection = $this->ConnectDataBase();
             $Query = "SELECT {$Fields} FROM {$Table} {$Condition}";
-            $Result = $this->ExecuteQuery($Query);
+            $Result = $this->ExecuteQuery($Connection, $Query);
             $this->CloseConnectionDataBase($Connection);
             return $Result;
         }

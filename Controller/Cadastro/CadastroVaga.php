@@ -2,6 +2,11 @@
     session_start();
     include_once("../../Model/DataBase.class.php");
     include_once("../../Util.php");
+    include_once("../VerificaSeEstaLogado.class.php");
+    include_once("../CreateVarSessions.class.php");
+
+    $VerificaSeEstaLogado = new VerificaSeEstaLogado();
+    $VarSessions = $VerificaSeEstaLogado->EstaLogado();
 
     $tabela     = "vaga";
     $id         = $_SESSION['id'];

@@ -2,6 +2,11 @@
     session_start();
     include_once("../../Model/DataBase.class.php");
     include_once("../../Util.php");
+    include_once("../VerificaSeEstaLogado.class.php");
+    include_once("../CreateVarSessions.class.php");
+
+    $VerificaSeEstaLogado = new VerificaSeEstaLogado();
+    $VarSessions = $VerificaSeEstaLogado->EstaLogado();
 
     $nomeOriginal   = $_FILES['foto']['name']; #Nome do arquivo original
     $tipo           = $_FILES['foto']['type']; #O tipo do arquivo
@@ -29,7 +34,7 @@
         "endereco"                  => (isset($_POST["endereco"])) ? $_POST["endereco"] : $msg,
         "rg"                        => (isset($_POST["rg"])) ? $_POST["rg"] : $msg,
         "codCurso"                  => (isset($_POST["curso"])) ? $_POST["curso"] : 0,
-        "codUsuario"                => $_SESSION["id"]
+        "codUsuario"                => $VarSessions->getSessionID()
     );
 
     $resultado = InsertQuery($tabela, $dados);  #retorna 1 se cadastrou

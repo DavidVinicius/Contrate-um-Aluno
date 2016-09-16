@@ -2,6 +2,11 @@
     session_start();
     include_once("../Banco/funcoesBanco.php");
     include_once("../../Util.php");
+    include_once("../VerificaSeEstaLogado.class.php");
+    include_once("../CreateVarSessions.class.php");
+
+    $VerificaSeEstaLogado = new VerificaSeEstaLogado();
+    $VarSessions = $VerificaSeEstaLogado->EstaLogado();
 
     $dados = array(
         "nome"          => (isset($_POST["nome"]))      ? $_POST["nome"] : $msg,

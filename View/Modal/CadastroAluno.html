@@ -1,11 +1,37 @@
-<h2 class="flow-text center-align"> Bem-vindo ao Contrate um Aluno</h2>
-<div class="row">
-    <form action="">
-        <div class="row">
-            <div class="input-field col s12 m6 center-align">
-               <label for="emailLogin"><i class='fa fa-user'></i></label>
-                <input type="email" id="emailLogin" class="validate">
+
+    <h2 class="flow-text center-align"> Bem-vindo ao Contrate um Aluno</h2>
+    <div class="row">
+        <form action="../../Controller/Cadastro/CadastroAluno.php" method="post">
+           <input type="hidden" value='1' name="">
+            <div class="row ">
+                <div class="input-field col s12 m6 push-m3">
+                   <label for="emailLogin" ><i class='fa fa-user'></i> Digite seu Email</label>
+
+                    <input type="email" id="emailLogin" class="validate" >
+                   <label for="emailLogin" data-error="Erro ao digitar Email" data-success="Email disponível"></label> 
+                </div>
+
             </div>
-        </div>
-    </form>
-</div>
+            <div class="row">
+                 <div class="input-field col s12 m6 push-m3">
+
+                   <label for="emailLogin"><i class='fa fa-at '></i> Digite sua Senha</label>
+                    <input type="email" id="emailLogin" class="validate"><br>                
+                </div><br>
+
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6 push-m3">
+
+                   <label for="emailLoginConfirmacao"><i class='fa fa-at'></i> Confirme sua senha</label>
+                    <input type="email" id="emailLoginConfirmacao" class="validate">
+                </div>
+            </div>
+            
+            
+        </form>
+    </div>
+  
+
+
+

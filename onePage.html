@@ -32,6 +32,19 @@
             
             
         }
+        .fundoModal{
+            display: none;
+            z-index: -1;
+            background: black;
+            opacity: 0.55;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+            
+        }
         .text-white{
             color: white;
         }
@@ -62,6 +75,7 @@
               overflow-y: auto;
               border-radius: 2px;
               will-change: top, opacity;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -111,26 +125,34 @@
         </section>
     </div>
     <div id="modal1" class="modal modal-top">
-        <div class="modal-content">
-          
-          
-        </div>        
+             <div class="modal-content">
+                   
+               </div>                         
+       <div class="modal-footer"> 
+               
+                <div class="">
+                  <a href="" class="btn modal-action modal-close red">Cancelar</a>
+                   <input type="submit" value="Entrar" class="btn blue">
+                   
+                </div>
+             
+        </div>
     </div>
     <!-- Modal Trigger -->
 
   <!-- Modal Structure -->
   
     <div class="fundoPreto"></div>
+    <div class="fundoModal"></div>
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script>
         $(document).ready(function(){
              $(".button-collapse").sideNav();
-            
+            $(".abrirFormulario").leanModal();
             $(".abrirFormulario").click(function(){
-               $("#modal1").show(1000);
-                
+
                 var pagina = $(this).data("page");
                 $.ajax({
                     method:"POST",

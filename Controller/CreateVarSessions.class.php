@@ -1,5 +1,5 @@
 <?php
-
+ 
 class CreateVarSessions
 {
     private $SessionUsuario;
@@ -11,6 +11,7 @@ class CreateVarSessions
         $this->setSessionUsuario($_SESSION["usuario"]);
         $this->setSessionSenha($_SESSION["senha"]);
         $this->setSessionID($_SESSION["id"]);
+        $this->setSessionNivel($_SESSION["nivel"]);
     }
 
     public function getSessionUsuario()
@@ -41,6 +42,15 @@ class CreateVarSessions
     public function setSessionID($SessionID)
     {
         $this->SessionID = $SessionID;
+    }
+    public function getSessionNivel()
+    {
+        return $this->SessionNivel;
+    }
+
+    public function setSessionNivel($SessionNivel)
+    {
+        $this->SessionNivel = $SessionNivel;
     }
 
 

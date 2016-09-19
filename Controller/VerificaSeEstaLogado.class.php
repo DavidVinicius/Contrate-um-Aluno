@@ -9,7 +9,7 @@
                 unset($_SESSION['usuario']);
                 unset($_SESSION['senha']);
                 unset($_SESSION['id']);
-                header('location:../../Index.html');
+                header('location:Index.php');
                 return false;
             }else
             {

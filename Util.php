@@ -1,4 +1,4 @@
 <?php
-    $Sucess = "Cadastrado com sucesso!";
+    $Success = "Cadastrado com sucesso!";
     $Failed = "Erro ao cadastrar!";
 ?>

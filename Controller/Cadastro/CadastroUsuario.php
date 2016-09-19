@@ -3,10 +3,11 @@
     include_once("../../Util.php");
     include_once("../VerificaSeEstaLogado.class.php");
     include_once("../CreateVarSessions.class.php");
-
-    $VerificaSeEstaLogado = new VerificaSeEstaLogado();
-    $VarSessions = $VerificaSeEstaLogado->EstaLogado();
-
+// 
+//    $VerificaSeEstaLogado = new VerificaSeEstaLogado();
+//    $VarSessions = $VerificaSeEstaLogado->EstaLogado();
+      $InserirNoBanco = new DataBase();    
+$msg =123;
     $tabela = "usuario";
     $senha = $_POST['senha'];
     $senha2 = $_POST['senha2'];
@@ -18,23 +19,23 @@
             "nivel" => (isset($_POST["valor"])) ? $_POST["valor"] : $msg
         );
 
-        $resultado = InsertQuery($tabela, $dados);
+        $resultado = $InserirNoBanco -> InsertQuery($tabela, $dados);
 
         if($resultado){
             echo "<script>
-                    window.location.href = '../../OnePage.html'; 
-                    alert('".$Sucess."');
+                    window.location.href = '../../Index.html'; 
+                    alert('". $Success."');
                 </script>";
         }else{
             echo "<script>
-                    window.location.href = '../../OnePage.html';
-                    alert('".$Failed."');
+                    window.location.href = '../../Index.html';
+                    alert('". $Failed."');
                 </script>";
         }
 
     } else {
         echo "<script>
-                    window.location.href = '../../OnePage.html'; 
+                    window.location.href = '../../Index.html'; 
                     alert('Senhas não correspondem');
                 </script>";
     }

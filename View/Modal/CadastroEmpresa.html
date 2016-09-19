@@ -1,1 +1,48 @@
-<h1>Olá</h1>
+
+    <h2 class="flow-text center-align"> Bem-vindo ao Contrate um Aluno</h2>
+    <div class="row">
+        <form  method="post" action="Controller/Cadastro/CadastroUsuario.php" autocomplete="false">
+           <input type="hidden" value='2' name="valor">
+            <div class="row ">
+                <div class="input-field col s12 m12 l12">
+                   <div class="col m6 push-m3">
+                       <label for="emailLogin" ><i class='fa fa-user'></i> Digite seu Email</label>
+                        <input type="email" id="emailLogin" name="email" class="validate" required >
+                       <label for="emailLogin" data-error="E-mail inválido" data-success="E-mail válido"></label> 
+                   </div>
+                </div><br>
+
+            
+            
+                 <div class="input-field col s12 m12 l12">
+                    <div class="col m6 push-m3">
+                        
+                       <label for="senha"><i class='fa fa-at '></i> Digite sua Senha</label>
+                        <input type="password" id="senha" name="senha" class="validate col m12" required>
+                    </div>                
+                </div><br>
+
+            
+            
+                <div class="input-field col s12 m12 l12">
+                    <div class="col m6 push-m3">
+
+                       <label for="senhaConfirmacao"><i class='fa fa-at'></i> Confirme sua senha</label>
+                        <input type="password" id="senhaConfirmação" name="senha2" class="validate" required>
+                    </div>
+                </div>
+            
+            
+                <div class="center-align hide-on-med-and-up">
+                    <input type="submit" value="Cadastrar" class="btn blue col s12">
+                    <a href="" id="fechar" class="btn red waves-effect waves-light modal-close col s12">Cancelar</a>
+                </div>
+                <div class="center-align hide-on-small-only">
+                    <input type="submit" value="Cadastrar" class="btn blue">
+                    <a href="" id="fechar" class="btn red waves-effect waves-light modal-close">Cancelar</a>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+    

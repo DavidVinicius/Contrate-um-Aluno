@@ -56,7 +56,7 @@
             $Values = "'".implode("', '", $Data)."'";    #Pega o array dados e transforma em apenas 1 variável, separadas por vírgula
 
             $Query = "INSERT INTO {$Table} ({$Fields}) VALUES({$Values})";
-            $Result = ExecutarQuery($Connection, $Query);  #Executa a query, e guarda 1 pra executado, 0 pra falha
+            $Result = $this -> ExecuteQuery($Connection, $Query);  #Executa a query, e guarda 1 pra executado, 0 pra falha
             $this->CloseConnectionDataBase($Connection);
             return $Result;
         }

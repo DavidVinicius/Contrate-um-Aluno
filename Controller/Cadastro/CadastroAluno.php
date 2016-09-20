@@ -4,9 +4,10 @@
     include_once("../../Util.php");
     include_once("../VerificaSeEstaLogado.class.php");
     include_once("../CreateVarSessions.class.php");
+    $DB = new DataBase();
 
-    $VerificaSeEstaLogado = new VerificaSeEstaLogado();
-    $VarSessions = $VerificaSeEstaLogado->EstaLogado();
+    //$VerificaSeEstaLogado = new VerificaSeEstaLogado();
+    //$VarSessions = $VerificaSeEstaLogado->EstaLogado();
 
     $nomeOriginal   = $_FILES['foto']['name']; #Nome do arquivo original
     $tipo           = $_FILES['foto']['type']; #O tipo do arquivo
@@ -37,7 +38,7 @@
         "codUsuario"                => $VarSessions->getSessionID()
     );
 
-    $resultado = InsertQuery($tabela, $dados);  #retorna 1 se cadastrou
+    $resultado = $DB->InsertQuery($tabela, $dados);  #retorna 1 se cadastrou
                                                 #0 se não cadastrou
     if($resultado){
         echo "<script>

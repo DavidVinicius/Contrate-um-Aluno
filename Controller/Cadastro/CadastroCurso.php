@@ -3,9 +3,10 @@
     include_once("../../Util.php");
     include_once("../VerificaSeEstaLogado.class.php");
     include_once("../CreateVarSessions.class.php");
+    $DB = new DataBase();
 
-    $VerificaSeEstaLogado = new VerificaSeEstaLogado();
-    $VarSessions = $VerificaSeEstaLogado->EstaLogado();
+    //$VerificaSeEstaLogado = new VerificaSeEstaLogado();
+    //$VarSessions = $VerificaSeEstaLogado->EstaLogado();
 
     $nomeOriginal   = $_FILES['grade']['name']; #Nome do arquivo original
     $tipo           = $_FILES['grade']['type']; #O tipo do arquivo
@@ -27,7 +28,7 @@
         "periodo" => ( isset($_POST["periodo"]) ) ? $_POST["periodo"] : $msg
     );
 
-    $resultado = InsertQuery("curso", $dados);
+    $resultado = $DB->InsertQuery("curso", $dados);
     if($resultado){
         echo "<script>
                     window.location.href = '../../OnePage.html';
@@ -40,12 +41,4 @@
                     alert('".$Failed."');
                 </script>";
     }
-/*echo "<br>";
-    print_r($tipo);
-    echo "<br>";
-    print_r($tamanho); echo " bytes";
-echo "<br>";
-    print_r($nomeOriginal);
-echo "<br>";
-    print_r($nomeTemporario);*/
 ?>

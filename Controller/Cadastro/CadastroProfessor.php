@@ -3,9 +3,9 @@
     include_once("../../Util.php");
     include_once("../VerificaSeEstaLogado.class.php");
     include_once("../CreateVarSessions.class.php");
-
-    $VerificaSeEstaLogado = new VerificaSeEstaLogado();
-    $VarSessions = $VerificaSeEstaLogado->EstaLogado();
+    $DB = new DataBase();
+    //$VerificaSeEstaLogado = new VerificaSeEstaLogado();
+    //$VarSessions = $VerificaSeEstaLogado->EstaLogado();
 
     $tabela = "professor";
     $dados = array(
@@ -14,7 +14,7 @@
         "formacao" => (isset($_POST["formacao"])) ? $_POST["formacao"] : $msg
     );
 
-    $resultado = InsertQuery($tabela, $dados); #retorna 1 se cadastrou
+    $resultado = $DB->InsertQuery($tabela, $dados); #retorna 1 se cadastrou
                                             ####0 se não cadastrou
     if($resultado){
         echo "<script>

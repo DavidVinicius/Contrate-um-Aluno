@@ -4,9 +4,10 @@
     include_once("../../Util.php");
     include_once("../VerificaSeEstaLogado.class.php");
     include_once("../CreateVarSessions.class.php");
-
-    $VerificaSeEstaLogado = new VerificaSeEstaLogado();
-    $VarSessions = $VerificaSeEstaLogado->EstaLogado();
+    $DB = new DataBase();
+    
+    //$VerificaSeEstaLogado = new VerificaSeEstaLogado();
+    //$VarSessions = $VerificaSeEstaLogado->EstaLogado();
 
     $dados = array(
         "nome"          => (isset($_POST["nome"]))      ? $_POST["nome"] : $msg,
@@ -17,7 +18,7 @@
         "codUsuario"    => $_SESSION['id']
     );
 
-    $resultado = InsertQuery("empresa", $dados);
+    $resultado = $DB->InsertQuery("empresa", $dados);
 
     if($resultado){
         echo "<script>

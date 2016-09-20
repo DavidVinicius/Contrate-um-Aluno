@@ -4,13 +4,13 @@
     include_once("../../Util.php");
     include_once("../VerificaSeEstaLogado.class.php");
     include_once("../CreateVarSessions.class.php");
-
-    $VerificaSeEstaLogado = new VerificaSeEstaLogado();
-    $VarSessions = $VerificaSeEstaLogado->EstaLogado();
+    $DB = new DataBase();
+    //$VerificaSeEstaLogado = new VerificaSeEstaLogado();
+    //$VarSessions = $VerificaSeEstaLogado->EstaLogado();
 
     $tabela     = "vaga";
     $id         = $_SESSION['id'];
-    $resultado  = Select("empresa", "WHERE codUsuario = {$id}");
+    $resultado  = $DB->SearchQuery("empresa", "WHERE codUsuario = {$id}");
     $arrayDados = mysqli_fetch_assoc($resultado);
     $codEmpresa = $arrayDados['idEmpresa'];
 
@@ -24,7 +24,7 @@
         "codEmpresa"    => $codEmpresa
     );
 
-    $resultado = InsertQuery($tabela, $dados);
+    $resultado = $DB->InsertQuery($tabela, $dados);
 
     if($resultado){
         echo "<script>

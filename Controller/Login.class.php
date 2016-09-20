@@ -7,7 +7,7 @@
         function __construct($User, $Pass)
         {
             $BD = new DataBase();
-            $Result = $BD->SearchQuery("usuario", "WHERE usuario = '$User' AND senha = '$Pass'");
+            $Result = $BD->SearchQuery("usuario", "WHERE email = '$User' AND senha = '$Pass'");
             $Data   = mysqli_fetch_assoc($Result);
             if($Result){
                 $_SESSION["User"]= $User;

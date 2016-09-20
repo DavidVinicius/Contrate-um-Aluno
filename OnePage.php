@@ -37,7 +37,7 @@
                 <li><a href="badges.html">Curriculo</a></li>
                 <li><a href="collapsible.html">Perfil</a></li>
                 <li><a href="" data-activates="Configuracoes" class="abrir">Config</a></li>
-                <li><a href="./Controller/Sair.php?action=sair">Sair</a></li>
+                <li><a href="./Controller/Sair.php">Sair</a></li>
                 <li><span style="margin-right:5%">&nbsp &nbsp</span></li>
               </ul>
               <ul class="side-nav" id="menuLateral">

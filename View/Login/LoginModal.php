@@ -7,7 +7,7 @@
                    <label for="emailLogin" ><i class='fa fa-user'></i> Email login</label>
 
                     <input type="email" id="emailLogin" name="usuario" class="validate" required >
-                   <label for="emailLogin" data-error="E-mail inválido" data-success="E-mail válido"></label> 
+                   <label for="emailLogin" data-error="" data-success=""></label> 
                 </div>
 
             </div>
@@ -35,4 +35,6 @@
             
         </form>
     </div>
+    
+    
     

@@ -8,7 +8,7 @@
                    <div class="col m6 push-m3">
                        <label for="emailLogin" ><i class='fa fa-user'></i> Digite seu Email</label>
                         <input type="email" id="emailLogin" name="email" class="validate" required >
-                       <label for="emailLogin" data-error="E-mail inválido" data-success="E-mail válido"></label> 
+                       <label for="emailLogin" data-error="" data-success=""></label> 
                    </div>
                 </div><br>
 
@@ -45,4 +45,24 @@
             
         </form>
     </div>
+    <script>
+        $("#emailLogin").change(function(){
+            
+            var valor = $(this).val();
+            var error = $(this).next().data('error');
+            
+            
+            $.ajax({
+                url:"./Controller/ConsultaDados.php",
+                method: "POST",
+                data: {dado:valor},
+                success: function(dado){
+                    alert(dado);
+                    if(dado == 0){
+                        $(this).next().attr('data-error','teste');
+                    }
+                }
+            });
+        });
+    </script>
     

@@ -1,9 +1,6 @@
 
 <!DOCTYPE html>
 <?php
-    include "Controller/VerificaSeEstaLogado.class.php";
-    $teste = new VerificaSeEstaLogado();
-//    $teste -> EstaLogado();
     
 ?>
 <html lang="en">
@@ -27,12 +24,12 @@
           <ul class="right hide-on-med-and-down">
             <li><a href="sass.html">A ideia</a></li>
             <li><a href="badges.html">Sobre os Desenvolvedores</a></li>
-            <li><a href="" class="abrirFormulario waves-effect waves-light btn blue" data-target="modal1" data-page="Login/LoginModal.html">Login</a></li>
+            <li><a href="" class="abrirFormulario waves-effect waves-light btn blue" data-target="modal1" data-page="Login/LoginModal.php">Login</a></li>
           </ul>
           <ul class="side-nav" id="mobile-demo">
             <li><a href="sass.html">A ideia</a></li>
             <li><a href="badges.html">Sobre os Desenvolvedores</a></li>
-            <li><a href="" class="abrirFormulario waves-effect waves-light btn blue" data-target="modal1" data-page="Login/LoginModal.html" >Login</a></li>
+            <li><a href="" class="abrirFormulario waves-effect waves-light btn blue" data-target="modal1" data-page="Login/LoginModal.php" >Login</a></li>
             <li><a href="mobile.html">Mobile</a></li>
           </ul>
         </div>

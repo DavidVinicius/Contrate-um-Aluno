@@ -1,0 +1,22 @@
+{
+  "name": "contrateumaluno",
+  "version": "1.0.0",
+  "description": "## David Vinicius, Matheus Picioli - ETEC PHILADELHPO GOUVÊA NETTO - 2016 ##",
+  "main": "index.js",
+  "dependencies": {
+    "gulp-cli": "^1.2.2"
+  },
+  "devDependencies": {
+    "gulp-concat": "^2.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://De175v@bitbucket.org/De175v/novotcc.git"
+  },
+  "author": "David Vinicius, Matheus Picioli",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/De175v/novotcc#readme"
+}

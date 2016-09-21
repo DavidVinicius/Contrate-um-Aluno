@@ -1,6 +1,7 @@
 <?php
     include_once("Controller/VerificaSeEstaLogado.class.php");
-    $Verifica = new VerificaSeEstaLogado();
+    include_once("Controller/CreateVarSessions.class.php");
+   
 ?>
 <!DOCTYPE html>
 
@@ -32,14 +33,16 @@
     </ul>
      <div class="row">
       <div class="navbar-fixed">
+          
            <nav>
             <div class="nav-wrapper menuCor">
               <a href="#!" class="brand-logo"><span style="margin-left:5%"></span>Contrate um Aluno</a>
               <a href="#" data-activates="menuLateral" class="button-collapse"><i class="fa fa-bars " style="font-size:23px"></i></a>
               <ul class="right hide-on-med-and-down">
-                <li><a href="sass.html">Vagas</a></li>
-                <li><a href="badges.html">Curriculo</a></li>
-                <li><a href="collapsible.html">Perfil</a></li>
+                <li><a href="OnePage.php?link=Home">Home</a></li>
+                <li><a href="OnePage.php?link=Vagas">Vagas</a></li>
+                <li><a href="OnePage.php?link=Curriculo">Curriculo</a></li>
+                <li><a href="OnePage.php?link=Perfil">Perfil</a></li>
                 <li><a href="" data-activates="Configuracoes" class="abrir">Config</a></li>
                 <li><a href="./Controller/Sair.php?action=sair">Sair</a></li>
                 <li><span style="margin-right:5%">&nbsp &nbsp</span></li>
@@ -69,13 +72,19 @@
             </div>
           </nav>
       </div>
-            <h1 class="center-align">Code snipets</h1>
-
+            <section class="section">
+                <?php 
+			  //Se não clicou para abrir, mostra página home
+			 if(empty($_SERVER['QUERY_STRING'])){
+                    include "View/Shared/Home.php";
+                }else{ //Se não abri conteúdo especificado no ?link=....
+				    include "View/Shared/".$_GET['link'].".php";				
+                }
+			 ?>
+            </section>
     </div>
     
-            <div class="container">
-                
-            </div>        
+                   
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/materialize.min.js"></script>

@@ -5,7 +5,7 @@ class CreateVarSessions
     private $SessionUser;
     private $SessionPass;
     private $SessionID;
-
+ 
     function __construct()
     {
         $this->setSessionUser($_SESSION["usuario"]);

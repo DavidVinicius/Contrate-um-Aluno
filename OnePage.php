@@ -1,3 +1,7 @@
+<?php
+    include_once("Controller/VerificaSeEstaLogado.class.php");
+    $Verifica = new VerificaSeEstaLogado();
+?>
 <!DOCTYPE html>
 
 <html lang="en">

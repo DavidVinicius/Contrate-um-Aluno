@@ -2,36 +2,36 @@
  
 class CreateVarSessions
 {
-    private $SessionUsuario;
-    private $SessionSenha;
+    private $SessionUser;
+    private $SessionPass;
     private $SessionID;
 
     function __construct()
     {
-        $this->setSessionUsuario($_SESSION["usuario"]);
-        $this->setSessionSenha($_SESSION["senha"]);
+        $this->setSessionUser($_SESSION["usuario"]);
+        $this->setSessionPass($_SESSION["senha"]);
         $this->setSessionID($_SESSION["id"]);
         $this->setSessionNivel($_SESSION["nivel"]);
     }
 
-    public function getSessionUsuario()
+    public function getSessionUser()
     {
-        return $this->SessionUsuario;
+        return $this->SessionUser;
     }
 
-    public function setSessionUsuario($SessionUsuario)
+    public function setSessionUser($SessionUser)
     {
-        $this->SessionUsuario = $SessionUsuario;
+        $this->SessionUser = $SessionUser;
     }
 
-    public function getSessionSenha()
+    public function getSessionPass()
     {
-        return $this->SessionSenha;
+        return $this->SessionPass;
     }
 
-    public function setSessionSenha($SessionSenha)
+    public function setSessionPass($SessionPass)
     {
-        $this->SessionSenha = $SessionSenha;
+        $this->SessionPass = $SessionPass;
     }
 
     public function getSessionID()

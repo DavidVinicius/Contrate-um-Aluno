@@ -65,6 +65,7 @@
         {
             $Connection = $this->ConnectDataBase();
             $Query = "SELECT {$Fields} FROM {$Table} {$Condition}";
+            var_dump($Query);
             $Result = $this->ExecuteQuery($Connection, $Query);
             $this->CloseConnectionDataBase($Connection);
             return $Result;
@@ -113,5 +114,7 @@
 
 
     }
-
+//    $User ="aaaa"; $Pass= 123;
+//    $d = new DataBase();
+//    $d -> SearchQuery("usuario", "WHERE email = '{$User}' AND senha = '{$Pass}'");
 ?>

@@ -34,7 +34,9 @@
      <div class="row">
       <div class="navbar-fixed">
           
+        
            <nav>
+           
             <div class="nav-wrapper menuCor">
               <a href="#!" class="brand-logo"><span style="margin-left:5%"></span>Contrate um Aluno</a>
               <a href="#" data-activates="menuLateral" class="button-collapse"><i class="fa fa-bars " style="font-size:23px"></i></a>
@@ -71,7 +73,13 @@
               </ul>
             </div>
           </nav>
+          
       </div>
+           <div class="teste">
+               <div class="progress">
+                  <div class="determinate" style=""></div>
+               </div>
+           </div>
             <section class="section">
                 <?php 
 			  //Se não clicou para abrir, mostra página home
@@ -89,6 +97,18 @@
     <script src="js/angular.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script>
+        
+            $("a").click(function(){
+                var width = 0;
+                setInterval(function(){
+                    width = width + 10;
+                    alert("teste");
+                    
+                    
+                },100);
+                
+                $(".determinate").css('width',100+"%");
+            });
               // Initialize collapse button
               $(".button-collapse").sideNav();
               $(".abrir").sideNav();

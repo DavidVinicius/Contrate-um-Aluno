@@ -16,6 +16,7 @@
       
   </video>
   <div class="navbar-fixed">
+     
        <nav>
         <div class="nav-wrapper menuCor ">
           <a href="#!" class="brand-logo"><span style="margin-left:5%;"></span> Contrate um Aluno</a>

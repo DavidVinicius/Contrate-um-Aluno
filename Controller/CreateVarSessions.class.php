@@ -1,5 +1,5 @@
 <?php
- 
+ session_start();
 class CreateVarSessions
 {
     private $SessionUser;

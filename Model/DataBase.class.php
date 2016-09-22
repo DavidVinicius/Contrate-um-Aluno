@@ -65,7 +65,6 @@
         {
             $Connection = $this->ConnectDataBase();
             $Query = "SELECT {$Fields} FROM {$Table} {$Condition}";
-            var_dump($Query);
             $Result = $this->ExecuteQuery($Connection, $Query);
             $this->CloseConnectionDataBase($Connection);
             return $Result;

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
--- http://www.phpmyadmin.net
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 04/07/2016 às 02:22
--- Versão do servidor: 10.1.13-MariaDB
--- Versão do PHP: 5.6.21
+-- Host: 127.0.0.1
+-- Generation Time: 22-Set-2016 às 23:35
+-- Versão do servidor: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `tcc`
+-- Database: `tcc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `aluno`
+-- Estrutura da tabela `aluno`
 --
 
 CREATE TABLE `aluno` (
@@ -46,7 +46,7 @@ CREATE TABLE `aluno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Fazendo dump de dados para tabela `aluno`
+-- Extraindo dados da tabela `aluno`
 --
 
 INSERT INTO `aluno` (`idAluno`, `dataNascimento`, `nacionalidade`, `formacao`, `experiencias`, `informacoesAdicionais`, `foto`, `nome`, `cpf`, `objetivo`, `qualificacoes`, `telefone`, `endereco`, `rg`, `codCurso`, `codUsuario`) VALUES
@@ -56,7 +56,7 @@ INSERT INTO `aluno` (`idAluno`, `dataNascimento`, `nacionalidade`, `formacao`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `curso`
+-- Estrutura da tabela `curso`
 --
 
 CREATE TABLE `curso` (
@@ -68,7 +68,7 @@ CREATE TABLE `curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Fazendo dump de dados para tabela `curso`
+-- Extraindo dados da tabela `curso`
 --
 
 INSERT INTO `curso` (`idCurso`, `nome`, `escola`, `gradeCurricular`, `periodo`) VALUES
@@ -85,7 +85,7 @@ INSERT INTO `curso` (`idCurso`, `nome`, `escola`, `gradeCurricular`, `periodo`) 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `empresa`
+-- Estrutura da tabela `empresa`
 --
 
 CREATE TABLE `empresa` (
@@ -99,7 +99,7 @@ CREATE TABLE `empresa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Fazendo dump de dados para tabela `empresa`
+-- Extraindo dados da tabela `empresa`
 --
 
 INSERT INTO `empresa` (`idEmpresa`, `nome`, `cnpj`, `email`, `telefone`, `endereco`, `codUsuario`) VALUES
@@ -109,7 +109,7 @@ INSERT INTO `empresa` (`idEmpresa`, `nome`, `cnpj`, `email`, `telefone`, `endere
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `mensagens`
+-- Estrutura da tabela `mensagens`
 --
 
 CREATE TABLE `mensagens` (
@@ -118,13 +118,13 @@ CREATE TABLE `mensagens` (
   `de` varchar(40) NOT NULL,
   `data` datetime NOT NULL,
   `mensagem` text NOT NULL,
-  `codAluno` int(11) NOT NULL
+  `codUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `professor`
+-- Estrutura da tabela `professor`
 --
 
 CREATE TABLE `professor` (
@@ -135,7 +135,7 @@ CREATE TABLE `professor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Fazendo dump de dados para tabela `professor`
+-- Extraindo dados da tabela `professor`
 --
 
 INSERT INTO `professor` (`idProfessor`, `nome`, `email`, `formacao`) VALUES
@@ -151,18 +151,18 @@ INSERT INTO `professor` (`idProfessor`, `nome`, `email`, `formacao`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuario`
+-- Estrutura da tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
   `idUsuario` int(11) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `nivel` enum('1','2','3') DEFAULT NULL,
-  `senha` varchar(15) DEFAULT NULL
+  `nivel` enum('1','2','3','4') NOT NULL,
+  `senha` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Fazendo dump de dados para tabela `usuario`
+-- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`idUsuario`, `email`, `nivel`, `senha`) VALUES
@@ -176,7 +176,7 @@ INSERT INTO `usuario` (`idUsuario`, `email`, `nivel`, `senha`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `vaga`
+-- Estrutura da tabela `vaga`
 --
 
 CREATE TABLE `vaga` (
@@ -191,11 +191,11 @@ CREATE TABLE `vaga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Índices de tabelas apagadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `aluno`
+-- Indexes for table `aluno`
 --
 ALTER TABLE `aluno`
   ADD PRIMARY KEY (`idAluno`),
@@ -203,108 +203,103 @@ ALTER TABLE `aluno`
   ADD KEY `codUsuario` (`codUsuario`);
 
 --
--- Índices de tabela `curso`
+-- Indexes for table `curso`
 --
 ALTER TABLE `curso`
   ADD PRIMARY KEY (`idCurso`);
 
 --
--- Índices de tabela `empresa`
+-- Indexes for table `empresa`
 --
 ALTER TABLE `empresa`
   ADD PRIMARY KEY (`idEmpresa`),
   ADD KEY `codUsuario` (`codUsuario`);
 
 --
--- Índices de tabela `mensagens`
+-- Indexes for table `mensagens`
 --
 ALTER TABLE `mensagens`
   ADD PRIMARY KEY (`idMensagem`),
-  ADD KEY `codAluno` (`codAluno`);
+  ADD KEY `fk_mensagens_usuario` (`codUsuario`);
 
 --
--- Índices de tabela `professor`
+-- Indexes for table `professor`
 --
 ALTER TABLE `professor`
   ADD PRIMARY KEY (`idProfessor`);
 
 --
--- Índices de tabela `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idUsuario`);
 
 --
--- Índices de tabela `vaga`
+-- Indexes for table `vaga`
 --
 ALTER TABLE `vaga`
   ADD PRIMARY KEY (`idVaga`),
   ADD KEY `codEmpresa` (`codEmpresa`);
 
 --
--- AUTO_INCREMENT de tabelas apagadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `aluno`
+-- AUTO_INCREMENT for table `aluno`
 --
 ALTER TABLE `aluno`
   MODIFY `idAluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT de tabela `curso`
+-- AUTO_INCREMENT for table `curso`
 --
 ALTER TABLE `curso`
   MODIFY `idCurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
--- AUTO_INCREMENT de tabela `empresa`
+-- AUTO_INCREMENT for table `empresa`
 --
 ALTER TABLE `empresa`
   MODIFY `idEmpresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT de tabela `mensagens`
---
-ALTER TABLE `mensagens`
-  MODIFY `idMensagem` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de tabela `professor`
+-- AUTO_INCREMENT for table `professor`
 --
 ALTER TABLE `professor`
   MODIFY `idProfessor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT de tabela `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT de tabela `vaga`
+-- AUTO_INCREMENT for table `vaga`
 --
 ALTER TABLE `vaga`
   MODIFY `idVaga` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Restrições para dumps de tabelas
+-- Constraints for dumped tables
 --
 
 --
--- Restrições para tabelas `aluno`
+-- Limitadores para a tabela `aluno`
 --
 ALTER TABLE `aluno`
   ADD CONSTRAINT `aluno_ibfk_1` FOREIGN KEY (`codCurso`) REFERENCES `curso` (`idCurso`),
   ADD CONSTRAINT `aluno_ibfk_2` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`);
 
 --
--- Restrições para tabelas `empresa`
+-- Limitadores para a tabela `empresa`
 --
 ALTER TABLE `empresa`
   ADD CONSTRAINT `empresa_ibfk_1` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`);
 
 --
--- Restrições para tabelas `mensagens`
+-- Limitadores para a tabela `mensagens`
 --
 ALTER TABLE `mensagens`
-  ADD CONSTRAINT `mensagens_ibfk_1` FOREIGN KEY (`codAluno`) REFERENCES `aluno` (`idAluno`);
+  ADD CONSTRAINT `fk_mensagens_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`);
 
 --
--- Restrições para tabelas `vaga`
+-- Limitadores para a tabela `vaga`
 --
 ALTER TABLE `vaga`
   ADD CONSTRAINT `vaga_ibfk_1` FOREIGN KEY (`codEmpresa`) REFERENCES `empresa` (`idEmpresa`);

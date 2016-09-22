@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="flow-text">Aqui será A página principal</h1>
+        <h1 class="flow-text">Usuario: <?php echo $_SESSION["usuario"] ?></h1>
     </div>
 </body>
 </html>

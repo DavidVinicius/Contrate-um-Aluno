@@ -1,17 +1,18 @@
 <?php
- session_start();
+
 class CreateVarSessions
 {
     private $SessionUser;
     private $SessionPass;
     private $SessionID;
+    private $SessionNivel;
  
-    function __construct()
+    function __construct($SessionUser, $SessionPass, $SessionId, $SessionNivel)
     {
-        $this->setSessionUser($_SESSION["usuario"]);
-        $this->setSessionPass($_SESSION["senha"]);
-        $this->setSessionID($_SESSION["id"]);
-        $this->setSessionNivel($_SESSION["nivel"]);
+        $this->setSessionUser($SessionUser);
+        $this->setSessionPass($SessionPass);
+        $this->setSessionID($SessionId);
+        $this->setSessionNivel($SessionNivel);
     }
 
     public function getSessionUser()

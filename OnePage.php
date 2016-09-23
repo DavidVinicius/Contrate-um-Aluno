@@ -110,20 +110,20 @@
                function barra(){
                    
                    var width = new Number();
-                   width = width + 10;
+                   width += 100;
                     $(".determinate").css({
                         width: width+"%",
                     });
-                   alert(width);
+//                   alert(width);
                }
-                alert(width);
-                var aumenta = setInterval(barra,100);
+                
+                var aumenta = setInterval(barra(),1000);
                 
                 if(width == 100){
                     clearInterval(aumenta);
                 }
                 
-
+                alert(width);
                 
             });
               // Initialize collapse button

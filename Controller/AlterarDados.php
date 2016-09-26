@@ -8,7 +8,7 @@
     $ValorDeAlteracao = isset($_REQUEST['dado'])?$_REQUEST['dado']:null;
 
     $Alteracao = $Banco -> UpdateQuery('usuario', $Campo, $ValorDeAlteracao, "WHERE idUsuario = $id");
-    var_dump($Alteracao);
+
     if($Alteracao){
         echo $ValorDeAlteracao;
     }

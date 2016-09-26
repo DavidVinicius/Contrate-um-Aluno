@@ -22,19 +22,19 @@
 
         if($resultado){
             echo "<script>
-                    window.location.href = '../../Index.html'; 
+                    window.location.href = '../../Index.php'; 
                     alert('". $Success."');
                 </script>";
         }else{
             echo "<script>
-                    window.location.href = '../../Index.html';
+                    window.location.href = '../../Index.php';
                     alert('". $Failed."');
                 </script>";
         }
 
     } else {
         echo "<script>
-                    window.location.href = '../../Index.html'; 
+                    window.location.href = '../../Index.php'; 
                     alert('Senhas não correspondem');
                 </script>";
     }

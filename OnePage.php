@@ -45,6 +45,12 @@
                 <li><a href="OnePage.php?link=Vagas">Vagas</a></li>
                 <li><a href="OnePage.php?link=Curriculo">Curriculo</a></li>
                 <li><a href="OnePage.php?link=Perfil">Perfil</a></li>
+                <li><form>
+        <div class="input-field">
+          
+          
+        </div>
+      </form></li>
                 <li><a href="" data-activates="Configuracoes" class="abrir">Config</a></li>
                 <li><a href="./Controller/Sair.php">Sair</a></li>
                 <li><span style="margin-right:5%">&nbsp &nbsp</span></li>
@@ -75,9 +81,9 @@
           </nav>
           
       </div>
-           <div class="teste">
+           <div class="teste blue">
                <div class="progress">
-                  <div class="determinate" style=""></div>
+                  <div class="determinate blue" ></div>
                </div>
            </div>
             <section class="section">
@@ -97,17 +103,28 @@
     <script src="js/angular.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script>
-        
-            $("a").click(function(){
-                var width = 0;
-                setInterval(function(){
-                    width = width + 10;
-                    alert("teste");
-                    
-                    
-                },100);
+            $(".teste").hide();
+            $("li").click(function(){
+                $(".teste").show();
                 
-                $(".determinate").css('width',100+"%");
+               function barra(){
+                   
+                   var width = new Number();
+                   width += 100;
+                    $(".determinate").css({
+                        width: width+"%",
+                    });
+//                   alert(width);
+               }
+                
+                var aumenta = setInterval(barra(),1000);
+                
+                if(width == 100){
+                    clearInterval(aumenta);
+                }
+                
+                alert(width);
+                
             });
               // Initialize collapse button
               $(".button-collapse").sideNav();

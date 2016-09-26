@@ -11,6 +11,6 @@ include "./../Model/Database.class.php";
     }else{
         echo 0;    
     }
-    
+     
 
 ?>

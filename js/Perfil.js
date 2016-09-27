@@ -42,6 +42,9 @@ $(".editar").click(function(){
                                         url:"Controller/AlterarDados.php",
                                         method: "POST",
                                         data: {dado: valorDoCampo, campo: Campo},
+                                        beforeSend:function(){
+                                          $(this).parent().prepend("<teste>");  
+                                        },
                                         success: function(dado){
                                             if(dado == 0){
                                                 Materialize.toast("Erro, tente novamente",4000);

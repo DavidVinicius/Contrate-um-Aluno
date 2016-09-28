@@ -1,6 +1,7 @@
 <?php
     include_once("../Model/DataBase.class.php");
-    include_once("CreateVarSessions.class.php");
+    include_once("ManipulaVarSession.class.php");
+    //include_once("CreateVarSessions.class.php");
 
     class Login
     {
@@ -15,7 +16,10 @@
                 $_SESSION["id"] = $Data["idUsuario"];
                 $_SESSION["nivel"] = $Data["nivel"];
 
-                $Sessions = new CreateVarSessions($_SESSION["usuario"],$_SESSION["senha"],
+                /*$Sessions = new CreateVarSessions($_SESSION["usuario"],$_SESSION["senha"],
+                    $_SESSION["id"],$_SESSION["nivel"]);*/
+                $Sessions = new ManipulaVarSession();
+                $Sessions->CreateVarSession($_SESSION["usuario"],$_SESSION["senha"],
                     $_SESSION["id"],$_SESSION["nivel"]);
 
                 $id = $Sessions -> getSessionId();

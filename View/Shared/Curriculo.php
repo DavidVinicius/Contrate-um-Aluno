@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1 class="flow-text">aqui ficará o currículo</h1>
-        <form action="">
+        <form action="../../Controller/Cadastro/CadastroAluno.php">
             <div class="row">
                 <div class="input-field col s12 m6">
                  <label for="nome">Nome Completo</label>
@@ -20,7 +20,7 @@
                    <div class="file-field input-field col s12 push-s3 m8">
                        <div class="btn blue" style='margin-bottom:10px'>
                            <span>Subir foto perfil</span>
-                           <input type="file">
+                           <input type="file" name="foto">
                         </div>
                    </div><br>
                    <div class="file-path-wrapper col s4 push-s3 m4 push-m1 center">

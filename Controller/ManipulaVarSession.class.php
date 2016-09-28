@@ -13,12 +13,12 @@
         private $SessionID;
         private $SessionLevel;
 
-        public function CreateVarSession($SessionUser, $SessionPass, $SessionId, $SessionNivel)
+        public function CreateVarSession($SessionUser, $SessionPass, $SessionId, $SessionLevel)
         {
             $this->setSessionUser($SessionUser);
             $this->setSessionPass($SessionPass);
             $this->setSessionID($SessionId);
-            $this->setSessionNivel($SessionNivel);
+            $this->setSessionLevel($SessionLevel);
         }
 
         public function DeleteVarSession()

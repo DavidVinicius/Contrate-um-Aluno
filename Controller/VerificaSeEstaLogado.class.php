@@ -12,10 +12,7 @@
                 header('location:Index.php');
                 return false;
             }else
-            {
-                $CreateVarSessions = new CreateVarSessions();
-                return $CreateVarSessions;
-            }
+                return true;
         }
     }
 

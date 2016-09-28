@@ -1,7 +1,9 @@
 <?php
     include_once("Controller/VerificaSeEstaLogado.class.php");
     include_once("Controller/CreateVarSessions.class.php");
-   
+
+    $Logado = new VerificaSeEstaLogado();
+    $Logado->EstaLogado();
 ?>
 <!DOCTYPE html>
 

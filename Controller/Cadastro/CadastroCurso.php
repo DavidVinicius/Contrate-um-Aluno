@@ -16,7 +16,7 @@
     $codErro        = $_FILES['grade']['error']; #O código de erro associado ao upload do arquivo
 
     #move_uploaded_file(nomeTemporario, diretório+nomeImagem.extensao)
-    $diretorio = "../../Images/ImagensUser/";
+    $diretorio = "../../Images/Usuario/";
     $localFull = $diretorio.$nomeOriginal;
     move_uploaded_file($nomeTemporario, $localFull); #Move o arquivo temporário para pasta
                                                      ##permanente

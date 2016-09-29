@@ -89,7 +89,18 @@
             <div class="row">
                 <label for="">Aqui ficará a formação</label>
                 <div class="card-panel small" ng-repeat='x in names'>
+                   <span class="card-title">Card Title</span>
                     {{x.name}}
+                    <div class="card-content">
+                      <p>I am a very simple card. I am good at containing small bits of information.
+                      I am convenient because I require little markup to use effectively.</p>
+                    </div>
+                </div>
+                <div class="input-field col s12 m6">
+                   <label for="titulo">Titulo</label>
+                    <input type="text" class='validate' id="titulo"><br>
+                    <label for="instituicao">Instituição</label>
+                    <input type="text" class='validate' id="instituicao">
                 </div>
                 <a href="" class="btn blue">Adicionar Formação</a>
             </div>

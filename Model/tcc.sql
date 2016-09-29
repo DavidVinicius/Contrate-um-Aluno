@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Set-2016 às 23:35
+-- Generation Time: 29-Set-2016 às 23:34
 -- Versão do servidor: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -131,22 +131,9 @@ CREATE TABLE `professor` (
   `idProfessor` int(11) NOT NULL,
   `nome` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `formacao` varchar(30) NOT NULL
+  `formacao` varchar(30) NOT NULL,
+  `codUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `professor`
---
-
-INSERT INTO `professor` (`idProfessor`, `nome`, `email`, `formacao`) VALUES
-(1, 'nomePicioli', 'email@email.com', 'tÃ©cnico'),
-(2, 'nomePicioli', 'email@email.com', 'tÃ©cnico'),
-(3, 'nomePicioli', 'email@email.com', 'tÃ©cnico'),
-(4, 'nomePicioli', 'email@email.com', 'tÃ©cnico'),
-(5, 'nomePicioli', 'email@email.com', 'tÃ©cnico'),
-(6, 'NÃ£o informado!', 'NÃ£o informado!', 'NÃ£o informado!'),
-(7, 'NovoNome', 'NovoEmail@gmail.com', 'Nova FormaÃ§Ã£o'),
-(8, 'NÃ£o informado!', 'NÃ£o informado!', 'NÃ£o informado!');
 
 -- --------------------------------------------------------
 
@@ -167,11 +154,12 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idUsuario`, `email`, `nivel`, `senha`) VALUES
 (1, 'empresa@empresa.com', '2', '123'),
-(2, 'aluno@aluno.com', '1', '123'),
+(2, 'novo@novo.com', '1', '1234'),
 (3, 'empresa1@empresa1.com', '2', '123'),
 (4, 'admin@admin.com', '3', '123'),
 (5, 'empresa2@empresa2.com', '2', '123'),
-(6, 'aluno2@aluno2.com', '1', '123');
+(6, 'aluno2@aluno2.com', '1', '123'),
+(7, 'novaemp@emp.com', '2', '1234');
 
 -- --------------------------------------------------------
 
@@ -189,6 +177,15 @@ CREATE TABLE `vaga` (
   `beneficios` varchar(255) DEFAULT NULL,
   `codEmpresa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `vaga`
+--
+
+INSERT INTO `vaga` (`idVaga`, `titulo`, `descricao`, `cargaHoraria`, `salario`, `requisitos`, `beneficios`, `codEmpresa`) VALUES
+(1, 'Programador ASP.NET', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 36.4, 1200.69, 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 9),
+(2, 'Professor de banco de dados - MySQL', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 36.4, 1200.69, 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 9),
+(3, 'Desenvolvedor de sistemas operacionais - C/C++', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 36.4, 1200.69, 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 9);
 
 --
 -- Indexes for dumped tables
@@ -226,7 +223,8 @@ ALTER TABLE `mensagens`
 -- Indexes for table `professor`
 --
 ALTER TABLE `professor`
-  ADD PRIMARY KEY (`idProfessor`);
+  ADD PRIMARY KEY (`idProfessor`),
+  ADD KEY `fk_professor_usuario` (`codUsuario`);
 
 --
 -- Indexes for table `usuario`
@@ -261,20 +259,15 @@ ALTER TABLE `curso`
 ALTER TABLE `empresa`
   MODIFY `idEmpresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `professor`
---
-ALTER TABLE `professor`
-  MODIFY `idProfessor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `vaga`
 --
 ALTER TABLE `vaga`
-  MODIFY `idVaga` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idVaga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --
@@ -297,6 +290,12 @@ ALTER TABLE `empresa`
 --
 ALTER TABLE `mensagens`
   ADD CONSTRAINT `fk_mensagens_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`);
+
+--
+-- Limitadores para a tabela `professor`
+--
+ALTER TABLE `professor`
+  ADD CONSTRAINT `fk_professor_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`);
 
 --
 -- Limitadores para a tabela `vaga`

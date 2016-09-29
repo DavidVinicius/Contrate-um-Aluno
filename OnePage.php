@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="css/materialize.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="fonts/material-icons.css">
     <style>
         .menuCor{
             background-color: rgb(50,49,51);    
@@ -41,7 +41,7 @@
            
             <div class="nav-wrapper menuCor">
               <a href="#!" class="brand-logo"><span style="margin-left:5%"></span>Contrate um Aluno</a>
-              <a href="#" data-activates="menuLateral" class="button-collapse"><i class="fa fa-bars " style="font-size:23px"></i></a>
+              <a href="#" data-activates="menuLateral" class="button-collapse"><i class="material-icons">	menu</i></a>
               <ul class="right hide-on-med-and-down">
                 <li><a href="OnePage.php?link=Home">Home</a></li>
                 <li><a href="OnePage.php?link=Vagas">Vagas</a></li>

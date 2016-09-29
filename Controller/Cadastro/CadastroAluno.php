@@ -5,7 +5,7 @@
     include_once("../ManipulaVarSession.class.php");
 
     $VarSessions = new ManipulaVarSession();
-
+ 
     $DB = new DataBase();
 
     $nomeOriginal   = $_FILES['foto']['name']; #Nome do arquivo original

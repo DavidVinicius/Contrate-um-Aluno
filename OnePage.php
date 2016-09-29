@@ -89,7 +89,7 @@
 			 if(empty($_SERVER['QUERY_STRING'])){
                     include "View/Shared/Home.php";
                 }else{ //Se não abri conteúdo especificado no ?link=....
-				    include "View/Shared/".$_GET['link'].".php";				
+				    include "View/Shared/".$_GET['link'].".php";
                 }
 			 ?>
             </section>

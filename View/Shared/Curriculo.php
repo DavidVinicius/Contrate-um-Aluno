@@ -15,6 +15,7 @@
    
 </head>
 <body ng-controller='Curriculo'>
+   
     <div class="container" ng-controller='Variaveis'>
         <h1 class="flow-text center-align">Currículo</h1>
         <form action="../../Controller/Cadastro/CadastroAluno.php">
@@ -87,6 +88,9 @@
             </div>
             <div class="row">
                 <label for="">Aqui ficará a formação</label>
+                <div class="card-panel small" ng-repeat='x in names'>
+                    {{x.name}}
+                </div>
                 <a href="" class="btn blue">Adicionar Formação</a>
             </div>
             <div class="row">
@@ -98,7 +102,7 @@
         </form>
     </div>
     
-    <a href="" id="teste" class="btn blue">teste</a>
+    
     <script>
         var loadFile = function(event){
             var foto = document.getElementById('preview');
@@ -109,9 +113,7 @@
             $scope.email = "<?=  $email;?>" || " teste";
         }])
         
-        $('#teste').click(function(){
-            var teste = $('.chips-placeholder').material_chip('data');
-        });
+        
     </script>
     
 </body>

@@ -2,6 +2,11 @@
 var app = angular.module('curriculo',[]);
 
 app.controller('Curriculo',['$scope',function($scope){
+    $scope.names = [
+    {name:'Jani',country:'Norway'},
+    {name:'Carl',country:'Sweden'},
+  ];
+       
     $('.datepicker').pickadate({
             selectMonths: true,
             selectYears: 100,

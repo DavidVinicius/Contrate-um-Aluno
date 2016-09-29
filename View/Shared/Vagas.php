@@ -20,12 +20,12 @@
        <h1 class="flow-text center-align">Vagas no Contrate um Aluno</h1>
 
         <?php
-            while($Linha = mysqli_fetch_assoc($Result) )
-            {
+
+            while($Linha = mysqli_fetch_assoc($Result) ) {
                 $CodEmpresa = $Linha['codEmpresa'];
                 $Result2 = $DB->SearchQuery("empresa", "where idEmpresa = $CodEmpresa");
                 $EmpresaAssoc = mysqli_fetch_assoc($Result2);
-            ?>
+                ?>
                 <div class='col m12'>
                     <div class='card medium'>
                         <div class='card-image waves-effect waves-block waves-light'>
@@ -34,7 +34,8 @@
 
                         </div>
                         <div class='card-content'>
-                            <span class='card-title activator grey-text text-darken-4'><?php echo $Linha['titulo']; ?><i class='fa fa-ellipsis-v right'></i></span>
+                            <span class='card-title activator grey-text text-darken-4'><?php echo $Linha['titulo']; ?><i
+                                    class='fa fa-ellipsis-v right'></i></span>
                             <p class="blue-text"><?php echo $EmpresaAssoc['nome']; ?></p>
                         </div>
                         <div class='card-reveal'>
@@ -45,16 +46,16 @@
                             <p>Descrição: <?php echo $Linha['descricao']; ?></p>
                             <p>Carga horária: <?php echo number_format($Linha['cargaHoraria'], 1, ',', '.'); ?></p>
                             <p>Salário: R$: <?php echo number_format($Linha['salario'], 2, ',', '.'); ?></p>
-                            <p>Requisitos:  <?php echo $Linha['requisitos']; ?></p>
-                            <p>Benefícios:  <?php echo $Linha['beneficios']; ?></p>
+                            <p>Requisitos: <?php echo $Linha['requisitos']; ?></p>
+                            <p>Benefícios: <?php echo $Linha['beneficios']; ?></p>
 
-                            <a class="btn blue" href="OnePage.php?link=Vaga&id=<?php echo $Linha['idVaga'] ?>">Candidatar-se</a>
+                            <a class="btn blue" href="OnePage.php?link=Vaga&id=<?php echo $Linha['idVaga']; ?>">Candidatar-se</a>
                         </div>
                     </div>
                 </div>
-        <?php
-            }
+                <?php
 
+            }
         ?>
 
     </div>

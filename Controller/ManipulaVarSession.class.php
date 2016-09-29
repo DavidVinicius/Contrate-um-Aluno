@@ -1,32 +1,31 @@
 <?php
 
-<<<<<<< HEAD
 class ManipulaVarSession
 {
     private $SessionUser;
     private $SessionPass;
     private $SessionID;
-    private $SessionNivel;
+    private $SessionLevel;
 
-    public function CriaVarSession($SessionUser, $SessionPass, $SessionId, $SessionNivel)
+    public function CreateVarSession($SessionUser, $SessionPass, $SessionId, $SessionLevel)
     {
         $this->setSessionUser($SessionUser);
         $this->setSessionPass($SessionPass);
         $this->setSessionID($SessionId);
-        $this->setSessionNivel($SessionNivel);
+        $this->setSessionLevel($SessionLevel);
     }
 
     public function DeletaVarSession()
     {
         $this->setSessionUser(null);
         $this->setSessionPass(null);
-        $this->setSessionNivel(null);
+        $this->setSessionLevel(null);
         $this->setSessionID(null);
     }
 
     public function VerificaEstaLogado()
     {
-        if( (!$this->getSessionUser() == null) && (!$this->getSessionPass() == null) && (!$this->getSessionNivel() == null) )
+        if( (!$this->getSessionUser() == null) && (!$this->getSessionPass() == null) && (!$this->getSessionLevel() == null) )
         {
             echo "<script>alert('Logado')</script>";
         }else
@@ -67,113 +66,16 @@ class ManipulaVarSession
     {
         $this->SessionID = $SessionID;
     }
-    public function getSessionNivel()
+    public function getSessionLevel()
     {
-        return $this->SessionNivel;
+        return $this->SessionLevel;
     }
 
-    public function setSessionNivel($SessionNivel)
+    public function setSessionLevel($SessionLevel)
     {
-        $this->SessionNivel = $SessionNivel;
+        $this->SessionLevel = $SessionLevel;
     }
 
 
 }
-=======
-/**
- * Created by PhpStorm.
- * User: Matheus Picioli
- * Date: 27/09/2016
- * Time: 22:10
- */
-    class ManipulaVarSession
-    {
-        private $SessionUser;
-        private $SessionPass;
-        private $SessionID;
-        private $SessionLevel;
-
-        public function CreateVarSession($SessionUser, $SessionPass, $SessionId, $SessionLevel)
-        {
-            $this->setSessionUser($SessionUser);
-            $this->setSessionPass($SessionPass);
-            $this->setSessionID($SessionId);
-            $this->setSessionLevel($SessionLevel);
-        }
-
-        public function DeleteVarSession()
-        {
-            $this->setSessionUser(null);
-            $this->setSessionPass(null);
-            $this->setSessionID(null);
-            $this->setSessionLevel(null);
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getSessionUser()
-        {
-            return $this->SessionUser;
-        }
-
-        /**
-         * @param mixed $SessionUser
-         */
-        public function setSessionUser($SessionUser)
-        {
-            $this->SessionUser = $SessionUser;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getSessionPass()
-        {
-            return $this->SessionPass;
-        }
-
-        /**
-         * @param mixed $SessionPass
-         */
-        public function setSessionPass($SessionPass)
-        {
-            $this->SessionPass = $SessionPass;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getSessionID()
-        {
-            return $this->SessionID;
-        }
-
-        /**
-         * @param mixed $SessionID
-         */
-        public function setSessionID($SessionID)
-        {
-            $this->SessionID = $SessionID;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getSessionLevel()
-        {
-            return $this->SessionLevel;
-        }
-
-        /**
-         * @param mixed $SessionLevel
-         */
-        public function setSessionLevel($SessionLevel)
-        {
-            $this->SessionLevel = $SessionLevel;
-        }
-
-
-    }
 ?>
->>>>>>> af7b9cd700d53f79c6c4b6f1ef46530e2488524d

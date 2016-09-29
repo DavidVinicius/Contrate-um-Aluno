@@ -20,7 +20,6 @@
        <h1 class="flow-text center-align">Vagas no Contrate um Aluno</h1>
 
         <?php
-
             while($Linha = mysqli_fetch_assoc($Result) )
             {
                 $CodEmpresa = $Linha['codEmpresa'];

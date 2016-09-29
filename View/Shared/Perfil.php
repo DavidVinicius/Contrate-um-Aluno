@@ -20,7 +20,7 @@
           <tr data-id="email">
             <td class="flow-text">Email</td>
             <td class="flow-text"><?php echo $usuario ?></td>
-            <td><button  class="btn blue editar" >Editar</button></td>
+            <td> <button class="btn blue editar">Editar</button></td>
           </tr>
           <tr data-id="senha">
             <td class="flow-text">Senha</td>

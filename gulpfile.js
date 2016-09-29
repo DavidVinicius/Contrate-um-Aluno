@@ -8,9 +8,14 @@ var concatCss = require('gulp-concat-css');
 var es6transpiler = require('gulp-es6-transpiler');
 
 gulp.task('scripts', function() {
-  return gulp.src('./lib/*.js')
-    .pipe(concat('all.js'))
-    .pipe(gulp.dest('./dist/'));
+  return gulp.src('./js/*.js')
+    .pipe(concat('all.js').on('error',function(e){
+      console.log(e);
+  }))
+    .pipe(uglify().on('error',function(e){
+      console.log(e)
+  }))
+    .pipe(gulp.dest('./Teste/'));
 });
 
 gulp.task('sass', function () {
@@ -46,4 +51,5 @@ gulp.task('concat-css', function () {
 
 gulp.task('default', function() {
   // place code for your default task here
+    console.log("Olá");
 });

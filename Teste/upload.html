@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/jquery-3.1.0.min.js"></script>
+    <script>
+        function Carrega(input){
+        
+            if(input.files && input.files[0]){
+                var reader = new FileReader();
+                reader.onload = function(e){
+//                    $('#preview').attr('src',e.target.result);
+                    $("#upload").after("<img src='"+e.target.result+"' width='100px'");
+                    console.log("load");
+                    alert(e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+            else{
+                alert("erro");
+            }
+        }
+        
+        $('#file').change(function(){
+            Carrega(this);
+        });
+    </script>
+</head>
+<body>
+    <form action="" id='upload'>
+        <input type="file" name="file" id="file">
+    </form>
+</body>
+</html>

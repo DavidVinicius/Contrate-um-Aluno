@@ -2,7 +2,7 @@
     include_once("../../Model/DataBase.class.php");
     include_once("../../Util.php");
     include_once("../VerificaSeEstaLogado.class.php");
-    include_once("../CreateVarSessions.class.php");
+
     $DB = new DataBase();
 
     //$VerificaSeEstaLogado = new VerificaSeEstaLogado();
@@ -16,7 +16,7 @@
     $codErro        = $_FILES['grade']['error']; #O código de erro associado ao upload do arquivo
 
     #move_uploaded_file(nomeTemporario, diretório+nomeImagem.extensao)
-    $diretorio = "../../Images/ImagensUser/";
+    $diretorio = "../../Images/Usuario/";
     $localFull = $diretorio.$nomeOriginal;
     move_uploaded_file($nomeTemporario, $localFull); #Move o arquivo temporário para pasta
                                                      ##permanente

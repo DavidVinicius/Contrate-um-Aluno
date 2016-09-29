@@ -13,7 +13,7 @@
         echo $ValorDeAlteracao;
     }
     else{
-        echo "Erro no AlterarDados.php";
+        echo 0;
     }
     
     

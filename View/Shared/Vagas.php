@@ -49,7 +49,7 @@
                             <p>Requisitos:  <?php echo $Linha['requisitos']; ?></p>
                             <p>Benefícios:  <?php echo $Linha['beneficios']; ?></p>
 
-                            <a class="btn blue" href="Vaga?id=<?php $Linha['idVaga'] ?>">Candidatar-se</a>
+                            <a class="btn blue" href="OnePage.php?link=Vaga&id=<?php echo $Linha['idVaga'] ?>">Candidatar-se</a>
                         </div>
                     </div>
                 </div>

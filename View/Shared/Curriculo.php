@@ -1,3 +1,7 @@
+<?php
+    $email = $_SESSION['usuario'];
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br" ng-app='curriculo'>
 <head>
@@ -6,35 +10,37 @@
     <script src='js/jquery-3.1.0.min.js'></script>
     <script src='js/angular.min.js'></script>
     <script src="js/materialize.js"></script>
+    <script src='js/Curriculo.js'></script>
     
    
 </head>
 <body ng-controller='Curriculo'>
-    <div class="container">
-        <h1 class="flow-text">aqui ficará o currículo</h1>
+    <div class="container" ng-controller='Variaveis'>
+        <h1 class="flow-text center-align">Currículo</h1>
         <form action="../../Controller/Cadastro/CadastroAluno.php">
             <div class="row">
                 <div class="input-field col s12 m6">
                  <label for="nome">Nome Completo</label>
-                 <input placeholder="Digite seu nome" id="nome" type="text" class="">
+                 <input placeholder="Digite seu nome" id="nome" type="text" class="" onchange='loadFile(event)' value='{{nome}}' ngIf="nome != '' ? alert('teste') ">
                   
                 </div>
-                <div class="col s12 m4 push-m1 ">
-                   <div class="file-field input-field col s12 push-s3 m8">
+                <div class="col s12 m6 push-m1 ">
+                   <div class="file-field input-field col s12 push-s3 m3">
                        <div class="btn blue" style='margin-bottom:10px'>
-                           <span>Subir foto perfil</span>
-                           <input type="file" name="foto">
+                           <span> Foto perfil</span>
+                           <input type="file" name="foto" id='foto' accept='image/*' onchange='loadFile(event)'>
                         </div>
                    </div><br>
-                   <div class="file-path-wrapper col s4 push-s3 m4 push-m1 center">
-                       <img src="images/Padrao/PerfilPadrao.png" alt="Imagem Perfil" class='responsive-img circle' style=''>
+                   <div class="file-path-wrapper col s4 push-s3 m6 push-m1 center" id='fotoPerfil'>
+                       <img src="images/Padrao/PerfilPadrao.png" alt="Imagem Perfil" class='circle responsive-img' id='preview' >
                    </div>
+                   
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6">
                    <label for="email">Email:</label>
-                    <input type="email" name="email" id="email">
+                    <input type="email" name="email" id="email" value='{{email}}' ng-disabled="email != ''">
                 </div>
             </div>
             <div class="row">
@@ -54,12 +60,13 @@
                 </div>
                 <div class="input-field col s12 m6">
                     <select>
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                      <option value="3">Option 3</option>
+                      <option value="" disabled selected></option>
+                      <option value="1">Carro</option>
+                      <option value="2">Moto</option>
+                      <option value="3">Elefante</option>
                     </select>
-                    <label>Materialize Multiple Select</label>
+                    <label>Escolha sua Nacionalidade</label>
+                    
                 </div>
             </div>
             <div class="row">
@@ -80,58 +87,32 @@
             </div>
             <div class="row">
                 <label for="">Aqui ficará a formação</label>
+                <a href="" class="btn blue">Adicionar Formação</a>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
                     <label for="textarea1">Experiência</label>
                 </div>
             </div>
             
         </form>
     </div>
+    
+    <a href="" id="teste" class="btn blue">teste</a>
     <script>
-        $('.datepicker').pickadate({
-            selectMonths: true,
-            selectYears: 100,
-            showDaysShort:true,
-            format: 'dd/mm/yyyy',
-            today: 'Hoje',
-            clear: 'Limpar',
-            close: 'Fechar',
-            weekdaysFull:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-            weekdaysShort:['Dom','Seg','Ter','Qua','Qui','S','Sáb'],
-            
-            monthsFull:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-            monthsShort:['Jan','Fev','Mar','Abril','Maio','Jun','Jul','Ago','Set','Out','Nov','Dez'],         
-            labelMonthNext: 'Próximo mês',
-            labelMonthPrev: 'Mês anterior',
-            labelMonthSelect: 'Selecione o Mês',
-            min: new Date(1950,1,1),
-            max: [2020,12,12]
-            
-        });
-        
-        $('.chips-placeholder').material_chip({
-            placeholder: "word, excel ..",
-            secondaryPlaceholder: "Suas qualificações",
-            
-        });
-        $("#teste").click(function(e){
-            e.eventDefault();
-            var teste = $('.chips-placeholder').material_chips('data');
-            alert(teste);
-            alert(teste);
-        });
-        
-        var app = angular.module("curriculo",[]);
-        app.controller("Curriculo",['$scope', function($scope){
-            $scope.colocaFormacao = function(e){
-                
-                
-               
-            }
+        var loadFile = function(event){
+            var foto = document.getElementById('preview');
+            foto.src = URL.createObjectURL(event.target.files[0]);
+        }
+        app.controller('Variaveis',['$scope',function($scope){
+            $scope.nome = "<?=  $email;?>" || " teste";
+            $scope.email = "<?=  $email;?>" || " teste";
         }])
+        
+        $('#teste').click(function(){
+            var teste = $('.chips-placeholder').material_chip('data');
+        });
     </script>
+    
 </body>
 </html>

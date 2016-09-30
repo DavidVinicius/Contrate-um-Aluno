@@ -15,7 +15,7 @@ class ManipulaVarSession
         $this->setSessionLevel($SessionLevel);
     }
 
-    public function DeletaVarSession()
+    public function DeleteVarSession()
     {
         $this->setSessionUser(null);
         $this->setSessionPass(null);

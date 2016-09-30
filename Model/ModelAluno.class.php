@@ -1,5 +1,6 @@
 <?php
-
+    include_once("DataBase.class.php");
+    $DB = new DataBase();
 /**
  * Created by PhpStorm.
  * User: Desenvolvedor
@@ -24,6 +25,79 @@
         private $rg;
         private $codCurso;
         private $codUsuario;
+
+        function __construct($IdAluno)
+        {
+            $DB = $this->InstanciaDB();
+            $Result = $DB->SearchQuery("aluno","where idAluno = $IdAluno");
+            $Assoc = mysqli_fetch_assoc($Result);
+            $this->setDataNascimento($Assoc['dataNascimento']);
+            $this->setFormacao($Assoc['formacao']);
+            $this->setExperiencias($Assoc['experiencias']);
+            $this->setInformacoesAdicionais($Assoc['informacoesAdicionais']);
+            $this->setFoto($Assoc['foto']);
+            $this->setNome($Assoc['nome']);
+            $this->setCpf($Assoc['cpf']);
+            $this->setObjetivo($Assoc['objetivo']);
+            $this->setQualificacoes($Assoc['qualificacoes']);
+            $this->setTelefone($Assoc['telefone']);
+            $this->setEndereco($Assoc['endereco']);
+            $this->setRg($Assoc['rg']);
+            $this->setCodCurso($Assoc['codCurso']);
+            $this->setCodUsuario($Assoc['codUsuario']);
+        }
+
+        public function CreateAluno($DataNascimento, $Formacao, $Experiencias, $InformacoesAdicionais,
+        $Foto, $Nome, $Cpf, $Objetivo, $Qualificacoes, $Telefone, $Endereco, $Rg, $CodCurso,$CodUsuario)
+        {
+            /*$this->setDataNascimento($DataNascimento);
+            $this->setFormacao($Formacao);
+            $this->setExperiencias($Experiencias);
+            $this->setInformacoesAdicionais($InformacoesAdicionais);
+            $this->setFoto($Foto);
+            $this->setNome($Nome);
+            $this->setCpf($Cpf);
+            $this->setObjetivo($Objetivo);
+            $this->setQualificacoes($Qualificacoes);
+            $this->setTelefone($Telefone);
+            $this->setEndereco($Endereco);
+            $this->setRg($Rg);
+            $this->setCodCurso($CodCurso);
+            $this->setCodUsuario($CodUsuario);*/
+
+            $Dados = array(
+                $DataNascimento,
+                $Formacao,
+                $Experiencias,
+                $InformacoesAdicionais,
+                $Foto,
+                $Nome,
+                $Cpf,
+                $Objetivo,
+                $Qualificacoes,
+                $Telefone,
+                $Endereco,
+                $Rg,
+                $CodCurso,
+                $CodUsuario
+            );
+            $DB = $this->InstanciaDB();
+            $Resultado = $DB->InsertQuery("aluno", $Dados);
+            return $Resultado;
+        }
+
+        public function ReadAluno()
+        {
+            $Data = array(
+                $this->get
+            );
+        }
+
+        public function InstanciaDB()
+        {
+            $DB = new DataBase();
+            return $DB;
+        }
 
         /**
          * @return mixed

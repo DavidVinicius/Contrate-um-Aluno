@@ -26,30 +26,56 @@
                 $Result2 = $DB->SearchQuery("empresa", "where idEmpresa = $CodEmpresa");
                 $EmpresaAssoc = mysqli_fetch_assoc($Result2);
                 ?>
-                <div class='col m12'>
-                    <div class='card medium'>
+                <div class='col m6'>
+                    <div class='card small'>
                         <div class='card-image waves-effect waves-block waves-light'>
 
                             <img class='activator' src='images/office.jpg'>
 
                         </div>
                         <div class='card-content'>
-                            <span class='card-title activator grey-text text-darken-4'><?php echo $Linha['titulo']; ?><i
-                                    class='fa fa-ellipsis-v right'></i></span>
+                            <span class='card-title activator grey-text text-darken-4'>
+                                <?php $TamTitulo = strlen($Linha['titulo']);
+                                        $TituloMenor = substr($Linha['titulo'], 0, 30)."...";
+                                    if($TamTitulo > 29)
+                                    {
+                                        echo $TituloMenor;
+                                    }else
+                                    {
+                                        echo $Linha['titulo'];
+                                    }
+                                ?><i class='material-icons right'>add</i></span>
                             <p class="blue-text"><?php echo $EmpresaAssoc['nome']; ?></p>
                         </div>
                         <div class='card-reveal'>
                               <span class='card-title grey-text text-darken-4'>
-                                  <?php echo $Linha['titulo']; ?><br>
+                                  <?php $TamTitulo = strlen($Linha['titulo']);
+                                        if($TamTitulo > 29)
+                                        {
+                                            echo $TituloMenor;
+                                        }else
+                                        {
+                                            echo $Linha['titulo'];
+                                        }
+                                  ?><br>
                                   <br>
-                                  <i class='fa fa-remove right'></i></span>
-                            <p>Descrição: <?php echo $Linha['descricao']; ?></p>
+                                  <i class='material-icons right'>close</i></span>
+                            <p>Descrição: <?php
+                                            $TamDesc = strlen($Linha['descricao']);
+                                            if($TamDesc > 250)
+                                            {
+                                                echo substr($Linha['descricao'], 0, 49)."...";
+                                                echo "<a href='OnePage.php?link=Vaga&id=".$Linha["idVaga"]."'>Ver mais</a>";
+                                            }else
+                                            {
+                                                echo $Linha['descricao'];
+                                            }
+
+                                        ?></p>
                             <p>Carga horária: <?php echo number_format($Linha['cargaHoraria'], 1, ',', '.'); ?></p>
                             <p>Salário: R$: <?php echo number_format($Linha['salario'], 2, ',', '.'); ?></p>
-                            <p>Requisitos: <?php echo $Linha['requisitos']; ?></p>
-                            <p>Benefícios: <?php echo $Linha['beneficios']; ?></p>
 
-                            <a class="btn blue" href="OnePage.php?link=Vaga&id=<?php echo $Linha['idVaga']; ?>">Candidatar-se</a>
+                            <a class='btn blue' href='OnePage.php?link=Vaga&id=<?php echo $Linha["idVaga"]; ?>'>Candidatar-se</a>
                         </div>
                     </div>
                 </div>

@@ -62,7 +62,7 @@
                                   <i class='material-icons right'>close</i></span>
                             <p>Descrição: <?php
                                             $TamDesc = strlen($Linha['descricao']);
-                                            if($TamDesc > 250)
+                                            if($TamDesc > 150)
                                             {
                                                 echo substr($Linha['descricao'], 0, 49)."...";
                                                 echo "<a href='OnePage.php?link=Vaga&id=".$Linha["idVaga"]."'>Ver mais</a>";

@@ -31,7 +31,7 @@
 </head>
 <body ng-app='app' ng-controller='div'>
     <h1>Page Admin</h1>
-    <div class='card-panel medium' ng-repeat='t in usuario'>
+    <div class='card-panel medium' ng-repeat='t in usuario '>
         <h2 class='flow-text'>O id é {{t.idUsuario}} </h2>
         <p class='flow-text hoverable' ng-click='ola(this)'> {{t.email}} <span class='chip' ng-init="  " ><i class='material-icons'>cloud</i></span> </p>
         <p> {{t.senha}} </p>
@@ -48,6 +48,7 @@
      var app = angular.module('app',[]);
         app.controller('div',['$scope',function($scope){
             $scope.usuario = <?= json_encode($a); ?> ;
+            $scope.ordernar = $scope.usuario.email;
             $scope.ola = function(a){
                 var id = a.id;
                 alert("olá" + id);

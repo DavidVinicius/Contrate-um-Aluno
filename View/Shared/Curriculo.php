@@ -87,22 +87,30 @@
                 </div>
             </div>
             <div class="row">
-                <label for="">Aqui ficará a formação</label>
-                <div class="card-panel small" ng-repeat='x in names'>
-                   <span class="card-title">Card Title</span>
-                    {{x.name}}
-                    <div class="card-content">
-                      <p>I am a very simple card. I am good at containing small bits of information.
-                      I am convenient because I require little markup to use effectively.</p>
+                
+                <div class="col m4">
+                    <div class="card-panel small" ng-repeat='x in formacao'>
+                       <i class='material-icons right'>close</i>
+                        <span class="card-title"><h3 class='flow-text'>{{x.ano}} - {{x.instituicao}}</h3></span>
+                        
+                        <div class="card-content">
+                          <p class='flow-text'>{{x.curso}}</p>
+                        </div>
                     </div>
                 </div>
-                <div class="input-field col s12 m6">
-                   <label for="titulo">Titulo</label>
-                    <input type="text" class='validate' id="titulo"><br>
-                    <label for="instituicao">Instituição</label>
-                    <input type="text" class='validate' id="instituicao">
+                <div class="input-field col s12 m2">
+                   
+                    <input type="date" name="ano" id="data" class="anoFormacao" ng-model="anoFormacao">
                 </div>
-                <a href="" class="btn blue">Adicionar Formação</a>
+                <div class="input-field col s12 m3">
+                   <label for="titulo">Formação</label>
+                    <input type="text" class='validate' id="titulo" ng-model='curso'>
+                </div>
+                <div class="input-field col s12 m3">
+                    <label for="instituicao">Instituição</label>
+                    <input type="text" class='validate' id="instituicao" ng-model="escola">
+                </div><br>
+                <a class="btn blue" ng-click='adicionarFormacao()'>Adicionar Formação</a>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6">

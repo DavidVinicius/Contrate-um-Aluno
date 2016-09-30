@@ -49,6 +49,15 @@
             return $Result;
         }
 
+        public function DeleteQuery($Table, $Condition)
+        {
+            $Connection = $this->ConnectDataBase();
+            $Query      = "DELETE FROM {$Table} {$Condition}";
+            $Result     = $this->ExecuteQuery($Connection, $Query);
+            $this->CloseConnectionDataBase($Connection);
+            return $Result;
+        }
+
         public function InsertQuery($Table, array $Data)
         {
             $Connection = $this->ConnectDataBase();

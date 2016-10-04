@@ -20,7 +20,7 @@
                 $Sessions->CreateVarSession($_SESSION["usuario"],$_SESSION["senha"],
                     $_SESSION["id"],$_SESSION["nivel"]);
 
-                $id = $Sessions->getSessionID();
+                //$id = $Sessions->getSessionID();
                 echo "<script>
                         window.location.href='../OnePage.php';
                         alert('Logado com sucesso!');</script>";

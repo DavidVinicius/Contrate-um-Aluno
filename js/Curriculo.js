@@ -106,13 +106,13 @@ app.controller('Curriculo',['$scope',function($scope){
             $scope.verExp = function(x){
                 
             }
-            $scope.qualificacoes = [];
+            $scope.Qualificacoes = [];
               $('.chips').on('chip.add', function(e, chip){
                     // you have the added chip here
                  
                   var a = $(".chips").material_chip('data');
                   console.log(a);
-                  $scope.qualificacoes.push(chip);
+                  $scope.Qualificacoes.push(chip);
                  
             });
             $('.chips').on('chip.delete', function(e, chip){
@@ -127,14 +127,7 @@ app.controller('Curriculo',['$scope',function($scope){
             });
             
             
-            $scope.master = [{
-                nome: $scope.nome,
-                telefone: $scope.Telefones,
-                Formacao: $scope.formacao,
-                Experiencia: $scope.Experiencia,
-                Qualificacoes:$scope.qualificacoes,
-            }];
-    
+            
        
     $('.datepicker').pickadate({
             selectMonths: true,

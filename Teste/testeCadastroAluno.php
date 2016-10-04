@@ -23,14 +23,36 @@
     move_uploaded_file($nomeTemporario, $localFull); #Move o arquivo temporário para pasta
     echo "<br>";
     
-    $informacoes = $_POST['aa'];
-    $a = json_decode($informacoes);
-    $b = explode($a,1);
-    print_r($a[0]);
+    $Telefones      = json_decode($_POST['Telefones'],true);
+    
+    $Experiencias   = json_decode($_POST['Experiencias'],true);
+    $Formacoes      = json_decode($_POST['Formacoes'],true);
+    $Qualificaoes   = json_decode($_POST['Qualificacoes'],true);
+    
     echo "<br>";
     echo "<br>";
     echo "<pre>";
-    var_dump($a);
+    var_dump($Experiencias);
+    $x = count($Experiencias);
+    $a = implode(",", $Experiencias[0]);
+    echo $x;
+    for($i = 0; $i < count($Experiencias);$i++){
+        if(!implode(",",$Experiencias[$i])){
+            break;
+        }else{
+            $y = implode(",",$Experiencias[$i]);
+            echo $y;
+            
+        }
+    }
+//    echo $Telefones[0]['telefone'];
+echo "</pre>";    
+echo "<br>";
+
+    echo "<br>";
+    echo "<br>";
+    echo "<pre>";
+    var_dump($Qualificaoes);
 echo "</pre>";    
 echo "<br>";
 

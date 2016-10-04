@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 29-Set-2016 às 23:34
--- Versão do servidor: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: 04-Out-2016 às 02:15
+-- Versão do servidor: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,16 +30,12 @@ CREATE TABLE `aluno` (
   `idAluno` int(11) NOT NULL,
   `dataNascimento` date NOT NULL,
   `nacionalidade` varchar(30) DEFAULT 'Brasil',
-  `formacao` text NOT NULL,
-  `experiencias` text NOT NULL,
   `informacoesAdicionais` varchar(255) NOT NULL,
   `foto` varchar(70) NOT NULL,
   `nome` varchar(40) NOT NULL,
   `cpf` varchar(14) NOT NULL,
   `objetivo` varchar(255) NOT NULL,
   `qualificacoes` varchar(255) NOT NULL,
-  `telefone` varchar(15) NOT NULL,
-  `endereco` varchar(255) NOT NULL,
   `rg` varchar(20) NOT NULL,
   `codCurso` int(11) NOT NULL,
   `codUsuario` int(11) NOT NULL
@@ -49,9 +45,9 @@ CREATE TABLE `aluno` (
 -- Extraindo dados da tabela `aluno`
 --
 
-INSERT INTO `aluno` (`idAluno`, `dataNascimento`, `nacionalidade`, `formacao`, `experiencias`, `informacoesAdicionais`, `foto`, `nome`, `cpf`, `objetivo`, `qualificacoes`, `telefone`, `endereco`, `rg`, `codCurso`, `codUsuario`) VALUES
-(1, '1998-10-08', 'Brasil', 'asd', 'asd', 'asd', '/opt/lampp/htdocs/TCC/ImagensUsuarios/13birl.png', 'Matheus Picioli', '401.564.828-51', 'asdas', 'asd', '21903986', 'asd', '1293867', 22, 2),
-(2, '1998-10-08', 'Brasil', 'asd', 'asd', 'ads', '/opt/lampp/htdocs/TCC/ImagensUsuarios/13.png', 'Matheus', '81236723', 'asd', 'daas', '182537231', 'dasd', '27934684', 22, 6);
+INSERT INTO `aluno` (`idAluno`, `dataNascimento`, `nacionalidade`, `informacoesAdicionais`, `foto`, `nome`, `cpf`, `objetivo`, `qualificacoes`, `rg`, `codCurso`, `codUsuario`) VALUES
+(1, '1998-10-08', 'Brasil', 'asd', '/opt/lampp/htdocs/TCC/ImagensUsuarios/13birl.png', 'Matheus Picioli', '401.564.828-51', 'asdas', 'asd', '1293867', 22, 2),
+(2, '1998-10-08', 'Brasil', 'ads', '/opt/lampp/htdocs/TCC/ImagensUsuarios/13.png', 'Matheus', '81236723', 'asd', 'daas', '27934684', 22, 6);
 
 -- --------------------------------------------------------
 
@@ -109,6 +105,53 @@ INSERT INTO `empresa` (`idEmpresa`, `nome`, `cnpj`, `email`, `telefone`, `endere
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `enderecos`
+--
+
+CREATE TABLE `enderecos` (
+  `idEndereco` int(11) NOT NULL,
+  `numero` varchar(10) NOT NULL,
+  `rua` varchar(50) NOT NULL,
+  `bairro` varchar(30) NOT NULL,
+  `cidade` varchar(30) NOT NULL,
+  `estado` char(2) NOT NULL,
+  `cep` char(9) NOT NULL,
+  `complemento` varchar(40) DEFAULT NULL,
+  `codAluno` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `experiencias`
+--
+
+CREATE TABLE `experiencias` (
+  `idExperiencia` int(11) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `dataInicio` date NOT NULL,
+  `dataSaida` date DEFAULT NULL,
+  `cargo` varchar(30) DEFAULT NULL,
+  `codAluno` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `formacoes`
+--
+
+CREATE TABLE `formacoes` (
+  `idFormacao` int(11) NOT NULL,
+  `anoConclusao` date NOT NULL,
+  `curso` varchar(30) NOT NULL,
+  `instituicao` varchar(40) NOT NULL,
+  `codAluno` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `mensagens`
 --
 
@@ -134,6 +177,19 @@ CREATE TABLE `professor` (
   `formacao` varchar(30) NOT NULL,
   `codUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `telefones`
+--
+
+CREATE TABLE `telefones` (
+  `idTelefone` int(11) NOT NULL,
+  `telefone` varchar(17) NOT NULL,
+  `tipo` varchar(20) DEFAULT NULL,
+  `codAluno` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -213,6 +269,27 @@ ALTER TABLE `empresa`
   ADD KEY `codUsuario` (`codUsuario`);
 
 --
+-- Indexes for table `enderecos`
+--
+ALTER TABLE `enderecos`
+  ADD PRIMARY KEY (`idEndereco`),
+  ADD KEY `fk_enderecos_aluno` (`codAluno`);
+
+--
+-- Indexes for table `experiencias`
+--
+ALTER TABLE `experiencias`
+  ADD PRIMARY KEY (`idExperiencia`),
+  ADD KEY `fk_experiencias_aluno` (`codAluno`);
+
+--
+-- Indexes for table `formacoes`
+--
+ALTER TABLE `formacoes`
+  ADD PRIMARY KEY (`idFormacao`),
+  ADD KEY `fk_formacoes_aluno` (`codAluno`);
+
+--
 -- Indexes for table `mensagens`
 --
 ALTER TABLE `mensagens`
@@ -225,6 +302,13 @@ ALTER TABLE `mensagens`
 ALTER TABLE `professor`
   ADD PRIMARY KEY (`idProfessor`),
   ADD KEY `fk_professor_usuario` (`codUsuario`);
+
+--
+-- Indexes for table `telefones`
+--
+ALTER TABLE `telefones`
+  ADD PRIMARY KEY (`idTelefone`),
+  ADD KEY `fk_telefones_aluno` (`codAluno`);
 
 --
 -- Indexes for table `usuario`
@@ -259,6 +343,26 @@ ALTER TABLE `curso`
 ALTER TABLE `empresa`
   MODIFY `idEmpresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
+-- AUTO_INCREMENT for table `enderecos`
+--
+ALTER TABLE `enderecos`
+  MODIFY `idEndereco` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `experiencias`
+--
+ALTER TABLE `experiencias`
+  MODIFY `idExperiencia` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `formacoes`
+--
+ALTER TABLE `formacoes`
+  MODIFY `idFormacao` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `telefones`
+--
+ALTER TABLE `telefones`
+  MODIFY `idTelefone` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
@@ -286,6 +390,24 @@ ALTER TABLE `empresa`
   ADD CONSTRAINT `empresa_ibfk_1` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`);
 
 --
+-- Limitadores para a tabela `enderecos`
+--
+ALTER TABLE `enderecos`
+  ADD CONSTRAINT `fk_enderecos_aluno` FOREIGN KEY (`codAluno`) REFERENCES `aluno` (`idAluno`);
+
+--
+-- Limitadores para a tabela `experiencias`
+--
+ALTER TABLE `experiencias`
+  ADD CONSTRAINT `fk_experiencias_aluno` FOREIGN KEY (`codAluno`) REFERENCES `aluno` (`idAluno`);
+
+--
+-- Limitadores para a tabela `formacoes`
+--
+ALTER TABLE `formacoes`
+  ADD CONSTRAINT `fk_formacoes_aluno` FOREIGN KEY (`codAluno`) REFERENCES `aluno` (`idAluno`);
+
+--
 -- Limitadores para a tabela `mensagens`
 --
 ALTER TABLE `mensagens`
@@ -296,6 +418,12 @@ ALTER TABLE `mensagens`
 --
 ALTER TABLE `professor`
   ADD CONSTRAINT `fk_professor_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`);
+
+--
+-- Limitadores para a tabela `telefones`
+--
+ALTER TABLE `telefones`
+  ADD CONSTRAINT `fk_telefones_aluno` FOREIGN KEY (`codAluno`) REFERENCES `aluno` (`idAluno`);
 
 --
 -- Limitadores para a tabela `vaga`

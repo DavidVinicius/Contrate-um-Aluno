@@ -32,77 +32,74 @@
             $Result = $DB->SearchQuery("aluno","where idAluno = $IdAluno");
             $Assoc = mysqli_fetch_assoc($Result);
 
+            $this->setIdAluno($IdAluno);
             $this->setDataNascimento($Assoc['dataNascimento']);
-            $this->setFormacao($Assoc['formacao']);
-            $this->setExperiencias($Assoc['experiencias']);
             $this->setInformacoesAdicionais($Assoc['informacoesAdicionais']);
             $this->setFoto($Assoc['foto']);
             $this->setNome($Assoc['nome']);
             $this->setCpf($Assoc['cpf']);
             $this->setObjetivo($Assoc['objetivo']);
             $this->setQualificacoes($Assoc['qualificacoes']);
-            $this->setTelefone($Assoc['telefone']);
-            $this->setEndereco($Assoc['endereco']);
             $this->setRg($Assoc['rg']);
             $this->setCodCurso($Assoc['codCurso']);
             $this->setCodUsuario($Assoc['codUsuario']);
         }
 
-        public function CreateAluno($DataNascimento, $Formacao, $Experiencias, $InformacoesAdicionais,
-        $Foto, $Nome, $Cpf, $Objetivo, $Qualificacoes, $Telefone, $Endereco, $Rg, $CodCurso,$CodUsuario)
+        public function CreateAluno($DataNascimento, $InformacoesAdicionais,
+        $Foto, $Nome, $Cpf, $Objetivo, $Qualificacoes, $Rg, $CodCurso,$CodUsuario)
         {
             $Dados = array(
-                "dataNascimento" =>$DataNascimento,
-                "formacao" => $Formacao,
-                "experiencias" => $Experiencias,
+                "dataNascimento"        =>$DataNascimento,
                 "informacoesAdicionais" => $InformacoesAdicionais,
-                "foto" => $Foto,
-                "nome" => $Nome,
-                "cpf" => $Cpf,
-                "objetivos" => $Objetivo,
-                "qualificacoes" => $Qualificacoes,
-                "telefone" => $Telefone,
-                "endereco" => $Endereco,
-                "rg" => $Rg,
-                "codCurso" => $CodCurso,
-                "codUsuario" => $CodUsuario
+                "foto"                  => $Foto,
+                "nome"                  => $Nome,
+                "cpf"                   => $Cpf,
+                "objetivo"              => $Objetivo,
+                "qualificacoes"         => $Qualificacoes,
+                "rg"                    => $Rg,
+                "codCurso"              => $CodCurso,
+                "codUsuario"            => $CodUsuario
             );
+
             $DB = $this->InstanciaDB();
             $Resultado = $DB->InsertQuery("aluno", $Dados);
+
             return $Resultado;
         }
 
         public function ReadAluno()
         {
             $Data = array(
-                "dataNascimento" =>$this->getDataNascimento(),
-                "formacao" => $this->getFormacao(),
-                "experiencias" => $this->getExperiencias(),
+                "dataNascimento"        => $this->getDataNascimento(),
+                "formacao"              => $this->getFormacao(),
+                "experiencias"          => $this->getExperiencias(),
                 "informacoesAdicionais" => $this->getInformacoesAdicionais(),
-                "foto" => $this->getFoto(),
-                "nome" => $this->getNome(),
-                "cpf" => $this->getCpf(),
-                "objetivos" => $this->getObjetivo(),
-                "qualificacoes" => $this->getQualificacoes(),
-                "telefone" => $this->getTelefone(),
-                "endereco" => $this->getEndereco(),
-                "rg" => $this->getRg(),
-                "codCurso" => $this->getCodCurso(),
-                "codUsuario" => $this->getCodUsuario()
+                "foto"                  => $this->getFoto(),
+                "nome"                  => $this->getNome(),
+                "cpf"                   => $this->getCpf(),
+                "objetivos"             => $this->getObjetivo(),
+                "qualificacoes"         => $this->getQualificacoes(),
+                "telefone"              => $this->getTelefone(),
+                "endereco"              => $this->getEndereco(),
+                "rg"                    => $this->getRg(),
+                "codCurso"              => $this->getCodCurso(),
+                "codUsuario"            => $this->getCodUsuario()
             );
 
             return $Data;
         }
 
-        public function UpdateAluno($Field, $NewValue, $Id)
+        public function UpdateAluno($Field, $NewValue)
         {
+            $Id = $this->getIdAluno();
             $DB = $this->InstanciaDB();
             $Result = $DB->UpdateQuery("aluno", $Field, $NewValue, " WHERE idAluno = $Id");
             return $Result;
         }
 
-        public function DeleteAluno($Id)
+        public function DeleteAluno()
         {
+            $Id = $this->getIdAluno();
             $DB = $this->InstanciaDB();
             $Result = $DB->DeleteQuery("aluno", "WHERE idAluno = $Id");
             return $Result;

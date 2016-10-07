@@ -52,24 +52,39 @@ app.controller('Curriculo',['$scope',function($scope){
             }
             
             $scope.adicionarExperiencia = function(){
-                 if($scope.deExp == ""){
+                 var tempo = "";
+                
+                 if($scope.deExp != null && $scope.atualExp == true){
+                     var tempo = $scope.deExp + " - emprego atual";
+                    
+                    
+                }
+                else{
+                    var tempo = $scope.deExp + " - " + $scope.ateExp;
+                }
+                
+                
+                if($scope.deExp == null){
                     Materialize.toast("Indique o inicio da sua experiência",4000);
                 }
-                else if($scope.deExp != "" && $scope.atualExp == false){
-                    
-                    Materialize.toast("Nesse caso você está empregado",4000);
-                    
+                if($scope.ateExp == null && $scope.atualExp != true){
+                    Materialize.toast("Indique a data de saída");
                 }
-                else if($scope.nomeExperiencia == ""){
+                 else if($scope.nomeExperiencia == null){
                     Materialize.toast("Campo cargo está vazio",4000);
                 }
-                else if($scope.textoExperiencia == ""){
+                else if($scope.textoExperiencia == null ){
                     Materialize.toast("Campo experiência está vazio",4000);
+                }
+                else if($scope.textoExperiencia.length > 254){
+                    Materialize.toast("No máximo são 255 caracteres na descrição da experiência",4000);
                 }
                 else{
                     
-                    $scope.Experiencia.push({tempoExperiencia: $scope.deExp, cargo: $scope.nomeExperiencia, texto: $scope.textoExperiencia});
-                    $scope.anoExperiencia = "";
+                    $scope.Experiencia.push({tempoExperiencia: tempo, cargo: $scope.nomeExperiencia, texto: $scope.textoExperiencia});
+                    $scope.deExp = "";
+                    $scope.ateExp = "";
+                    $scope.atualExp = false;
                     $scope.nomeExperiencia = "";
                     $scope.textoExperiencia = "";
                 }

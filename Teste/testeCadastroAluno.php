@@ -11,16 +11,28 @@
  
     $DB = new DataBase();
 
-    $nomeOriginal   = $_FILES['foto']['name']; #Nome do arquivo original
-    $tipo           = $_FILES['foto']['type']; #O tipo do arquivo
-    $tamanho        = $_FILES['foto']['size']; #Tamanho em bytes
-    $nomeTemporario = $_FILES['foto']['tmp_name']; #O nome temporário com o qual o arquivo
-    # enviado foi armazenado no servidor.
-    $codErro        = $_FILES['foto']['error']; #O código de erro associado ao upload do arquivo
+    if(isset($_FILES['foto'])){
+//        $nomeOriginal   = $_FILES['foto']['name']; #Nome do arquivo original
+//        $tipo           = $_FILES['foto']['type']; #O tipo do arquivo
+//        $tamanho        = $_FILES['foto']['size']; #Tamanho em bytes
+        $nomeTemporario = $_FILES['foto']['tmp_name']; #O nome temporário com o qual o arquivo
+//        # enviado foi armazenado no servidor.
+//        $codErro        = $_FILES['foto']['error']; #O código de erro associado ao upload do arquivo
 
-    $diretorio = "../../Images/ImagensUser/";
-    $localFull = $diretorio.$nomeOriginal;
-    move_uploaded_file($nomeTemporario, $localFull); #Move o arquivo temporário para pasta
+        $diretorio = "../Images/Upload/";
+        $extensao = strtolower(substr($_FILES['foto']['name'], -4));
+        $novoNome = md5(time()).$extensao;
+        
+        $localFull = $diretorio.$novoNome;
+        if(move_uploaded_file($nomeTemporario, $diretorio.$novoNome))
+        {
+            echo "deu certo";
+        }#Move o arquivo temporário para pasta
+    }
+else{
+    echo "erro";
+}
+    
     echo "<br>";
     
     $Telefones      = json_decode($_POST['Telefones'],true);
@@ -34,7 +46,7 @@
     echo "<pre>";
     var_dump($Experiencias);
     $x = count($Experiencias);
-    $a = implode(",", $Experiencias[0]);
+//    $a = implode(",", $Experiencias[0]);
     echo $x;
     for($i = 0; $i < count($Experiencias);$i++){
         if(!implode(",",$Experiencias[$i])){
@@ -62,7 +74,7 @@ echo "<br>";
         "formacao"                  => (isset($_POST["formacao"])) ? $_POST["formacao"] : $MsgString,
         "experiencias"              => (isset($_POST["experiencias"])) ? $_POST["experiencias"] : $MsgString,
         "informacoesAdicionais"     => (isset($_POST["info"])) ? $_POST["info"] : $MsgString,
-        "foto"                      => $localFull,
+        "foto"                      => $novoNome,
         "nome"                      => (isset($_POST["nome"])) ? $_POST["nome"] : $MsgString,
         "cpf"                       => (isset($_POST["cpf"])) ? $_POST["cpf"] : $MsgString,
         "objetivo"                  => (isset($_POST["objetivo"])) ? $_POST["objetivo"] : $MsgString,

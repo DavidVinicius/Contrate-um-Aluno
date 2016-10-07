@@ -3,7 +3,7 @@
  
 ?>
 <!DOCTYPE html>
-<html lang="pt-br" ng-app='curriculo'>
+<html lang="pt-br" ng-app='curriculo'> 
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -15,10 +15,10 @@
    
 </head>
 <body ng-controller='Curriculo'>
-   
+    
     <div class="container">
         <h1 class="flow-text center-align">Currículo</h1>
-        <form action="Teste/testeCadastroAluno.php" method="post">
+        <form action="Teste/testeCadastroAluno.php" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="input-field col s12 m6">
                  <label for="nome">Nome Completo</label>
@@ -29,12 +29,12 @@
                    <div class="file-field input-field col s12 push-s3 m3">
                        <div class="btn blue" style='margin-bottom:10px'>
                            <span> Foto perfil</span>
-                           <input type="file"  id='foto' name="" accept='image/*' onchange='loadFile(event)'>
+                           <input type="file"  id='foto' name="foto" accept='image/*'   onchange='loadFile(event)'>
                         </div>
                    </div><br>
                    <div class="file-path-wrapper col s4 push-s3 m6 push-m1 center">
                       <input class="file-path validate" type="text">
-                       <img src="images/Padrao/PerfilPadrao.png" name="foto" alt="Imagem Perfil" class='circle responsive-img' id='preview' >
+                       <img src="images/Padrao/PerfilPadrao.png"  alt="Imagem Perfil" class='circle responsive-img' id='preview' >
                    </div>
                    
                 </div>
@@ -99,6 +99,7 @@
                         <option value="23">RS</option>
                         <option value="24">SC</option>
                         <option value="25">SE</option>
+                        <option value="26">SP</option>
                         <option value="27">TO</option>	
                     </select>
                     <label for="">Estado</label>
@@ -192,7 +193,7 @@
                    <div class="col s12 m12">
                        <div class="card-panel medium hoverable" ng-repeat="exp in Experiencia">
                            <i class="material-icons right" ng-click="removeExp($Index)">close</i>
-                           <span class="card-title"><h6 class="flow-text">{{exp.tempoExperiencia}} - {{exp.cargo}}</h6></span>
+                           <span class="card-title"><h6 class="flow-text">{{exp.tempoExperiencia}} <br> {{exp.cargo}}</h6></span>
                            <div class="card-content truncate">
 <!--                                <a href="" ng-click="verExp($Index)">Ver Descrição</a>-->
                                 {{exp.texto}}
@@ -210,7 +211,7 @@
                         </div>
                         <div class="input-field col s12 m6">
                            
-                            <input type="date" name="ateExp" id="ateExp" class="anoFormacao" ng-model="ateExp" ng-If="!atualExp">
+                            <input type="date" name="ateExp" id="ateExp" class="" ng-model="ateExp" ng-If="!atualExp">
                             <input type="checkbox" id="atualExp" ng-model="atualExp"/>
                             <label for="atualExp">É o atual?</label>
                         </div>

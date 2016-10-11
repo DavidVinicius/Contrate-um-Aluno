@@ -34,11 +34,11 @@
             
             
                 <div class="center-align hide-on-med-and-up">
-                    <input type="submit" value="Cadastrar" class="btn blue col s12">
+                    <input type="submit" value="Cadastrar" class="btn blue col s12" id="cadastrar">
                     <a href="" id="fechar" class="btn red waves-effect waves-light modal-close col s12">Cancelar</a>
                 </div>
                 <div class="center-align hide-on-small-only">
-                    <input type="submit" value="Cadastrar" class="btn blue">
+                    <input type="submit" value="Cadastrar" class="btn blue" id="cadastrar">
                     <a href="" id="fechar" class="btn red waves-effect waves-light modal-close">Cancelar</a>
                 </div>
             </div>
@@ -57,9 +57,10 @@
                 method: "POST",
                 data: {dado:valor},
                 success: function(dado){
-                    alert(dado);
-                    if(dado == 0){
-                        $(this).next().attr('data-error','teste');
+                    if(dado == 1){
+                        Materialize.toast("Esse email não está disponível",4000);
+                        $("#emailLogin").addClass("invalid").removeClass("valid");
+                        $("#cadastrar").attr("disabled",true);
                     }
                 }
             });

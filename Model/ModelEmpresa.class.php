@@ -6,128 +6,26 @@
  * Date: 22/09/2016
  * Time: 21:29
  */
-    class ModelEmpresa
+    class ModelEmpresa extends HelperDataBase
     {
-        private $idEmpresa;
-        private $nome;
-        private $cnpj;
-        private $email;
-        private $telefone;
-        private $endereco;
-        private $codUsuario;
-
-        /**
-         * @return mixed
-         */
-        public function getIdEmpresa()
+        public function CreateEmpresa($Data)
         {
-            return $this->idEmpresa;
+            return parent::Create("empresa",$Data);
         }
 
-        /**
-         * @param mixed $idEmpresa
-         */
-        public function setIdEmpresa($idEmpresa)
+        public function ReadEmpresa($Condition)
         {
-            $this->idEmpresa = $idEmpresa;
+            return parent::Read("empresa",$Condition);
         }
 
-        /**
-         * @return mixed
-         */
-        public function getNome()
+        public function UpdateEmpresa($Field, $NewValue, $Id)
         {
-            return $this->nome;
+            return parent::Update("empresa", $Field, $NewValue, $Id);
         }
 
-        /**
-         * @param mixed $nome
-         */
-        public function setNome($nome)
+        public function DeleteEmpresa($Condition)
         {
-            $this->nome = $nome;
+            return parent::Delete("empresa", $Condition);
         }
-
-        /**
-         * @return mixed
-         */
-        public function getCnpj()
-        {
-            return $this->cnpj;
-        }
-
-        /**
-         * @param mixed $cnpj
-         */
-        public function setCnpj($cnpj)
-        {
-            $this->cnpj = $cnpj;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getEmail()
-        {
-            return $this->email;
-        }
-
-        /**
-         * @param mixed $email
-         */
-        public function setEmail($email)
-        {
-            $this->email = $email;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getTelefone()
-        {
-            return $this->telefone;
-        }
-
-        /**
-         * @param mixed $telefone
-         */
-        public function setTelefone($telefone)
-        {
-            $this->telefone = $telefone;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getEndereco()
-        {
-            return $this->endereco;
-        }
-
-        /**
-         * @param mixed $endereco
-         */
-        public function setEndereco($endereco)
-        {
-            $this->endereco = $endereco;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getCodUsuario()
-        {
-            return $this->codUsuario;
-        }
-
-        /**
-         * @param mixed $codUsuario
-         */
-        public function setCodUsuario($codUsuario)
-        {
-            $this->codUsuario = $codUsuario;
-        }
-
-
     }
 ?>

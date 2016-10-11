@@ -6,94 +6,26 @@
  * Date: 22/09/2016
  * Time: 21:33
  */
-    class ModelCurso
+    class ModelCurso extends HelperDataBase
     {
-        private $idCurso;
-        private $nome;
-        private $escola;
-        private $gradeCurricular;
-        private $periodo;
-
-        /**
-         * @return mixed
-         */
-        public function getIdCurso()
+        public function CreateCurso($Data)
         {
-            return $this->idCurso;
+            return parent::Create("curso", $Data);
         }
 
-        /**
-         * @param mixed $idCurso
-         */
-        public function setIdCurso($idCurso)
+        public function ReadCurso($Condition)
         {
-            $this->idCurso = $idCurso;
+            return parent::Read("curso", $Condition);
         }
 
-        /**
-         * @return mixed
-         */
-        public function getNome()
+        public function UpdateCurso($Field, $NewValue, $Id)
         {
-            return $this->nome;
+            return parent::Update("curso",$Field, $NewValue, $Id);
         }
 
-        /**
-         * @param mixed $nome
-         */
-        public function setNome($nome)
+        public function DeleteCurso($Condition)
         {
-            $this->nome = $nome;
+            return parent::Delete("curso", $Condition);
         }
-
-        /**
-         * @return mixed
-         */
-        public function getEscola()
-        {
-            return $this->escola;
-        }
-
-        /**
-         * @param mixed $escola
-         */
-        public function setEscola($escola)
-        {
-            $this->escola = $escola;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getGradeCurricular()
-        {
-            return $this->gradeCurricular;
-        }
-
-        /**
-         * @param mixed $gradeCurricular
-         */
-        public function setGradeCurricular($gradeCurricular)
-        {
-            $this->gradeCurricular = $gradeCurricular;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getPeriodo()
-        {
-            return $this->periodo;
-        }
-
-        /**
-         * @param mixed $periodo
-         */
-        public function setPeriodo($periodo)
-        {
-            $this->periodo = $periodo;
-        }
-
-
     }
 ?>

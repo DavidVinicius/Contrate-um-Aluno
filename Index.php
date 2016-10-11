@@ -1,7 +1,14 @@
-
 <!DOCTYPE html>
 <?php
+    include "Controller/ManipulaVarSession.class.php";
     session_start();
+
+    $Session = new ManipulaVarSession();
+    $Logado = $Session->VerificaEstaLogado();
+
+    if($Logado)
+        header("location:OnePage.php");
+
 ?>
 <html lang="en">
 <head>

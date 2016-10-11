@@ -6,95 +6,27 @@
  * Date: 22/09/2016
  * Time: 21:32
  */
-    class ModelProfessor
+    class ModelProfessor extends HelperDataBase
     {
-        private $idProfessor;
-        private $nome;
-        private $email;
-        private $formacao;
-        private $codUsuario;
-
-        /**
-         * @return mixed
-         */
-        public function getIdProfessor()
+        public function CreateProfessor($Data)
         {
-            return $this->idProfessor;
+            return parent::Create("professor", $Data);
         }
 
-        /**
-         * @param mixed $idProfessor
-         */
-        public function setIdProfessor($idProfessor)
+        public function ReadProfessor($Condition)
         {
-            $this->idProfessor = $idProfessor;
+            return parent::Read("professor", $Condition);
         }
 
-        /**
-         * @return mixed
-         */
-        public function getNome()
+        public function UpdateProfessor($Field, $NewValue, $Id)
         {
-            return $this->nome;
+            return parent::Update("professor", $Field, $NewValue, $Id);
         }
 
-        /**
-         * @param mixed $nome
-         */
-        public function setNome($nome)
+        public function DeleteProfessor($Condition)
         {
-            $this->nome = $nome;
+            return parent::Delete("professor", $Condition);
         }
-
-        /**
-         * @return mixed
-         */
-        public function getEmail()
-        {
-            return $this->email;
-        }
-
-        /**
-         * @param mixed $email
-         */
-        public function setEmail($email)
-        {
-            $this->email = $email;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getFormacao()
-        {
-            return $this->formacao;
-        }
-
-        /**
-         * @param mixed $formacao
-         */
-        public function setFormacao($formacao)
-        {
-            $this->formacao = $formacao;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getCodUsuario()
-        {
-            return $this->codUsuario;
-        }
-
-        /**
-         * @param mixed $codUsuario
-         */
-        public function setCodUsuario($codUsuario)
-        {
-            $this->codUsuario = $codUsuario;
-        }
-
-
     }
 
 ?>

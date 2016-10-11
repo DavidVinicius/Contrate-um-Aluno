@@ -25,16 +25,12 @@ class ManipulaVarSession
 
     public function VerificaEstaLogado()
     {
-        if( (!$this->getSessionUser() == null) && (!$this->getSessionPass() == null) && (!$this->getSessionLevel() == null) )
+        if( ( $this->getSessionUser() == null ) and ( $this->getSessionPass() == null ) and ( $this->getSessionID() == null ) and ( $this->getSessionLevel() == null ) )
         {
-            echo "<script>alert('Logado')</script>";
+            $this->DeleteVarSession();
+            return false;
         }else
-        {
-            unset($_SESSION['usuario']);
-            unset($_SESSION['senha']);
-            unset($_SESSION['id']);
-            header('location:Index.php');
-        }
+            return true;
     }
 
     public function getSessionUser()

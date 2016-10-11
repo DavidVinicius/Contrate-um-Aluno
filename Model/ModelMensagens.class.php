@@ -6,112 +6,27 @@
  * Date: 22/09/2016
  * Time: 21:28
  */
-    class Mensagens
+    class Mensagens extends HelperDataBase
     {
-        private $idMensagem;
-        private $titulo;
-        private $de;
-        private $data;
-        private $mensagem;
-        private $codUsuario;
-
-        /**
-         * @return mixed
-         */
-        public function getIdMensagem()
+        public function CreateMensagens($Data)
         {
-            return $this->idMensagem;
+            return parent::Create("mensagens", $Data);
         }
 
-        /**
-         * @param mixed $idMensagem
-         */
-        public function setIdMensagem($idMensagem)
+        public function ReadMensagens($Condition)
         {
-            $this->idMensagem = $idMensagem;
+            return parent::Read("mensagens", $Condition);
         }
 
-        /**
-         * @return mixed
-         */
-        public function getTitulo()
+        public function UpdateMensagens($Field, $NewValue, $Id)
         {
-            return $this->titulo;
+            return parent::Update("mensagens", $Field, $NewValue, $Id);
         }
 
-        /**
-         * @param mixed $titulo
-         */
-        public function setTitulo($titulo)
+        public function DeleteMensagens($Condition)
         {
-            $this->titulo = $titulo;
+            return parent::Delete("mensagens", $Condition);
         }
-
-        /**
-         * @return mixed
-         */
-        public function getDe()
-        {
-            return $this->de;
-        }
-
-        /**
-         * @param mixed $de
-         */
-        public function setDe($de)
-        {
-            $this->de = $de;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getData()
-        {
-            return $this->data;
-        }
-
-        /**
-         * @param mixed $data
-         */
-        public function setData($data)
-        {
-            $this->data = $data;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getMensagem()
-        {
-            return $this->mensagem;
-        }
-
-        /**
-         * @param mixed $mensagem
-         */
-        public function setMensagem($mensagem)
-        {
-            $this->mensagem = $mensagem;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getCodUsuario()
-        {
-            return $this->codUsuario;
-        }
-
-        /**
-         * @param mixed $codUsuario
-         */
-        public function setCodUsuario($codUsuario)
-        {
-            $this->codUsuario = $codUsuario;
-        }
-
-
     }
 
 ?>

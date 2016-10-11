@@ -20,10 +20,10 @@
             return $Result = $DB->SearchQuery($Table, $Condition);
         }
 
-        public function Update($Field, $NewValue, $Id)
+        public function Update($Table,$Field, $NewValue, $Id)
         {
             $DB = $this->InstanciaDB();
-            return $Result = $DB->UpdateQuery("aluno", $Field, $NewValue, " WHERE idAluno = $Id");
+            return $Result = $DB->UpdateQuery($Table, $Field, $NewValue, " WHERE idAluno = $Id");
         }
 
         public function Delete($Table, $Condition)

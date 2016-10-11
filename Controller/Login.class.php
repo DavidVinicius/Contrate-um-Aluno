@@ -27,7 +27,7 @@
             } else{
                 $Sessions->DeleteVarSession();
                 echo "<script>
-                    window.location.href = '../Index.php'
+                    window.location.href = '../Index.php';
                     alert('Erro ao logar');</script>";
             }
         }

@@ -1,7 +1,5 @@
 <?php
-
-    include("ManipulaVarSession.class.php");
-
+    include "ManipulaVarSession.class.php";
     class VerificaSeEstaLogado
     {
 
@@ -13,7 +11,6 @@
                 unset($_SESSION['usuario']);
                 unset($_SESSION['senha']);
                 unset($_SESSION['id']);
-                header('location:Index.php');
                 return false;
             }else
                 return true;

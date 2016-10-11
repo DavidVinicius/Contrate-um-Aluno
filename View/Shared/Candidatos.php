@@ -14,22 +14,22 @@
         <div class="row">
             <div class="col s12 m12">
                 <div class="col s12 m6">
-                    <!--
                     <div class="card horizontal hoverable">
-                        <div class="card-image"> <img src="http://lorempixel.com/100/190/nature/6"> </div>
-                        <div class="card-stacked"> <span class="card-title center-align">Nome Candidato</span>
-                            <div class="card-content">
-                                <p>Simples descrição</p>
-                                <p>Html, css, javascript</p>
-                            </div>
-                            <div class="card-action"> <a href="#" class="btn blue">This is a link</a><a href="" class="btn green tooltipped" data-position="bottom" data-delay="50" data-tooltip="Enviar uma mensagem ao aluno"><i class="material-icons">chat</i></a> </div>
+                        <div class="card-image activator"> 
+                            <img src="Images/Padrao/PerfilPadrao.png" alt=""> 
+                            <span class="card-title">Nome do Candidato</span> 
                         </div>
-                    </div>
--->
-                    <div class="card sticky-action">
-                        <div class="card-image"> <img src="http://lorempixel.com/100/190/nature/6"> </div>
-                        <div class="card-action">...</div>
-                        <div class="card-reveal">...</div>
+                        <div class="card-content"> 
+                            <span class="activator right"><i class="material-icons ">more_vert</i></span>
+                            <p>aqui ficará algumas informações aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Nome do candidato<i class="material-icons right">close</i></span>
+                            <div class="col s12 m12">
+                               <p>aaa</p>
+                                <a href="" class="btn blue">link</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

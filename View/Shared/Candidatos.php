@@ -1,3 +1,10 @@
+<?php
+    include_once "Model/DataBase.class.php";
+    $DB = new DataBase();
+    $id = $_SESSION['id'];
+    $Consulta = $DB->SearchQuery("aluno", "WHERE idAluno = $id");
+    $Assoc = mysqli_fetch_assoc($Consulta);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,18 +24,11 @@
                     <div class="card horizontal hoverable">
                         <div class="card-image activator"> 
                             <img src="Images/Padrao/PerfilPadrao.png" alt=""> 
-                            <span class="card-title">Nome do Candidato</span> 
+                            <span class="card-title"><?=$Assoc['nome']?></span>
                         </div>
-                        <div class="card-content"> 
-                            <span class="activator right"><i class="material-icons ">more_vert</i></span>
-                            <p>aqui ficará algumas informações aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Nome do candidato<i class="material-icons right">close</i></span>
-                            <div class="col s12 m12">
-                               <p>aaa</p>
-                                <a href="" class="btn blue">link</a>
-                            </div>
+                        <div class="card-content">
+                            <p><?=$Assoc['qualificacoes']?></p>
+                            <a href="OnePage.php?link=Candidato&id=<?=$id?>"><button class="btn blue">Ver perfil</button></a>
                         </div>
                     </div>
                 </div>

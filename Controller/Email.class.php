@@ -104,7 +104,7 @@
 
             $mail -> Subject = 'Contato pelo Site';
             $mail -> Body = "<h1>Contrate um Aluno</h1> <p> Esse email foi enviado pelo site Contrate um Aluno </p>
-                <p>Sua senha é ******</p><p>Seu email é $email</p><p>Seu nome é $nome</p>
+                <p>Sua senha é $senha</p><p>Seu email é $email</p><p>Seu nome é $nome</p>
             ";
             $mail -> AltBody = 'Teste';
 
@@ -172,4 +172,6 @@
         }
     }
 
+    $Enviar = new Email();
+    $Enviar->EnviarSenha("matheus.picioli98@gmail.com", "123", "Matheus Picioli");
 ?>

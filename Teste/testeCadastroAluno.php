@@ -2,6 +2,7 @@
     <meta charset="utf-8">
 </head>
 <?php
+
     session_start(); 
     include_once("../Model/DataBase.class.php");
     include_once("../Util.php");
@@ -28,48 +29,30 @@
         {
             echo "deu certo";
         }#Move o arquivo temporário para pasta
-    }
-else{
-    echo "erro";
-}
+        }else{
+            echo "erro";
+        }
     
     echo "<br>";
     
     $Telefones      = json_decode($_POST['Telefones'],true);
-    
     $Experiencias   = json_decode($_POST['Experiencias'],true);
     $Formacoes      = json_decode($_POST['Formacoes'],true);
     $Qualificaoes   = json_decode($_POST['Qualificacoes'],true);
-    
-    echo "<br>";
-    echo "<br>";
-    echo "<pre>";
-    var_dump($Experiencias);
-    $x = count($Experiencias);
-//    $a = implode(",", $Experiencias[0]);
-    echo $x;
-    for($i = 0; $i < count($Experiencias);$i++){
-        if(!implode(",",$Experiencias[$i])){
-            break;
-        }else{
-            $y = implode(",",$Experiencias[$i]);
-            echo $y;
-            
-        }
-    }
-//    echo $Telefones[0]['telefone'];
-echo "</pre>";    
-echo "<br>";
 
-    echo "<br>";
-    echo "<br>";
-    echo "<pre>";
-    var_dump($Qualificaoes);
-echo "</pre>";    
-echo "<br>";
+    for($i = 1; $i < count($Experiencias);$i++){
+        $dados = array(
+            "descricao" => $Experiencias[$i]['tempoExperiencia'],
+            "dataInicio" => $Experiencias[$i]['cargo'],
+            "dataSaida" => $Experiencias[$i]['texto'],
+            "cargo" => 0,
+            "codAluno" => 0);
+        //$DB->InsertQuery("experiencias", $dados);
+    }
+    var_dump($dados);
 
     $tabela = "aluno";
-    $dados  = array(
+    $dadosAluno  = array(
         "dataNascimento"            => (isset($_POST["nascimento"])) ? $_POST["nascimento"] : $MsgString,
         "formacao"                  => (isset($_POST["formacao"])) ? $_POST["formacao"] : $MsgString,
         "experiencias"              => (isset($_POST["experiencias"])) ? $_POST["experiencias"] : $MsgString,
@@ -85,23 +68,4 @@ echo "<br>";
         "codCurso"                  => (isset($_POST["curso"])) ? $_POST["curso"] : $MsgNumber,
         "codUsuario"                => $_SESSION['id']
     );
-
-    $resultado = $DB->InsertQuery($tabela, $dados);  #retorna 1 se cadastrou
-//    var_dump($resultado);
-    #0 se não cadastrou
-    echo "<pre>";
-    var_dump($dados);
-    echo "</pre>"
-    #0 se não cadastrou
-//    if($resultado){
-//        echo "<script>
-//                window.location.href = '../../OnePage.php';
-//                alert('".$Sucess."');
-//              </script>";
-//    } else {
-//        echo "<script>
-//                window.location.href = '../../OnePage.php';
-//                alert('".$Failed."');
-//              </script>";
-//    }
 ?>

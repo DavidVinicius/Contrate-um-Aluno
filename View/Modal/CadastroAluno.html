@@ -28,17 +28,17 @@
                     <div class="col m6 push-m3">
 
                        <label for="senhaConfirmacao"><i class='fa fa-at'></i> Confirme sua senha</label>
-                        <input type="password" id="senhaConfirmação" name="senha2" class="validate" required>
+                        <input type="password" id="senhaConfirmacao" name="senha2" class="validate" required>
                     </div>
                 </div>
             
             
                 <div class="center-align hide-on-med-and-up">
-                    <input type="submit" value="Cadastrar" class="btn blue col s12" id="cadastrar">
+                    <input type="submit" value="Cadastrar" class="btn blue col s12 validar" id="cadastrar">
                     <a href="" id="fechar" class="btn red waves-effect waves-light modal-close col s12">Cancelar</a>
                 </div>
                 <div class="center-align hide-on-small-only">
-                    <input type="submit" value="Cadastrar" class="btn blue" id="cadastrar">
+                    <input type="submit" value="Cadastrar" class="btn blue validar" id="cadastrar">
                     <a href="" id="fechar" class="btn red waves-effect waves-light modal-close">Cancelar</a>
                 </div>
             </div>
@@ -46,10 +46,26 @@
         </form>
     </div>
     <script>
+        $("form").submit(function(e){
+                if($("#senha").val().length < 5)
+                {
+                    Materialize.toast("A senha deve ser maior que 5 dígitos",4000);
+                    e.preventDefault();
+                    
+                    
+                }
+                if($("#senha").val() != $("#senhaConfirmacao").val())
+                {
+                    e.preventDefault();
+                    Materialize.toast("As senhas estão diferentes",4000);
+                }
+                
+            });
         $("#emailLogin").change(function(){
             
             var valor = $(this).val();
             var error = $(this).next().data('error');
+            
             
             
             $.ajax({
@@ -60,7 +76,10 @@
                     if(dado == 1){
                         Materialize.toast("Esse email não está disponível",4000);
                         $("#emailLogin").addClass("invalid").removeClass("valid");
-                        $("#cadastrar").attr("disabled",true);
+                        $(".validar").attr('disabled',true);
+                    }
+                    else{
+                        $(".validar").attr("disabled",false);
                     }
                 }
             });

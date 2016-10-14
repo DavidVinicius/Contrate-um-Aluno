@@ -7,10 +7,13 @@
     include_once("../Model/DataBase.class.php");
     include_once("../Util.php");
     include_once("../Controller/ManipulaVarSession.class.php");
-
     $VarSessions = new ManipulaVarSession();
  
     $DB = new DataBase();
+    $idSession = $_SESSION['id'];
+    $result = $DB->SearchQuery("aluno", "where codUsuario = $idSession");
+    $assoc = mysqli_fetch_assoc($result);
+    $idAluno = $assoc['idAluno'];
 
     if(isset($_FILES['foto'])){
 //        $nomeOriginal   = $_FILES['foto']['name']; #Nome do arquivo original
@@ -41,15 +44,17 @@
     $Qualificaoes   = json_decode($_POST['Qualificacoes'],true);
 
     for($i = 1; $i < count($Experiencias);$i++){
+        if($Experiencias[$i]['ate'] == "Emprego atual")
+            $Experiencias[$i]['ate'] = null;
+
         $dados = array(
-            "descricao" => $Experiencias[$i]['tempoExperiencia'],
-            "dataInicio" => $Experiencias[$i]['cargo'],
-            "dataSaida" => $Experiencias[$i]['texto'],
-            "cargo" => 0,
-            "codAluno" => 0);
-        //$DB->InsertQuery("experiencias", $dados);
+            "descricao" => $Experiencias[$i]['texto'],
+            "dataInicio" => $Experiencias[$i]['de'],
+            "dataSaida" => $Experiencias[$i]['ate'],
+            "cargo" => $Experiencias[$i]['cargo'],
+            "codAluno" => $idAluno);
+        $Result22 = $DB->InsertQuery("experiencias", $dados);
     }
-    var_dump($Experiencias);
 
     $tabela = "aluno";
     $dadosAluno  = array(

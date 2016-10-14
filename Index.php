@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <?php
-    include "Controller/ManipulaVarSession.class.php";
+    include "Controller/VerificaSeEstaLogado.class.php";
     session_start();
 
-    $Session = new ManipulaVarSession();
-    $Logado = $Session->VerificaEstaLogado();
+    $Logado = new VerificaSeEstaLogado();
+    $EstaLogado = $Logado->EstaLogado();
 
-    if($Logado)
+    if($EstaLogado)
         header("location:OnePage.php");
 
 ?>

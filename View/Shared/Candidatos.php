@@ -2,8 +2,7 @@
     include_once "Model/DataBase.class.php";
     $DB = new DataBase();
     $id = $_SESSION['id'];
-    $Consulta = $DB->SearchQuery("aluno", "WHERE idAluno = $id");
-    $Assoc = mysqli_fetch_assoc($Consulta);
+    $Consulta = $DB->SearchQuery("aluno");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,18 +19,22 @@
     <div class="container">
         <div class="row">
             <div class="col s12 m12">
+                <?php
+                while( $linha = mysqli_fetch_assoc($Consulta) ){
+                ?>
                 <div class="col s12 m6">
                     <div class="card horizontal hoverable">
                         <div class="card-image activator"> 
                             <img src="Images/Padrao/PerfilPadrao.png" alt=""> 
-                            <span class="card-title"><?=$Assoc['nome']?></span>
+                            <span class="card-title"><?=$linha['nome']?></span>
                         </div>
                         <div class="card-content">
-                            <p><?=$Assoc['qualificacoes']?></p>
-                            <a href="OnePage.php?link=Candidato&id=<?=$id?>"><button class="btn blue">Ver perfil</button></a>
+                            <p><?=$linha['qualificacoes']?></p>
+                            <a href="OnePage.php?link=Candidato&id=<?=$linha['idAluno']?>"><button class="btn blue">Ver perfil</button></a>
                         </div>
                     </div>
                 </div>
+                <?php } ?>
             </div>
         </div>
     </div>

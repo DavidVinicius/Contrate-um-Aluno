@@ -5,7 +5,6 @@
 
         public function EstaLogado()
         {
-
             if( (!isset($_SESSION['usuario'])) and ( !isset($_SESSION['senha']) ) and ( !isset($_SESSION['id'])) )
             {
                 unset($_SESSION['usuario']);

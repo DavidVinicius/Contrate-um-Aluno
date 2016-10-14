@@ -1,12 +1,5 @@
 <?php
     session_start();
-    include_once("Controller/VerificaSeEstaLogado.class.php");
-
-    $VerificaSeEstaLogado = new VerificaSeEstaLogado();
-    $Logado = $VerificaSeEstaLogado->EstaLogado();
-
-    if(!$Logado)
-        header("location: Index.php");
 ?>
 <!DOCTYPE html>
 

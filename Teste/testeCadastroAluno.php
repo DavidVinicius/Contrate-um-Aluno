@@ -29,10 +29,10 @@
         {
             echo "deu certo";
         }#Move o arquivo temporário para pasta
-        }else{
+        else{
             echo "erro";
         }
-    
+}
     echo "<br>";
     
     $Telefones      = json_decode($_POST['Telefones'],true);
@@ -49,7 +49,7 @@
             "codAluno" => 0);
         //$DB->InsertQuery("experiencias", $dados);
     }
-    var_dump($dados);
+    var_dump($Experiencias);
 
     $tabela = "aluno";
     $dadosAluno  = array(

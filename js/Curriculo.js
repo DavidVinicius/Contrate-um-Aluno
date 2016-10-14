@@ -54,13 +54,12 @@ app.controller('Curriculo',['$scope',function($scope){
             $scope.adicionarExperiencia = function(){
                  var tempo = "";
                 
-                 if($scope.deExp != null && $scope.atualExp == true){
-                     var tempo = $scope.deExp + " - emprego atual";
-                    
+                 if( $scope.atualExp == true){
+                     var tempo = "Emprego atual";                   
                     
                 }
                 else{
-                    var tempo = $scope.deExp + " - " + $scope.ateExp;
+                    var tempo = $scope.ateExp;
                 }
                 
                 
@@ -81,7 +80,7 @@ app.controller('Curriculo',['$scope',function($scope){
                 }
                 else{
                     
-                    $scope.Experiencia.push({tempoExperiencia: tempo, cargo: $scope.nomeExperiencia, texto: $scope.textoExperiencia});
+                    $scope.Experiencia.push({de:$scope.deExp, ate: tempo, cargo: $scope.nomeExperiencia, texto: $scope.textoExperiencia});
                     $scope.deExp = "";
                     $scope.ateExp = "";
                     $scope.atualExp = false;

@@ -1,6 +1,6 @@
 <?php
     $email = $_SESSION['usuario'];
- 
+  
 ?>
     <!DOCTYPE html>
     <html lang="pt-br" ng-app='curriculo'>
@@ -157,7 +157,7 @@
                     <div class="col s12 m6">
                         <h1 class='flow-text'>Suas experiências</h1>
                         <div class="col s12 m12">
-                            <div class="card-panel medium hoverable" ng-repeat="exp in Experiencia"> <i class="material-icons right" ng-click="removeExp($Index)">close</i> <span class="card-title"><h6 class="flow-text">{{exp.tempoExperiencia}} <br> {{exp.cargo}}</h6></span>
+                            <div class="card-panel medium hoverable" ng-repeat="exp in Experiencia"> <i class="material-icons right" ng-click="removeExp($Index)">close</i> <span class="card-title"><h6 class="flow-text">{{exp.de}} - {{exp.ate}} <br> {{exp.cargo}}</h6></span>
                                 <div class="card-content truncate">
                                     <!--                                <a href="" ng-click="verExp($Index)">Ver Descrição</a>-->{{exp.texto}} </div>
                             </div>

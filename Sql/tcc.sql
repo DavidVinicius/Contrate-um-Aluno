@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13-Out-2016 às 23:21
+-- Generation Time: 17-Out-2016 às 22:09
 -- Versão do servidor: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -40,43 +40,6 @@ CREATE TABLE `aluno` (
   `codCurso` int(11) NOT NULL,
   `codUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `aluno`
---
-
-INSERT INTO `aluno` (`idAluno`, `dataNascimento`, `nacionalidade`, `informacoesAdicionais`, `foto`, `nome`, `cpf`, `objetivo`, `qualificacoes`, `rg`, `codCurso`, `codUsuario`) VALUES
-(1, '1998-10-08', 'Brasil', 'asd', '/opt/lampp/htdocs/TCC/ImagensUsuarios/13birl.png', 'Matheus Picioli', '401.564.828-51', 'asdas', 'asd', '1293867', 22, 2),
-(2, '1998-10-08', 'Brasil', 'ads', '/opt/lampp/htdocs/TCC/ImagensUsuarios/13.png', 'Matheus', '81236723', 'asd', 'daas', '27934684', 22, 6);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `curso`
---
-
-CREATE TABLE `curso` (
-  `idCurso` int(11) NOT NULL,
-  `nome` varchar(40) NOT NULL,
-  `escola` varchar(100) DEFAULT NULL,
-  `gradeCurricular` varchar(200) DEFAULT NULL,
-  `periodo` enum('Manhã','Tarde','Noite') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `curso`
---
-
-INSERT INTO `curso` (`idCurso`, `nome`, `escola`, `gradeCurricular`, `periodo`) VALUES
-(22, 'InformÃ¡tica p/ Internet', 'Etec Philadelpho', '/opt/lampp/htdocs/Projetos/TCC/imagensUpadas/tcc.sql', 'Tarde'),
-(23, 'MecÃ¢nica', 'Etec Philadelpho', '/opt/lampp/htdocs/Projetos/TCC/imagensUpadas/Mudando barra unity de posiÃ§Ã£o', 'Noite'),
-(24, 'MecÃ¢nica', 'Etec Philadelpho GouvÃªa Netto', '/opt/lampp/htdocs/Projetos/TCC/imagensUpadas/Abrindo o php.ini', 'Noite'),
-(25, 'Protese DentÃ¡ria', 'Etec Philadelpho GouvÃªa Netto', '/opt/lampp/htdocs/Projetos/TCC/imagensUpadas/', 'Noite'),
-(26, 'Protese DentÃ¡ria', 'Etec Philadelpho GouvÃªa Netto', '/opt/lampp/htdocs/Projetos/TCC/imagensUpadas/Lista de exercÃ­cios 2ÂºBimestre - MatemÃ¡tica 3ÂºAno.pdf', 'Noite'),
-(27, '', '', 'C:wampwwwTCCimagensUpadas	cc-conceitual.png', 'Manhã'),
-(28, '', '', 'C:wampwwwTCCimagensUpadasCorreÃ§Ãµes no banco.txt', 'Noite'),
-(29, '', '', 'C:wampwwwTCCimagensUpadas	cc.sql', 'Manhã'),
-(30, 'Ã©oq', 'Ã£o', 'C:wampwwwTCCimagensUpadasformPadrao.html', 'Tarde');
 
 -- --------------------------------------------------------
 
@@ -129,11 +92,18 @@ CREATE TABLE `enderecos` (
 CREATE TABLE `experiencias` (
   `idExperiencia` int(11) NOT NULL,
   `descricao` varchar(255) NOT NULL,
-  `dataInicio` date NOT NULL,
-  `dataSaida` date DEFAULT NULL,
+  `dataInicio` varchar(4) NOT NULL,
+  `dataSaida` varchar(4) DEFAULT NULL,
   `cargo` varchar(30) NOT NULL,
   `codAluno` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `experiencias`
+--
+
+INSERT INTO `experiencias` (`idExperiencia`, `descricao`, `dataInicio`, `dataSaida`, `cargo`, `codAluno`) VALUES
+(1, 'Diga sobre sua experiÃªncia', '2016', '', 'Cargho', 3);
 
 -- --------------------------------------------------------
 
@@ -209,13 +179,14 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `email`, `nivel`, `senha`) VALUES
-(1, 'empresa@empresa.com', '2', '123'),
+(1, 'empresa2@empresa.com', '2', '123'),
 (2, 'novo@novo.com', '1', '1234'),
 (3, 'empresa1@empresa1.com', '2', '123'),
 (4, 'admin@admin.com', '3', '123'),
 (5, 'empresa2@empresa2.com', '2', '123'),
 (6, 'aluno2@aluno2.com', '1', '123'),
-(7, 'novaemp@emp.com', '2', '1234');
+(7, 'novaemp@emp.com', '2', '1234'),
+(8, 'aluno@aluno.com', '1', '12345');
 
 -- --------------------------------------------------------
 
@@ -254,12 +225,6 @@ ALTER TABLE `aluno`
   ADD PRIMARY KEY (`idAluno`),
   ADD KEY `codCurso` (`codCurso`),
   ADD KEY `codUsuario` (`codUsuario`);
-
---
--- Indexes for table `curso`
---
-ALTER TABLE `curso`
-  ADD PRIMARY KEY (`idCurso`);
 
 --
 -- Indexes for table `empresa`
@@ -331,12 +296,7 @@ ALTER TABLE `vaga`
 -- AUTO_INCREMENT for table `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `idAluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `curso`
---
-ALTER TABLE `curso`
-  MODIFY `idCurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idAluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `empresa`
 --
@@ -351,7 +311,7 @@ ALTER TABLE `enderecos`
 -- AUTO_INCREMENT for table `experiencias`
 --
 ALTER TABLE `experiencias`
-  MODIFY `idExperiencia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idExperiencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `formacoes`
 --
@@ -366,7 +326,7 @@ ALTER TABLE `telefones`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `vaga`
 --

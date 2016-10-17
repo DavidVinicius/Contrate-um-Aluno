@@ -6,13 +6,15 @@
     session_start(); 
     include_once("../Model/DataBase.class.php");
     include_once("../Util.php");
-    include_once("../Controller/ManipulaVarSession.class.php");
-    $VarSessions = new ManipulaVarSession();
  
     $DB = new DataBase();
     $idSession = $_SESSION['id'];
+    var_dump($idSession);
+
     $result = $DB->SearchQuery("aluno", "where codUsuario = $idSession");
     $assoc = mysqli_fetch_assoc($result);
+
+    var_dump($assoc);
     $idAluno = $assoc['idAluno'];
 
     if(isset($_FILES['foto'])){
@@ -28,14 +30,16 @@
         $novoNome = md5(time()).$extensao;
         
         $localFull = $diretorio.$novoNome;
-        if(move_uploaded_file($nomeTemporario, $diretorio.$novoNome))
+        if(move_uploaded_file($nomeTemporario, $localFull))
         {
             echo "deu certo";
         }#Move o arquivo temporário para pasta
         else{
             echo "erro";
         }
-}
+    } else {
+        //Carregar a foto padrão
+    }
     echo "<br>";
     
     $Telefones      = json_decode($_POST['Telefones'],true);
@@ -43,7 +47,24 @@
     $Formacoes      = json_decode($_POST['Formacoes'],true);
     $Qualificaoes   = json_decode($_POST['Qualificacoes'],true);
 
-    for($i = 1; $i < count($Experiencias);$i++){
+    var_dump($Qualificaoes);
+    //Cadastro alunos
+    $dadosAluno  = array(
+        "dataNascimento"            => $_POST["dataNascimento"],
+        "informacoesAdicionais"     => $_POST["informacoesAdicionais"],
+        "foto"                      => $novoNome,
+        "nome"                      => $_POST["nome"],
+        "cpf"                       => $_POST["cpf"],
+        "objetivo"                  => $_POST["objetivo"],
+        "qualificacoes"             => $_POST["qualificacoes"],
+        "rg"                        => $_POST["rg"],
+        "codUsuario"                => $_SESSION['id']
+    );
+    var_dump($dadosAluno);
+    //$CadastraAluno = $DB->InsertQuery("aluno", $dadosAluno);
+
+    //Cadastro experiências
+    for($i = 0; $i < count($Experiencias);$i++){
         if($Experiencias[$i]['ate'] == "Emprego atual")
             $Experiencias[$i]['ate'] = null;
 
@@ -53,24 +74,11 @@
             "dataSaida" => $Experiencias[$i]['ate'],
             "cargo" => $Experiencias[$i]['cargo'],
             "codAluno" => $idAluno);
-        $Result22 = $DB->InsertQuery("experiencias", $dados);
+        //$Result22 = $DB->InsertQuery("experiencias", $dados);
+        var_dump($dados);
     }
 
-    $tabela = "aluno";
-    $dadosAluno  = array(
-        "dataNascimento"            => (isset($_POST["nascimento"])) ? $_POST["nascimento"] : $MsgString,
-        "formacao"                  => (isset($_POST["formacao"])) ? $_POST["formacao"] : $MsgString,
-        "experiencias"              => (isset($_POST["experiencias"])) ? $_POST["experiencias"] : $MsgString,
-        "informacoesAdicionais"     => (isset($_POST["info"])) ? $_POST["info"] : $MsgString,
-        "foto"                      => $novoNome,
-        "nome"                      => (isset($_POST["nome"])) ? $_POST["nome"] : $MsgString,
-        "cpf"                       => (isset($_POST["cpf"])) ? $_POST["cpf"] : $MsgString,
-        "objetivo"                  => (isset($_POST["objetivo"])) ? $_POST["objetivo"] : $MsgString,
-        "qualificacoes"             => (isset($_POST["qualificacoes"])) ? $_POST["qualificacoes"] : $MsgString,
-        "telefone"                  => (isset($_POST["telefone"])) ? $_POST["telefone"] : $MsgString,
-        "endereco"                  => (isset($_POST["endereco"])) ? $_POST["endereco"] : $MsgString,
-        "rg"                        => (isset($_POST["rg"])) ? $_POST["rg"] : $MsgString,
-        "codCurso"                  => (isset($_POST["curso"])) ? $_POST["curso"] : $MsgNumber,
-        "codUsuario"                => $_SESSION['id']
-    );
+    for($i = o; $i < count($Qualificaoes); $i++){
+        //$Qualificaoes[$i][''];
+    }
 ?>

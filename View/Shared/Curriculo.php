@@ -34,8 +34,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6">
-                        <label for="data">Data de Nascimento </label>
-                        <input type="date" name="dataNascimento" required id="data" class="datepicker" ng-model="dataNascimento"> </div>
+<!--                        <label for="data">Data de Nascimento </label>-->
+                        <input type="date" placeholder="Digite sua data de Nascimento" name="dataNascimento" required id="data" ng-model="dataNascimento"> </div>
                     <div class="input-field col s12 m6">
                         <label for="rg">RG</label>
                         <input type="text" name="rg" id="rg" class="validate" required> </div>
@@ -44,15 +44,7 @@
                     <div class="input-field col s12 m6">
                         <label for="cpf">CPF:</label>
                         <input type="text" name="cpf" id="cpf" class='validate' required> </div>
-                    <div class="input-field col s12 m6" required>
-                        <select name="nacionalidade">
-                            <option value="" disabled selected></option>
-                            <option value="1">Carro</option>
-                            <option value="2">Moto</option>
-                            <option value="3">Elefante</option>
-                        </select>
-                        <label>Escolha sua Nacionalidade</label>
-                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m4">
@@ -102,14 +94,14 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m7">
-                        <label for="endereco">Endereço:</label>
-                        <input type="text" name="endereco" id="endereco" required> </div>
+                        <label for="rua">Rua:</label>
+                        <input type="text" name="rua" id="rua" required> </div>
                     <div class="input-field col s12 m2">
                         <label for="numero">Número</label>
                         <input type="number" name="numero" id="numero" required> </div>
                     <div class="input-field col s12 m3">
-                        <label for="numero">Bairro</label>
-                        <input type="text" name="bairro" id="numero" required> </div>
+                        <label for="bairro">Bairro</label>
+                        <input type="text" name="bairro" id="bairro" required> </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6">
@@ -182,6 +174,12 @@
                             <label for="experiencia">Diga sobre sua experiência</label>
                             <textarea name="" id="experiencia" cols="30" rows="10" class='materialize-textarea' length='255' ng-model="textoExperiencia"></textarea>
                         </div> <a class="btn blue" ng-click='adicionarExperiencia()'>Adicionar Experiência</a> </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m12">
+                       <label for="informacoesAdicionais">Informações Adicionais</label>
+                        <textarea name="informacoesAdicionais" id="informacoesAdicionais" cols="30" rows="10" class="materialize-textarea"></textarea>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m12">

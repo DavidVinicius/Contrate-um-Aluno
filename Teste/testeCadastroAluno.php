@@ -9,12 +9,12 @@
  
     $DB = new DataBase();
     $idSession = $_SESSION['id'];
-    var_dump($idSession);
+//    var_dump($idSession);
 
     $result = $DB->SearchQuery("aluno", "where codUsuario = $idSession");
     $assoc = mysqli_fetch_assoc($result);
 
-    var_dump($assoc);
+//    var_dump($assoc);
     $idAluno = $assoc['idAluno'];
 
     if(isset($_FILES['foto'])){
@@ -47,7 +47,7 @@
     $Formacoes      = json_decode($_POST['Formacoes'],true);
     $Qualificaoes   = json_decode($_POST['Qualificacoes'],true);
 
-    var_dump($Qualificaoes);
+//    var_dump($Qualificaoes);
     //Cadastro alunos
     $dadosAluno  = array(
         "dataNascimento"            => $_POST["dataNascimento"],
@@ -56,7 +56,7 @@
         "nome"                      => $_POST["nome"],
         "cpf"                       => $_POST["cpf"],
         "objetivo"                  => $_POST["objetivo"],
-        "qualificacoes"             => $_POST["qualificacoes"],
+//        "qualificacoes"             => $_POST["qualificacoes"],
         "rg"                        => $_POST["rg"],
         "codUsuario"                => $_SESSION['id']
     );
@@ -77,8 +77,8 @@
         //$Result22 = $DB->InsertQuery("experiencias", $dados);
         var_dump($dados);
     }
-
-    for($i = o; $i < count($Qualificaoes); $i++){
+    var_dump($Qualificaoes);
+    for($i = 0; $i < count($Qualificaoes); $i++){
         //$Qualificaoes[$i][''];
     }
 ?>

@@ -7,7 +7,7 @@
     $DB = new DataBase();
     //$VerificaSeEstaLogado = new VerificaSeEstaLogado();
     //$VarSessions = $VerificaSeEstaLogado->EstaLogado();
-
+  
     $tabela     = "vaga";
     $id         = $_SESSION['id'];
     $resultado  = $DB->SearchQuery("empresa", "WHERE codUsuario = {$id}");

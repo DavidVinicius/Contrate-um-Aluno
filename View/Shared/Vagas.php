@@ -1,5 +1,5 @@
 <?php
-    include_once("Controller/ManipulaVarSession.class.php");
+//    include_once("Controller/ManipulaVarSession.class.php");
     include_once("Model/DataBase.class.php");
     include_once("Controller/VerificaSeEstaLogado.class.php");
 

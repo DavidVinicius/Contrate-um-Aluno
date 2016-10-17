@@ -46,9 +46,7 @@ $(".editar").click(function(){
                                           $(this).parent().prepend("<teste>");  
                                         },
                                         success: function(dado){
-                                            if(dado == 0){
-                                                Materialize.toast("Erro, tente novamente",4000);
-                                            }else{
+                                            if(dado == 1){
                                                 Materialize.toast("Alterado com sucesso",4000);
                                                 $(td).html(dado);
                                                 $(BotaoEditar).html("<button class='editar btn green' disable='true'><i class='fa fa-check'></i></button>");

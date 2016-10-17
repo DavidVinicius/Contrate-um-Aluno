@@ -27,10 +27,13 @@
         $VarSession->CreateVarSession($_SESSION['usuario'], $_SESSION['senha'], $_SESSION['id'], $_SESSION['nivel']);
         echo $ValorDeAlteracao;
     }
-    else{
-        echo 0;
-    }
     
+
+    if(isset($_POST['alterar']))
+    {
+            echo "aqui";
+        
+    }
     
     
 

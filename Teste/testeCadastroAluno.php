@@ -14,40 +14,29 @@
     $result = $DB->SearchQuery("aluno", "where codUsuario = $idUsuario");
     $assoc = mysqli_fetch_assoc($result);
 
-//    var_dump($assoc);
     $idAluno = $assoc['idAluno'];
 
     if(isset($_FILES['foto'])){
-//        $nomeOriginal   = $_FILES['foto']['name']; #Nome do arquivo original
-//        $tipo           = $_FILES['foto']['type']; #O tipo do arquivo
-//        $tamanho        = $_FILES['foto']['size']; #Tamanho em bytes
         $nomeTemporario = $_FILES['foto']['tmp_name']; #O nome temporário com o qual o arquivo
-//        # enviado foi armazenado no servidor.
-//        $codErro        = $_FILES['foto']['error']; #O código de erro associado ao upload do arquivo
-
         $diretorio = "../Images/Upload/";
         $extensao = strtolower(substr($_FILES['foto']['name'], -4));
         $novoNome = md5(time()).$extensao;
         
         $localFull = $diretorio.$novoNome;
-        if(move_uploaded_file($nomeTemporario, $localFull))
-        {
-            echo "deu certo";
-        }#Move o arquivo temporário para pasta
-        else{
-            echo "erro";
-        }
+        if(move_uploaded_file($nomeTemporario, $localFull))#Move o arquivo temporário para pasta
+            echo "Upou a foto<br>";
+        else
+            echo "Erro ao upar a foto<br>";
     } else {
-        //Carregar a foto padrão
+        $novoNome = "PerfilPadrao.png";
     }
-    echo "<br>";
-    
+
+    //Transforma de Json em objetos
     $Telefones      = json_decode($_POST['Telefones'],true);
     $Experiencias   = json_decode($_POST['Experiencias'],true);
     $Formacoes      = json_decode($_POST['Formacoes'],true);
     $Qualificaoes   = json_decode($_POST['Qualificacoes'],true);
 
-//    var_dump($Qualificaoes);
     //Cadastro alunos
     $qual = "";
     for($i = 0; $i < count($Qualificaoes); $i++){
@@ -56,6 +45,7 @@
         else
             $qual .= ", ".$Qualificaoes[$i]['tag'];
     }
+
     $dadosAluno  = array(
         "dataNascimento"            => $_POST["dataNascimento"],
         "informacoesAdicionais"     => $_POST["informacoesAdicionais"],
@@ -67,13 +57,12 @@
         "rg"                        => $_POST["rg"],
         "codUsuario"                => $_SESSION['id']
     );
-    //var_dump($dadosAluno);
     //$CadastraAluno = $DB->InsertQuery("aluno", $dadosAluno);
-    //var_dump($CadastraAluno);
 
     $consultaAluno = $DB->SearchQuery("aluno", "where codUsuario = $idUsuario");
     $fetchAluno = mysqli_fetch_assoc($consultaAluno);
     $codAluno = $fetchAluno['idAluno'];
+
     //Cadastro experiências
     for($i = 0; $i < count($Experiencias);$i++){
         if($Experiencias[$i]['ate'] == "Emprego atual")
@@ -85,7 +74,44 @@
             "dataSaida" => $Experiencias[$i]['ate'],
             "cargo" => $Experiencias[$i]['cargo'],
             "codAluno" => $codAluno);
-        $Result22 = $DB->InsertQuery("experiencias", $dados);
-        var_dump($Result22);
+        //$Result22 = $DB->InsertQuery("experiencias", $dados);
+        //var_dump($Result22);
+    }
+
+    //Cadastro telefones
+    for($i = 0; $i < count($Telefones); $i++){
+        $dados = array(
+            "telefone" => $Telefones[$i]['telefone'],
+            "tipo" => null,//Adicionar o tipo no html
+            "codAluno" => $codAluno
+        );
+        //$Result22 = $DB->InsertQuery("telefones",$dados);
+        //var_dump($Result22);
+    }
+
+    //Cadastro endereço
+    $endereco = array(
+        "numero"        => $_POST['numero'],
+        "rua"           => $_POST['rua'],
+        "bairro"        => $_POST['bairro'],
+        "cidade"        => $_POST['cidade'],
+        "estado"        => $_POST['estado'],
+        "cep"           => $_POST['cep'],
+        "complemento"   => $_POST['complemento'],
+        "codAluno"      => $codAluno
+    );
+
+    //print_r($endereco);
+
+    //Cadastro formações
+    for($i = 0; $i < count($Formacoes); $i++){
+        $formacao = array(
+            "anoConclusao"  => $Formacoes[$i]['ano'],
+            "curso"         => $Formacoes[$i]['curso'],
+            "instituicao"   => $Formacoes[$i]['instituicao'],
+            "codAluno"      => $codAluno
+        );
+        //$insert = $DB->InsertQuery("formacoes", $formacao);
+        //print_r($insert);
     }
 ?>

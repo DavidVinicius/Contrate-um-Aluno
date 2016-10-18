@@ -22,8 +22,8 @@
             
                 <div class="center-align hide-on-med-and-up">
                     <input type="submit" value="Entrar" class="btn blue col s12">
-                    <a  href="#" class=" waves-effect waves-light btn yellow col s12">Esqueceu a Senha?</a>
-                    <a href="" id="fechar" class="btn red waves-effect waves-light modal-close col s12">Cancelar</a>
+                    <a  href="#" class=" waves-effect abaixo-1 waves-light btn yellow col s12">Esqueceu a Senha?</a>
+                    <a href="" id="fechar" class="btn red abaixo-1 waves-effect waves-light modal-close col s12">Cancelar</a>
                     
                 </div>
                 <div class="center-align hide-on-small-only">

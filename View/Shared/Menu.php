@@ -29,10 +29,11 @@ if($nivel == 1){
                   <a href='#!name'><span class='white-text name'>Aqui vai o Nome</span></a>
                   <a href='#!email'><span class='white-text email'>email@email.com</span></a>
                 </div></li>
-                <li><a href='sass.html'>Sass</a></li>
-                <li><a href='badges.html'>Components</a></li>
-                <li><a href='collapsible.html'>Javascript</a></li>
-                <li><a href='mobile.html'>Mobile</a></li>
+                <li><a href='OnePage.php?link=Home'>Home</a></li>
+                <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
+                <li><a href='OnePage.php?link=Curriculo'>Curriculo</a></li>
+                <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
+                <li><a href='./Controller/Sair.php'>Sair</a></li>
               </ul>
               <ul class='side-nav' id='Configuracoes'>
                   <li><div class='userView'>
@@ -75,10 +76,11 @@ else if ($nivel == 2){
                   <a href='#!name'><span class='white-text name'>Aqui vai o Nome</span></a>
                   <a href='#!email'><span class='white-text email'>email@email.com</span></a>
                 </div></li>
-                <li><a href='sass.html'>Sass</a></li>
-                <li><a href='badges.html'>Components</a></li>
-                <li><a href='collapsible.html'>Javascript</a></li>
-                <li><a href='mobile.html'>Mobile</a></li>
+                <li><a href='OnePage.php?link=Home'>Home</a></li>
+                <li><a href='OnePage.php?link=Candidatos'>Candidatos</a></li>
+                <li><a href='OnePage.php?link=CriarVaga'>Criar Vaga</a></li>
+                <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
+                <li><a href='./Controller/Sair.php'>Sair</a></li>
               </ul>
               <ul class='side-nav' id='Configuracoes'>
                   <li><div class='userView'>
@@ -121,10 +123,11 @@ else if ($nivel == 3){
                   <a href='#!name'><span class='white-text name'>Aqui vai o Nome</span></a>
                   <a href='#!email'><span class='white-text email'>email@email.com</span></a>
                 </div></li>
-                <li><a href='sass.html'>Sass</a></li>
-                <li><a href='badges.html'>Components</a></li>
-                <li><a href='collapsible.html'>Javascript</a></li>
-                <li><a href='mobile.html'>Mobile</a></li>
+                <li><a href='OnePage.php?link=Home'>Home</a></li>
+                <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
+                <li><a href='OnePage.php?link=Curriculo'>Curriculo</a></li>
+                <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
+                 <li><a href='./Controller/Sair.php'>Sair</a></li>
               </ul>
               <ul class='side-nav' id='Configuracoes'>
                   <li><div class='userView'>
@@ -167,10 +170,12 @@ else{
                   <a href='#!name'><span class='white-text name'>Aqui vai o Nome</span></a>
                   <a href='#!email'><span class='white-text email'>email@email.com</span></a>
                 </div></li>
-                <li><a href='sass.html'>Sass</a></li>
-                <li><a href='badges.html'>Components</a></li>
-                <li><a href='collapsible.html'>Javascript</a></li>
-                <li><a href='mobile.html'>Mobile</a></li>
+                
+                <li><a href='OnePage.php?link=Home'>Home</a></li>
+                <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
+                <li><a href='OnePage.php?link=Curriculo'>Curriculo</a></li>
+                <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
+                <li><a href='./Controller/Sair.php'>Sair</a></li>
               </ul>
               <ul class='side-nav' id='Configuracoes'>
                   <li><div class='userView'>

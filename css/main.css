@@ -75,3 +75,29 @@
 /*              will-change: top, opacity;*/
             z-index: 1000;
         }
+
+@media screen and (min-width:320px) and (max-width:768px)
+{
+    .modal.modal-top{
+            display: none;
+              position: fixed;
+              left: 0;
+              right: 0;
+              bottom: auto;
+                top:100px;
+              background-color: #fafafa;
+              padding: 0;
+              max-height: 100%;
+              width: 90%;
+              margin: auto;
+              overflow-y: hidden;
+              border-radius: 2px;
+/*              will-change: top, opacity;*/
+            z-index: 1000;
+        }
+    
+    .abaixo-1
+    {
+        margin-top:5%;
+    }
+}

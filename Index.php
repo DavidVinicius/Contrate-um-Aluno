@@ -14,6 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -28,7 +29,7 @@
         <div class="nav-wrapper menuCor ">
           <a href="#!" class="brand-logo"><span style="margin-left:5%;"></span> Contrate um Aluno</a>
 
-          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars" style="font-siz:20px"></i></a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars" style="font-siz:20px margin-left:5%;"></i></a>
           <ul class="right hide-on-med-and-down">
             <li><a href="sass.html">A ideia</a></li>
             <li><a href="badges.html">Sobre os Desenvolvedores</a></li>
@@ -38,7 +39,6 @@
             <li><a href="sass.html">A ideia</a></li>
             <li><a href="badges.html">Sobre os Desenvolvedores</a></li>
             <li><a href="" class="abrirFormulario waves-effect waves-light btn blue" data-target="modal1" data-page="Login/LoginModal.php" >Login</a></li>
-            <li><a href="mobile.html">Mobile</a></li>
           </ul>
         </div>
       </nav>
@@ -66,10 +66,12 @@
             </div>
         </section>
     </div>
-    <div id="modal1" class="modal modal-top">
+    <div class="col s12 m4 l4">
+        <div id="modal1" class="modal modal-top">
              <div class="modal-content">
                    
                </div>
+        </div>
     </div>
     <!-- Modal Trigger -->
 

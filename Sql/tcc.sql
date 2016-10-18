@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 17-Out-2016 às 22:09
--- Versão do servidor: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: 18-Out-2016 às 01:36
+-- Versão do servidor: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -37,9 +37,16 @@ CREATE TABLE `aluno` (
   `objetivo` varchar(255) NOT NULL,
   `qualificacoes` varchar(255) NOT NULL,
   `rg` varchar(20) NOT NULL,
-  `codCurso` int(11) NOT NULL,
   `codUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `aluno`
+--
+
+INSERT INTO `aluno` (`idAluno`, `dataNascimento`, `nacionalidade`, `informacoesAdicionais`, `foto`, `nome`, `cpf`, `objetivo`, `qualificacoes`, `rg`, `codUsuario`) VALUES
+(1, '1998-10-08', 'Brasil', 'asd', '/opt/lampp/htdocs/TCC/ImagensUsuarios/13birl.png', 'Matheus Picioli', '401.564.828-51', 'asdas', 'html, css, javascript', '1293867', 2),
+(2, '1998-10-08', 'Brasil', 'ads', '/opt/lampp/htdocs/TCC/ImagensUsuarios/13.png', 'Matheus', '81236723', 'asd', 'daas', '27934684', 6);
 
 -- --------------------------------------------------------
 
@@ -83,6 +90,13 @@ CREATE TABLE `enderecos` (
   `codAluno` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `enderecos`
+--
+
+INSERT INTO `enderecos` (`idEndereco`, `numero`, `rua`, `bairro`, `cidade`, `estado`, `cep`, `complemento`, `codAluno`) VALUES
+(1, '122', 'Rua da Laranjeiras', 'Vila esplanada', 'Legolândia', 'SP', '15011-111', 'perto de casa', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -103,7 +117,8 @@ CREATE TABLE `experiencias` (
 --
 
 INSERT INTO `experiencias` (`idExperiencia`, `descricao`, `dataInicio`, `dataSaida`, `cargo`, `codAluno`) VALUES
-(1, 'Diga sobre sua experiÃªncia', '2016', '', 'Cargho', 3);
+(1, 'aprendi bastante com essa experiência, com isso puder melhorar meus desafios pois não é facil ser adolecênte nessa idade gostaria de focar cada vez mais na programação e na matemática por que matemática é muito legal', '2014', '2016', 'Agente de Negocios', 1),
+(2, 'Essa é minha segunda experiência', '2016', '2018', 'Programador', 1);
 
 -- --------------------------------------------------------
 
@@ -118,6 +133,14 @@ CREATE TABLE `formacoes` (
   `instituicao` varchar(40) NOT NULL,
   `codAluno` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `formacoes`
+--
+
+INSERT INTO `formacoes` (`idFormacao`, `anoConclusao`, `curso`, `instituicao`, `codAluno`) VALUES
+(1, '0000-00-00', 'Técnico em informática ', 'Etec Philadelpho Gouvêa Netto', 1),
+(2, '0000-00-00', 'Ensino Médio ', 'Etec Philadelpho Gouvêa Netto', 1);
 
 -- --------------------------------------------------------
 
@@ -161,6 +184,14 @@ CREATE TABLE `telefones` (
   `codAluno` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `telefones`
+--
+
+INSERT INTO `telefones` (`idTelefone`, `telefone`, `tipo`, `codAluno`) VALUES
+(1, '17 8130-2222', '', 1),
+(2, '17 8130-4444', '', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -179,14 +210,13 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `email`, `nivel`, `senha`) VALUES
-(1, 'empresa2@empresa.com', '2', '123'),
+(1, 'empresa@empresa.com', '2', '123'),
 (2, 'novo@novo.com', '1', '1234'),
 (3, 'empresa1@empresa1.com', '2', '123'),
 (4, 'admin@admin.com', '3', '123'),
 (5, 'empresa2@empresa2.com', '2', '123'),
 (6, 'aluno2@aluno2.com', '1', '123'),
-(7, 'novaemp@emp.com', '2', '1234'),
-(8, 'aluno@aluno.com', '1', '12345');
+(7, 'novaemp@emp.com', '2', '1234');
 
 -- --------------------------------------------------------
 
@@ -212,7 +242,9 @@ CREATE TABLE `vaga` (
 INSERT INTO `vaga` (`idVaga`, `titulo`, `descricao`, `cargaHoraria`, `salario`, `requisitos`, `beneficios`, `codEmpresa`) VALUES
 (1, 'Programador ASP.NET', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 36.4, 1200.69, 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 9),
 (2, 'Professor de banco de dados - MySQL', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 36.4, 1200.69, 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 9),
-(3, 'Desenvolvedor de sistemas operacionais - C/C++', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 36.4, 1200.69, 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 9);
+(3, 'Desenvolvedor de sistemas operacionais - C/C++', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 36.4, 1200.69, 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 'O que é Lorem Ipsum?\r\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI', 9),
+(41, 'Programador php', 'AprenderÃ¡ bastante javascript', 44.0, 1300.00, 'Ser legal', '', 8),
+(43, 'MinhaVaga', 'aprender', 44.0, 1300.00, 'ser legal', '', 8);
 
 --
 -- Indexes for dumped tables
@@ -223,7 +255,6 @@ INSERT INTO `vaga` (`idVaga`, `titulo`, `descricao`, `cargaHoraria`, `salario`, 
 --
 ALTER TABLE `aluno`
   ADD PRIMARY KEY (`idAluno`),
-  ADD KEY `codCurso` (`codCurso`),
   ADD KEY `codUsuario` (`codUsuario`);
 
 --
@@ -296,7 +327,7 @@ ALTER TABLE `vaga`
 -- AUTO_INCREMENT for table `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `idAluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idAluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `empresa`
 --
@@ -306,32 +337,32 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT for table `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `idEndereco` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idEndereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `experiencias`
 --
 ALTER TABLE `experiencias`
-  MODIFY `idExperiencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idExperiencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `formacoes`
 --
 ALTER TABLE `formacoes`
-  MODIFY `idFormacao` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idFormacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `telefones`
 --
 ALTER TABLE `telefones`
-  MODIFY `idTelefone` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTelefone` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `vaga`
 --
 ALTER TABLE `vaga`
-  MODIFY `idVaga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idVaga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- Constraints for dumped tables
 --
@@ -340,7 +371,6 @@ ALTER TABLE `vaga`
 -- Limitadores para a tabela `aluno`
 --
 ALTER TABLE `aluno`
-  ADD CONSTRAINT `aluno_ibfk_1` FOREIGN KEY (`codCurso`) REFERENCES `curso` (`idCurso`),
   ADD CONSTRAINT `aluno_ibfk_2` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`);
 
 --

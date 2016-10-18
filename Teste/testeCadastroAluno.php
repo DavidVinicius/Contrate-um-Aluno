@@ -8,10 +8,10 @@
     include_once("../Util.php");
  
     $DB = new DataBase();
-    $idSession = $_SESSION['id'];
+    $idUsuario = $_SESSION['id'];
 //    var_dump($idSession);
 
-    $result = $DB->SearchQuery("aluno", "where codUsuario = $idSession");
+    $result = $DB->SearchQuery("aluno", "where codUsuario = $idUsuario");
     $assoc = mysqli_fetch_assoc($result);
 
 //    var_dump($assoc);
@@ -49,6 +49,13 @@
 
 //    var_dump($Qualificaoes);
     //Cadastro alunos
+    $qual = "";
+    for($i = 0; $i < count($Qualificaoes); $i++){
+        if($i == 0)
+            $qual = $Qualificaoes[$i]['tag'];
+        else
+            $qual .= ", ".$Qualificaoes[$i]['tag'];
+    }
     $dadosAluno  = array(
         "dataNascimento"            => $_POST["dataNascimento"],
         "informacoesAdicionais"     => $_POST["informacoesAdicionais"],
@@ -56,13 +63,17 @@
         "nome"                      => $_POST["nome"],
         "cpf"                       => $_POST["cpf"],
         "objetivo"                  => $_POST["objetivo"],
-//        "qualificacoes"             => $_POST["qualificacoes"],
+        "qualificacoes"             => $qual,
         "rg"                        => $_POST["rg"],
         "codUsuario"                => $_SESSION['id']
     );
-    var_dump($dadosAluno);
+    //var_dump($dadosAluno);
     //$CadastraAluno = $DB->InsertQuery("aluno", $dadosAluno);
+    //var_dump($CadastraAluno);
 
+    $consultaAluno = $DB->SearchQuery("aluno", "where codUsuario = $idUsuario");
+    $fetchAluno = mysqli_fetch_assoc($consultaAluno);
+    $codAluno = $fetchAluno['idAluno'];
     //Cadastro experiências
     for($i = 0; $i < count($Experiencias);$i++){
         if($Experiencias[$i]['ate'] == "Emprego atual")
@@ -73,12 +84,8 @@
             "dataInicio" => $Experiencias[$i]['de'],
             "dataSaida" => $Experiencias[$i]['ate'],
             "cargo" => $Experiencias[$i]['cargo'],
-            "codAluno" => $idAluno);
-        //$Result22 = $DB->InsertQuery("experiencias", $dados);
-        var_dump($dados);
-    }
-    var_dump($Qualificaoes);
-    for($i = 0; $i < count($Qualificaoes); $i++){
-        //$Qualificaoes[$i][''];
+            "codAluno" => $codAluno);
+        $Result22 = $DB->InsertQuery("experiencias", $dados);
+        var_dump($Result22);
     }
 ?>

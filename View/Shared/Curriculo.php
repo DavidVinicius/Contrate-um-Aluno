@@ -84,12 +84,8 @@
                         <label for="">Estado</label>
                     </div>
                     <div class="input-field col s12 m4">
-                        <select name="" id="">
-                            <option value="" disabled selected>test</option>
-                            <option value="">q</option>
-                            <option value="">e</option>
-                        </select>
-                        <label for="">Estado</label>
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" name="cidade" id="cidade">
                     </div>
                 </div>
                 <div class="row">
@@ -97,29 +93,55 @@
                         <label for="rua">Rua:</label>
                         <input type="text" name="rua" id="rua" required> </div>
                     <div class="input-field col s12 m2">
-                        <label for="numero">Número</label>
+                        <label for="numero">Número:</label>
                         <input type="number" name="numero" id="numero" required> </div>
                     <div class="input-field col s12 m3">
-                        <label for="bairro">Bairro</label>
+                        <label for="bairro">Bairro:</label>
                         <input type="text" name="bairro" id="bairro" required> </div>
                 </div>
                 <div class="row">
+                   <div class="input-field col s12 m6">
+                       <label for="complemento">Complemento:</label>
+                       <input type="text" name="complemento" id="complemento">
+                   </div>
                     <div class="input-field col s12 m6">
                         <label for="objetivo">Objetivo</label>
-                        <input type="text" name="objetivo" id="objetivo"> </div>
-                    <div class="input-field col s12 m6">
+                        <input placeholder="Qual a vaga que você almeja?" type="text" name="objetivo" id="objetivo"> 
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m12">
                         <div class="chips chips-placeholder autocomplete"></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 m6">
                         <h1 class='flow-text'>Seus Telefones</h1>
-                        <div class="card-panel small" ng-repeat="tel in Telefones"> <i class="material-icons right" ng-click="removeTelefone($Index)">close</i> <span class="card-title">{{tel.telefone}}</span> </div>
+                        <div class="card-panel small" ng-repeat="tel in Telefones"> <i class="material-icons right" ng-click="removeTelefone($Index)">close</i> 
+                            <span class="card-title flow-text">{{tel.tipo}} - {{tel.telefone}}</span>
+                            
+                         </div>
                     </div>
                     <div class="col s12 m6">
+                        <div class="input-field col s12 m4">
+                            
+                           <input class="with-gap" name="tipo" type="radio" id="celular" value="Celular" ng-model="tipo" />
+                            <label for="celular">Celular</label><br>
+                            <input class="with-gap" name="tipo" type="radio" id="Comercial" value="Comercial" ng-model="tipo" />
+                            <label for="Comercial">Comercial</label><br>
+                            <input class="with-gap" name="tipo" type="radio" id="recado" value="Recado" ng-model="tipo" />
+                            <label for="recado">Recado</label><br>
+                            <input class="with-gap" name="tipo" type="radio" id="Residencial" value="Residencial" ng-model="tipo" />
+                            <label for="Residencial">Residencial</label><br>
+                            {{tipo}}
+                        </div>
                         <div class="input-field col s12 m8">
                             <label for="telefone">Telefone</label>
-                            <input placeholder="99 99999-9999" type="tel" id='telefone' class='flow-text' ng-model="telefone"> <a href="" class='btn blue' ng-click='adicionarTelefone()'>Adicionar Telefone</a> </div>
+                            <input placeholder="99 99999-9999" type="tel" id='telefone' class='flow-text' ng-model="telefone">
+                                 <a href="" class='btn blue' ng-click='adicionarTelefone()'>Adicionar Telefone</a>
+                            
+                       </div>
                     </div>
                 </div>
                 <div class="row">

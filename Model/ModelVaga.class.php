@@ -2,10 +2,11 @@
 
 /**
  * Created by PhpStorm.
- * User: Desenvolvedor
+ * User: Desenvolvedor 
  * Date: 22/09/2016
  * Time: 21:34
  */
+    include_once("HelperDataBase.class.php");
     class ModelVaga extends HelperDataBase
     {
         private $idVaga;

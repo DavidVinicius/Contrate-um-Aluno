@@ -53,7 +53,6 @@
     
                    
     <script src="js/jquery-3.1.0.min.js"></script>
-    <script src="js/angular.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script>
             $(".teste").hide();

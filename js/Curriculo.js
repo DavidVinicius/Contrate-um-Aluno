@@ -94,9 +94,14 @@ app.controller('Curriculo',['$scope',function($scope){
                 if($scope.telefone == ""){
                     Materialize.toast("Campo telefone vazio",4000);
                 }
+                else if($scope.tipo == null)
+                {
+                    Materialize.toast("Campo tipo está vazio");
+                }
                 else{
-                    $scope.Telefones.push({telefone: $scope.telefone});
+                    $scope.Telefones.push({telefone: $scope.telefone,tipo: $scope.tipo});
                     $scope.telefone = "";
+                    $scope.tipo     = "";
                     Materialize.toast("Telefone adicionado com sucesso",4000);
                 }
             }
@@ -140,7 +145,9 @@ app.controller('Curriculo',['$scope',function($scope){
 //                  alert(a);
             });
             
-            
+            $('.chips').focusin(function(){
+                Materialize.toast("Digite suas qualificações e aperte enter para adicionar",4000);
+            });
             
        
     $('.datepicker').pickadate({

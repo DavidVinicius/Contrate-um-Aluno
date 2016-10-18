@@ -6,7 +6,7 @@
     $ResultEmpresa      = mysqli_fetch_assoc($ConsultaEmpresa);
     $idEmpresa          = $ResultEmpresa['idEmpresa'];
     $ConsultaVaga       = $DB   -> SearchQuery('vaga',"where codEmpresa = $idEmpresa");
-    $ResultVaga2        = mysqli_fetch_assoc($ConsultaVaga);
+    $ResultVaga         = mysqli_fetch_assoc($ConsultaVaga);
     if(isset($_GET['idVaga']))
     {
         $idVaga = $_GET['idVaga'];

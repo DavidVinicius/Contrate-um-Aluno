@@ -57,7 +57,7 @@
         "rg"                        => $_POST["rg"],
         "codUsuario"                => $_SESSION['id']
     );
-    //$CadastraAluno = $DB->InsertQuery("aluno", $dadosAluno);
+    $CadastraAluno = $DB->InsertQuery("aluno", $dadosAluno);
 
     $consultaAluno = $DB->SearchQuery("aluno", "where codUsuario = $idUsuario");
     $fetchAluno = mysqli_fetch_assoc($consultaAluno);
@@ -74,7 +74,7 @@
             "dataSaida" => $Experiencias[$i]['ate'],
             "cargo" => $Experiencias[$i]['cargo'],
             "codAluno" => $codAluno);
-        //$Result22 = $DB->InsertQuery("experiencias", $dados);
+        $Result22 = $DB->InsertQuery("experiencias", $dados);
         //var_dump($Result22);
     }
 
@@ -85,7 +85,7 @@
             "tipo" => null,//Adicionar o tipo no html
             "codAluno" => $codAluno
         );
-        //$Result22 = $DB->InsertQuery("telefones",$dados);
+        $Result22 = $DB->InsertQuery("telefones",$dados);
         //var_dump($Result22);
     }
 
@@ -100,7 +100,7 @@
         "complemento"   => $_POST['complemento'],
         "codAluno"      => $codAluno
     );
-
+    $nomeQueQuiser = $DB->InsertQuery('enderecos',$endereco);
     //print_r($endereco);
 
     //Cadastro formações
@@ -111,7 +111,7 @@
             "instituicao"   => $Formacoes[$i]['instituicao'],
             "codAluno"      => $codAluno
         );
-        //$insert = $DB->InsertQuery("formacoes", $formacao);
+        $insert = $DB->InsertQuery("formacoes", $formacao);
         //print_r($insert);
     }
 ?>

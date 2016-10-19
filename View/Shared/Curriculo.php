@@ -134,7 +134,7 @@
                             <label for="recado">Recado</label><br>
                             <input class="with-gap" name="tipo" type="radio" id="Residencial" value="Residencial" ng-model="tipo" />
                             <label for="Residencial">Residencial</label><br>
-                            {{tipo}}
+                            
                         </div>
                         <div class="input-field col s12 m8">
                             <label for="telefone">Telefone</label>

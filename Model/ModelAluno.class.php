@@ -1,7 +1,6 @@
 <?php
-    include_once("DataBase.class.php");
-    include("HelperDataBase.class.php");
-    $DB = new DataBase();
+    require_once "DataBase.class.php";
+    require_once "HelperDataBase.class.php";
 /**
  * Created by PhpStorm.
  * User: Desenvolvedor

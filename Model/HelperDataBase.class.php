@@ -1,5 +1,5 @@
 <?php
-    include "DataBase.class.php";
+    require_once "DataBase.class.php";
 
     class HelperDataBase
     {

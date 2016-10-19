@@ -1,5 +1,6 @@
 <?php
-
+    require_once "DataBase.class.php";
+    require_once "HelperDataBase.class.php";
 /**
  * Created by PhpStorm.
  * User: Matheus Piciolli

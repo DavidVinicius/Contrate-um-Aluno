@@ -2,8 +2,8 @@
 <?php
     session_start();
 
-    if(!isset($_SESSION['id']) and !isset($_SESSION['senha']) and !isset($_SESSION['usuario']) and !isset($_SESSION['nivel']) )
-    header("location: Index.php");
+    if(isset($_SESSION['id']) and isset($_SESSION['senha']) and isset($_SESSION['usuario']) and isset($_SESSION['nivel']) )
+        header("location: OnePage.php");
 
 ?>
 <html lang="en">

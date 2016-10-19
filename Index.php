@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <?php
-    include "Controller/VerificaSeEstaLogado.class.php";
     session_start();
 
-    $Logado = new VerificaSeEstaLogado();
-    $EstaLogado = $Logado->EstaLogado();
-
-    if($EstaLogado)
-        header("location:OnePage.php");
+    if(!isset($_SESSION['id']) and !isset($_SESSION['senha']) and !isset($_SESSION['usuario']) and !isset($_SESSION['nivel']) )
+    header("location: Index.php");
 
 ?>
 <html lang="en">

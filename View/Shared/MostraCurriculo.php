@@ -1,16 +1,9 @@
 <?php
-include "Model/DataBase.class.php";
- $DB                    = new DataBase();
- $idAluno               = $_GET['id'];
- $ConsultaAluno         = $DB->SearchQuery("aluno","where idAluno = $idAluno");
- $ResultAluno           = mysqli_fetch_assoc($ConsultaAluno);
- $ConsultaEndereco      = $DB->SearchQuery("enderecos","where codAluno = $idAluno");
- $ResultEndereco        = mysqli_fetch_assoc($ConsultaEndereco);
- $ConsultaTelefone      = $DB->SearchQuery("telefones","where codAluno = $idAluno");
-// $ResultTelefone      = mysqli_fetch_assoc($ConsultaTelefone);
- $ConsultaExperiencia   = $DB->SearchQuery("experiencias","where codAluno = $idAluno");
- $ConsultaFormacoes     = $DB->SearchQuery("formacoes","where codAluno = $idAluno");
-
+    require_once "Model/ModelAluno.class.php";
+    $idUsuario = $_SESSION['id'];
+    $Aluno = new ModelAluno();
+    $Sql = "SELECT a.nome,a.dataNascimento, a.cpf, a.rg";
+    $LerAluno = $Aluno->ReadAluno("where codUsuario = $idUsuario");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,14 +21,14 @@ include "Model/DataBase.class.php";
                         <input type="text" name="nome" id="nome" value="<?= $ResultAluno['nome'] ?>" readonly>
                     </div>
                     <div class="input-field col s12 m6 push-m2">
-                        <img src="Images/Padrao/PerfilPadrao.png" alt="Foto Perfil" class="responsive-img circle" width="200px" height="200px">
+                        <img src="Images/Upload/<?= $ResultAluno['foto'] ?>" alt="Foto Perfil" class="responsive-img circle" width="200px" height="200px">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m4">
                         <label for="dataNascimento">Data de Nascimento</label>
                         <input type="text" name="dataNascimento" id="dataNascimento" value="<?= $ResultAluno['dataNascimento'] ?>" readonly>
-                    </div>
+                    </div>,
                     <div class="input-field col s12 m4">
                         <label for="cpf">CPF:</label>
                         <input type="text" name="cpf" id="cpf" value="<?= $ResultAluno['cpf']?>" readonly>

@@ -7,10 +7,9 @@
     $Aluno = new ModelAluno();
     $Result = $Aluno->ReadAluno("WHERE codUsuario = $id");
 
-    if(mysqli_num_rows($Result) > 0){
-        //require_once ""; //Página que não deixa ele cadastrar aluno novo
-        echo "Chamar página pra ele não cadastrar aluno novo";
-    }else{
-        echo "Pode cadastrar um aluno";
-    }
+    if(mysqli_num_rows($Result) > 0)
+        require_once "MostraCurriculo.php"; //Página que não deixa ele cadastrar aluno novo
+    else
+        require_once "Curriculo.php"//Pode cadastrar um aluno
+
 ?>

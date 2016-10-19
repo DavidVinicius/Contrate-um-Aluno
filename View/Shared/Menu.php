@@ -16,7 +16,7 @@ if($nivel == 1){
               <ul class='right hide-on-med-and-down'>
                 <li><a href='OnePage.php?link=Home'>Home</a></li>
                 <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
-                <li><a href='OnePage.php?link=Curriculo'>Curriculo</a></li>
+                <li><a href='OnePage.php?link=VerCurriculo'>Curriculo</a></li>
                 <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
                <li><a href='' data-activates='Configuracoes' class='abrir'><img src='Images/Padrao/PerfilPadrao.png' class='circle responsive-img valign' width='40px' style='margin-top:10px'><span class='badge red circle white-text'>2</span></a></li>
                 <li><a href='./Controller/Sair.php'>Sair</a></li>
@@ -31,7 +31,7 @@ if($nivel == 1){
                 </div></li>
                 <li><a href='OnePage.php?link=Home'>Home</a></li>
                 <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
-                <li><a href='OnePage.php?link=Curriculo'>Curriculo</a></li>
+                <li><a href='OnePage.php?link=VerCurriculo'>Curriculo</a></li>
                 <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
                 <li><a href='./Controller/Sair.php'>Sair</a></li>
               </ul>

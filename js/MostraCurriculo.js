@@ -2,9 +2,10 @@ var app = angular.module('myapp',[]);
 
 app.controller("MostraCurriculo",["$scope",function($scope){
     $scope.formacao = [];
-    $scope.anoC   = "";
-    $scope.curso  = "";
-    $scope.escola = "";
+    $scope.anoC    = "";
+    $scope.curso   = "";
+    $scope.escola  = "";
+    
     $scope.adicionarFormacao = function(){
                     if($scope.anoC == "")
                     {
@@ -24,10 +25,11 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                             url:"Controller/InserirDados.php",
                             method:"POST",
                             data:{
-                                existeDados:"sim",
+                                tabela:"formacoes",
                                 anoConclusao:$scope.anoC, 
                                 instituicao:$scope.escola, 
-                                curso:$scope.curso
+                                curso:$scope.curso,
+                                idAluno:$("[name=idAluno]").val(),
                             },
                             success:function(data){
                                 alert(data);

@@ -136,6 +136,7 @@
                         <div class="input-field col s12 m12">
                             <label for="instituicao">Instituição</label>
                             <input type="text" class='validate length' id="instituicao" ng-model="escola" length="30" maxlength="30"> </div> <a class="btn blue" ng-click='adicionarFormacao()'>Adicionar Formação</a> 
+                            <input type="hidden" name="idAluno" value="<?= $idAluno?>">
                             <button class="btn red" id="esconderNovaFormacao">Esconder </button>
                     </div>
                 <br>
@@ -143,7 +144,8 @@
                     
                     <div class="col s12 m12">    
                         
-                    <div class="card col m6 hoverable" ng-repeat='x in formacao'> <span class="card-title"><h6>{{x.ano}} - {{x.instituicao}}</h6></span>
+                    <div class="card col m6 hoverable" ng-repeat='x in formacao'> 
+                       <span class="card-title"><h6>{{x.ano}} - {{x.instituicao}}</h6></span>
                         <div class="card-content">
                             {{x.curso}}
                         </div>
@@ -185,7 +187,12 @@
                         while($ResultExperiencia = mysqli_fetch_assoc($LerExperiencias)){
                     ?>
                         <div class="card col s12 m6 hoverable">
-                            <span class="card-title"><?= $ResultExperiencia['dataInicio']?> - <?= $ResultExperiencia['dataSaida']  ?> - <?= $ResultExperiencia['cargo']  ?></span>
+                            <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" >
+                                <?= $ResultExperiencia['dataInicio']?></span>
+                                
+                             - <span data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataSaida" data-idaluno="<?= $idAluno?>"> <?= $ResultExperiencia['dataSaida']  ?></span>
+                                
+                                <span> - <?= $ResultExperiencia['cargo']  ?></span>
                             <div class="card-content">
                                 <?= $ResultExperiencia['descricao']  ?>
                             </div>

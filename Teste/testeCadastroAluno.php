@@ -53,7 +53,6 @@
         "nome"                      => $_POST["nome"],
         "cpf"                       => $_POST["cpf"],
         "objetivo"                  => $_POST["objetivo"],
-        "qualificacoes"             => $qual,
         "rg"                        => $_POST["rg"],
         "codUsuario"                => $_SESSION['id']
     );
@@ -69,12 +68,23 @@
             $Experiencias[$i]['ate'] = null;
 
         $dados = array(
-            "descricao" => $Experiencias[$i]['texto'],
-            "dataInicio" => $Experiencias[$i]['de'],
-            "dataSaida" => $Experiencias[$i]['ate'],
-            "cargo" => $Experiencias[$i]['cargo'],
-            "codAluno" => $codAluno);
+            "descricao"     => $Experiencias[$i]['texto'],
+            "dataInicio"    => $Experiencias[$i]['de'],
+            "dataSaida"     => $Experiencias[$i]['ate'],
+            "cargo"         => $Experiencias[$i]['cargo'],
+            "codUsuario"    => $_SESSION['id']
+        );
         $Result22 = $DB->InsertQuery("experiencias", $dados);
+        //var_dump($Result22);
+    }
+
+    //Cadastro qualificações
+    for($i = 0; $i < count($Qualificaoes);$i++){
+        $dados = array(
+            "competencia" => $Qualificaoes[$i]['tag'],
+            "codUsuario" => $_SESSION['id']
+        );
+        $Result22 = $DB->InsertQuery("qualificacoes", $dados);
         //var_dump($Result22);
     }
 
@@ -91,14 +101,14 @@
 
     //Cadastro endereço
     $endereco = array(
-        "numero"        => $_POST['numero'],
-        "rua"           => $_POST['rua'],
-        "bairro"        => $_POST['bairro'],
-        "cidade"        => $_POST['cidade'],
-        "estado"        => $_POST['estado'],
-        "cep"           => $_POST['cep'],
-        "complemento"   => $_POST['complemento'],
-        "codAluno"      => $codAluno
+        "numero"            => $_POST['numero'],
+        "rua"               => $_POST['rua'],
+        "bairro"            => $_POST['bairro'],
+        "cidade"            => $_POST['cidade'],
+        "estado"            => $_POST['estado'],
+        "cep"               => $_POST['cep'],
+        "complemento"       => $_POST['complemento'],
+        "codUsuario"        => $_SESSION['id']
     );
     $nomeQueQuiser = $DB->InsertQuery('enderecos',$endereco);
     //print_r($endereco);
@@ -106,10 +116,10 @@
     //Cadastro formações
     for($i = 0; $i < count($Formacoes); $i++){
         $formacao = array(
-            "anoConclusao"  => $Formacoes[$i]['ano'],
-            "curso"         => $Formacoes[$i]['curso'],
-            "instituicao"   => $Formacoes[$i]['instituicao'],
-            "codAluno"      => $codAluno
+            "anoConclusao"      => $Formacoes[$i]['ano'],
+            "curso"             => $Formacoes[$i]['curso'],
+            "instituicao"       => $Formacoes[$i]['instituicao'],
+            "codUsuario"        => $_SESSION['id']
         );
         $insert = $DB->InsertQuery("formacoes", $formacao);
         //print_r($insert);

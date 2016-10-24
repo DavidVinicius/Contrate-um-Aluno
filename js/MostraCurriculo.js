@@ -43,6 +43,12 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                     }
             }
     
+     $('.chip').on('click', function(e, chip){
+        // you have the deleted chip here
+         alert('deletado');
+         console.log("alert");
+    });
+    
     $("#novaFormacao").hide();
     
     $("#adicionarNovaFormacao").click(function(){

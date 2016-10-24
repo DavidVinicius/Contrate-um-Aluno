@@ -4,6 +4,7 @@
     require_once "Model/ModelTelefones.class.php";
     require_once "Model/ModelFormacoes.class.php";
     require_once "Model/ModelExperiencias.class.php";
+    require_once "Model/ModelQualificacoes.class.php";
 
     $idUsuario = $_SESSION['id'];
     $Aluno = new ModelAluno();
@@ -12,11 +13,15 @@
     $idAluno = $AssocAluno['idAluno'];
 
     $Endereco = new Enderecos();
-    $LerEndereco = $Endereco->ReadEnderecos("where codAluno=$idAluno");
+    $LerEndereco = $Endereco->ReadEnderecos("where codUsuario=$idUsuario");
     $AssocEndereco = mysqli_fetch_assoc($LerEndereco);
 
     $Telefones = new Telefones();
-    $LerTelefones = $Telefones->ReadTelefones("where codAluno=$idAluno");
+    $LerTelefones = $Telefones->ReadTelefones("where codUsuario=$idUsuario");
+
+    $Qualificacoes = new ModelQualificacoes();
+    $LerQualificacoes = $Qualificacoes->ReadQualificacoes("where codUsuario=$idUsuario");
+    $AssocQualificacoes = mysqli_fetch_assoc($LerQualificacoes);
 
     $Formacoes = new Formacoes();
     $LerFormacoes = $Formacoes->ReadFormacoes("where codAluno=$idAluno");
@@ -119,7 +124,19 @@
                 </div>
                 <div class="row">
                     <p class="center-align flow-text">Habilidades</p>
-                    <p class="flow-text"><?= $AssocAluno['qualificacoes'] ?></p>
+                             <div class="col s12 m12">
+                    <?php
+                        while($AssocQualificacoes = mysqli_fetch_assoc($LerQualificacoes))
+                        {
+                            ?>
+                                <div class="chip">
+                                    <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="enderecos" data-campo="estado" data-idaluno="<?= $idAluno?>" contentEditable='true'><?= $AssocQualificacoes["competencia"]?></span>
+                                    <i class="close material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Excluir">close</i>
+                                </div>
+                            <?php
+                        }
+                    ?>
+                             </div>                            
                 </div>
                 <div class="row" >
                     <div class="col s12 m8 push-m4">
@@ -187,14 +204,14 @@
                         while($ResultExperiencia = mysqli_fetch_assoc($LerExperiencias)){
                     ?>
                         <div class="card col s12 m6 hoverable">
-                            <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" >
+                            <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" contenteditable="true" >
                                 <?= $ResultExperiencia['dataInicio']?></span>
                                 
-                             - <span data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataSaida" data-idaluno="<?= $idAluno?>"> <?= $ResultExperiencia['dataSaida']  ?></span>
+                             - <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataSaida" data-idaluno="<?= $idAluno?>" contenteditable="true"> <?= $ResultExperiencia['dataSaida']  ?></span>
                                 
-                                <span> - <?= $ResultExperiencia['cargo']  ?></span>
+                                <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="cargo" data-idaluno="<?= $idAluno?>" contenteditable="true"> - <?= $ResultExperiencia['cargo']  ?></span>
                             <div class="card-content">
-                                <?= $ResultExperiencia['descricao']  ?>
+                                <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="descricao" data-idaluno="<?= $idAluno?>" contenteditable="true"><?= $ResultExperiencia['descricao']  ?></span>
                             </div>
                             
                         </div>

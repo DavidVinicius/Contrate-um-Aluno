@@ -31,8 +31,8 @@ CREATE TABLE `empresa` (
 CREATE TABLE `experiencias` (
   `idExperiencia` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `descricao` varchar(255) NOT NULL,
-  `dataInicio` varchar(4) NOT NULL,
-  `dataSaida` varchar(4) DEFAULT NULL,
+  `dataInicio` varchar(15) NOT NULL,
+  `dataSaida` varchar(15) DEFAULT NULL,
   `cargo` varchar(30) NOT NULL,
   `codAluno` int(11) NOT NULL,
   CONSTRAINT `fk_experiencias_aluno` FOREIGN KEY (`codAluno`) REFERENCES `aluno` (`idAluno`)
@@ -40,7 +40,7 @@ CREATE TABLE `experiencias` (
 
 CREATE TABLE `formacoes` (
   `idFormacao` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `anoConclusao` date NOT NULL,
+  `anoConclusao` VARCHAR(4) NOT NULL,
   `curso` varchar(30) NOT NULL,
   `instituicao` varchar(40) NOT NULL,
   `codAluno` int(11) NOT NULL,

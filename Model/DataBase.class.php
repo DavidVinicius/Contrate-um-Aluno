@@ -64,6 +64,7 @@
             $Fields = implode(", ", array_keys($Data));  #Pega as keys do array e joga na variável campos
             $Values = "'".implode("', '", $Data)."'";    #Pega o array dados e transforma em apenas 1 variável, separadas por vírgula
             $Query = "INSERT INTO {$Table} ({$Fields}) VALUES({$Values})";
+            //var_dump($Query);
             $Result = $this -> ExecuteQuery($Connection, $Query);  #Executa a query, e guarda 1 pra executado, 0 pra falha
             $this->CloseConnectionDataBase($Connection);
             return $Result;

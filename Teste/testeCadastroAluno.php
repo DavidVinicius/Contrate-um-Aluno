@@ -9,12 +9,7 @@
  
     $DB = new DataBase();
     $idUsuario = $_SESSION['id'];
-//    var_dump($idSession);
-
-    $result = $DB->SearchQuery("aluno", "where codUsuario = $idUsuario");
-    $assoc = mysqli_fetch_assoc($result);
-
-    $idAluno = $assoc['idAluno'];
+    //var_dump($idUsuario);
 
     if(isset($_FILES['foto'])){
         $nomeTemporario = $_FILES['foto']['tmp_name']; #O nome temporário com o qual o arquivo
@@ -61,6 +56,8 @@
     $consultaAluno = $DB->SearchQuery("aluno", "where codUsuario = $idUsuario");
     $fetchAluno = mysqli_fetch_assoc($consultaAluno);
     $codAluno = $fetchAluno['idAluno'];
+    echo "ID do aluno: ";
+ //   var_dump($codAluno);
 
     //Cadastro experiências
     for($i = 0; $i < count($Experiencias);$i++){
@@ -72,7 +69,7 @@
             "dataInicio"    => $Experiencias[$i]['de'],
             "dataSaida"     => $Experiencias[$i]['ate'],
             "cargo"         => $Experiencias[$i]['cargo'],
-            "codUsuario"    => $_SESSION['id']
+            "codAluno"      => $codAluno
         );
         $Result22 = $DB->InsertQuery("experiencias", $dados);
         //var_dump($Result22);
@@ -85,18 +82,16 @@
             "codUsuario" => $_SESSION['id']
         );
         $Result22 = $DB->InsertQuery("qualificacoes", $dados);
-        //var_dump($Result22);
     }
 
     //Cadastro telefones
     for($i = 0; $i < count($Telefones); $i++){
         $dados = array(
-            "telefone" => $Telefones[$i]['telefone'],
-            "tipo" => null,//Adicionar o tipo no html
-            "codAluno" => $codAluno
+            "telefone"      => $Telefones[$i]['telefone'],
+            "tipo"          => $Telefones[$i]['tipo'],
+            "codUsuario"    => $_SESSION['id']
         );
         $Result22 = $DB->InsertQuery("telefones",$dados);
-        //var_dump($Result22);
     }
 
     //Cadastro endereço
@@ -111,7 +106,6 @@
         "codUsuario"        => $_SESSION['id']
     );
     $nomeQueQuiser = $DB->InsertQuery('enderecos',$endereco);
-    //print_r($endereco);
 
     //Cadastro formações
     for($i = 0; $i < count($Formacoes); $i++){
@@ -119,9 +113,8 @@
             "anoConclusao"      => $Formacoes[$i]['ano'],
             "curso"             => $Formacoes[$i]['curso'],
             "instituicao"       => $Formacoes[$i]['instituicao'],
-            "codUsuario"        => $_SESSION['id']
+            "codAluno"          => $codAluno
         );
         $insert = $DB->InsertQuery("formacoes", $formacao);
-        //print_r($insert);
     }
 ?>

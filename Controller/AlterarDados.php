@@ -35,6 +35,50 @@
         
     }
     
+
+    if(isset($_POST['existeCurriculo']))
+    {
+        
+        $valor       = isset($_POST['valor'])?$_POST['valor']:null;
+        $idAluno     = isset($_POST['idAluno'])?$_POST['idAluno']:null;
+        $campo       = isset($_POST['campo'])?$_POST['campo']:null;
+        $tabela      = isset($_POST['tabela'])?$_POST['tabela']:null;
+        $idTelefone  = isset($_POST['idTelefone'])?$_POST['idTelefone']:null;
+        $idFormacao  = isset($_POST['idFormacao'])?$_POST['idFormacao']:null;
+        
+        if($tabela == "aluno")
+        {
+            require_once("../Model/ModelAluno.class.php");
+            $Aluno = new ModelAluno();
+            $Aluno->UpdateAluno($campo,$valor,"where idAluno = $idAluno");
+            echo "$idTelefone";
+            
+        }
+        if($tabela == "telefones")
+        {
+            require_once("../Model/ModelTelefones.class.php");
+            $Telefone = new Telefones();
+            $Telefone->UpdateTelefones($campo, $valor, "where codAluno = $idAluno and idTelefone = $idTelefone");
+            echo "deu certo";
+        }
+        
+        if($tabela == "enderecos")
+        {
+            require_once("../Model/ModelEnderecos.class.php");
+            $Endereco = new Enderecos();
+            $Endereco->UpdateEnderecos($campo, $valor, "Where codAluno = $idAluno");
+            echo "deu certo";
+        }
+        if($tabela == "formacoes")
+        {
+            require_once("../Model/ModelFormacoes.class.php");
+            $Formacao = new Formacoes();
+            $Formacao->UpdateFormacoes($campo,$valor,"where codAluno = $idAluno and idFormacao = $idFormacao");
+            echo "deu certo";
+        }
+        
+    }
+    
     
 
 

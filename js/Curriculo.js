@@ -28,7 +28,7 @@ app.controller('Curriculo',['$scope',function($scope){
                 else if($scope.escola == ""){
                   Materialize.toast("O campo Instituição está vazio", 4000);  
                 }
-                else if($scope.anoC.length > 4 || $scope.anoC.lenght < 4){
+                else if($scope.anoC.length > 4 || $scope.anoC.length < 4){
                     Materialize.toast("O ano deve ter 4 dígitos",4000);
                 }
                 else{

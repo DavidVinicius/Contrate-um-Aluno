@@ -1,6 +1,6 @@
 <?php
     require_once "DataBase.class.php";
-
+ 
     class HelperDataBase
     {
         public function InstanciaDB()
@@ -20,10 +20,10 @@
             return $Result = $DB->SearchQuery($Table, $Condition);
         }
 
-        public function Update($Table,$Field, $NewValue, $Id)
+        public function Update($Table,$Field, $NewValue, $Condition)
         {
             $DB = $this->InstanciaDB();
-            return $Result = $DB->UpdateQuery($Table, $Field, $NewValue, " WHERE idAluno = $Id");
+            return $Result = $DB->UpdateQuery($Table, $Field, $NewValue, $Condition);
         }
 
         public function Delete($Table, $Condition)

@@ -1,6 +1,5 @@
 <?php
     $email = $_SESSION['usuario'];
-  
 ?>
     <!DOCTYPE html>
     <html lang="pt-br" ng-app='curriculo'>
@@ -17,7 +16,7 @@
     <body ng-controller='Curriculo'>
         <div class="container">
             <h1 class="flow-text center-align">Currículo</h1>
-            <form action="Teste/testeCadastroAluno.php" method="post" enctype="multipart/form-data">
+            <form action="Controller/Cadastro/CadastroAluno.php" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <label for="nome">Nome Completo</label>

@@ -9,7 +9,6 @@
  */
     class ModelQualificacoes extends HelperDataBase
     {
-    
         public function CreateQualificacoes($Data)
         {
             return parent::Create("qualificacoes", $Data);
@@ -29,10 +28,5 @@
         {
             return parent::Delete("qualificacoes", $Condition);
         }
-
-        /**
-         * @return mixed
-         */
-
     }
 ?>

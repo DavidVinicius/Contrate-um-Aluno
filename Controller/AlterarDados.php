@@ -45,7 +45,8 @@
         $tabela      = isset($_POST['tabela'])?$_POST['tabela']:null;
         $idTelefone  = isset($_POST['idTelefone'])?$_POST['idTelefone']:null;
         $idFormacao  = isset($_POST['idFormacao'])?$_POST['idFormacao']:null;
-        
+        $idUsuario   = $_SESSION['id'];
+
         if($tabela == "aluno")
         {
             require_once("../Model/ModelAluno.class.php");
@@ -53,33 +54,35 @@
             $Aluno->UpdateAluno($campo,$valor,"where idAluno = $idAluno");
             echo "$idTelefone";
             
-        }
-        if($tabela == "telefones")
+        }else if($tabela == "telefones")
         {
             require_once("../Model/ModelTelefones.class.php");
             $Telefone = new Telefones();
-            $Telefone->UpdateTelefones($campo, $valor, "where codAluno = $idAluno and idTelefone = $idTelefone");
+            $Telefone->UpdateTelefones($campo, $valor, "where codUsuario = $idUsuario and idTelefone = $idTelefone");
             echo "deu certo";
-        }
-        
-        if($tabela == "enderecos")
+        }else if($tabela == "enderecos")
         {
             require_once("../Model/ModelEnderecos.class.php");
             $Endereco = new Enderecos();
-            $Endereco->UpdateEnderecos($campo, $valor, "Where codAluno = $idAluno");
+            $Endereco->UpdateEnderecos($campo, $valor, "Where codUsuario = $idUsuario");
             echo "deu certo";
-        }
-        if($tabela == "formacoes")
+        }else if($tabela == "formacoes")
         {
             require_once("../Model/ModelFormacoes.class.php");
             $Formacao = new Formacoes();
             $Formacao->UpdateFormacoes($campo,$valor,"where codAluno = $idAluno and idFormacao = $idFormacao");
             echo "deu certo";
+        }else if($tabela == "qualificacoes")
+        {
+            require_once "../Model/ModelQualificacoes.class.php";
+            $Qualificacao = new ModelQualificacoes();
+            $Qualificacao->UpdateQualificacoes($campo, $valor, "where codAluno = $idAluno and idQualificacao = $idQualificacao");
+        }else if($tabela == "experiencias")
+        {
+            require_once "../Model/ModelExperiencias.class.php";
+            $Experiencia = new ModelExperiencias();
+            $Experiencia->UpdateExperiencia($campo, $valor, "where codAluno = $idAluno and idExperiencia = $idExperiencias");
         }
         
     }
-    
-    
-
-
 ?>

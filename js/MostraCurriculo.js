@@ -43,6 +43,24 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                     }
             }
     
+    $scope.adicionarNovaExperiencia = function(){
+            return 1+1;    
+    }
+    
+    $("#novaExperiencia").hide();
+    
+    $("#adicionarNovaExperiencia").click(function(){
+        $(this).hide();
+        $("#esconderNovaExperiencia").show();
+        $("#novaExperiencia").show(1000);
+    });
+    
+    $("#esconderNovaExperiencia").click(function(){
+        $(this).hide();
+        $("#adicionarNovaExperiencia").show(1000);
+        $('#novaExperiencia').hide(1000);
+    })
+    
      $('.chip').on('click', function(e, chip){
         // you have the deleted chip here
          alert('deletado');

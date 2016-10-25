@@ -130,14 +130,14 @@
                         {
                             ?>
                                 <div class="chip">
-                                    <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="enderecos" data-campo="estado" data-idaluno="<?= $idAluno?>" contentEditable='true'><?= $AssocQualificacoes["competencia"]?></span>
+                                    <span class="tooltipped contentEditable flow-text" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="enderecos" data-campo="estado" data-idaluno="<?= $idAluno?>" contentEditable='true'><?= $AssocQualificacoes["competencia"]?></span>
                                     <i class="close material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Excluir">close</i>
                                 </div>
                             <?php
                         }
                     ?>
                              </div>                            
-                </div>
+                </div><br>
                 <div class="row" >
                     <div class="col s12 m8 push-m4">
                         <button class="btn blue " id="adicionarNovaFormacao">Adicionar nova Formação</button>
@@ -167,7 +167,7 @@
                             {{x.curso}}
                         </div>
                         <div class="card-action">
-                              <button class="btn red">Excluir</button>
+                              <button class="btn red excluir">Excluir</button>
                         </div>
                     </div>
                         
@@ -186,7 +186,7 @@
                                       <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="formacoes" data-campo="instituicao" data-idaluno="<?= $idAluno?>" data-idformacao="<?= $ResultFormacoes['idFormacao'] ?>" contenteditable="true"><?= $ResultFormacoes['instituicao'] ?></span>
                                 </div>
                                 <div class="card-action">
-                                    <button class="btn red">Excluir</button>
+                                    <button class="btn red excluir" data-idformacao="<?= $ResultFormacoes['idFormacao'] ?>">Excluir</button>
                                 </div>
                                 
                             </div>                        
@@ -196,9 +196,35 @@
                     
                     ?>
                     </div>
-                </div>
+                </div><br>
                 <div class="row">
-                              <p class="center-align flow-text">Experiências</p>
+                            <div class="col s12 m8 push-m4">
+                                <button class="btn blue " id="adicionarNovaExperiencia">Adicionar nova Experiência</button>
+                            </div>
+                             <div class="input-field col s12 m12" id="novaExperiencia">
+                                    <div class="col s12 m12">
+                                        <h1 class='flow-text center-align'>Experiência</h1>
+                                        <div class="input-field col s12 m6">
+                                            <label for="deExp">Data de inicio:</label>
+                                            <input type="text" name="deExp" id="deExp" ng-model="deExp"> </div>
+                                        <div class="input-field col s12 m6">
+                                            <input type="date" name="ateExp" id="ateExp" class="" ng-model="ateExp" ng-If="!atualExp">
+                                            <input type="checkbox" id="atualExp" ng-model="atualExp" />
+                                            <label for="atualExp">É o atual?</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s12 m12">
+                                        <label for="cargo">Cargo</label>
+                                        <input type="text" class='validate' id="cargo" ng-model='nomeExperiencia'> </div>
+                                    <div class="input-field col s12 m12">
+                                        <label for="experiencia">Diga sobre sua experiência</label>
+                                        <textarea name="" id="experiencia" cols="30" rows="10" class='materialize-textarea' length='255' ng-model="textoExperiencia"></textarea>
+                                    </div> 
+                                         <a class="btn blue" ng-click='adicionarExperiencia()'>Adicionar Experiência</a>
+                                          <a class="btn red" id="esconderNovaExperiencia" >Esconder</a>
+                             </div>
+                             <br>
+                              <p class="center-align flow-text">Suas Experiências</p>
 
                     <?php
                         while($ResultExperiencia = mysqli_fetch_assoc($LerExperiencias)){
@@ -212,6 +238,9 @@
                                 <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="cargo" data-idaluno="<?= $idAluno?>" contenteditable="true"> - <?= $ResultExperiencia['cargo']  ?></span>
                             <div class="card-content">
                                 <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="descricao" data-idaluno="<?= $idAluno?>" contenteditable="true"><?= $ResultExperiencia['descricao']  ?></span>
+                            </div>
+                            <div class="card-action">
+                                <a href="" class="btn red excluir">Excluir</a>
                             </div>
                             
                         </div>

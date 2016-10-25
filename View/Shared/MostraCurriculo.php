@@ -21,7 +21,7 @@
 
     $Qualificacoes = new ModelQualificacoes();
     $LerQualificacoes = $Qualificacoes->ReadQualificacoes("where codUsuario=$idUsuario");
-    $AssocQualificacoes = mysqli_fetch_assoc($LerQualificacoes);
+//    $AssocQualificacoes = mysqli_fetch_assoc($LerQualificacoes);
 
     $Formacoes = new Formacoes();
     $LerFormacoes = $Formacoes->ReadFormacoes("where codAluno=$idAluno");

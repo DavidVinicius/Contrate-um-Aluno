@@ -39,13 +39,14 @@
     if(isset($_POST['existeCurriculo']))
     {
         
-        $valor       = isset($_POST['valor'])?$_POST['valor']:null;
-        $idAluno     = isset($_POST['idAluno'])?$_POST['idAluno']:null;
-        $campo       = isset($_POST['campo'])?$_POST['campo']:null;
-        $tabela      = isset($_POST['tabela'])?$_POST['tabela']:null;
-        $idTelefone  = isset($_POST['idTelefone'])?$_POST['idTelefone']:null;
-        $idFormacao  = isset($_POST['idFormacao'])?$_POST['idFormacao']:null;
-        $idUsuario   = $_SESSION['id'];
+        $valor           = isset($_POST['valor'])?$_POST['valor']:null;
+        $idAluno         = isset($_POST['idAluno'])?$_POST['idAluno']:null;
+        $campo           = isset($_POST['campo'])?$_POST['campo']:null;
+        $tabela          = isset($_POST['tabela'])?$_POST['tabela']:null;
+        $idTelefone      = isset($_POST['idTelefone'])?$_POST['idTelefone']:null;
+        $idFormacao      = isset($_POST['idFormacao'])?$_POST['idFormacao']:null;
+        $idExperiencia   = isset($_POST['idExperiencia'])?$_POST['idExperiencia']:null;
+        $idUsuario       = $_SESSION['id'];
 
         if($tabela == "aluno")
         {
@@ -80,9 +81,9 @@
         }else if($tabela == "experiencias")
         {
             require_once "../Model/ModelExperiencias.class.php";
-            $Experiencia = new ModelExperiencias();
-            $Experiencia->UpdateExperiencia($campo, $valor, "where codAluno = $idAluno and idExperiencia = $idExperiencias");
-        }
+            $Experiencia = new Experiencias();
+            $Experiencia->UpdateExperiencias($campo, $valor, "where codAluno = $idAluno and idExperiencia = $idExperiencia");
+        } 
         
     }
 ?>

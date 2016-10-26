@@ -1,10 +1,17 @@
 var app = angular.module('myapp',[]);
 
 app.controller("MostraCurriculo",["$scope",function($scope){
-    $scope.formacao = [];
-    $scope.anoC    = "";
-    $scope.curso   = "";
-    $scope.escola  = "";
+    $scope.formacao         = [];
+    $scope.experiencias     = [];
+    $scope.anoC             = "";
+    $scope.curso            = "";
+    $scope.escola           = "";
+    $scope.resultado        = "";
+    $scope.deExp            = "";
+    $scope.ateExp           = "";
+    $scope.atualExp         = false;    
+    $scope.nomeExperiencia  = "";
+    $scope.textoExperiencia = "";
     
     $scope.adicionarFormacao = function(){
                     if($scope.anoC == "")
@@ -32,9 +39,16 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                                 idAluno:$("[name=idAluno]").val(),
                             },
                             success:function(data){
-                                alert(data);
                                 Materialize.toast('Adicionado com Sucesso', 4000);    
-                                
+                                $.ajax({
+                                    url:"Controller/ConsultaDados.php",
+                                    method: "POST",
+                                    data:{excluirAngularFormacao:"sim", idAluno: $("[name=idAluno]").val()},
+                                    success:function(data){
+                                        
+                                        $scope.resultado = data;
+                                    }
+                                });
                             }
                         });
                         $scope.anoC = "";
@@ -43,8 +57,42 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                     }
             }
     
+    $scope.excluirAngular = function(){
+        alert($scope.resultado);
+        
+    }
+    
     $scope.adicionarNovaExperiencia = function(){
-            return 1+1;    
+            if($scope.atualExp == true)
+            {
+                var ate = "Emprego atual";
+            }
+            else{
+                var ate = $('[name=ateExp]').val();
+            }
+        
+            if($scope.deExp == "" || $scope.deExp == null){
+                Materialize.toast("Campo data de início está vazio",4000);
+            }
+            else if($scope.ateExp == "" || $scope.ateExp == null){
+                Materialize.toast("Campo data de saída está vazio",4000);
+            }
+            else if($scope.nomeExperiencia == "" || $scope.nomeExperiencia == null){
+                Materialize.toast("O campo cargo está vazio", 4000);
+            }
+            else if($scope.textoExperiencia == "" || $scope.textoExperiencia == null)
+            {
+                Materialize.toast("O campo descrição está vazio",4000);
+            }else{
+                $scope.experiencias.push({de:$('[name=deExp]').val(), ate:ate, cargo:$scope.nomeExperiencia, descricao:$scope.textoExperiencia}); 
+                
+                $scope.deExp = "";
+                $scope.ateExp = "";
+                $scope.nomeExperiencia = "";
+                $scope.textoExperiencia = "";            
+                
+            }
+        
     }
     
     $("#novaExperiencia").hide();
@@ -80,21 +128,46 @@ app.controller("MostraCurriculo",["$scope",function($scope){
         $("#adicionarNovaFormacao").show(1000);
     });
     
+    $(".excluir").click(function(){
+        var tabela     = $(this).data('tabela');
+        var idLinha    = $(this).data('idlinha');
+        var apagarDiv  = $(this).parent().parent();
+        alert(tabela + idLinha);
+        $.ajax({
+            url:"Controller/ExcluirDados.php",
+            method: "POST",
+            data:{ tabela:tabela, idLinha:idLinha },
+            success:function(data){
+                alert(data);
+                if(data == 1)
+                {
+                    $(apagarDiv).remove();
+                    Materialize.toast("Excluido com sucesso", 4000);
+                }
+                else{
+                    Materialize.toast("Erro ao excluir, tente novamente",4000);
+                }
+            }
+        })
+        
+    });
+    
     $(".tooltipped").tooltip();
         $(".tooltipped").click(function(){
                 Materialize.toast('Clique fora do campo para salvar',4000);
             $(this).focusout(function(){
-                var valor      = $(this).val() || $(this).text();
-                var tabela     = $(this).data("tabela");
-                var campo      = $(this).data("campo"); 
-                var idAluno    = $(this).data("idaluno");
-                var idTelefone = $(this).data("idtelefone") || null;
-                var idFormacao = $(this).data("idformacao") || null;
-                
+                var valor         = $(this).val() || $(this).text();
+                var tabela        = $(this).data("tabela");
+                var campo         = $(this).data("campo"); 
+                var idAluno       = $(this).data("idaluno");
+                var idTelefone    = $(this).data("idtelefone") || null;
+                var idFormacao    = $(this).data("idformacao") || null;
+                var idExperiencia = $(this).data("idexperiencia") || null;
+                alert(valor);
                 $.ajax({
                     url:"Controller/AlterarDados.php",
                     method: "POST",
-                    data:{existeCurriculo:"sim", valor: valor, tabela: tabela, campo: campo, idAluno: idAluno, idTelefone:idTelefone, idFormacao: idFormacao},
+                    data:{existeCurriculo:"sim", valor: valor, tabela: tabela, campo: campo, idAluno: idAluno, idTelefone:idTelefone, idFormacao: idFormacao, idExperiencia:idExperiencia},
                     success:function(data){
 //                        alert(data);
                         Materialize.toast("Alterado com sucesso",4000);

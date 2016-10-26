@@ -162,12 +162,12 @@
                     <div class="col s12 m12">    
                         
                     <div class="card col m6 hoverable" ng-repeat='x in formacao'> 
-                       <span class="card-title"><h6>{{x.ano}} - {{x.instituicao}}</h6></span>
+                       <span class="card-title"> {{x.curso}} </span>
                         <div class="card-content">
-                            {{x.curso}}
+                            <h6>{{x.ano}} - {{x.instituicao}}</h6>
                         </div>
                         <div class="card-action">
-                              <button class="btn red excluir">Excluir</button>
+                              <button class="btn yellow excluir" ng-click="excluirAngular()">Atualize a página para poder Excluir</button>
                         </div>
                     </div>
                         
@@ -186,7 +186,7 @@
                                       <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="formacoes" data-campo="instituicao" data-idaluno="<?= $idAluno?>" data-idformacao="<?= $ResultFormacoes['idFormacao'] ?>" contenteditable="true"><?= $ResultFormacoes['instituicao'] ?></span>
                                 </div>
                                 <div class="card-action">
-                                    <button class="btn red excluir" data-idformacao="<?= $ResultFormacoes['idFormacao'] ?>">Excluir</button>
+                                    <button class="btn red excluir" data-idlinha="<?= $ResultFormacoes['idFormacao'] ?>" data-tabela="formacoes">Excluir</button>
                                 </div>
                                 
                             </div>                        
@@ -205,9 +205,10 @@
                                     <div class="col s12 m12">
                                         <h1 class='flow-text center-align'>Experiência</h1>
                                         <div class="input-field col s12 m6">
-                                            <label for="deExp">Data de inicio:</label>
-                                            <input type="text" name="deExp" id="deExp" ng-model="deExp"> </div>
+                                            <label for="deExp">Data de inicio:</label><br>
+                                            <input type="date" name="deExp" id="deExp" ng-model="deExp"> </div>
                                         <div class="input-field col s12 m6">
+                                           <label for="ateExp" ng-If="!atualExp">Data de Saída:</label><br>
                                             <input type="date" name="ateExp" id="ateExp" class="" ng-model="ateExp" ng-If="!atualExp">
                                             <input type="checkbox" id="atualExp" ng-model="atualExp" />
                                             <label for="atualExp">É o atual?</label>
@@ -220,33 +221,48 @@
                                         <label for="experiencia">Diga sobre sua experiência</label>
                                         <textarea name="" id="experiencia" cols="30" rows="10" class='materialize-textarea' length='255' ng-model="textoExperiencia"></textarea>
                                     </div> 
-                                         <a class="btn blue" ng-click='adicionarExperiencia()'>Adicionar Experiência</a>
+                                         <a class="btn blue" ng-click='adicionarNovaExperiencia()'>Adicionar Experiência</a>
                                           <a class="btn red" id="esconderNovaExperiencia" >Esconder</a>
                              </div>
                              <br>
                               <p class="center-align flow-text">Suas Experiências</p>
 
-                    <?php
-                        while($ResultExperiencia = mysqli_fetch_assoc($LerExperiencias)){
-                    ?>
-                        <div class="card col s12 m6 hoverable">
-                            <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" contenteditable="true" >
-                                <?= $ResultExperiencia['dataInicio']?></span>
-                                
-                             - <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataSaida" data-idaluno="<?= $idAluno?>" contenteditable="true"> <?= $ResultExperiencia['dataSaida']  ?></span>
-                                
-                                <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="cargo" data-idaluno="<?= $idAluno?>" contenteditable="true"> - <?= $ResultExperiencia['cargo']  ?></span>
+                        <div class=" col s12 m12">
+                        <div class="card col s12 m6" ng-repeat="x in experiencias">
+                            <span class="card-title" contenteditable="true"> {{x.cargo}}</span>
                             <div class="card-content">
-                                <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="descricao" data-idaluno="<?= $idAluno?>" contenteditable="true"><?= $ResultExperiencia['descricao']  ?></span>
+                                <p>Data de início: <span class="flow-text">{{x.de}}</span></p>
+                                <p>Data de Saída:    <span class="flow-text">{{x.ate}}</span></p>
+                               <p> descrição: <br>{{x.descricao}}</p>
                             </div>
                             <div class="card-action">
-                                <a href="" class="btn red excluir">Excluir</a>
+                                <button class="btn red excluir">Excluir</button>
                             </div>
                             
                         </div>
                     <?php
+                        while($ResultExperiencia = mysqli_fetch_assoc($LerExperiencias)){
+                    ?>
+                           <div class="card hoverable m6 s12">
+                               
+                                <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" >
+                                    <?= $ResultExperiencia['dataInicio']?></span>
+
+                                 - <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataSaida" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>"  contenteditable="true"> <?= $ResultExperiencia['dataSaida']  ?></span>
+
+                                    <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="cargo" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" maxlength="20"><?= $ResultExperiencia['cargo']  ?></span>
+                                <div class="card-content">
+                                    <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="descricao" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true"><?= $ResultExperiencia['descricao']  ?></span>
+                                </div>
+                                <div class="card-action">
+                                    <button class="btn red excluir" data-idlinha="<?= $ResultExperiencia['idExperiencia'] ?>" data-tabela="experiencias" >Excluir</button>
+                                </div>
+                           </div>
+                            
+                    <?php
                         }
                     ?>
+                        </div>
                 </div>
                 <div class="row">
                     <a href="" class="btn blue">Alguma ação</a>

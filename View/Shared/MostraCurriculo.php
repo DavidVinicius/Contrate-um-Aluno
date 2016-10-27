@@ -253,10 +253,9 @@
                                         <label for="experiencia">Diga sobre sua experiência</label>
                                         <textarea name="" id="experiencia" cols="30" rows="10" class='materialize-textarea' length='255' ng-model="textoExperiencia"></textarea>
                                     </div>
-<<<<<<< HEAD
-=======
+
                                         <input type="hidden" name="idAluno" value="<?= $idAluno?>">
->>>>>>> faf15ea8e5afd38dcf2cb2d59133d345ae49ac48
+
                                          <a class="btn blue" ng-click='adicionarNovaExperiencia()'>Adicionar Experiência</a>
                                           <a class="btn red" id="esconderNovaExperiencia" >Esconder</a>
                              </div>
@@ -279,16 +278,10 @@
                     <?php
                         while($ResultExperiencia = mysqli_fetch_assoc($LerExperiencias)){
                     ?>
-<<<<<<< HEAD
                            <div class="card hoverable m6 s12">
 
                                 <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" >
                                     <?= $ResultExperiencia['dataInicio']?></span>
-=======
-                           <div class="card hoverable col m6 s12">
->>>>>>> faf15ea8e5afd38dcf2cb2d59133d345ae49ac48
-
-
 
                                     <span class="tooltipped contentEditable card-title" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="cargo" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" maxlength="20"><?= $ResultExperiencia['cargo']  ?></span>
                                 <div class="card-content">

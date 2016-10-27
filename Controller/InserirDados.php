@@ -1,6 +1,6 @@
 <?php
     session_start();
-    
+
     if(isset($_POST['tabela']) && $_POST['tabela'] == "formacoes")
     {
         require_once("../Model/ModelFormacoes.class.php");

@@ -1,6 +1,7 @@
 <?php
+    session_start();
 
-    if(isset($_POST['tabela']) == "formacoes")
+    if(isset($_POST['tabela']) && $_POST['tabela'] == "formacoes")
     {
         require_once("../Model/ModelFormacoes.class.php");
         $idAluno      = isset($_POST['idAluno'])        ?   $_POST['idAluno']:null;
@@ -15,7 +16,9 @@
             "codAluno"     => $idAluno
         );
         $Formacao->CreateFormacoes($dados);
-    } else if(isset($_POST['tabela']) == "telefones")
+    }
+
+    if(isset($_POST['tabela']) && $_POST['tabela'] == "telefones")
     {
         require_once("../Model/ModelTelefones.class.php");
         $codUsuario     = $_SESSION['id'];
@@ -29,7 +32,9 @@
             "codUsuario"        => $codUsuario
         );
         $Telefone->CreateTelefones($dados);
-    }  else if(isset($_POST['tabela']) == "experiencias")
+    }
+
+    if(isset($_POST['tabela']) && $_POST["tabela"] == "experiencias")
     {
         require_once("../Model/ModelExperiencias.class.php");
         $idAluno    = isset($_POST['idAluno'])      ?   $_POST['idAluno']:null;
@@ -46,7 +51,8 @@
             "cargo"         => $cargo,
             "codAluno"      => $idAluno
         );
-        $Experiencia->CreateExperiencias($dados);
+        if($Experiencia->CreateExperiencias($dados))
+            echo "deu certo";
     }
 
 ?>

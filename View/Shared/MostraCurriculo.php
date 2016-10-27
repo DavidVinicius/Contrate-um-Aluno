@@ -278,7 +278,7 @@
                     <?php
                         while($ResultExperiencia = mysqli_fetch_assoc($LerExperiencias)){
                     ?>
-                           <div class="card hoverable m6 s12">
+                           <div class="card hoverable col m6 s12">
 
                                 <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" >
                                     <?= $ResultExperiencia['dataInicio']?></span>

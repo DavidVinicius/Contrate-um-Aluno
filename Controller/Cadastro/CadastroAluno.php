@@ -2,17 +2,18 @@
 
     session_start();
     include_once("../../Model/DataBase.class.php");
+    include_once("../../Model/ModelAluno.class.php");
     include_once("../../Util.php");
 
-    $DB = new DataBase();
-    $idUsuario = $_SESSION['id'];
-    //var_dump($idUsuario);
+    $DB               = new DataBase();
+    $Aluno            = new ModelAluno();
+    $idUsuario        = $_SESSION['id'];
 
     if(isset($_FILES['foto'])){
         $nomeTemporario = $_FILES['foto']['tmp_name']; #O nome temporário com o qual o arquivo
-        $diretorio = "../Images/Upload/";
-        $extensao = strtolower(substr($_FILES['foto']['name'], -4));
-        $novoNome = md5(time()).$extensao;
+        $diretorio      = "../../Images/Upload/";
+        $extensao       = strtolower(substr($_FILES['foto']['name'], -4));
+        $novoNome       = md5(time()).$extensao;
 
         $localFull = $diretorio.$novoNome;
         if(move_uploaded_file($nomeTemporario, $localFull))#Move o arquivo temporário para pasta
@@ -76,7 +77,7 @@
     for($i = 0; $i < count($Qualificaoes);$i++){
         $dados = array(
             "competencia" => $Qualificaoes[$i]['tag'],
-            "codUsuario" => $_SESSION['id']
+            "codAluno"    => $codAluno
         );
         $Result22 = $DB->InsertQuery("qualificacoes", $dados);
     }
@@ -115,5 +116,5 @@
         $insert = $DB->InsertQuery("formacoes", $formacao);
     }
 
-    header("location:OnePage.php?link=VerCurriculo");
+    header("location:../../OnePage.php?link=VerCurriculo");
 ?>

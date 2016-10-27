@@ -1,16 +1,26 @@
 <?php
-include "Model/DataBase.class.php";
- $DB                    = new DataBase();
- $idAluno               = $_GET['id'];
- $ConsultaAluno         = $DB->SearchQuery("aluno","where idAluno = $idAluno");
- $ResultAluno           = mysqli_fetch_assoc($ConsultaAluno);
- $ConsultaEndereco      = $DB->SearchQuery("enderecos","where codAluno = $idAluno");
- $ResultEndereco        = mysqli_fetch_assoc($ConsultaEndereco);
- $ConsultaTelefone      = $DB->SearchQuery("telefones","where codAluno = $idAluno");
-// $ResultTelefone      = mysqli_fetch_assoc($ConsultaTelefone);
- $ConsultaExperiencia   = $DB->SearchQuery("experiencias","where codAluno = $idAluno");
- $ConsultaFormacoes     = $DB->SearchQuery("formacoes","where codAluno = $idAluno");
+  include "Model/DataBase.class.php";
+   $DB                    = new DataBase();
 
+   $idAluno               = $_GET['id'];
+   $idUsuario             = $_SESSION['id'];
+   $ConsultaAluno         = $DB->SearchQuery("aluno","where idAluno = $idAluno");
+   $ResultAluno           = mysqli_fetch_assoc($ConsultaAluno);
+   $codUsuario  = $ResultAluno['codUsuario'];
+   //var_dump($codUsuario);
+   $ConsultaEndereco      = $DB->SearchQuery("enderecos e
+                                              inner join aluno a",
+                                              "on e.codUsuario = $codUsuario
+                                              and a.codUsuario = $codUsuario");
+   $ResultEndereco        = mysqli_fetch_assoc($ConsultaEndereco);
+
+   $ConsultaTelefone      = $DB->SearchQuery("telefones","where codUsuario = $idUsuario");
+
+   $ConsultaExperiencia   = $DB->SearchQuery("experiencias","where codAluno = $idAluno");
+
+   $ConsultaFormacoes     = $DB->SearchQuery("formacoes","where codAluno = $idAluno");
+
+   $ConsultaQualificacoes = $DB->SearchQuery("qualificacoes", "where codAluno = $idAluno");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,9 +63,9 @@ include "Model/DataBase.class.php";
                         <div class="input-field col s12 m4">
                             <label for="<?=$ResultTelefone['idTelefone']?>">Telefone:</label>
                             <input type="text" name="<?=$ResultTelefone['idTelefone']?>" id="<?=$ResultTelefone['idTelefone']?>" value="<?=$ResultTelefone['telefone']?>" readonly>
-                        </div>   
-                    
-                    <?php        
+                        </div>
+
+                    <?php
                         }
                     ?>
                 </div>
@@ -93,26 +103,28 @@ include "Model/DataBase.class.php";
                 </div>
                 <div class="row">
                     <p class="center-align flow-text">Habilidades</p>
-                    <p class="flow-text"><?= $ResultAluno['qualificacoes'] ?></p>
+                    <?php while($Qualificacao = mysqli_fetch_assoc($ConsultaQualificacoes)){ ?>
+                    <p class="flow-text"><?= $Qualificacao['competencia']?></p>
+                    <?php } ?>
                 </div>
                 <div class="row">
                    <p class="center-align flow-text">Formações</p>
                     <?php
                         while($ResultFormacoes = mysqli_fetch_assoc($ConsultaFormacoes))
                         {
-                    
+
                         ?>
                             <div class="card col s12 m6">
                                 <span class="card-title"><?=  $ResultFormacoes['curso'] ?></span>
                                 <div class="card-content">
                                     <?= $ResultFormacoes['anoConclusao']. " - ". $ResultFormacoes['instituicao'] ?>
                                 </div>
-                                
-                            </div>                        
-                        
+
+                            </div>
+
                         <?php
-                        }             
-                    
+                        }
+
                     ?>
                 </div>
                 <div class="row">
@@ -126,7 +138,7 @@ include "Model/DataBase.class.php";
                             <div class="card-content">
                                 <?= $ResultExperiencia['descricao']  ?>
                             </div>
-                            
+
                         </div>
                     <?php
                         }
@@ -135,7 +147,7 @@ include "Model/DataBase.class.php";
                 <div class="row">
                     <a href="" class="btn blue">Alguma ação</a>
                 </div>
-                
+
             </div>
         </div>
     </div>

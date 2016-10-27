@@ -6,7 +6,7 @@
  * Date: 15/09/2016
  * Time: 18:37
  */
-    class DataBase 
+    class DataBase
     {
         private $User;
         private $Pass;
@@ -78,6 +78,16 @@
             $Result = $this->ExecuteQuery($Connection, $Query);
             $this->CloseConnectionDataBase($Connection);
             return $Result;
+        }
+
+        public function SearchRetornID()
+        {
+          $Con = $this->ConnectDataBase();
+          $Query = "insert formacoes order by desc limit 1";
+          $this->ExecuteQuery($Query);
+          mysqli_insert_id($Con);
+          $this->CloseConnectionDataBase($con);
+          return $id;
         }
 
         public function getHost()

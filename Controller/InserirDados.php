@@ -16,6 +16,7 @@
             "codAluno"     => $idAluno
         );
         $Formacao->CreateFormacoes($dados);
+        //$Formacao->SearchQuery("where codAluno = $idAluno order by idFormacao desc limit 1");
     }
 
     if(isset($_POST['tabela']) && $_POST['tabela'] == "telefones")

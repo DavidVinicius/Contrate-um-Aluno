@@ -4,7 +4,7 @@
     include_once "Model/ModelAluno.class.php";
     $Aluno = new ModelAluno();
     $id = $_SESSION['id'];
-    $Consulta = $Aluno->ReadAluno();
+    $Consulta = $Aluno->ReadAluno("");
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,8 +1,8 @@
 <?php
 
     session_start();
-    include_once("../Model/DataBase.class.php");
-    include_once("../Util.php");
+    include_once("../../Model/DataBase.class.php");
+    include_once("../../Util.php");
 
     $DB = new DataBase();
     $idUsuario = $_SESSION['id'];
@@ -115,5 +115,5 @@
         $insert = $DB->InsertQuery("formacoes", $formacao);
     }
 
-    header("location: VerCurriculo.php");
+    header("location:OnePage.php?link=VerCurriculo");
 ?>

@@ -102,8 +102,8 @@ CREATE TABLE `telefones` (
 CREATE TABLE `qualificacoes`(
   `idQualificacoes` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `competencia` VARCHAR(20) NOT NULL,
-  `codUsuario` int not null,
-  CONSTRAINT `fk_qualificacoes_usuario` FOREIGN KEY(`codUsuario`) REFERENCES `usuario`(`idUsuario`)
+  `codAluno` int not null,
+  CONSTRAINT `fk_qualificacoes_usuario` FOREIGN KEY(`codAluno`) REFERENCES `aluno`(`idAluno`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER DATABASE `tcc` CHARSET = UTF8 COLLATE = utf8_general_ci;

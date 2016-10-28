@@ -43,7 +43,7 @@
                     <div class="input-field col s12 m6">
                         <label for="cpf">CPF:</label>
                         <input type="text" name="cpf" id="cpf" class='validate' required> </div>
-                    
+
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m4">
@@ -52,35 +52,35 @@
                     <div class="input-field col s12 m4">
                         <select name="estado" id="estado" required>
                             <option value="" selected disabled></option>
-                            <option value="1">AC</option>
-                            <option value="2">AL</option>
-                            <option value="3">AM</option>
-                            <option value="4">AP</option>
-                            <option value="5">BA</option>
-                            <option value="6">CE</option>
-                            <option value="7">DF</option>
-                            <option value="8">ES</option>
-                            <option value="9">GO</option>
-                            <option value="10">MA</option>
-                            <option value="11">MG</option>
-                            <option value="12">MS</option>
-                            <option value="13">MT</option>
-                            <option value="14">PA</option>
-                            <option value="15">PB</option>
-                            <option value="16">PE</option>
-                            <option value="17">PI</option>
-                            <option value="18">PR</option>
-                            <option value="19">RJ</option>
-                            <option value="20">RN</option>
-                            <option value="21">RO</option>
-                            <option value="22">RR</option>
-                            <option value="23">RS</option>
-                            <option value="24">SC</option>
-                            <option value="25">SE</option>
-                            <option value="26">SP</option>
-                            <option value="27">TO</option>
+                            <option value="AC">AC</option>
+                            <option value="AL">AL</option>
+                            <option value="AM">AM</option>
+                            <option value="AP">AP</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="DF">DF</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MG">MG</option>
+                            <option value="MS">MS</option>
+                            <option value="MT">MT</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="PR">PR</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="RS">RS</option>
+                            <option value="SC">SC</option>
+                            <option value="SE">SE</option>
+                            <option value="SP">SP</option>
+                            <option value="TO">TO</option>
                         </select>
-                        <label for="">Estado</label>
+                        <label for="estado">Estado</label>
                     </div>
                     <div class="input-field col s12 m4">
                         <label for="cidade">Cidade:</label>
@@ -105,9 +105,9 @@
                    </div>
                     <div class="input-field col s12 m6">
                         <label for="objetivo">Objetivo</label>
-                        <input placeholder="Qual a vaga que você almeja?" type="text" name="objetivo" id="objetivo"> 
+                        <input placeholder="Qual a vaga que você almeja?" type="text" name="objetivo" id="objetivo">
                     </div>
-                    
+
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m12">
@@ -117,14 +117,14 @@
                 <div class="row">
                     <div class="col s12 m6">
                         <h1 class='flow-text'>Seus Telefones</h1>
-                        <div class="card-panel small" ng-repeat="tel in Telefones"> <i class="material-icons right" ng-click="removeTelefone($Index)">close</i> 
+                        <div class="card-panel small" ng-repeat="tel in Telefones"> <i class="material-icons right" ng-click="removeTelefone($Index)">close</i>
                             <span class="card-title flow-text">{{tel.tipo}} - {{tel.telefone}}</span>
-                            
+
                          </div>
                     </div>
                     <div class="col s12 m6">
                         <div class="input-field col s12 m4">
-                            
+
                            <input class="with-gap" name="tipo" type="radio" id="celular" value="Celular" ng-model="tipo" />
                             <label for="celular">Celular</label><br>
                             <input class="with-gap" name="tipo" type="radio" id="Comercial" value="Comercial" ng-model="tipo" />
@@ -133,13 +133,13 @@
                             <label for="recado">Recado</label><br>
                             <input class="with-gap" name="tipo" type="radio" id="Residencial" value="Residencial" ng-model="tipo" />
                             <label for="Residencial">Residencial</label><br>
-                            
+
                         </div>
                         <div class="input-field col s12 m8">
                             <label for="telefone">Telefone</label>
                             <input placeholder="99 99999-9999" type="tel" id='telefone' class='flow-text' ng-model="telefone">
                                  <a href="" class='btn blue' ng-click='adicionarTelefone()'>Adicionar Telefone</a>
-                            
+
                        </div>
                     </div>
                 </div>

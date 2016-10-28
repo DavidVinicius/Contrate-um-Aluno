@@ -80,14 +80,13 @@
             return $Result;
         }
 
-        public function SearchRetornID()
+        public function SearchReturnLast($Table, $Condition = null, $Fields = "*")
         {
-          $Con = $this->ConnectDataBase();
-          $Query = "insert formacoes order by desc limit 1";
-          $this->ExecuteQuery($Query);
-          mysqli_insert_id($Con);
+          $Con    = $this->ConnectDataBase();
+          $Query  = "SELECT {$Fields} FROM {$Table} order by desc limit 1";
+          $this   ->ExecuteQuery($Query);
           $this->CloseConnectionDataBase($con);
-          return $id;
+          return mysqli_fetch_assoc($Query);
         }
 
         public function getHost()

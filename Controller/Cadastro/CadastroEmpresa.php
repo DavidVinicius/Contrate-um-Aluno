@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once("../Banco/funcoesBanco.php");
+    include_once("../../Model/DataBase.class.php");
 
     $DB = new DataBase();
 

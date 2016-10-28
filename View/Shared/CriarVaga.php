@@ -1,23 +1,9 @@
 <?php
-    include "Model/DataBase.class.php";
-    $DB                 = new DataBase();
-    $idUsuario          =  $_SESSION['id'];
-    $ConsultaEmpresa    = $DB   -> SearchQuery('empresa',"where codUsuario = $idUsuario");
-    $ResultEmpresa      = mysqli_fetch_assoc($ConsultaEmpresa);
-    $idEmpresa          = $ResultEmpresa['idEmpresa'];
-    $ConsultaVaga       = $DB   -> SearchQuery('vaga',"where codEmpresa = $idEmpresa");
-    $ResultVaga         = mysqli_fetch_assoc($ConsultaVaga);
-    if(isset($_GET['idVaga']))
-    {
-        $idVaga = $_GET['idVaga'];
-        if($DB->DeleteQuery('vaga',"where idVaga = $idVaga"))
-        {
-            echo "<script>alert('Excluido com sucesso')</script>";
-            
-        }
-    }
-    
-
+    include_once "Model/DataBase.class.php";
+    //include_once "Model/ModelEmpresa.class.php";
+    $DB         = new DataBase();
+    $idUsuario  = $_SESSION['id'];
+    "select * from empresa where codUsuario = $idUsuario";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,11 +32,11 @@
                         </div>
                     </div>
                     <div class="row">
-                       
-                        
+
+
                         <div class="input-field col s12 m6">
                            <div class="chips chips-placeholder"></div>
-                           
+
                        </div>
                         <div class="input-field col s12 m6">
                             <label for="salario">Salário</label>
@@ -66,10 +52,10 @@
                             <label for="descricao">Descrição</label>
                             <textarea name="descricao" id="descricao" cols="30" rows="10" class="materialize-textarea" ng-model="descricao" required></textarea>
                         </div>
-                        
+
                     </div>
                     <div class="row">
-                        
+
                         <button class="btn blue" ng-click='adicionarVaga()'>Adicionar vaga</button>
                     </div>
                 </form>
@@ -91,7 +77,7 @@
                         <div class="card-action">
                           <form action="" method="get">
                               <input type="submit" value="Excluir" class="btn red ">
-                              
+
                           </form>
                         </div>
                       </div>
@@ -112,10 +98,10 @@
                           <form action="OnePage.php?link=CriarVaga&idVaga=<?=$ResultVaga['idVaga'] ?>" method="post">
                               <input type="submit" value="Excluir" class="btn red">
                           </form>
-                          
+
                 </div>
             </div>
-            
+
             <?php
             }
        ?>

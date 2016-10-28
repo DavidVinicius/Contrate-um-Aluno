@@ -5,7 +5,7 @@
     session_start();
     $id = $_SESSION['id'];
     $VarSession = new ManipulaVarSession();
-    
+
     $Banco = new DataBase();
     $Campo            = isset($_REQUEST['campo'])?$_REQUEST['campo']:null;
     $ValorDeAlteracao = isset($_REQUEST['dado'])?$_REQUEST['dado']:null;
@@ -27,18 +27,18 @@
         $VarSession->CreateVarSession($_SESSION['usuario'], $_SESSION['senha'], $_SESSION['id'], $_SESSION['nivel']);
         echo $ValorDeAlteracao;
     }
-    
+
 
     if(isset($_POST['alterar']))
     {
             echo "aqui";
-        
+
     }
-    
+
 
     if(isset($_POST['existeCurriculo']))
     {
-        
+
         $valor           = isset($_POST['valor'])?$_POST['valor']:null;
         $idAluno         = isset($_POST['idAluno'])?$_POST['idAluno']:null;
         $campo           = isset($_POST['campo'])?$_POST['campo']:null;
@@ -54,7 +54,7 @@
             $Aluno = new ModelAluno();
             $Aluno->UpdateAluno($campo,$valor,"where idAluno = $idAluno");
             echo "$idTelefone";
-            
+
         }else if($tabela == "telefones")
         {
             require_once("../Model/ModelTelefones.class.php");
@@ -83,7 +83,7 @@
             require_once "../Model/ModelExperiencias.class.php";
             $Experiencia = new Experiencias();
             $Experiencia->UpdateExperiencias($campo, $valor, "where codAluno = $idAluno and idExperiencia = $idExperiencia");
-        } 
-        
+        }
+
     }
 ?>

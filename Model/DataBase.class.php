@@ -82,10 +82,7 @@
 
         public function SearchReturnLast($Table, $Condition = null, $Fields = "*")
         {
-          $Con    = $this->ConnectDataBase();
-          $Query  = "SELECT {$Fields} FROM {$Table} order by desc limit 1";
-          $this   ->ExecuteQuery($Query);
-          $this->CloseConnectionDataBase($con);
+          $Query = $this->SearchQuery("$Table", "order by $Fields desc limit 1");
           return mysqli_fetch_assoc($Query);
         }
 

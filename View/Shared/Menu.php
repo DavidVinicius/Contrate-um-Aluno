@@ -63,6 +63,7 @@ else if ($nivel == 2){
               <ul class='right hide-on-med-and-down'>
                 <li><a href='OnePage.php?link=Home'>Home</a></li>
                 <li><a href='OnePage.php?link=Candidatos'>Candidatos</a></li>
+                <li><a href='OnePage.php?link=Empresa'>Suas Informações</a></li>
                 <li><a href='OnePage.php?link=CriarVaga'>Criar Vaga</a></li>
                 <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
                <li><a href='' data-activates='Configuracoes' class='abrir'><img src='Images/Padrao/PerfilPadrao.png' class='circle responsive-img valign' width='40px' style='margin-top:10px'><span class='badge red circle white-text'>2</span></a></li>
@@ -78,6 +79,7 @@ else if ($nivel == 2){
                 </div></li>
                 <li><a href='OnePage.php?link=Home'>Home</a></li>
                 <li><a href='OnePage.php?link=Candidatos'>Candidatos</a></li>
+                <li><a href='OnePage.php?link=Empresa'>Suas Informações</a></li>
                 <li><a href='OnePage.php?link=CriarVaga'>Criar Vaga</a></li>
                 <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
                 <li><a href='./Controller/Sair.php'>Sair</a></li>

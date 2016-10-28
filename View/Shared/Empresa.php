@@ -72,6 +72,7 @@
                     <input type="text" name="cidade" id="cidade">
                   </div>
                   <div class="input-field col s12 m3">
+                    <label for="estado">Estado</label>
                     <select name="estado" id="estado" required>
                         <option value="" selected disabled></option>
                         <option value="AC">AC</option>
@@ -102,7 +103,6 @@
                         <option value="SP">SP</option>
                         <option value="TO">TO</option>
                     </select>
-                    <label for="estado">Estado</label>
                   </div>
                 </div>
                 <div class="row">
@@ -123,8 +123,8 @@
                     </div>
                     <div class="input-field col s12 m8">
                       <label for="telefone">Telefone:</label>
-                      <input type="tel" name="telefone" id="telefone" ng-model="telefone">
-                      <button class="btn blue" ng-click="adicionarTelefone(event)" id="">Adicionar telefone</button>
+                      <input type="tel" name="telefone" id="telefone" ng-model="Telefone">
+                      <button class="btn blue cancelaEvento" ng-click="adicionarTelefone()">Adicionar telefone</button>
                     </div>
                   </div>
                 </div>

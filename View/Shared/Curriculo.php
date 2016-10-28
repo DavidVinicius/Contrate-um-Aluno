@@ -1,5 +1,6 @@
 <?php
     $email = $_SESSION['usuario'];
+    
 ?>
     <!DOCTYPE html>
     <html lang="pt-br" ng-app='curriculo'>

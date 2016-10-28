@@ -1,35 +1,30 @@
 <?php
     session_start();
     include_once("../Banco/funcoesBanco.php");
-    include_once("../../Util.php");
-    include_once("../VerificaSeEstaLogado.class.php");
 
     $DB = new DataBase();
-    
-    //$VerificaSeEstaLogado = new VerificaSeEstaLogado();
-    //$VarSessions = $VerificaSeEstaLogado->EstaLogado();
 
+    $Telefones = json_decode($_POST['Telefones'],true);
+
+    for($i = 0; $i < count($Telefones); $i++){
+        $dados = array(
+            "telefone"      => $Telefones[$i]['telefone'],
+            "tipo"          => $Telefones[$i]['tipo'],
+            "codUsuario"    => $_SESSION['id']
+        );
+        $Result22 = $DB->InsertQuery("telefones",$dados);
+    }
     $dados = array(
-        "nome"          => (isset($_POST["nome"]))      ? $_POST["nome"] : $msg,
-        "cnpj"          => (isset($_POST["cnpj"]))      ? $_POST["cnpj"] : $msg,
-        "email"         => (isset($_POST["email"]))     ? $_POST["email"] : $msg,
-        "telefone"      => (isset($_POST["telefone"]))  ? $_POST["telefone"] : $msg,
-        "endereco"      => (isset($_POST["endereco"]))  ? $_POST["endereco"] : $msg,
-        "codUsuario"    => $_SESSION['id']
+      "nome"        => $_POST['nome'],
+      "cnpj"        => $_POST['cnpj'],
+      "email"       => $_POST['email'],
+      "areaAtuacao" => $_POST['areaAtuacao'],
+      "foto"        => $_POST['foto'],
+      "missao"      => $_POST['missao'],
+      "visao"       => $_POST['visao'],
+      "historia"    => $_POST['historia'],
+      "codUsuario"  => $_SESSION['id']
     );
-
-    $resultado = $DB->InsertQuery("empresa", $dados);
-
-    if($resultado){
-        echo "<script>
-                    window.location.href = '../../OnePage.html';
-                    alert('".$Sucess."');
-                </script>";
-    }
-    else{
-        echo "<script>
-                    window.location.href = '../../OnePage.html';
-                    alert('".$Sucess."');
-                </script>";
-    }
+    $Result = $DB->InsertQuery("empresa", $dados);
+    var_dump($Result);
 ?>

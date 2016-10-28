@@ -24,9 +24,21 @@ CREATE TABLE `empresa` (
   `nome` varchar(40) NOT NULL,
   `cnpj` varchar(17) NOT NULL,
   `email` varchar(40) NOT NULL,
+  `areaAtuacao` varchar(30) NOT NULL,
+  `foto` varchar(50) NOT NULL,
+  `missao` varchar(MAX) NOT NULL,
+  `visao` varchar(MAX) NOT NULL,
+  `historia` text NOT NULL,
   `codUsuario` int(11) NOT NULL,
   CONSTRAINT `fk_empresa_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `valores`(
+  `idValores` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `valor` VARCHAR(30) NOT NULL,
+  `codEmpresa` INT NOT NULL,
+  CONSTRAINT `fk_valores_empresa` FOREIGN KEY (`codEmpresa`) REFERENCES `empresa`(`idEmpresa`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `experiencias` (
   `idExperiencia` int NOT NULL PRIMARY KEY AUTO_INCREMENT,

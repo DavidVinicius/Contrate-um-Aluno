@@ -26,7 +26,7 @@
 
 
     $num_paginas = ceil($numTotal/$items_por_paginas);
-echo $numTotal;
+    echo $numTotal;
    ?>
   <div class="container">
       <div class="row">
@@ -58,13 +58,13 @@ echo $numTotal;
              ?>
         </div>
         <ul class="pagination">
-          <li class="disabled"><a href="http://localhost/novotcc/Teste/testePaginacao.php?pagina=<?php echo ($i - 1); ?>"><i class="material-icons">chevron_left</i></a></li>
+          <li class="disabled"><a href="http://localhost/tcc/Teste/testePaginacao.php?pagina=<?php echo ($i - 1); ?>"><i class="material-icons">chevron_left</i></a></li>
           <?php
               for($i=1; $i <= $num_paginas; $i++){
            ?>
-          <li class=""><a href="http://localhost/novotcc/Teste/testePaginacao.php?pagina=<?php echo $i; ?>"><?php echo $i ?></a></li>
+          <li class=""><a href="http://localhost/tcc/Teste/testePaginacao.php?pagina=<?php echo $i; ?>"><?php echo $i ?></a></li>
             <?php } ?>
-          <li class="waves-effect"><a href="http://localhost/novotcc/Teste/testePaginacao.php?pagina=<?php echo ($i + 1); ?>"><i class="material-icons">chevron_right</i></a></li>
+          <li class="waves-effect"><a href="http://localhost/tcc/Teste/testePaginacao.php?pagina=<?php echo ($i + 1); ?>"><i class="material-icons">chevron_right</i></a></li>
         </ul>
       </div>
   </div>

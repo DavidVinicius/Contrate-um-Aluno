@@ -78,7 +78,7 @@
                 </div>
                 <div class="row">
                   <div class="col s12 m8 push-m4">
-                    <button class="btn blue" id="adicionarTelefone">Adicionar telefone</button>
+                    <button class="btn blue" id="adicionarTelefone">Adicionar Novo telefone</button>
                   </div>
                   <div class="col s12 m12" id="novoTelefone">
                     <div class="input-field">
@@ -106,16 +106,17 @@
                   <div class="col s12 m12">
                     <div class="input-field col s12 m4" ng-repeat="x in telefones">
                       <label for="{{x.telefone}}">Telefone {{x.tipo}}:</label>
-                      <input placeholder="" type="tel" name="{{x.telefone}}" id="{{x.telefone}}" value="{{x.telefone}}">
+                      <input placeholder=" " type="tel" name="{{x.telefone}}" id="{{x.telefone}}" value="{{x.telefone}}" data-position="right" data-delay="50" data-tooltip="É preciso atualizar para editar ou excluir" class="tooltipped" readonly>
+                      <span class="yellow-text ">É preciso atualizar para editar ou excluir</span>
 
                     </div>
                     <?php
                         while($ResultTelefone = mysqli_fetch_assoc($LerTelefones))
                         {
                     ?>
-                    <div class="input-field col s12 m4">
-                            <label for="<?=$ResultTelefone['idTelefone']?>">Telefone <?= $ResultTelefone['tipo']?>:</label>
-                            <input type="text" name="<?=$ResultTelefone['idTelefone']?>" id="<?=$ResultTelefone['idTelefone']?>" value="<?=$ResultTelefone['telefone']?>" class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="telefones" data-campo="telefone" data-idaluno="<?= $idAluno?>" data-idtelefone="<?= $ResultTelefone['idTelefone'] ?>" >
+                    <div class="input-field col s12 m3">
+                            <label for="<?=$ResultTelefone['idTelefone']?>">Telefone <?= $ResultTelefone['tipo']?>: </label>
+                            <input type="text" name="<?=$ResultTelefone['idTelefone']?>" id="<?=$ResultTelefone['idTelefone']?>" value="<?=$ResultTelefone['telefone']?>" class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="telefones" data-campo="telefone" data-idaluno="<?= $idAluno?>"       data-idtelefone="<?= $ResultTelefone['idTelefone'] ?>"><span class="red-text excluir" style="cursor:pointer" data-tabela="telefones" data-idtelefone="<?= $ResultTelefone['idTelefone'] ?>">Excluir</span>
                         </div>
                     <?php
                         }
@@ -154,7 +155,18 @@
                         <input type="text" name="estado" id="estado" value="<?= $AssocEndereco['estado']?>" class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="enderecos" data-campo="estado" data-idaluno="<?= $idAluno?>">
                     </div>
                 </div>
+
                 <div class="row">
+                  <div class="col s12 m8 push-m4">
+                    <button class="blue btn " id="adicionarNovaHabilidade">Adicionar nova habilidade</button>
+                  </div><br>
+                  <div class="col s12 m12" id="novaHabilidade">
+                    <div class="input-field col s12 m12">
+                      <label for="competencia">Nova Habilidade: </label>
+                      <input type="text" name="competencia" id="competencia" ng-model="competencia">
+                      <button class="btn red" id="esconderNovaHabilidade">Esconder</button>
+                    </div>
+                  </div>
                     <p class="center-align flow-text">Habilidades</p>
                              <div class="col s12 m12">
                     <?php
@@ -162,12 +174,16 @@
                         {
                             ?>
                                 <div class="chip">
-                                    <span class="tooltipped contentEditable flow-text" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="enderecos" data-campo="estado" data-idaluno="<?= $idAluno?>" contentEditable='true'><?= $AssocQualificacoes["competencia"]?></span>
-                                    <i class="close material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Excluir">close</i>
+                                    <span class="tooltipped contentEditable flow-text" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="qualificacoes" data-campo="competencia" data-idaluno="<?= $idAluno?>" contentEditable='true' data-idqualificacao="<?= $AssocQualificacoes['idQualificacoes']?>"><?= $AssocQualificacoes["competencia"]?></span>
+                                    <i class="close material-icons excluir" data-tabela="qualificacoes" data-idqualificacao="<?= $AssocQualificacoes['idQualificacoes']?>">close</i>
                                 </div>
                             <?php
                         }
                     ?>
+                                <div class="chip" ng-repeat="x in qualificacoes">
+                                  <span class="flow-text">{{x.competencia}}</span>
+                                  <i class="material-icons close">close</i>
+                                </div>
                              </div>
                 </div><br>
                 <div class="row" >
@@ -317,6 +333,7 @@
             </div>
         </div>
     </div>
+
 
 
 </body>

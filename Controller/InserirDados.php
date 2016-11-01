@@ -32,7 +32,13 @@
             "tipo"              => $tipo,
             "codUsuario"        => $codUsuario
         );
-        $Telefone->CreateTelefones($dados);
+        if($Telefone->CreateTelefones($dados))
+        {
+          require_once("../Model/DataBase.class.php");
+          $DB = new DataBase();
+          $idTelefone = $DB->SearchReturnLast("telefones","where codUsuario = $codUsuario and telefone = $telefone order by idTelefone desc limit 1", "idTelefone");
+          echo $idTelefone["idTelefone"];
+        }
     }
 
     if(isset($_POST['tabela']) && $_POST["tabela"] == "experiencias")
@@ -53,6 +59,22 @@
             "codAluno"      => $idAluno
         );
         if($Experiencia->CreateExperiencias($dados))
+            echo "deu certo";
+    }
+
+    if(isset($_POST['tabela']) && $_POST["tabela"] == "qualificacoes")
+    {
+        require_once("../Model/ModelQualificacoes.class.php");
+        $valor    = isset($_POST['valor']) ? $_POST['valor']:null;
+        $idAluno  = isset($_POST['idAluno']) ? $_POST['idAluno']:null;
+
+
+        $Qualificacao   = new ModelQualificacoes();
+        $dados = array(
+            "competencia"   => $valor,
+            "codAluno"      => $idAluno
+        );
+        if($Qualificacao->CreateQualificacoes($dados))
             echo "deu certo";
     }
 

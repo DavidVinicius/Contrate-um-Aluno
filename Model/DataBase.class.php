@@ -74,7 +74,6 @@
         {
             $Connection = $this->ConnectDataBase();
             $Query = "SELECT {$Fields} FROM {$Table} {$Condition}";
-            var_dump($Query);
             $Result = $this->ExecuteQuery($Connection, $Query);
             $this->CloseConnectionDataBase($Connection);
             return $Result;
@@ -82,7 +81,7 @@
 
         public function SearchReturnLast($Table, $Condition = null, $Fields = "*")
         {
-          $Query = $this->SearchQuery("$Table", "order by $Fields desc limit 1");
+          $Query = $this->SearchQuery("$Table", $Condition, $Fields);
           return mysqli_fetch_assoc($Query);
         }
 

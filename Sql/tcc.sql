@@ -26,8 +26,8 @@ CREATE TABLE `empresa` (
   `email` varchar(40) NOT NULL,
   `areaAtuacao` varchar(30) NOT NULL,
   `foto` varchar(50) NOT NULL,
-  `missao` varchar(MAX) NOT NULL,
-  `visao` varchar(MAX) NOT NULL,
+  `missao` varchar(255) NOT NULL,
+  `visao` varchar(255) NOT NULL,
   `historia` text NOT NULL,
   `codUsuario` int(11) NOT NULL,
   CONSTRAINT `fk_empresa_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`)

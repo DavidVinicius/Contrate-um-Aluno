@@ -38,7 +38,7 @@
                         <input type="text" name="nome" id="nome" value="<?= $ResultAluno['nome'] ?>" readonly>
                     </div>
                     <div class="input-field col s12 m6 push-m2">
-                        <img src="Images/Padrao/PerfilPadrao.png" alt="Foto Perfil" class="responsive-img circle" width="200px" height="200px">
+                        <img src="Images/Upload/<?= $ResultAluno['foto']?>" alt="Foto Perfil" class="responsive-img circle" width="200px" height="200px">
                     </div>
                 </div>
                 <div class="row">
@@ -98,13 +98,13 @@
                     </div>
                     <div class="input-field col s12 m3">
                         <label for="estado">Estado:</label>
-                        <input type="text" name="estado" id="estado" value="<?= $ResultEndereco['estado']?>">
+                        <input type="text" name="estado" id="estado" value="<?= $ResultEndereco['estado']?>" readonly>
                     </div>
                 </div>
                 <div class="row">
                     <p class="center-align flow-text">Habilidades</p>
                     <?php while($Qualificacao = mysqli_fetch_assoc($ConsultaQualificacoes)){ ?>
-                    <p class="flow-text"><?= $Qualificacao['competencia']?></p>
+                    <span class="chip blue white-text"><?= $Qualificacao['competencia']?></span>
                     <?php } ?>
                 </div>
                 <div class="row">
@@ -134,9 +134,17 @@
                         while($ResultExperiencia = mysqli_fetch_assoc($ConsultaExperiencia)){
                     ?>
                         <div class="card col s12 m6 hoverable">
-                            <span class="card-title"><?= $ResultExperiencia['dataInicio']?> - <?= $ResultExperiencia['dataSaida']  ?> - <?= $ResultExperiencia['cargo']  ?></span>
+                            <span class="card-title">  <?= $ResultExperiencia['cargo']  ?></span>
                             <div class="card-content">
-                                <?= $ResultExperiencia['descricao']  ?>
+                               <p>
+                                 Data de Inicio: <?= $ResultExperiencia['dataInicio']?>
+                               </p>
+                               <p>
+                                 Data de Saída: <?= $ResultExperiencia['dataSaida']  ?> -
+                               </p>
+                                <p>
+                                  Descrição: <?= $ResultExperiencia['descricao']  ?>
+                                </p>
                             </div>
 
                         </div>

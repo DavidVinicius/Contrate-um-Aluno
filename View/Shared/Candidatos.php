@@ -20,7 +20,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col s12 m12">
+            <div class="">
                 <?php
                 while( $linha = mysqli_fetch_assoc($Consulta) ){
                   $idAluno = $linha['idAluno'];
@@ -30,12 +30,13 @@
                 <div class="col s12 m6">
                     <div class="card horizontal hoverable">
                         <div class="card-image activator">
-                            <img src="Images/Padrao/PerfilPadrao.png" alt="">
-                            <span class="card-title"><?=$linha['nome']?></span>
+                            <img src="Images/Upload/<?= $linha['foto'] ?>" alt="Imagem perfil" class="responsive-img circle" >
+                            <span class="card-title black-text"><?=$linha['nome']?></span>
                         </div>
                         <div class="card-content">
+                          <!-- <span class="center-align">Habilidades:</span> -->
                             <?php while($qualificacao = mysqli_fetch_assoc($ResultadoQ)){ ?>
-                            <p><?=$qualificacao['competencia']?></p>
+                            <span class="chip"><?=$qualificacao['competencia']?></span>
                             <?php } ?>
                             <a href="OnePage.php?link=Candidato&id=<?=$linha['idAluno']?>"><button class="btn blue">Ver perfil</button></a>
                         </div>

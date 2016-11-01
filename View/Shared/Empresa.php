@@ -20,11 +20,11 @@
     <div class="container">
     <div class="row">
         <div class="col s12 m12">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="Teste/testeEmpresa.php" method="post" enctype="multipart/form-data">
                 <div class="row">
                   <div class="input-field col s12 m6">
                       <label for="nome">Nome Fantasia:</label>
-                      <input type="text" name="nome" id="nome" required>
+                      <input type="text" name="nome" id="nome" required="">
                   </div>
                   <div class="col s12 m6 push-m1 ">
                       <div class="file-field input-field col s12 push-s3 m3">
@@ -39,41 +39,41 @@
                 <div class="row">
                   <div class="input-field col s12 m6">
                     <label for="cnpf">CNPJ:</label>
-                    <input type="text" name="cnpj" id="cnpj" pattern="[0-9]{.14}">
+                    <input type="text" name="cnpj" id="cnpj" pattern="[0-9]{.14}" required="">
                   </div>
                   <div class="input-field col s12 m6">
                     <label for="area">Área de atuação:</label>
-                    <input type="text" name="area" id="area">
+                    <input type="text" name="areaAtuacao" id="areaAtuacao" required="">
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12 m3">
                     <label for="cep">CEP:</label>
-                    <input type="text" name="cep" id="cep">
+                    <input type="text" name="cep" id="cep" required>
                   </div>
                   <div class="input-field col s12 m4">
                     <label for="rua">Logradouro:</label>
-                    <input type="text" name="rua" id="rua">
+                    <input type="text" name="rua" id="rua" required>
                   </div>
                   <div class="input-field col s12 m2">
                     <label for="numero">numero</label>
-                    <input type="number" name="numero" id="numero">
+                    <input type="number" name="numero" id="numero" required>
                   </div>
                   <div class="input-field col s12 m3">
                     <label for="bairro">Bairro:</label>
-                    <input type="text" name="bairro" id="bairro">
+                    <input type="text" name="bairro" id="bairro" required>
                   </div>
                   <div class="input-field col s12 m5">
                     <label for="complemento">Complemento:</label>
-                    <input type="text" name="complementol" id="complemento">
+                    <input type="text" name="complementol" id="complemento" required>
                   </div>
                   <div class="input-field col s12 m4">
                     <label for="cidade">Cidade:</label>
-                    <input type="text" name="cidade" id="cidade">
+                    <input type="text" name="cidade" id="cidade" required>
                   </div>
-                  <div class="input-field col s12 m3">
+                  <div class="input-field col s12 m3" >
                     <label for="estado">Estado</label>
-                    <select name="estado" id="estado" required>
+                    <select name="estado" id="estado" >
                         <option value="" selected disabled></option>
                         <option value="AC">AC</option>
                         <option value="AL">AL</option>
@@ -108,7 +108,7 @@
                 <div class="row">
                   <div class="input-field col s12 m6">
                     <h1 class="center-align flow-text">Seus Telefones</h1>
-                    <div class="card-panel small" ng-repeat="tel in Telefones"> <i class="material-icons right" ng-click="removeTelefone($Index)">close</i>
+                    <div class="card-panel small" ng-repeat="tel in telefones"> <i class="material-icons right" ng-click="removeTelefone($Index)">close</i>
                         <span class="card-title flow-text">{{tel.tipo}} - {{tel.telefone}}</span>
                      </div>
                   </div>
@@ -123,7 +123,7 @@
                     </div>
                     <div class="input-field col s12 m8">
                       <label for="telefone">Telefone:</label>
-                      <input type="tel" name="telefone" id="telefone" ng-model="Telefone">
+                      <input type="tel" name="telefone" id="telefone" ng-model="Tel">
                       <button class="btn blue cancelaEvento" ng-click="adicionarTelefone()">Adicionar telefone</button>
                     </div>
                   </div>
@@ -138,10 +138,16 @@
                   </div>
                 </div>
                 <div class="row">
+                    <div class="col s12 m12">
+                      <label for="valores">Quais são os Valores da sua empresa?</label><br>
+                      <div class="chips" id="valores"></div>
+                    </div>
+                </div>
+                <div class="row">
 
                   <div class="input-field col s12 m12">
                     <label for="missao"> Qual a Missão da sua empresa?</label>
-                    <textarea name="missao" id="missao" cols="30" rows="10" class="materialize-textarea"  maxlength="255" length="255" required>
+                    <textarea name="missao" id="missao" cols="30" rows="10" class="materialize-textarea"  maxlength="255" length="255" required ng-model="missao">
 
                     </textarea>
                   </div>
@@ -150,23 +156,22 @@
 
                   <div class="input-field col s12 m12">
                     <label for="visao"> Qual a Visão da sua empresa?</label>
-                    <textarea name="missao" id="visao" cols="30" rows="10" class="materialize-textarea" maxlength="255" length="255" required>
+                    <textarea name="visao" id="visao" cols="30" rows="10" class="materialize-textarea" maxlength="255" length="255" required ng-model="visao">
 
                     </textarea>
                   </div>
                 </div>
-                <div class="row">
-                    <div class="col s12 m12">
-                      <label for="valores">Quais são os Valores da sua empresa?</label><br>
-                      <div class="chips" id="valores"></div>
-                    </div>
-                </div>
+
                 <input type="submit" value="Salvar dados" class="btn blue">
-                </div>
+
+                <input type="text" name="Telefones" id="Telefones" value="{{telefones}}" autocomplete="off">
+                <input type="text" name="valores" id="valores" value="{{Valores}}" autocomplete="off">
+
             </form>
         </div>
     </div>
 </div>
+
 <script>
     var loadFile = function (event) {
         var foto = document.getElementById('preview');

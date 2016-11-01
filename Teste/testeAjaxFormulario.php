@@ -9,7 +9,7 @@ echo $senha;
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -20,7 +20,7 @@ echo $senha;
         <input type="text" name="nome" id="nome">
         <label for="senha">Senha</label>
         <input type="text" name="senha" id="senha">
-        <input type="hidden" name="teste" value="amor"> 
+        <input type="hidden" name="teste" value="amor">
         <input type="submit" value="enviar" id="enviar">
     </form>
     <script src="../js/jquery-3.1.0.min.js"></script>

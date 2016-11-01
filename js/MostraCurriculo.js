@@ -1,3 +1,4 @@
+"use strict";
 var app = angular.module('myapp',[]);
 
 app.controller("MostraCurriculo",["$scope",function($scope){
@@ -15,6 +16,9 @@ app.controller("MostraCurriculo",["$scope",function($scope){
     $scope.textoExperiencia = "";
     $scope.telefone         = "";
     $scope.tipo             = "";
+    $scope.idtelefones      = [];
+    $scope.competencia      = "";
+    $scope.qualificacoes    = [];
 
     $scope.adicionarFormacao = function(){
                     if($scope.anoC == "")
@@ -44,15 +48,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
 
                             success:function(data){
                                 Materialize.toast('Adicionado com Sucesso', 4000);
-                                $.ajax({
-                                    url:"Controller/ConsultaDados.php",
-                                    method: "POST",
-                                    data:{excluirAngularFormacao:"sim", idAluno: $("[name=idAluno]").val()},
-                                    success:function(data){
 
-                                        $scope.resultado = data;
-                                    }
-                                });
                             }
                         });
                         $scope.anoC = "";
@@ -60,11 +56,6 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                         $scope.escola = "";
                     }
             }
-
-    $scope.excluirAngular = function(){
-        alert($scope.resultado);
-
-    }
 
     $scope.adicionarNovaExperiencia = function(){
             if($scope.atualExp == true)
@@ -100,7 +91,8 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                         descricao:$scope.textoExperiencia
                     },
                     success: function(data){
-                        alert(data);
+                        // alert(data);
+                        Materialize.toast("Adicionado com sucesso", 4000);
                     }
                 });
 
@@ -129,12 +121,70 @@ app.controller("MostraCurriculo",["$scope",function($scope){
       else if($scope.telefone == isNaN)
       {
           Materialize.toast("O campo telefone deve conter apenas números", 4000);
+      }else{
+
+        $scope.telefones.push({tipo:$scope.tipo, telefone: $scope.telefone});
+        $.ajax({
+          url: "Controller/InserirDados.php",
+          method: "POST",
+          data:{
+            tabela: "telefones",
+            tipo: $scope.tipo,
+            telefone: $scope.telefone
+          },
+          success:function(data){
+            // alert(data);
+            $scope.idtelefones.push({idtelefone:data});
+            Materialize.toast("Adicionado com sucesso",4000);
+
+          }
+        });
+        $scope.tipo     = "";
+        $scope.telefone = "";
       }
-      $scope.telefones.push({tipo:$scope.tipo, telefone: $scope.telefone});
     }
+
+    $("#competencia").click(function() {
+          Materialize.toast("Digite e aperte enter para adicionar novas habilidades",4000);
+          $(this).keypress(function(event) {
+              if(event.which == 13){
+                var valor   = $(this).val();
+                var idAluno = $("[name=idAluno]").val();
+                if($scope.qualificacoes.push({competencia:valor}))
+                {
+                  Materialize.toast("Adicionado com sucesso",4000);
+                  $.ajax({
+                    url:"Controller/InserirDados.php",
+                    method: "POST",
+                    data:{tabela:"qualificacoes", valor:valor, idAluno:idAluno},
+                    success:function(data){
+                      // alert(data);
+                      Materialize.toast("Adicionado com sucesso",400);
+                    }
+                  });
+                  $(this).val(" ");
+                  $(this).focusout();
+
+                }
+
+              }
+          });
+    });
 
     $("#novaExperiencia").hide();
     $("#novoTelefone").hide();
+    $("#novaHabilidade").hide();
+
+    $("#adicionarNovaHabilidade").click(function(){
+        $("#novaHabilidade").show(1000);
+        $(this).hide()
+    });
+
+    $("#esconderNovaHabilidade").click(function(event) {
+        /* Act on the event */
+        $("#novaHabilidade").hide(1000)
+        $("#adicionarNovaHabilidade").show(1000);
+    });
 
     $("#adicionarExperiencia").click(function(){
         $(this).hide();
@@ -156,11 +206,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
         $("#novoTelefone").hide();
         $("#adicionarTelefone").show(1000);
     });
-     $('.chip').on('click', function(e, chip){
-        // you have the deleted chip here
-         alert('deletado');
-         console.log("alert");
-    });
+
 
     $("#novaFormacao").hide();
 
@@ -176,16 +222,27 @@ app.controller("MostraCurriculo",["$scope",function($scope){
     });
 
     $(".excluir").click(function(){
-        var tabela     = $(this).data('tabela');
-        var idLinha    = $(this).data('idlinha');
-        var apagarDiv  = $(this).parent().parent();
+        var tabela          = $(this).data('tabela') ;
+        var idLinha         = $(this).data('idlinha') || null;
+        var idTelefone      = $(this).data("idtelefone") || null;
+        var idQualificacoes = $(this).data("idqualificacao") || null;
+        var divPai          = $(this).parent();
+        var apagarDiv       = $(this).parent().parent();
+        // alert(idQualificacoes + " " + tabela);
         $.ajax({
             url:"Controller/ExcluirDados.php",
             method: "POST",
-            data:{ tabela:tabela, idLinha:idLinha },
+            data:{ tabela:tabela, idLinha:idLinha, idTelefone: idTelefone, idQualificacoes:idQualificacoes },
             success:function(data){
-                    $(apagarDiv).remove();
-                    Materialize.toast("Excluido com sucesso", 4000);
+              // alert(data);
+                    if (tabela == "telefones" || tabela == "qualificacoes") {
+                      $(divPai).remove();
+                      Materialize.toast("Excluido com sucesso", 4000);
+                    }
+                    else{
+                      $(apagarDiv).remove();
+                      Materialize.toast("Excluido com sucesso", 4000);
+                    }
 
 
             }
@@ -197,20 +254,21 @@ app.controller("MostraCurriculo",["$scope",function($scope){
         $(".tooltipped").click(function(){
                 Materialize.toast('Clique fora do campo para salvar',4000);
             $(this).focusout(function(){
-                var valor         = $(this).val() || $(this).text();
-                var tabela        = $(this).data("tabela");
-                var campo         = $(this).data("campo");
-                var idAluno       = $(this).data("idaluno");
-                var idTelefone    = $(this).data("idtelefone") || null;
-                var idFormacao    = $(this).data("idformacao") || null;
-                var idExperiencia = $(this).data("idexperiencia") || null;
-                alert(valor);
+                var valor           = $(this).val() || $(this).text();
+                var tabela          = $(this).data("tabela");
+                var campo           = $(this).data("campo");
+                var idAluno         = $(this).data("idaluno");
+                var idTelefone      = $(this).data("idtelefone") || null;
+                var idFormacao      = $(this).data("idformacao") || null;
+                var idExperiencia   = $(this).data("idexperiencia") || null;
+                var idQualificacoes = $(this).data("idqualificacao") || null;
+                alert(valor + "" + idQualificacoes + "" + tabela);
                 $.ajax({
                     url:"Controller/AlterarDados.php",
                     method: "POST",
-                    data:{existeCurriculo:"sim", valor: valor, tabela: tabela, campo: campo, idAluno: idAluno, idTelefone:idTelefone, idFormacao: idFormacao, idExperiencia:idExperiencia},
+                    data:{existeCurriculo:"sim", valor: valor, tabela: tabela, campo: campo, idAluno: idAluno, idTelefone:idTelefone, idFormacao: idFormacao, idExperiencia:idExperiencia, idQualificacoes: idQualificacoes},
                     success:function(data){
-//                        alert(data);
+                      //  alert(data);
                         Materialize.toast("Alterado com sucesso",4000);
                     }
                 });

@@ -140,7 +140,7 @@ app.controller('Curriculo',['$scope',function($scope){
                   var a = $(".chips").material_chip('data');
                   console.log(a);
                     console.log(chip);
-                  $scope.qualificacoes.splice(chip,1);
+                  $scope.qualificacoes.splice(chip);
                   console.log($scope.qualificacoes);
 //                  alert(a);
             });

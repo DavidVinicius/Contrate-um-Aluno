@@ -20,7 +20,7 @@
     <div class="container">
     <div class="row">
         <div class="col s12 m12">
-            <form action="Teste/testeEmpresa.php" method="post" enctype="multipart/form-data">
+            <form action="Controller/Cadastro/CadastroEmpresa.php" method="post" enctype="multipart/form-data">
                 <div class="row">
                   <div class="input-field col s12 m6">
                       <label for="nome">Nome Fantasia:</label>
@@ -65,7 +65,7 @@
                   </div>
                   <div class="input-field col s12 m5">
                     <label for="complemento">Complemento:</label>
-                    <input type="text" name="complementol" id="complemento" required>
+                    <input type="text" name="complemento" id="complemento" required>
                   </div>
                   <div class="input-field col s12 m4">
                     <label for="cidade">Cidade:</label>

@@ -23,7 +23,6 @@ CREATE TABLE `empresa` (
   `idEmpresa` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(40) NOT NULL,
   `cnpj` varchar(17) NOT NULL,
-  `email` varchar(40) NOT NULL,
   `areaAtuacao` varchar(30) NOT NULL,
   `foto` varchar(50) NOT NULL,
   `missao` varchar(255) NOT NULL,

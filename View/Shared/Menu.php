@@ -1,15 +1,15 @@
 
 <?php
 
-    
+
  $nivel = $_SESSION['nivel'];
 
 if($nivel == 1){
     echo "<div class='navbar-fixed'>
-          
-        
+
+
            <nav>
-           
+
             <div class='nav-wrapper menuCor'>
               <a href='#!' class='brand-logo'><span style='margin-left:5%'></span>Contrate um Aluno</a>
               <a href='#' data-activates='menuLateral' class='button-collapse'><i class='material-icons'>	menu</i></a>
@@ -48,22 +48,22 @@ if($nivel == 1){
               </ul>
             </div>
           </nav>
-          
+
       </div>";
 }
 else if ($nivel == 2){
     echo "<div class='navbar-fixed'>
-          
-        
+
+
            <nav>
-           
+
             <div class='nav-wrapper menuCor'>
               <a href='#!' class='brand-logo'><span style='margin-left:5%'></span>Contrate um Aluno</a>
               <a href='#' data-activates='menuLateral' class='button-collapse'><i class='material-icons'>	menu</i></a>
               <ul class='right hide-on-med-and-down'>
                 <li><a href='OnePage.php?link=Home'>Home</a></li>
                 <li><a href='OnePage.php?link=Candidatos'>Candidatos</a></li>
-                <li><a href='OnePage.php?link=Empresa'>Suas Informações</a></li>
+                <li><a href='OnePage.php?link=VerEmpresa'>Suas Informações</a></li>
                 <li><a href='OnePage.php?link=CriarVaga'>Criar Vaga</a></li>
                 <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
                <li><a href='' data-activates='Configuracoes' class='abrir'><img src='Images/Padrao/PerfilPadrao.png' class='circle responsive-img valign' width='40px' style='margin-top:10px'><span class='badge red circle white-text'>2</span></a></li>
@@ -97,15 +97,15 @@ else if ($nivel == 2){
               </ul>
             </div>
           </nav>
-          
+
       </div>";
 }
 else if ($nivel == 3){
     echo "<div class='navbar-fixed'>
-          
-        
+
+
            <nav>
-           
+
             <div class='nav-wrapper menuCor'>
               <a href='#!' class='brand-logo'><span style='margin-left:5%'></span>Contrate um Aluno</a>
               <a href='#' data-activates='menuLateral' class='button-collapse'><i class='material-icons'>	menu</i></a>
@@ -144,15 +144,15 @@ else if ($nivel == 3){
               </ul>
             </div>
           </nav>
-          
+
       </div>";
 }
 else{
     echo "<div class='navbar-fixed'>
-          
-        
+
+
            <nav>
-           
+
             <div class='nav-wrapper menuCor'>
               <a href='#!' class='brand-logo'><span style='margin-left:5%'></span>Contrate um Aluno</a>
               <a href='#' data-activates='menuLateral' class='button-collapse'><i class='material-icons'>	menu</i></a>
@@ -172,7 +172,7 @@ else{
                   <a href='#!name'><span class='white-text name'>Aqui vai o Nome</span></a>
                   <a href='#!email'><span class='white-text email'>email@email.com</span></a>
                 </div></li>
-                
+
                 <li><a href='OnePage.php?link=Home'>Home</a></li>
                 <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
                 <li><a href='OnePage.php?link=Curriculo'>Curriculo</a></li>
@@ -192,7 +192,7 @@ else{
               </ul>
             </div>
           </nav>
-          
+
       </div>";
 }
 

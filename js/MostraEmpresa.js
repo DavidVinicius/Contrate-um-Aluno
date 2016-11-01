@@ -51,10 +51,32 @@ app.controller("MostraEmpresa",['$scope',function($scope){
   });
 
   $(".tooltipped").click(function(){
-    var tabela        = $(this).data("tabela");
-    var campo         = $(this).data("campo");
-    var idEmpresa     = $(this).data("idempresa");
-    alert(tabela + " " + campo + " " + idEmpresa);
+      Materialize.toast("Clique fora do campo para salvar",4000);
+    $(this).focusout(function(event) {
+      var tabela        = $(this).data("tabela");
+      var campo         = $(this).data("campo");
+      var valor         = $(this).val() || $(this).text();
+      var idEmpresa     = $(this).data("idempresa")  || null;
+      var idUsuario     = $(this).data("idusuario")  || null;
+      var idTelefone    = $(this).data("idtelefone") || null;
+      $.ajax({
+        url:"Controller/AlterarEmpresa.php",
+        method:"POST",
+        data:{
+          existeEmpresa:"sim",
+          tabela: tabela,
+          campo:campo,
+          valor: valor,
+          idEmpresa: idEmpresa,
+          idUsuario: idUsuario,
+          idTelefone: idTelefone
+        },
+        success:function(data){
+          Materialize.toast("Alterado com sucesso",4000);
+          console.log(data);
+        }
+      });
+    });
   });
 
   $("#valor").click(function(){
@@ -73,5 +95,28 @@ app.controller("MostraEmpresa",['$scope',function($scope){
       }
     });
   });
+
+  $("#salvarFoto").hide();
+  $("#foto").click(function(){
+    $("#salvarFoto").show(1000);
+  });
+  $("#enviarFoto").submit(function(e){
+      var dados = new FormData(this);
+      e.preventDefault();
+       $.ajax({
+           cache: false,
+           processData:false,
+          contentType: false,
+          mimeType:"multipart/form-data",
+          data: dados,
+          type: 'POST',
+          url: 'Controller/AlterarEmpresa.php',
+          success: function(data)
+          {
+              Materialize.toast("Alterado com sucesso",4000);
+              $("#salvarFoto").hide(1000);
+          }
+      });
+    });
 
 }]);

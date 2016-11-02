@@ -7,7 +7,7 @@
     $Verifica->EstaLogado();
     $DB = new DataBase();
 
-    $Result = $DB->SearchQuery("vaga",null, "*");
+    $Result = $DB->SearchQuery("vaga");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

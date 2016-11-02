@@ -1,9 +1,11 @@
 <?php
     include_once "Model/DataBase.class.php";
     //include_once "Model/ModelEmpresa.class.php";
-    $DB         = new DataBase();
-    $idUsuario  = $_SESSION['id'];
-    "select * from empresa where codUsuario = $idUsuario";
+    $DB               = new DataBase();
+    $idUsuario        = $_SESSION['id'];
+    $consultaEmpresa  = mysqli_fetch_assoc($DB->SearchQuery("empresa", "where codUsuario = $idUsuario"));
+    $idEmpresa        = $consultaEmpresa['idEmpresa'];
+    $ConsultaVaga     = $DB->SearchQuery("vaga", "where codEmpresa = $idEmpresa");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,6 +85,7 @@
                       </div>
                 </div>
        <?php
+       if($ConsultaVaga){
             while($ResultVaga = mysqli_fetch_assoc($ConsultaVaga))
             {
             ?>
@@ -104,6 +107,7 @@
 
             <?php
             }
+          } else echo "Não tem vagas";
        ?>
        </div>
    </div>

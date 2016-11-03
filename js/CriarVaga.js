@@ -4,12 +4,12 @@ app.controller("CriarVaga",["$scope",function($scope){
     $scope.vaga = [];
     $scope.beneficios = $(".chips").material_chip("data");
     $scope.adicionarVaga = function(){
-        
-       
+
+
         if($scope.titulo == "")
         {
             Materialize.toast('Campo título está vazio',4000);
-            
+
         }
         if($scope.cargaHoraria == "")
         {
@@ -27,12 +27,12 @@ app.controller("CriarVaga",["$scope",function($scope){
         {
             Materialize.toast('Campo descrição está vazio', 4000);
         }
-        
+
         if($scope.titulo != null && $scope.cargaHoraria != "" && $scope.salario != "" && $scope.requisitos != "" && $scope.descricao != "")
         {
             $scope.vaga.push({titulo:$scope.titulo, carga: $scope.cargaHoraria, Salario: $scope.salario, requisitos:$scope.requisitos, descricao:$scope.descricao});
-        
-            
+
+
                     var titulo       = $scope.titulo;
                     var cargaHoraria = $scope.cargaHoraria;
                     var salario      = $scope.salario;
@@ -55,27 +55,27 @@ app.controller("CriarVaga",["$scope",function($scope){
                             Materialize.toast('Erro ao cadastrar vaga, tente novamente',4000);
                         }
                     });
-            
+
             $scope.titulo       = "";
             $scope.cargaHoraria = "";
             $scope.salario      = "";
             $scope.requisitos   = "";
-            $scope.descricao    = "";    
+            $scope.descricao    = "";
         }
-        
+
     }
-        
+
 //    $('form').submit(function(e){
 //        e.preventDefault();
 //        if( $scope.titulo == "")
 //        {
 //            Materialize.toast('Campo título está vazio',4000);
-//            
+//
 //        }
 //    });
-        
-    
-   $scope.teste = "teste"; 
+
+
+   $scope.teste = "teste";
     $('.contentEditable').click(function(){
         Materialize.toast('Para Salvar basta apenas clicar fora do campo',4000);
         $('.contentEditable').focusout(function(){
@@ -87,16 +87,20 @@ app.controller("CriarVaga",["$scope",function($scope){
                 success:function(data){
                     alert(data);
                     Materialize.toast("Alterado com sucesso",4000);
-                    
+
                 }
             });
         });
-        
+
     });
-    
+
     $('.chips').material_chip();
     $('.chips-placeholder').material_chip({
     placeholder: 'Auxílio Transporte',
     secondaryPlaceholder: 'Beneficios',
+  });
+  $(".chips").click(function(event) {
+
+    Materialize.toast("Digite e aperte enter para adicionar benefícios",4000);
   });
 }]);

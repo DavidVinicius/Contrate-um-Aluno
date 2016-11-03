@@ -45,6 +45,7 @@ CREATE TABLE `experiencias` (
   `dataInicio` varchar(15) NOT NULL,
   `dataSaida` varchar(15) DEFAULT NULL,
   `cargo` varchar(30) NOT NULL,
+  `empresa` varchar(20) not null,
   `codAluno` int(11) NOT NULL,
   CONSTRAINT `fk_experiencias_aluno` FOREIGN KEY (`codAluno`) REFERENCES `aluno` (`idAluno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -52,7 +53,7 @@ CREATE TABLE `experiencias` (
 CREATE TABLE `formacoes` (
   `idFormacao` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `anoConclusao` VARCHAR(4) NOT NULL,
-  `curso` varchar(30) NOT NULL,
+  `curso` varchar(40) NOT NULL,
   `instituicao` varchar(40) NOT NULL,
   `codAluno` int(11) NOT NULL,
   CONSTRAINT `fk_formacoes_aluno` FOREIGN KEY (`codAluno`) REFERENCES `aluno` (`idAluno`)

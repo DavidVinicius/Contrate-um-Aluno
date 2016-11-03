@@ -296,10 +296,11 @@
                     ?>
                            <div class="card hoverable col m6 s12">
 
-                                <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" >
-                                    <?= $ResultExperiencia['dataInicio']?></span>
 
-                                    <span class="tooltipped contentEditable card-title" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="cargo" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" maxlength="20"><?= $ResultExperiencia['cargo']  ?></span>
+                                    <span class="tooltipped contentEditable card-title" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="cargo" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" maxlength="20"><?= $ResultExperiencia['cargo']  ?></span> -
+
+                                    <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="empresa" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" >
+                                      <?= $ResultExperiencia['empresa']?></span>
                                 <div class="card-content">
                                   <p>
                                     Data de Inicio:
@@ -326,9 +327,7 @@
                     ?>
                         </div>
                 </div>
-                <div class="row">
-                    <a href="" class="btn blue">Alguma ação</a>
-                </div>
+                
 
             </div>
         </div>

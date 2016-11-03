@@ -2,8 +2,6 @@
   include "Model/DataBase.class.php";
    $DB                    = new DataBase();
 
-   $idAluno               = $_GET['id'];
-   $idUsuario             = $_SESSION['id'];
    $ConsultaAluno         = $DB->SearchQuery("aluno","where idAluno = $idAluno");
    $ResultAluno           = mysqli_fetch_assoc($ConsultaAluno);
    $codUsuario  = $ResultAluno['codUsuario'];
@@ -21,6 +19,12 @@
    $ConsultaFormacoes     = $DB->SearchQuery("formacoes","where codAluno = $idAluno");
 
    $ConsultaQualificacoes = $DB->SearchQuery("qualificacoes", "where codAluno = $idAluno");
+   /*$idAluno               = $_GET['id'];
+   $idUsuario             = $_SESSION['id'];
+   include_once "Model/ModelTelefones.class.php";
+   $Telefone = new Telefones();
+   $ConsultaTelefone = $Telefone -> ReadTelefones("where codUsuario = $idAluno");*/
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -153,7 +157,7 @@
                     ?>
                 </div>
                 <div class="row">
-                    <a href="" class="btn blue">Alguma ação</a>
+                    <a href="" class="btn btn-large blue">Marcar Entrevista</a>
                 </div>
 
             </div>

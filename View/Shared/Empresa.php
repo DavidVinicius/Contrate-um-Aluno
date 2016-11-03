@@ -65,7 +65,7 @@
                   </div>
                   <div class="input-field col s12 m5">
                     <label for="complemento">Complemento:</label>
-                    <input type="text" name="complemento" id="complemento" required>
+                    <input type="text" name="complemento" id="complemento">
                   </div>
                   <div class="input-field col s12 m4">
                     <label for="cidade">Cidade:</label>

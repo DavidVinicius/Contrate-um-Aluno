@@ -24,7 +24,7 @@
             return parent::Update("valores",$Field, $NewValue, $Id);
         }
 
-        public function DeleteQualificacoes($Condition)
+        public function DeleteValores($Condition)
         {
             return parent::Delete("valores", $Condition);
         }

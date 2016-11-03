@@ -262,7 +262,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                 var idFormacao      = $(this).data("idformacao") || null;
                 var idExperiencia   = $(this).data("idexperiencia") || null;
                 var idQualificacoes = $(this).data("idqualificacao") || null;
-                alert(valor + "" + idQualificacoes + "" + tabela);
+                alert(valor);
                 $.ajax({
                     url:"Controller/AlterarDados.php",
                     method: "POST",

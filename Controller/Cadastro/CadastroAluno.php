@@ -67,6 +67,7 @@
             "dataInicio"    => $Experiencias[$i]['de'],
             "dataSaida"     => $Experiencias[$i]['ate'],
             "cargo"         => $Experiencias[$i]['cargo'],
+            "empresa"       => $Experiencias[$i]['empresa'],
             "codAluno"      => $codAluno
         );
         $Result22 = $DB->InsertQuery("experiencias", $dados);

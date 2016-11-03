@@ -68,5 +68,5 @@
         $Result2 = $DB->InsertQuery("valores", $dados1);
     }
 
-    header("location:View/Shared/VerEmpresa.php");
+    header("location:../../OnePage.php?link=VerEmpresa");
 ?>

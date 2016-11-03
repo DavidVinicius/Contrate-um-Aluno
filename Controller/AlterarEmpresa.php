@@ -4,6 +4,7 @@ if (isset($_POST['existeEmpresa'] )) {
    $idEmpresa   = isset($_POST['idEmpresa'])?$_POST['idEmpresa']:null;
    $idUsuario   = $_SESSION['id'];
    $idTelefone  = isset($_POST['idTelefone'])?$_POST['idTelefone']:null;
+   $idValor     = isset($_POST['idValor'])?$_POST['idValor']:null;
    $tabela      = isset($_POST['tabela'])?$_POST['tabela']:null;
    $campo       = isset($_POST['campo'])?$_POST['campo']:null;
    $valor       = isset($_POST['valor'])?$_POST['valor']:null;
@@ -40,7 +41,7 @@ if (isset($_POST['existeEmpresa'] )) {
    if ($tabela == "valores") {
      include_once "../Model/ModelValores.class.php";
      $Valor = new Valores();
-     if ($Valor->UpdateValores($campo,$valor,"where codEmpresa = $idEmpresa")) {
+     if ($Valor->UpdateValores($campo, $valor,"where idValores = $idValor")) {
        echo "deu certo valores $valor";
      }
 

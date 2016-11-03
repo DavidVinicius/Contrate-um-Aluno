@@ -150,7 +150,7 @@
                           <div class="input-field col s12 m4">
                             <label for="">Telefone <?= $ResultTelefone['tipo']?></label>
                             <input placeholder=" " type="tel" name="<?= $ResultTelefone['telefone']?>" value="<?= $ResultTelefone['telefone']?>" data-idtelefone="<?= $ResultTelefone['idTelefone']?>" data-position="right" data-delay="50"  data-tooltip="Clique para editar" class="tooltipped" data-tabela="telefones" data-campo="telefone">
-                            <span class="red-text excluir">Excluir</span>
+                            <span class="red-text excluir" data-tabela="telefones" data-idtelefone="<?= $ResultTelefone['idTelefone']?>">Excluir</span>
 
                           </div>
                         <?php
@@ -200,10 +200,14 @@
                   <h1 class="center-align flow-text">Valores</h1>
                     <div class="col s12 m12">
                       <?php while($ResultValor = mysqli_fetch_assoc($consultaValor)){ ?>
-                        <span class="chip flow-text tooltipped" data-tabela="valores" data-campo="valor" data-idvalores="<?= $ResultValor['idValores']?>" data-position="right" data-delay="50"  data-tooltip="Clique para editar" contenteditable="true"> <?= $ResultValor['valor']?> <i class="material-icons close">close</i></span>
+                        <div class="chip">
+                          <span class="flow-text tooltipped" data-tabela="valores" data-campo="valor" data-idvalores="<?= $ResultValor['idValores']?>" data-position="right" data-delay="50"  data-tooltip="Clique para editar" contenteditable="true"> <?= $ResultValor['valor']?>
+                            </span>
+                            <i class="material-icons close excluir" data-tabela="valores" data-idvalor=" <?= $ResultValor['idValores']?>" > close</i>
+                        </div>
                         <?php } ?>
                         <div class="chip" ng-repeat="x in valores">
-                          <span class="" >{{x.valor}}</span>
+                          <span class="flow-text" >{{x.valor}}</span>
                           <i class="material-icons close">close</i>
                         </div>
                     </div>

@@ -19,8 +19,17 @@ app.controller("MostraEmpresa",['$scope',function($scope){
     }
     else
     {
-      Materialize.toast("Adicionado com sucesso",4000);
       $scope.telefones.push({tipo:$scope.tipo, telefone:$scope.Tel});
+      $.ajax({
+        url: "Controller/InserirDadosEmpresa.php",
+        method: "POST",
+        data:{existeEmpresa:"sim",tabela:"telefones",tipo:$scope.tipo, telefone:$scope.Tel},
+        success: function(data){
+          // alert(data);
+          Materialize.toast("Adicionado com sucesso",4000);
+
+        }
+      });
       $scope.Tel = "";
       $scope.tipo = "";
 
@@ -59,6 +68,7 @@ app.controller("MostraEmpresa",['$scope',function($scope){
       var idEmpresa     = $(this).data("idempresa")  || null;
       var idUsuario     = $(this).data("idusuario")  || null;
       var idTelefone    = $(this).data("idtelefone") || null;
+      var idValor       = $(this).data("idvalores")  || null;
       $.ajax({
         url:"Controller/AlterarEmpresa.php",
         method:"POST",
@@ -69,7 +79,8 @@ app.controller("MostraEmpresa",['$scope',function($scope){
           valor: valor,
           idEmpresa: idEmpresa,
           idUsuario: idUsuario,
-          idTelefone: idTelefone
+          idTelefone: idTelefone,
+          idValor   : idValor
         },
         success:function(data){
           Materialize.toast("Alterado com sucesso",4000);
@@ -88,7 +99,20 @@ app.controller("MostraEmpresa",['$scope',function($scope){
           var idEmpresa    = $("[name=idEmpresa]").val();
           if ($scope.valores.push({valor:valorAtual})) {
             // alert(valorAtual + " " + idEmpresa);
-              Materialize.toast("Adicionado com sucesso", 4000);
+              $.ajax({
+                url: "Controller/InserirDadosEmpresa.php",
+                method: "POST",
+                data:{
+                  existeEmpresa:"sim",
+                  tabela: "valores",
+                  idEmpresa: idEmpresa,
+                  valor: valorAtual
+                },
+                success: function(data){
+                  Materialize.toast("Adicionado com sucesso", 4000);
+                  // alert(data);
+                }
+              });
               $(this).val(" ");
 
           }
@@ -118,5 +142,25 @@ app.controller("MostraEmpresa",['$scope',function($scope){
           }
       });
     });
+
+    $(".excluir").click(function(){
+      var idTelefone   = $(this).data("idtelefone");
+      var idValor      = $(this).data("idvalor");
+      var tabela       = $(this).data("tabela");
+      var ApagarDivPai = $(this).parent();
+      // alert(idValor);
+      $.ajax({
+        url: "Controller/ExcluirDadosEmpresa.php",
+        method: "POST",
+        data:{existeEmpresa:"sim", tabela:tabela, idTelefone:idTelefone, idValor:idValor },
+        success: function(data){
+            // alert(data);
+            $(ApagarDivPai).remove();
+            Materialize.toast("Removido com sucesso",4000);
+        }
+      });
+    });
+
+
 
 }]);

@@ -37,8 +37,8 @@
 
 
                         <div class="input-field col s12 m6">
-                           <div class="chips chips-placeholder"></div>
-
+                          
+                           <div class="chips chips-placeholder" id="chips"></div>
                        </div>
                         <div class="input-field col s12 m6">
                             <label for="salario">Salário</label>

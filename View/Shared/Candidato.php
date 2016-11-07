@@ -271,10 +271,10 @@
                             </div>
                             <div class="input-field col s12 m12">
                               <label for="descricao">Descrição:</label>
-                              <textarea name="name" rows="8" cols="40" class="materialize-textarea"></textarea>
+                              <textarea name="name" rows="8" cols="40" class="materialize-textarea" ng-model="descricao"></textarea>
                             </div>
                            </div>
-
+                        <input type="hidden" name="beneficios" id="beneficios" value="{{beneficios}}">
                       </div>
                     </div>
                     <div class="modal-footer">

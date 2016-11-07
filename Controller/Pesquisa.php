@@ -48,7 +48,7 @@
   else if($tabela && $tabela == "qualificacoes")
   {
     include_once "../Model/ModelQualificacoes.class.php";
-    $Consulta  = $DB -> SearchQuery("qualificacoes q, aluno a", "where q.codAluno = a.idAluno AND competencia like '%".$valor."%'");
+    $Consulta  = $DB -> SearchQuery("qualificacoes q, aluno a", "where q.codAluno = a.idAluno AND q.competencia like '%".$valor."%'");
     if(isset($Consulta) )
     {
       echo "<h1 class='center-align flow-text'>Resultado para: $valor</h1>";

@@ -7,7 +7,7 @@
     $DB = new DataBase();
     //$VerificaSeEstaLogado = new VerificaSeEstaLogado();
     //$VarSessions = $VerificaSeEstaLogado->EstaLogado();
-  
+
     $tabela     = "vaga";
     $id         = $_SESSION['id'];
     $resultado  = $DB->SearchQuery("empresa", "WHERE codUsuario = {$id}");
@@ -20,7 +20,6 @@
         "cargaHoraria"  => (isset($_POST["cargaHoraria"])) ? $_POST["cargaHoraria"] : $msg,
         "salario"       => (isset($_POST["salario"])) ? $_POST["salario"] : $msg,
         "requisitos"    => (isset($_POST["requisitos"])) ? $_POST["requisitos"] : $msg,
-        "beneficios"    => (isset($_POST["beneficios"])) ? $_POST["beneficios"] : $msg,
         "codEmpresa"    => $codEmpresa
     );
 

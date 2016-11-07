@@ -97,6 +97,20 @@ CREATE TABLE `respostas`(
   CONSTRAINT `fk_repostas_entrevistas` FOREIGN KEY(`codEntrevista`) REFERENCES `entrevistas`(`idEntrevista`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `beneficiosEntrevista`(
+  `idBeneficioEntrevista` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `beneficio` VARCHAR(40) NOT NULL,
+  `codEntrevista` INT NOT NULL,
+  CONSTRAINT `fk_beneficiosVaga_entrevistas` FOREIGN KEY(`codEntrevista`) REFERENCES `entrevistas`(`idEntrevista`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `beneficiosVaga`(
+  `idBeneficioVaga` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `beneficio` VARCHAR(40) NOT NULL,
+  `codEmpresa` INT NOT NULL,
+  CONSTRAINT `fk_beneficiosVaga_empresa` FOREIGN KEY(`codEmpresa`) REFERENCES `empresa`(`idEmpresa`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `professor` (
   `idProfessor` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(40) NOT NULL,
@@ -113,7 +127,6 @@ CREATE TABLE `vaga` (
   `cargaHoraria` float(3,1) NOT NULL,
   `salario` float(6,2) DEFAULT NULL,
   `requisitos` varchar(255) DEFAULT NULL,
-  `beneficios` varchar(255) DEFAULT NULL,
   `codEmpresa` int(11) NOT NULL,
   CONSTRAINT `fk_vaga_empresa` FOREIGN KEY (`codEmpresa`) REFERENCES `empresa` (`idEmpresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

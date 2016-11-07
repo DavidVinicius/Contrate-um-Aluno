@@ -20,8 +20,8 @@
      $inicio = ($registros*$pagina)-$registros;
 
      //seleciona os itens por página
-     $alunos1 = $DB->SearchQuery("aluno", "order by idAluno desc limit $inicio,$registros");
-     $total1 = mysqli_num_rows($alunos1);
+     $alunos1   = $DB->SearchQuery("aluno", "order by idAluno desc limit $inicio,$registros");
+     $total1    = mysqli_num_rows($alunos1);
 
      //exibe os produtos selecionados
      while ($aluno = mysqli_fetch_object($alunos1)) {

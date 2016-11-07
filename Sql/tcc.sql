@@ -59,7 +59,7 @@ CREATE TABLE `formacoes` (
   CONSTRAINT `fk_formacoes_aluno` FOREIGN KEY (`codAluno`) REFERENCES `aluno` (`idAluno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `mensagens` (
+CREATE TABLE `notificacoes` (
   `idMensagem` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `titulo` varchar(40) NOT NULL,
   `de` varchar(40) NOT NULL,
@@ -68,6 +68,34 @@ CREATE TABLE `mensagens` (
   `codUsuario` int(11) NOT NULL,
   CONSTRAINT `fk_mensagens_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `entrevistas`(
+  `idEntrevista` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `data` DATE NOT NULL,
+  `hora` TIME NOT NULL,
+  `local` VARCHAR(50) NOT NULL,
+  `numero` VARCHAR(10) NOT NULL,
+  `bairro` VARCHAR(20) NOT NULL,
+  `complemento` VARCHAR(20),
+  `cidade` VARCHAR(30) NOT NULL,
+  `estado` CHAR(2) NOT NULL,
+  `vaga` VARCHAR(45) NOT NULL,
+  `salario` FLOAT(6,2),
+  `cargaHoraria` INT(2) NOT NULL,
+  `beneficios` VARCHAR(255),
+  `descricao` VARCHAR(255) NOT NULL,
+  `codAluno` INT NOT NULL,
+  `codEmpresa` INT NOT NULL,
+  CONSTRAINT `fk_entrevistas_empresa` FOREIGN KEY(`codEmpresa`) REFERENCES `empresa`(`idEmpresa`),
+  CONSTRAINT `fk_entrevistas_aluno` FOREIGN KEY(`codAluno`) REFERENCES `aluno`(`idAluno`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `respostas`(
+  `idResposta` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `resposta` TINYINT(1),
+  `codEntrevista` INT NOT NULL,
+  CONSTRAINT `fk_repostas_entrevistas` FOREIGN KEY(`codEntrevista`) REFERENCES `entrevistas`(`idEntrevista`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `professor` (
   `idProfessor` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,

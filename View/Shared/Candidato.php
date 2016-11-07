@@ -28,6 +28,7 @@
    include_once "Model/ModelQualificacoes.class.php";
    $idAluno                = $_GET['id'];
    $idUsuario              = $_GET['cod'];
+   $idUsuarioEmpresa       = $_SESSION['id'];
    $Aluno                  = new ModelAluno();
    $Endereco               = new Enderecos();
    $Telefone               = new Telefones();
@@ -278,7 +279,8 @@
                     </div>
                     <div class="modal-footer">
                       <a href="" class="btn-flat red-text modal-close">Cancelar</a>
-                      
+                      <input type="hidden" id="idAluno" name="idAluno" value="<?= $idAluno ?>" />
+                      <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $idUsuarioEmpresa ?>" />
                       <input type="submit" value="Marcar entrevista" class="btn-flat waves-light waves-green">
                     </form>
                     </div>

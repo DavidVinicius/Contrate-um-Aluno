@@ -28,22 +28,20 @@
                             <label for="titulo">Nome da vaga</label>
                             <input type="text" name="titulo" id="titulo" class="flow-text" style="font-size:22px" ng-model="titulo" required>
                         </div>
-                        <div class="input-field col s12 m6">
-                            <label for="cargaHoraria">Carga horária semanal</label>
+                        <div class="input-field col s12 m3">
+                          <label for="salario">Salário:</label>
+                          <input type="number" name="salario" id="salario" min="400" ng-model="salario" required>
+                        </div>
+                        <div class="input-field col s12 m3">
+                            <label for="cargaHoraria">Carga horária semanal:</label>
                             <input type="number" class="flow-text" name="cargaHoraria" id="cargaHoraria" max="50" min="24" maxlength="2" style="font-size:22px" ng-model="cargaHoraria" required >
                         </div>
                     </div>
                     <div class="row">
-
-
-                        <div class="input-field col s12 m6">
-                          
+                      <div class="input-field col s12 m12">
+                          <label for="beneficios">Beneficios</label><br><br>
                            <div class="chips chips-placeholder" id="chips"></div>
                        </div>
-                        <div class="input-field col s12 m6">
-                            <label for="salario">Salário</label>
-                            <input type="number" name="salario" id="salario" min="400" ng-model="salario" required>
-                        </div>
                     </div>
                     <div class="row">
                        <div class="input-field col s12 m6">
@@ -60,6 +58,7 @@
 
                         <button class="btn blue" ng-click='adicionarVaga()'>Adicionar vaga</button>
                     </div>
+                    <input type="hidden" name="beneficios" id="beneficios" value="{{beneficios}}">
                 </form>
             </div>
         </div>
@@ -78,7 +77,7 @@
                         </div>
                         <div class="card-action">
                           <form action="" method="get">
-                              <input type="submit" value="Excluir" class="btn red ">
+                              <input type="submit" value="É preciso atualizar para editar ou excluir" class="btn yellow ">
 
                           </form>
                         </div>
@@ -98,7 +97,9 @@
                     <p>Descrição: <span class="contentEditable" contenteditable="true"><?= $ResultVaga['descricao']?></span></p>
                 </div>
                 <div class="card-action">
-                          <form action="OnePage.php?link=CriarVaga&idVaga=<?=$ResultVaga['idVaga'] ?>" method="post">
+                          <form action="Controller/ExcluirDadosEmpresa.php" method="post">
+                              <input type="text" name="tabela" id="tabela" value="vaga">
+                              <input type="text" name="idVaga" value="<?= $ResultVaga['idVaga'] ?>">
                               <input type="submit" value="Excluir" class="btn red">
                           </form>
 

@@ -1,7 +1,8 @@
 var app = angular.module("myapp",[]);
 
 app.controller("Candidato",["$scope", function($scope){
-
+  $scope.beneficios = [];
+  
 
 
 
@@ -17,6 +18,28 @@ app.controller("Candidato",["$scope", function($scope){
      placeholder: 'Enter a tag',
      secondaryPlaceholder: 'Digite ',
   });
+  $('.chips').on('chip.add', function(e, chip){
+        // you have the added chip here
+     //  alert(chip);
+     if($scope.beneficios.push(chip))
+     {
+       console.log(chip);
+       Materialize.toast("Adicionado com sucesso",4000);
+
+     }
+
+
+ });
+ $('.chips').on('chip.delete', function(e, chip){
+
+
+      if($scope.beneficios.splice(chip,1))
+      {
+        Materialize.toast("Excluido com sucesso",4000);
+      }
+     //  console.log($scope.qualificacoes);
+ //                  alert(a);
+ });
 
   $("#marcarEntrevista").submit(function(e){
       var dados = new FormData(this);

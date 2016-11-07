@@ -25,5 +25,10 @@
       }
   }
 
+  if (isset($_POST['tabela']) && $_POST['tabela'] == 'vaga') {
+    $tabela     = isset($_POST['tabela'])?$_POST['tabela']:null;
+    $idVaga     = isset($_POST['idVaga'])?$_POST['idVaga']:null;
+  }
+
 
  ?>

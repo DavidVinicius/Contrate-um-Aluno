@@ -2,7 +2,7 @@ var app = angular.module("myapp",[]);
 
 app.controller("CriarVaga",["$scope",function($scope){
     $scope.vaga = [];
-    $scope.beneficios = $(".chips").material_chip("data");
+    $scope.beneficios = [];
     $scope.adicionarVaga = function(){
 
 
@@ -99,6 +99,28 @@ app.controller("CriarVaga",["$scope",function($scope){
     placeholder: 'Auxílio Transporte',
     secondaryPlaceholder: 'Beneficios',
   });
+  $('.chips').on('chip.add', function(e, chip){
+        // you have the added chip here
+     //  alert(chip);
+     if($scope.beneficios.push(chip))
+     {
+       console.log(chip);
+       Materialize.toast("Adicionado com sucesso",4000);
+
+     }
+
+
+ });
+ $('.chips').on('chip.delete', function(e, chip){
+
+
+      if($scope.beneficios.splice(chip,1))
+      {
+        Materialize.toast("Excluido com sucesso",4000);
+      }
+     //  console.log($scope.qualificacoes);
+ //                  alert(a);
+ });
   $(".chips").click(function(event) {
 
     Materialize.toast("Digite e aperte enter para adicionar benefícios",4000);

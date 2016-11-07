@@ -1,73 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/materialize.min.css" >
-  <link rel="stylesheet" href="../fonts/material-icons.css" media="screen" title="no title">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <?php
-    include_once '../Model/DataBase.class.php';
+<?php
+     include_once "../Model/DataBase.class.php";
     $DB = new DataBase();
-    $items_por_paginas = 3;
 
-    $pagina = intval($_GET['pagina']);
-    // $pagina = 1;
+     //verifica a página atual caso seja informada na URL, senão atribui como 1ª página
+     $pagina = (isset( $_GET['pagina']) ) ? $_GET['pagina'] : 1;
 
-    //Numero total de linhas
-    $numTotal = mysqli_num_rows($DB->SearchQuery("qualificacoes",""));
+     //seleciona todos os itens da tabela
+     $alunos = $DB->SearchQuery("qualificacoes");
+     //conta o total de itens
+     $total = mysqli_num_rows($alunos);
+    
+     //seta a quantidade de itens por página, neste caso, 2 itens
+     $registros = 2;
 
-    //Consulta que vai trazer os dados do banco
-    $consulta = $DB->SearchQuery("qualificacoes","limit $pagina, $items_por_paginas");
+     //calcula o número de páginas arredondando o resultado para cima
+     $numPaginas = ceil($total/$registros);
 
+     //variavel para calcular o início da visualização com base na página atual
+     $inicio = ($registros*$pagina)-$registros;
 
+     //seleciona os itens por página
+     $alunos1   = $DB->SearchQuery("qualificacoes", "order by idQualificacoes desc limit $inicio,$registros",'competencia');
+     $total1    = mysqli_num_rows($alunos1);
+     $aluno     = mysqli_fetch_object($alunos1);
+    //  var_dump($aluno);
+     foreach ($aluno as $valor) {
+       # code...
+       echo $valor."<br />";
+     }
+     //exibe os produtos selecionados
+    //  while ($aluno = mysqli_fetch_object($alunos1)) {
+    //     echo "=============######================<br/><br/>";
+    //       echo $aluno->competencia." - ";
+     //
+    //     echo "<br/><br/><br/>";
+    //  }
 
-    $num_paginas = ceil($numTotal/$items_por_paginas);
-    echo $numTotal;
-   ?>
-  <div class="container">
-      <div class="row">
-        <div class="col s12 m12 l12">
-          <h1>Produtos</h1>
-          <?php if($numTotal > 0){ ?>
-            <table class="table">
-                  <thead>
-                    <tr>
-                      <td>Competencia</td>
-                      <td>valor</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php while($produto = mysqli_fetch_assoc($consulta)){ ?>
-                    <tr>
-                      <td>
-                        <?php echo $produto['competencia'] ?>
-                      </td>
-                    </tr>
-                    <?php }?>
-
-                  </tbody>
-            </table>
-            <?php
-          }else {
-            echo "Nada encontrado";
-          }
-             ?>
-        </div>
-        <ul class="pagination">
-          <li class="disabled"><a href="http://localhost/tcc/Teste/testePaginacao.php?pagina=<?php echo ($i - 1); ?>"><i class="material-icons">chevron_left</i></a></li>
-          <?php
-              for($i=1; $i <= $num_paginas; $i++){
-           ?>
-          <li class=""><a href="http://localhost/tcc/Teste/testePaginacao.php?pagina=<?php echo $i; ?>"><?php echo $i ?></a></li>
-            <?php } ?>
-          <li class="waves-effect"><a href="http://localhost/tcc/Teste/testePaginacao.php?pagina=<?php echo ($i + 1); ?>"><i class="material-icons">chevron_right</i></a></li>
-        </ul>
-      </div>
-  </div>
-
-</body>
-</html>
+     //exibe a paginação
+     for($i = 1; $i < $numPaginas + 1; $i++) {
+          echo "<a href='testePaginacao.php?pagina=$i'>".$i."</a> ";
+     }
+?>

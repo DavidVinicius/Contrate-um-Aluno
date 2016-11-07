@@ -5,22 +5,159 @@
   $DB     = new DataBase();
   $Aluno  = new ModelAluno();
 
-  $tabela = $_GET['tabela'];
-  $valor  = isset($_GET['valor']) ? $_GET['valor'] : null;
+  $tabela = isset($_REQUEST['filtro'])?$_REQUEST['filtro']:'todos';
+  $valor  = isset($_REQUEST['pesquisa']) ? $_REQUEST['pesquisa'] : null;
 
   if(!$tabela)
-    echo "Tabela não informada";
+      echo "Tabela não informada";
+  if ($tabela && $tabela == "todos") {
+      include_once "../Model/ModelQualificacoes.class.php";
+      $Consulta = $DB -> SearchQuery('aluno',"where nome like '%$valor%'");
+      echo "<h1 class='center-align flow-text'>Resultados para: $valor</h1>";
+      if(isset($Consulta) )
+      {
+        while($linha = mysqli_fetch_assoc($Consulta))
+        {
+          $idAluno         = $linha['idAluno'];
+          $Qualificacao    = new ModelQualificacoes();
+          $ResultadoQ =    $Qualificacao -> ReadQualificacoes("where codAluno = $idAluno");
 
-  if($tabela && $tabela == "qualificacoes")
+          ?>
+          <div class="col s12 m6">
+              <div class="card horizontal hoverable">
+                  <div class="card-image activator">
+                      <img src="Images/Upload/<?= $linha['foto'] ?>" alt="Imagem perfil" class="responsive-img circle" >
+                      <span class="card-title black-text"><?=$linha['nome']?></span>
+                  </div>
+                  <div class="card-content">
+                    <!-- <span class="center-align">Habilidades:</span> -->
+                      <?php while($qualificacao = mysqli_fetch_assoc($ResultadoQ)){ ?>
+                      <span class="chip"><?=$qualificacao['competencia']?></span>
+                      <?php } ?>
+                      <a href="OnePage.php?link=Candidato&id=<?=$linha['idAluno']?>&cod=<?= $linha['codUsuario']?>"><button class="btn blue">Ver perfil</button></a>
+                  </div>
+              </div>
+          </div>
+          <?php
+        }
+      }
+      else{
+        echo "Nada encontrado :)";
+      }
+  }
+  else if($tabela && $tabela == "qualificacoes")
   {
-    $resultado  = mysqli_fetch_assoc($DB->SearchQuery("$tabela", "where competencia like '%".$valor."%'"));
+    include_once "../Model/ModelQualificacoes.class.php";
+    $Consulta  = $DB -> SearchQuery("qualificacoes q, aluno a", "where q.codAluno = a.idAluno AND competencia like '%".$valor."%'");
+    if(isset($Consulta) )
+    {
+      echo "<h1 class='center-align flow-text'>Resultado para: $valor</h1>";
+      while($linha = mysqli_fetch_assoc($Consulta))
+      {
+        $idAluno         = $linha['idAluno'];
+        $Qualificacao    = new ModelQualificacoes();
+        $ResultadoQ =    $Qualificacao -> ReadQualificacoes("where codAluno = $idAluno");
+
+        ?>
+        <div class="col s12 m6">
+            <div class="card horizontal hoverable">
+                <div class="card-image activator">
+                    <img src="Images/Upload/<?= $linha['foto'] ?>" alt="Imagem perfil" class="responsive-img circle" >
+                    <span class="card-title black-text"><?=$linha['nome']?></span>
+                </div>
+                <div class="card-content">
+                  <!-- <span class="center-align">Habilidades:</span> -->
+                    <?php while($qualificacao = mysqli_fetch_assoc($ResultadoQ)){ ?>
+                    <span class="chip"><?=$qualificacao['competencia']?></span>
+                    <?php } ?>
+                    <a href="OnePage.php?link=Candidato&id=<?=$linha['idAluno']?>&cod=<?= $linha['codUsuario']?>"><button class="btn blue">Ver perfil</button></a>
+                </div>
+            </div>
+        </div>
+        <?php
+      }
+    }
+    else{
+      echo "Nada encontrado :(";
+    }
   }
   else if($tabela && $tabela == "experiencias")
   {
-    $resultado = mysqli_fetch_assoc($DB->SearchQuery("$tabela", "where descricao like '%".$valor."%' or cargo like '%".$valor."%'"));
+    $Consulta  = $DB->SearchQuery("experiencias e, aluno a", "where e.codAluno = a.idAluno and descricao like '%".$valor."%' or cargo like '%".$valor."%'");
+    if(isset($Consulta) )
+    {
+      include_once "../Model/ModelExperiencias.class.php";
+      echo "<h1 class='center-align flow-text'>Resultado para: $valor</h1>";
+      while($linha = mysqli_fetch_assoc($Consulta))
+      {
+        $idAluno         = $linha['idAluno'];
+        $Experiencia     = new Experiencias();
+        $ConsultaE       =    $Experiencia -> ReadExperiencias("where codAluno = $idAluno");
+
+        ?>
+        <div class="col s12 m6">
+            <div class="card horizontal hoverable">
+                <div class="card-image activator">
+                    <img src="Images/Upload/<?= $linha['foto'] ?>" alt="Imagem perfil" class="responsive-img circle" >
+                    <span class="card-title gray-text"><?=$linha['nome']?></span>
+                </div>
+                <div class="card-content">
+                  <span class="center-align flow-text">Experiências:</span><br>
+                  <?php while ($ResultE = mysqli_fetch_object($ConsultaE)) {
+                    ?>
+                      <b><span><?= $ResultE -> cargo . " - ". $ResultE->empresa ?></span></b><br>
+                    <?php
+                  } ?>
+                  <a href="OnePage.php?link=Candidato&id=<?=$linha['idAluno']?>&cod=<?= $linha['codUsuario']?>"><button class="btn blue">Ver perfil</button></a>
+                </div>
+            </div>
+        </div>
+        <?php
+      }
+    }
+    else{
+      echo "Nada encontrado :(";
+    }
   }
   else if($tabela && $tabela == "formacoes")
   {
-    $resultado = mysqli_fetch_assoc($DB->SearchQuery("$tabela", "where curso like '%".$valor."%' or instituicao like '%".$valor."%'"));
+    $Consulta = $DB->SearchQuery("formacoes f, aluno a", "where f.codAluno = a.idAluno and curso like '%".$valor."%' or instituicao like '%".$valor."%'");
+    include_once "../Model/ModelFormacoes.class.php";
+    if(isset($Consulta) )
+    {
+      echo "<h1 class='center-align flow-text'>Resultado para: $valor</h1>";
+      while($linha = mysqli_fetch_assoc($Consulta))
+      {
+        $idAluno         = $linha['idAluno'];
+        $Formacao        = new Formacoes();
+        $ConsultaF       =    $Formacao -> ReadFormacoes("where codAluno = $idAluno");
+
+        ?>
+        <div class="col s12 m6">
+            <div class="card horizontal hoverable">
+                <div class="card-image activator">
+                    <img src="Images/Upload/<?= $linha['foto'] ?>" alt="Imagem perfil" class="responsive-img circle" >
+                    <span class="card-title black-text"><?=$linha['nome']?></span>
+                </div>
+                <div class="card-content">
+                  <span class="center-align flow-text">Formações:</span><br>
+                  <?php while ($ResultF = mysqli_fetch_object($ConsultaF)) {
+                    ?>
+                     <b><span class=""><?=$ResultF -> curso?></span></b><br>
+                    <?php
+                  } ?>
+                  <a href="OnePage.php?link=Candidato&id=<?=$linha['idAluno']?>&cod=<?= $linha['codUsuario']?>"><button class="btn blue">Ver perfil</button></a>
+                </div>
+            </div>
+        </div>
+        <?php
+      }
+    }
+    else{
+      echo "Nada encontrado :(";
+    }
+  }
+  else{
+    $resultado = "nada encontrado";
   }
 ?>

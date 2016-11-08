@@ -76,10 +76,7 @@
                           <p class="truncate contentEditable" contenteditable="true">Descrição: {{x.descricao}}</p>
                         </div>
                         <div class="card-action">
-                          <form action="" method="get">
-                              <input type="submit" value="É preciso atualizar para editar ou excluir" class="btn yellow ">
-
-                          </form>
+                          <button class="btn yellow" ng-click="atualizar()">É preciso atualizar para editar ou excluir</button>
                         </div>
                       </div>
                 </div>
@@ -97,7 +94,7 @@
                     <p>Descrição: <span class="contentEditable" contenteditable="true"><?= $ResultVaga['descricao']?></span></p>
                 </div>
                 <div class="card-action">
-                          <form action="Controller/ExcluirDadosEmpresa.php" method="post">
+                          <form action="Controller/ExcluirDadosEmpresa.php" method="post" id="excluir">
                               <input type="text" name="tabela" id="tabela" value="vaga">
                               <input type="text" name="idVaga" value="<?= $ResultVaga['idVaga'] ?>">
                               <input type="submit" value="Excluir" class="btn red">

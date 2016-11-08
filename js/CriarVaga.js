@@ -125,4 +125,27 @@ app.controller("CriarVaga",["$scope",function($scope){
 
     Materialize.toast("Digite e aperte enter para adicionar benefícios",4000);
   });
+
+  $("#excluir").submit(function(e){
+      var dados     = new FormData(this);
+      var apagarDiv = $(this).parent().parent().parent();
+      e.preventDefault();
+       $.ajax({
+           cache: false,
+           processData:false,
+          contentType: false,
+          mimeType:"multipart/form-data",
+          data: dados,
+          type: 'POST',
+          url: 'Controller/ExcluirDadosEmpresa.php',
+          success: function(data)
+          {
+              
+              Materialize.toast("Excluido com sucesso",4000);
+              $(apagarDiv).remove();
+
+
+          }
+      });
+    });
 }]);

@@ -39,7 +39,7 @@
                 <div class="row">
                   <div class="input-field col s12 m6">
                     <label for="cnpf">CNPJ:</label>
-                    <input type="text" name="cnpj" id="cnpj" pattern="[0-9]{.14}" required="">
+                    <input type="text" name="cnpj" id="cnpj" required="">
                   </div>
                   <div class="input-field col s12 m6">
                     <label for="area">Área de atuação:</label>

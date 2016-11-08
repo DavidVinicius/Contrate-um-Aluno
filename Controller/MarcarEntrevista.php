@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once "../Model/ModelEntrevistas.class.php";
     require_once "../Model/ModelBeneficiosExperiencia.class.php";
     require_once "../Model/ModelEmpresa.class.php";
@@ -7,7 +8,7 @@
     $entrevista             = new ModelEntrevistas();
     $beneficiosExperiencia  = new ModelBeneficiosExperiencia();
 
-    $idUsuario    = $_POST['idUsuario'];
+    $idUsuario    = $_SESSION['id'];
     $beneficios   = json_decode($_POST['beneficios'],true);
 
     $data         = isset($_POST['data'])       ? $_POST['data']:null;
@@ -20,11 +21,14 @@
     $estado       = isset($_POST['estado'])     ? $_POST['estado']:null;
     $vaga         = isset($_POST['vaga'])       ? $_POST['vaga']:null;
     $salario      = isset($_POST['salario'])    ? $_POST['salario']:null;
+    $cargaHoraria = isset($_POST['cargaHoraria'])? $_POST['cargaHoraria']:null;
     $descricao    = isset($_POST['descricao'])  ? $_POST['descricao']:null;
     $idAluno      = $_POST['idAluno'];
 
     $empresaObject  = mysqli_fetch_object($empresa->ReadEmpresa("where codUsuario = $idUsuario"));
-    $idEmpresa      = $empresaObject->idEmpresa;
+    var_dump($empresaObject);
+
+    $idEmpresa  = $empresaObject->idEmpresa;
     $dados = array(
         "data"          => $data,
         "hora"          => $hora,
@@ -36,6 +40,7 @@
         "estado"        => $estado,
         "vaga"          => $vaga,
         "salario"       => $salario,
+        "cargaHoraria"  => $cargaHoraria,
         "descricao"     => $descricao,
         "codAluno"      => $idAluno,
         "codEmpresa"    => $idEmpresa
@@ -49,7 +54,7 @@
             "beneficio"     => $beneficios[$i]['tag'],
             "codEntrevista" => $ultimaExperiencia
         );
-        $insertBeneficiosExperiencia    = $beneficiosExperiencia->InsertQuery($dados22);
+        $insertBeneficiosExperiencia    = $beneficiosExperiencia->CreateBeneficiosExperiencia($dados22);
     }
 
     echo $ultimaExperiencia;

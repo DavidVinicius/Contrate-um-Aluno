@@ -2,7 +2,7 @@ var app = angular.module("myapp",[]);
 
 app.controller("Candidato",["$scope", function($scope){
   $scope.beneficios = [];
-  
+
 
 
 
@@ -54,7 +54,6 @@ app.controller("Candidato",["$scope", function($scope){
           url: 'Controller/MarcarEntrevista.php',
           success: function(data)
           {
-              alert(data);
               Materialize.toast("Entrevista marcada com sucesso, clique para continuar",4000);
               $(".modal").hide(1000);
 

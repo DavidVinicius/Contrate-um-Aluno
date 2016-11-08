@@ -82,7 +82,6 @@ CREATE TABLE `entrevistas`(
   `vaga` VARCHAR(45) NOT NULL,
   `salario` FLOAT(6,2),
   `cargaHoraria` INT(2) NOT NULL,
-  `beneficios` VARCHAR(255),
   `descricao` VARCHAR(255) NOT NULL,
   `codAluno` INT NOT NULL,
   `codEmpresa` INT NOT NULL,

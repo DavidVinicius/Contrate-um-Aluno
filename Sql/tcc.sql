@@ -129,7 +129,7 @@ CREATE TABLE `beneficiosVaga`(
   `idBeneficioVaga` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `beneficio` VARCHAR(40) NOT NULL,
   `codVaga` INT NOT NULL,
-  CONSTRAINT `fk_beneficiosVaga_empresa` FOREIGN KEY (`codVaga`) REFERENCES `vaga`(`idVaga`)
+  CONSTRAINT `fk_beneficiosVaga_vaga` FOREIGN KEY (`codVaga`) REFERENCES `vaga`(`idVaga`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `enderecos` (

@@ -30,12 +30,13 @@ app.controller("CriarVaga",["$scope",function($scope){
 
         if($scope.titulo != null && $scope.cargaHoraria != "" && $scope.salario != "" && $scope.requisitos != "" && $scope.descricao != "")
         {
-            $scope.vaga.push({titulo:$scope.titulo, carga: $scope.cargaHoraria, Salario: $scope.salario, requisitos:$scope.requisitos, descricao:$scope.descricao});
+            $scope.vaga.push({titulo:$scope.titulo, carga: $scope.cargaHoraria, Salario: $scope.salario, requisitos:$scope.requisitos, descricao:$scope.descricao, beneficios:$('[name=beneficios]').val()});
 
 
                     var titulo       = $scope.titulo;
                     var cargaHoraria = $scope.cargaHoraria;
                     var salario      = $scope.salario;
+                    var beneficios   = $('[name=beneficios]').val();
                     var requisitos   = $scope.requisitos;
                     var descricao    = $scope.descricao;
 //                    e.preventDefault();
@@ -44,12 +45,13 @@ app.controller("CriarVaga",["$scope",function($scope){
 //                         processData:false,
 //                        contentType: false,
 //                        mimeType:"multipart/form-data",
-                        data: {titulo:$scope.titulo, cargaHoraria: $scope.cargaHoraria, requisitos: $scope.requisitos, descricao: $scope.descricao,salario:$scope.salario},
+                        data: {titulo:$scope.titulo, cargaHoraria: $scope.cargaHoraria, requisitos: $scope.requisitos, descricao: $scope.descricao,salario:$scope.salario, beneficios:beneficios},
                         type: 'POST',
                         url: 'Controller/Cadastro/CadastroVaga.php',
                         success: function(data)
                         {
                             Materialize.toast('Vaga cadastrada com sucesso',4000);
+                            alert(data);
                         },
                         error: function(){
                             Materialize.toast('Erro ao cadastrar vaga, tente novamente',4000);
@@ -125,4 +127,27 @@ app.controller("CriarVaga",["$scope",function($scope){
 
     Materialize.toast("Digite e aperte enter para adicionar benefícios",4000);
   });
+
+  $(".excluir").submit(function(e){
+      var dados     = new FormData(this);
+      var apagarDiv = $(this).parent().parent();
+      e.preventDefault();
+       $.ajax({
+           cache: false,
+           processData:false,
+          contentType: false,
+          mimeType:"multipart/form-data",
+          data: dados,
+          type: 'POST',
+          url: 'Controller/ExcluirDadosEmpresa.php',
+          success: function(data)
+          {
+
+              Materialize.toast("Excluido com sucesso",4000);
+              $(apagarDiv).remove();
+
+
+          }
+      });
+    });
 }]);

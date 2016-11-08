@@ -76,10 +76,7 @@
                           <p class="truncate contentEditable" contenteditable="true">Descrição: {{x.descricao}}</p>
                         </div>
                         <div class="card-action">
-                          <form action="" method="get">
-                              <input type="submit" value="É preciso atualizar para editar ou excluir" class="btn yellow ">
-
-                          </form>
+                          <button class="btn yellow" ng-click="atualizar()">Atualize para editar ou excluir</button>
                         </div>
                       </div>
                 </div>
@@ -87,19 +84,38 @@
        if($ConsultaVaga){
             while($ResultVaga = mysqli_fetch_assoc($ConsultaVaga))
             {
+              $idVaga  = $ResultVaga['idVaga'];
             ?>
             <div class="card col s12 m6 hoverable">
                 <span class="card-title"><?= $ResultVaga['titulo'] ?></span>
                 <div class="card-content">
                     <p>Carga horária: <span class="contentEditable" contenteditable="true"><?= $ResultVaga['cargaHoraria']?></span></p>
                     <p>Salario: <span class="contentEditable" contenteditable="true"><?= $ResultVaga['salario']?></span></p>
-                    <p>Benefícios: <span class="contentEditable" contenteditable="true"><?= $ResultVaga['beneficios']?></span></p>
+                    <p>
+                      Benefícios:
+                    <?php
+                    require_once "Model/ModelBeneficiosVaga.class.php";
+                    $Beneficio   = new ModelBeneficiosVaga();
+                    $Consulta    = $Beneficio->ReadBeneficiosVaga("where codVaga = $idVaga");
+                      while ($ResultBeneficios = mysqli_fetch_object($Consulta)) {
+                      ?>
+                       <span class="chip"><?= $ResultBeneficios -> beneficio?></span>
+
+                      <?php
+                      }
+                     ?>
+                   </p>
+                    <p>
+                      Requisitos: <span>
+                        <?=$ResultVaga['requisitos']?>
+                      </span>
+                    </p>
                     <p>Descrição: <span class="contentEditable" contenteditable="true"><?= $ResultVaga['descricao']?></span></p>
                 </div>
                 <div class="card-action">
-                          <form action="Controller/ExcluirDadosEmpresa.php" method="post">
-                              <input type="text" name="tabela" id="tabela" value="vaga">
-                              <input type="text" name="idVaga" value="<?= $ResultVaga['idVaga'] ?>">
+                          <form action="Controller/ExcluirDadosEmpresa.php" method="post" class="excluir">
+                              <input type="hidden" name="tabela" id="tabela" value="vaga">
+                              <input type="hidden" name="idVaga" value="<?= $ResultVaga['idVaga'] ?>">
                               <input type="submit" value="Excluir" class="btn red">
                           </form>
 

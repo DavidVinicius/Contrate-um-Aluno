@@ -13,6 +13,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
     $scope.ateExp           = "";
     $scope.atualExp         = false;
     $scope.nomeExperiencia  = "";
+    $scope.empresa          = "";
     $scope.textoExperiencia = "";
     $scope.telefone         = "";
     $scope.tipo             = "";
@@ -73,7 +74,10 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                 Materialize.toast("Campo data de início está vazio",4000);
             }else if($scope.ateExp == "" || $scope.ateExp == null){
                 Materialize.toast("O campo data de saída está vazio", 4000);
-            }else if($scope.nomeExperiencia == "" || $scope.nomeExperiencia == null){
+            }else if($scope.empresa == "" || $scope.empresa == null) {
+                  Materialize.toast("O campo empresa está vazio", 4000);
+            }
+            else if($scope.nomeExperiencia == "" || $scope.nomeExperiencia == null){
                 Materialize.toast("O campo cargo está vazio", 4000);
             }else if($scope.textoExperiencia == "" || $scope.textoExperiencia == null)
             {
@@ -88,6 +92,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                         dataInicio:$('[name=deExp]').val(),
                         dataSaida:ate,
                         cargo:$scope.nomeExperiencia,
+                        empresa: $scope.empresa,
                         descricao:$scope.textoExperiencia
                     },
                     success: function(data){

@@ -254,7 +254,8 @@
                                         <h1 class='flow-text center-align'>Experiência</h1>
                                         <div class="input-field col s12 m6">
                                             <label for="deExp">Data de inicio:</label><br>
-                                            <input type="date" name="deExp" id="deExp" ng-model="deExp"> </div>
+                                            <input type="date" name="deExp" id="deExp" ng-model="deExp">
+                                        </div>
                                         <div class="input-field col s12 m6">
                                            <label for="ateExp" ng-If="!atualExp">Data de Saída:</label><br>
                                             <input type="date" name="ateExp" id="ateExp" class="" ng-model="ateExp" ng-If="!atualExp">
@@ -263,8 +264,13 @@
                                         </div>
                                     </div>
                                     <div class="input-field col s12 m12">
+                                      <label for="empresa">Empresa:</label>
+                                      <input type="text" name="empresa" id="empresa" ng-model="empresa">
+                                    </div>
+                                    <div class="input-field col s12 m12">
                                         <label for="cargo">Cargo</label>
-                                        <input type="text" class='validate' id="cargo" ng-model='nomeExperiencia'> </div>
+                                        <input type="text" class='validate' id="cargo" ng-model='nomeExperiencia'>
+                                    </div>
                                     <div class="input-field col s12 m12">
                                         <label for="experiencia">Diga sobre sua experiência</label>
                                         <textarea name="" id="experiencia" cols="30" rows="10" class='materialize-textarea' length='255' ng-model="textoExperiencia"></textarea>
@@ -327,7 +333,7 @@
                     ?>
                         </div>
                 </div>
-                
+
 
             </div>
         </div>

@@ -17,6 +17,28 @@
 </head>
 <body>
     <div class="container">
+      <div class="row">
+        <form method="Controller/Pesquisa.php" class="" method="get" id="pesquisar">
+        <div class="input-field col s12 m12">
+          <label for="pesquisa">Pesquisa:</label>
+          <input type="text" name="pesquisa" id="pesquisa" required>
+
+        </div>
+        <div class="input-field col s12 m8">
+            <input class="with-gap" name="filtro" type="radio" id="todos"  value="todos" />
+            <label for="todos">Todos</label>
+            <input class="with-gap" name="filtro" type="radio" id="qualificacao" value="qualificacoes" />
+            <label for="qualificacao">Competência</label>
+            <input class="with-gap" name="filtro" type="radio" id="formacao" value="formacoes"  />
+            <label for="formacao">Formação</label>
+            <input class="with-gap" name="filtro" type="radio" id="experiencia" value="experiencias"  />
+            <label for="experiencia">Experiência</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <input type="submit" value="Pesquisar" class="btn btn-large blue">
+        </div>
+      </form>
+      </div>
        <h1 class="flow-text center-align">Vagas no Contrate um Aluno</h1>
 
         <?php

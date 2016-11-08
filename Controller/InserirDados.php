@@ -49,6 +49,7 @@
         $dataInicio = isset($_POST['dataInicio'])   ?   $_POST['dataInicio']:null;
         $dataSaida  = isset($_POST['dataSaida'])    ?   $_POST['dataSaida']:null;
         $cargo      = isset($_POST['cargo'])        ?   $_POST['cargo']:null;
+        $empresa    = isset($_POST['empresa'])      ?   $_POST['empresa']:null;
 
         $Experiencia   = new Experiencias();
         $dados = array(
@@ -56,6 +57,7 @@
             "dataInicio"    => $dataInicio,
             "dataSaida"     => $dataSaida,
             "cargo"         => $cargo,
+            "empresa"       => $empresa,
             "codAluno"      => $idAluno
         );
         if($Experiencia->CreateExperiencias($dados))

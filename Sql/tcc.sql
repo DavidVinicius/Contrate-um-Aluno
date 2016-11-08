@@ -104,12 +104,7 @@ CREATE TABLE `beneficiosEntrevista`(
   CONSTRAINT `fk_beneficiosVaga_entrevistas` FOREIGN KEY(`codEntrevista`) REFERENCES `entrevistas`(`idEntrevista`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `beneficiosVaga`(
-  `idBeneficioVaga` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `beneficio` VARCHAR(40) NOT NULL,
-  `codEmpresa` INT NOT NULL,
-  CONSTRAINT `fk_beneficiosVaga_empresa` FOREIGN KEY(`codEmpresa`) REFERENCES `empresa`(`idEmpresa`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE `professor` (
   `idProfessor` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -130,6 +125,13 @@ CREATE TABLE `vaga` (
   `codEmpresa` int(11) NOT NULL,
   CONSTRAINT `fk_vaga_empresa` FOREIGN KEY (`codEmpresa`) REFERENCES `empresa` (`idEmpresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `beneficiosVaga`(
+  `idBeneficioVaga` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `beneficio` VARCHAR(40) NOT NULL,
+  `codVaga` INT NOT NULL,
+  CONSTRAINT `fk_beneficiosVaga_empresa` FOREIGN KEY (`codVaga`) REFERENCES `vaga`(`idVaga`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `enderecos` (
   `idEndereco` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,

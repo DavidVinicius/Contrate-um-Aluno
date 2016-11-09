@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    
+
      <div class="row">
       <?php
          include_once("View/Shared/Menu.php");
@@ -32,12 +32,20 @@
            </div>
             <section class="section">
                 <?php
-			  //Se não clicou para abrir, mostra página home
-			 if(empty($_SERVER['QUERY_STRING'])){
-                    include "View/Shared/Home.php";
-                }else{ //Se não abri conteúdo especificado no ?link=....
-				    include "View/Shared/".$_GET['link'].".php";
-                }
+    			    //Se não clicou para abrir, mostra página home
+                    if($_SESSION['nivel'] != 4){
+        			    if(empty($_SERVER['QUERY_STRING'])){
+                            include "View/Shared/Home.php";
+                        }else{ //Se não abri conteúdo especificado no ?link=....
+        				    include "View/Shared/".$_GET['link'].".php";
+                        }
+                    }else{
+                        if(empty($_SERVER['QUERY_STRING'])){
+                            include "View/Admin/Home.php";
+                        }else{
+                            include "View/Admin/".$_GET['link'].".php";
+                        }
+                    }
 			 ?>
             </section>
     </div>

@@ -9,7 +9,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Contrate um Aluno</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="fonts/material-icons.css">
@@ -33,12 +33,25 @@
             <section class="section">
                 <?php
     			    //Se não clicou para abrir, mostra página home
-                    if($_SESSION['nivel'] != 4){
+                    if($_SESSION['nivel'] == 1){
         			    if(empty($_SERVER['QUERY_STRING'])){
-                            include "View/Shared/Home.php";
+                            include "View/Shared/HomeAluno.php";
                         }else{ //Se não abri conteúdo especificado no ?link=....
         				    include "View/Shared/".$_GET['link'].".php";
                         }
+                    }else if($_SESSION['nivel'] == 2){
+            			    if(empty($_SERVER['QUERY_STRING'])){
+                                include "View/Shared/HomeEmpresa.php";
+                            }else{ //Se não abri conteúdo especificado no ?link=....
+            				            include "View/Shared/".$_GET['link'].".php";
+                            }
+                    }
+                    else if($_SESSION['nivel'] == 3){
+          			    if(empty($_SERVER['QUERY_STRING'])){
+                              include "View/Shared/HomeProfessor.php";
+                          }else{ //Se não abri conteúdo especificado no ?link=....
+          				            include "View/Shared/".$_GET['link'].".php";
+                          }
                     }else{
                         if(empty($_SERVER['QUERY_STRING'])){
                             include "View/Admin/Home.php";

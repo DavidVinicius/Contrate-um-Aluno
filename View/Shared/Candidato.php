@@ -293,3 +293,11 @@
     </div>
 </body>
 </html>
+
+<?php
+    $visualizacoes = $ResultAluno['visualizacoes'] + 1;
+    $id            = $ResultAluno['idAluno'];
+    $Aluno->UpdateAluno("visualizacoes", $visualizacoes, "where idAluno = $id");
+
+    
+?>

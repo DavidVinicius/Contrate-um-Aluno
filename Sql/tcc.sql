@@ -15,6 +15,7 @@ CREATE TABLE `aluno` (
   `cpf` varchar(14) NOT NULL,
   `objetivo` varchar(255) NOT NULL,
   `rg` varchar(20) NOT NULL,
+  `visualizacoes` INT,
   `codUsuario` int(11) NOT NULL,
   CONSTRAINT `fk_aluno_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -59,16 +60,6 @@ CREATE TABLE `formacoes` (
   CONSTRAINT `fk_formacoes_aluno` FOREIGN KEY (`codAluno`) REFERENCES `aluno` (`idAluno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `notificacoes` (
-  `idMensagem` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `titulo` varchar(40) NOT NULL,
-  `de` varchar(40) NOT NULL,
-  `data` datetime NOT NULL,
-  `mensagem` text NOT NULL,
-  `codUsuario` int(11) NOT NULL,
-  CONSTRAINT `fk_mensagens_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `entrevistas`(
   `idEntrevista` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `data` DATE NOT NULL,
@@ -88,6 +79,19 @@ CREATE TABLE `entrevistas`(
   CONSTRAINT `fk_entrevistas_empresa` FOREIGN KEY(`codEmpresa`) REFERENCES `empresa`(`idEmpresa`),
   CONSTRAINT `fk_entrevistas_aluno` FOREIGN KEY(`codAluno`) REFERENCES `aluno`(`idAluno`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `notificacoes` (
+  `idMensagem` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `titulo` VARCHAR(40) NOT NULL,
+  `de` VARCHAR(40) NOT NULL,
+  `data` DATE NOT NULL,
+  `hora` TIME NOT NULL,
+  `mensagem` TEXT NOT NULL,
+  `codUsuario` INT(11) NOT NULL,
+  `codEntrevista` INT NOT NULL,
+  CONSTRAINT `fk_notificacoes_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`),
+  CONSTRAINT `fk_notificacoes_entrevista` FOREIGN KEY(`codEntrevista`) REFERENCES  `entrevistas`(`idEntrevista`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `respostas`(
   `idResposta` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,

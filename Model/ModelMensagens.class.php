@@ -11,22 +11,22 @@
     {
         public function CreateMensagens($Data)
         {
-            return parent::Create("mensagens", $Data);
+            return parent::Create("notificacoes", $Data);
         }
 
         public function ReadMensagens($Condition)
         {
-            return parent::Read("mensagens", $Condition);
+            return parent::Read("notificacoes", $Condition);
         }
 
         public function UpdateMensagens($Field, $NewValue, $Id)
         {
-            return parent::Update("mensagens", $Field, $NewValue, $Id);
+            return parent::Update("notificacoes", $Field, $NewValue, $Id);
         }
 
         public function DeleteMensagens($Condition)
         {
-            return parent::Delete("mensagens", $Condition);
+            return parent::Delete("notificacoes", $Condition);
         }
     }
 

@@ -39,11 +39,46 @@
         </div>
       </form>
       </div>
+
        <h1 class="flow-text center-align">Vagas no Contrate um Aluno</h1>
+       <?php
+       //verifica a página atual caso seja informada na URL, senão atribui como 1ª página
+       $pagina = (isset( $_GET['pagina']) ) ? $_GET['pagina'] : 1;
 
+       //seleciona todos os itens da tabela
+       $vagas = $DB->SearchQuery("vaga");
+       //conta o total de itens
+       $total = mysqli_num_rows($vagas);
+
+       //seta a quantidade de itens por página, neste caso, 2 itens
+       $registros = 6;
+
+       //calcula o número de páginas arredondando o resultado para cima
+       $numPaginas = ceil($total/$registros);
+
+       //variavel para calcular o início da visualização com base na página atual
+       $inicio = ($registros*$pagina)-$registros;
+
+       //seleciona os itens por página
+       $queryVagas   = $DB->SearchQuery("vaga", "order by idVaga desc limit $inicio,$registros");
+       //$total1       = mysqli_num_rows($queryVagas);
+      //  var_dump($aluno);
+       foreach ($aluno as $valor) {
+         # code...
+         echo $valor."<br />";
+       }
+       //exibe os produtos selecionados
+      //  while ($aluno = mysqli_fetch_object($alunos1)) {
+      //     echo "=============######================<br/><br/>";
+      //       echo $aluno->competencia." - ";
+       //
+      //     echo "<br/><br/><br/>";
+      //  }
+
+       //exibe a paginação
+        ?>
         <?php
-
-            while($Linha = mysqli_fetch_assoc($Result) ) {
+            while($Linha = mysqli_fetch_assoc($queryVagas) ) {
                 $CodEmpresa = $Linha['codEmpresa'];
                 $Result2 = $DB->SearchQuery("empresa", "where idEmpresa = $CodEmpresa");
                 $EmpresaAssoc = mysqli_fetch_assoc($Result2);
@@ -103,8 +138,30 @@
                 </div>
                 <?php
             }
+            $paginaMenosUm  = ($_GET['pagina'] - 1);
+            $paginaMaisUm   = ($_GET['pagina'] + 1);
+            ?>
+            <ul class="pagination">
+                <li class="<?php if($_GET['pagina'] == 1) echo 'disabled' ?>">
+                    <a href="<?php if($_GET['pagina'] > 1) echo 'OnePage.php?link=Vagas&pagina='.$paginaMenosUm ?>">
+                        <i class="material-icons">chevron_left</i>
+                    </a>
+                </li>
+                <?php
+                    for($i = 1; $i < $numPaginas + 1; $i++) {
+                         //echo "<a href='OnePage.php?link=Vagas&pagina=$i'>".$i."</a> ";
+                         if($i == $_GET['pagina'])
+                            echo "<li class='active'><a href='OnePage.php?link=Vagas&pagina=$i'>$i</a></li>";
+                         else
+                            echo "<li class='waves-effect'><a href='OnePage.php?link=Vagas&pagina=$i'>$i</a></li>";
+                    }
         ?>
-
+            <li class="waves-effect <?php if($_GET['pagina'] == $numPaginas) echo 'disabled' ?>">
+                <a href="<?php if($_GET['pagina'] < $numPaginas) echo 'OnePage.php?link=Vagas&pagina='.$paginaMaisUm ?>">
+                    <i class="material-icons">chevron_right</i>
+                </a>
+            </li>
+        </ul>
     </div>
 </body>
 </html>

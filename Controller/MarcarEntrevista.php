@@ -88,19 +88,20 @@
     $selectObjectAluno          = mysqli_fetch_object($aluno->ReadAluno("where idAluno = $codAlunoTabelaEntrevista"));
     $codUsuarioAluno            = $selectObjectAluno->codUsuario;
 
-    $mensagem = "A empresa $nomeEmpresa deseja marcar uma entrevista com você referente a vaga $vagaEntrevista
-                na data $dataEntrevista, às $horaEntrevista.
-                Local: $localEntrevista, número: $numeroEntrevista, bairro: $bairroEntrevista $complementoEntrevista.
-                Cidade: $cidadeEntrevista, estado: $estadoEntrevista";
+    // $mensagem = "A empresa $nomeEmpresa deseja marcar uma entrevista com você referente a vaga $vagaEntrevista
+    //             na data $dataEntrevista, às $horaEntrevista. \n
+    //             Local: $localEntrevista, número: $numeroEntrevista, bairro: $bairroEntrevista $complementoEntrevista. \n
+    //             Cidade: $cidadeEntrevista, estado: $estadoEntrevista";
+    $mensagem = "A empresa $nomeEmpresa deseja marcar uma entrevista com você referente a vaga $vagaEntrevista";
 
     $dadosNotificacoes = array(
-        "titulo"        => "Entrevista de emprego",
-        "de"            => $nomeEmpresa,
-        "data"          => $dataAtual,
-        "hora"          => $horaAtual,
-        "mensagem"      => $mensagem,
-        "codUsuario"    => $codUsuarioAluno,
-        "codEntrevista" => $ultimaEntrevista
+        'titulo'        => 'Entrevista de emprego',
+        'de'            => $nomeEmpresa,
+        'data'          => $dataAtual,
+        'hora'          => $horaAtual,
+        'mensagem'      => $mensagem,
+        'codUsuario'    => $codUsuarioAluno,
+        'codEntrevista' => $ultimaEntrevista
     );
 
     $insertNotificacao = $notificacao->CreateMensagens($dadosNotificacoes);

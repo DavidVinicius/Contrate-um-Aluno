@@ -12,7 +12,7 @@
       echo "Tabela não informada";
   if ($tabela && $tabela == "todos") {
       include_once "../Model/ModelQualificacoes.class.php";
-      $Consulta = $DB -> SearchQuery('aluno',"where nome like '%$valor%'");
+      $Consulta = $DB -> SearchQuery('aluno',"where nome like '%".$valor."%'");
       echo "<h1 class='center-align flow-text'>Resultados para: $valor</h1>";
       if(isset($Consulta) )
       {
@@ -34,7 +34,9 @@
                       <?php while($qualificacao = mysqli_fetch_assoc($ResultadoQ)){ ?>
                       <span class="chip"><?=$qualificacao['competencia']?></span>
                       <?php } ?>
-                      <a href="OnePage.php?link=Candidato&id=<?=$linha['idAluno']?>&cod=<?= $linha['codUsuario']?>"><button class="btn blue">Ver perfil</button></a>
+                      <a href="OnePage.php?link=Candidato&id=<?=$linha['idAluno']?>&cod= <?= $linha['codUsuario']?>">
+                        <button class="btn blue">Ver perfil</button>
+                      </a>
                   </div>
               </div>
           </div>
@@ -48,7 +50,7 @@
   else if($tabela && $tabela == "qualificacoes")
   {
     include_once "../Model/ModelQualificacoes.class.php";
-    $Consulta  = $DB -> SearchQuery("qualificacoes q, aluno a", "where q.codAluno = a.idAluno AND q.competencia like '%".$valor."%'","distinct(codAluno), competencia, nome, foto, idAluno, codUsuario");
+    $Consulta  = $DB -> SearchQuery("qualificacoes q, aluno a", "where q.codAluno = a.idAluno AND q.competencia like '%".$valor."%' group by nome","distinct(codAluno), competencia, nome, foto, idAluno, codUsuario");
     if(isset($Consulta) )
     {
       echo "<h1 class='center-align flow-text'>Resultado para: $valor</h1>";
@@ -56,7 +58,7 @@
       {
         $idAluno         = $linha['idAluno'];
         $Qualificacao    = new ModelQualificacoes();
-        $ResultadoQ =    $Qualificacao -> ReadQualificacoes("where codAluno = $idAluno");
+        $ResultadoQ      =    $Qualificacao -> ReadQualificacoes("where codAluno = $idAluno");
 
         ?>
         <div class="col s12 m6">
@@ -83,7 +85,8 @@
   }
   else if($tabela && $tabela == "experiencias")
   {
-    $Consulta  = $DB->SearchQuery("experiencias e, aluno a", "where e.codAluno = a.idAluno and descricao like '%".$valor."%' or cargo like '%".$valor."%'");
+    $Consulta  = $DB->SearchQuery("experiencias e, aluno a",
+    "where e.codAluno = a.idAluno and descricao like '%".$valor."%' or cargo like '%".$valor."%' group by cargo","distinct(codAluno),nome,foto,idAluno,codUsuario, cargo");
     if(isset($Consulta) )
     {
       include_once "../Model/ModelExperiencias.class.php";

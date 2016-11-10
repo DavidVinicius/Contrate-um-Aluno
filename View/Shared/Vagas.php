@@ -61,21 +61,6 @@
 
        //seleciona os itens por página
        $queryVagas   = $DB->SearchQuery("vaga", "order by idVaga desc limit $inicio,$registros");
-       //$total1       = mysqli_num_rows($queryVagas);
-      //  var_dump($aluno);
-       foreach ($aluno as $valor) {
-         # code...
-         echo $valor."<br />";
-       }
-       //exibe os produtos selecionados
-      //  while ($aluno = mysqli_fetch_object($alunos1)) {
-      //     echo "=============######================<br/><br/>";
-      //       echo $aluno->competencia." - ";
-       //
-      //     echo "<br/><br/><br/>";
-      //  }
-
-       //exibe a paginação
         ?>
         <?php
             while($Linha = mysqli_fetch_assoc($queryVagas) ) {
@@ -138,26 +123,26 @@
                 </div>
                 <?php
             }
-            $paginaMenosUm  = ($_GET['pagina'] - 1);
-            $paginaMaisUm   = ($_GET['pagina'] + 1);
+            $paginaMenosUm  = isset($_GET['pagina']) ? ($_GET['pagina'] - 1) : 1;
+            $paginaMaisUm   = isset($_GET['pagina']) ? ($_GET['pagina'] + 1) : 1;
             ?>
             <ul class="pagination">
-                <li class="<?php if($_GET['pagina'] == 1) echo 'disabled' ?>">
-                    <a href="<?php if($_GET['pagina'] > 1) echo 'OnePage.php?link=Vagas&pagina='.$paginaMenosUm ?>">
+                <li class="<?php if($pagina == 1) echo 'disabled' ?>">
+                    <a href="<?php if($pagina > 1) echo 'OnePage.php?link=Vagas&pagina='.$paginaMenosUm ?>">
                         <i class="material-icons">chevron_left</i>
                     </a>
                 </li>
                 <?php
                     for($i = 1; $i < $numPaginas + 1; $i++) {
                          //echo "<a href='OnePage.php?link=Vagas&pagina=$i'>".$i."</a> ";
-                         if($i == $_GET['pagina'])
-                            echo "<li class='active'><a href='OnePage.php?link=Vagas&pagina=$i'>$i</a></li>";
+                         if($i == $pagina)
+                            echo "<li class='active'><a href='OnePage.php?link=Vagas&pagina='.$i>$i</a></li>";
                          else
-                            echo "<li class='waves-effect'><a href='OnePage.php?link=Vagas&pagina=$i'>$i</a></li>";
+                            echo "<li class='waves-effect'><a href='OnePage.php?link=Vagas&pagina='.$i>$i</a></li>";
                     }
         ?>
-            <li class="waves-effect <?php if($_GET['pagina'] == $numPaginas) echo 'disabled' ?>">
-                <a href="<?php if($_GET['pagina'] < $numPaginas) echo 'OnePage.php?link=Vagas&pagina='.$paginaMaisUm ?>">
+            <li class="waves-effect <?php if($pagina == $numPaginas) echo 'disabled' ?>">
+                <a href="<?php if($pagina < $numPaginas) echo 'OnePage.php?link=Vagas&pagina='.$paginaMaisUm ?>">
                     <i class="material-icons">chevron_right</i>
                 </a>
             </li>

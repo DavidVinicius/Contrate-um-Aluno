@@ -2,9 +2,9 @@
     include_once "Model/DataBase.class.php";
     include_once "Model/ModelQualificacoes.class.php";
     include_once "Model/ModelAluno.class.php";
-    $Aluno = new ModelAluno();
+    $Aluno  = new ModelAluno();
+    $DB     = new DataBase();
     $id = $_SESSION['id'];
-    $Consulta = $Aluno->ReadAluno("");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -45,7 +45,27 @@
           <h1 class="center-align flow-text">Atuais Candidatos</h1>
             <div class="">
                 <?php
-                while( $linha = mysqli_fetch_assoc($Consulta) ){
+                //verifica a página atual caso seja informada na URL, senão atribui como 1ª página
+                $pagina = (isset( $_GET['pagina']) ) ? $_GET['pagina'] : 1;
+
+                //seleciona todos os itens da tabela
+                $alunos = $DB->SearchQuery("aluno");
+                //conta o total de itens
+                $total = mysqli_num_rows($alunos);
+
+                //seta a quantidade de itens por página, neste caso, 2 itens
+                $registros = 1;
+
+                //calcula o número de páginas arredondando o resultado para cima
+                $numPaginas = ceil($total/$registros);
+
+                //variavel para calcular o início da visualização com base na página atual
+                $inicio = ($registros*$pagina)-$registros;
+
+                //seleciona os itens por página
+                $queryAlunos   = $DB->SearchQuery("aluno", "order by idAluno desc limit $inicio,$registros");
+
+                while( $linha = mysqli_fetch_assoc($queryAlunos) ){
                   $idAluno = $linha['idAluno'];
                   $Qualificacao = new ModelQualificacoes();
                   $ResultadoQ = $Qualificacao->ReadQualificacoes("where codAluno = $idAluno");
@@ -65,8 +85,35 @@
                         </div>
                     </div>
                 </div>
-                <?php } ?>
+                <?php }
+                $paginaMenosUm  = isset($_GET['pagina']) ? ($_GET['pagina'] - 1) : 1;
+                $paginaMaisUm   = isset($_GET['pagina']) ? ($_GET['pagina'] + 1) : 1;
+                ?>
+
             </div>
+        </div>
+        <div class="row">
+            <ul class="pagination">
+                <li class="<?php if($pagina == 1) echo 'disabled' ?>">
+                    <a href="<?php if($pagina > 1) echo 'OnePage.php?link=Candidatos&pagina='.$paginaMenosUm ?>">
+                        <i class="material-icons">chevron_left</i>
+                    </a>
+                </li>
+                <?php
+                    for($i = 1; $i < $numPaginas + 1; $i++) {
+                         //echo "<a href='OnePage.php?link=Vagas&pagina=$i'>".$i."</a> ";
+                         if($i == $pagina)
+                            echo "<li class='active'><a href='OnePage.php?link=Candidatos&pagina='.$i>$i</a></li>";
+                         else
+                            echo "<li class='waves-effect'><a href='OnePage.php?link=Candidatos&pagina='.$i>$i</a></li>";
+                    }
+        ?>
+            <li class="waves-effect <?php if($pagina == $numPaginas) echo 'disabled' ?>">
+                <a href="<?php if($pagina < $numPaginas) echo 'OnePage.php?link=Candidatos&pagina='.$paginaMaisUm ?>">
+                    <i class="material-icons">chevron_right</i>
+                </a>
+            </li>
+        </ul>
         </div>
     </div>
     <div class="container">

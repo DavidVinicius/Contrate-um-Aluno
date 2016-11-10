@@ -189,38 +189,38 @@
                           <div class="row">
                             <div class="input-field col s12 m6">
                               <label for="data">Data da Entrevista</label><br>
-                              <input type="date" name="data" id="data">
+                              <input type="date" name="data" id="data" required="true">
                             </div>
                             <div class="input-field col s12 m6">
                               <label for="hora">Hora da entrevista</label><br>
-                              <input type="time" name="hora" id="hora">
+                              <input type="time" name="hora" id="hora" required="true">
                             </div>
                           </div>
                           <div class="row">
 
                             <div class="input-field col s12 m6">
                               <label for="local">Local da entrevista:</label>
-                              <input type="text" name="local" id="local">
+                              <input type="text" name="local" id="local" required="true">
                             </div>
                             <div class="input-field col s12 m2">
                               <label for="numero">Número:</label>
-                              <input type="text" name="numero" id="numero">
+                              <input type="text" name="numero" id="numero" required="true">
                             </div>
                             <div class="input-field col s12 m4">
                               <label for="bairro">Bairro:</label>
-                              <input type="text" name="bairro" id="bairro">
+                              <input type="text" name="bairro" id="bairro" required="true">
                             </div>
                             <div class="input-field col s12 m4">
                               <label for="completemento">Complemento</label>
-                              <input type="text" name="complemento" id="complemento">
+                              <input type="text" name="complemento" id="complemento" required="true">
                             </div>
                             <div class="input-field col s12 m4">
                               <label for="cidade">Cidade:</label>
-                              <input type="text" name="cidade" id="cidade">
+                              <input type="text" name="cidade" id="cidade" required="true">
                             </div>
                             <div class="input-field col s12 m3" >
                               <!-- <label for="estado">Estado</label> -->
-                              <select name="estado" id="estado" >
+                              <select name="estado" id="estado" required="true">
                                   <option value="" selected disabled>Estado</option>
                                   <option value="AC">AC</option>
                                   <option value="AL">AL</option>
@@ -255,15 +255,15 @@
                           <div class="row">
                             <div class="input-field col s12 m6">
                               <label for="vaga">Qual a vaga que vai oferecer?</label>
-                              <input type="text" name="vaga" id="vaga">
+                              <input type="text" name="vaga" id="vaga" required="true">
                             </div>
                             <div class="input-field col s12 m3">
                               <label for="salario">Qual o salário?</label>
-                              <input type="text" name="salario" id="salario">
+                              <input type="text" name="salario" id="salario" required="true">
                             </div>
                             <div class="input-field col s12 m3">
                               <label for="cargaHoraria">Carga horária semanal:</label>
-                              <input type="number" name="cargaHoraria" id="cargaHoraria" maxlength="2" max="44" min="20">
+                              <input type="number" name="cargaHoraria" id="cargaHoraria" maxlength="2" max="44" min="20" required="true">
                             </div>
                             <div class="input-field col s12 m12">
                               <label for="beneficios">Benefícios:</label><br><br>
@@ -271,7 +271,7 @@
                             </div>
                             <div class="input-field col s12 m12">
                               <label for="descricao">Descrição:</label>
-                              <textarea name="descricao" rows="8" cols="40" class="materialize-textarea" ng-model="descricao"></textarea>
+                              <textarea name="descricao" rows="8" cols="40" class="materialize-textarea" ng-model="descricao" required="true"></textarea>
                             </div>
                            </div>
                         <input type="hidden" name="beneficios" id="beneficios" value="{{beneficios}}">
@@ -299,5 +299,5 @@
     $id            = $ResultAluno['idAluno'];
     $Aluno->UpdateAluno("visualizacoes", $visualizacoes, "where idAluno = $id");
 
-    
+
 ?>

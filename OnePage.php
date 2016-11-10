@@ -68,15 +68,14 @@
     <script src="js/materialize.min.js"></script>
     <script>
             $(".teste").hide();
-            $("li").click(function(){
+            $(".nav-wrapper > li").click(function(){
                 $(".teste").show();
-
                function barra(){
 
-                   var width = new Number();
-                   width += 100;
+
+                  var  width = 100;
                     $(".determinate").css({
-                        width: width+"%",
+                        width: "100%",
                     });
 //                   alert(width);
                }

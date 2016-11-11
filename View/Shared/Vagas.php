@@ -16,7 +16,7 @@
     <title>Document</title>
 </head>
 <body>
-<<<<<<< HEAD
+
     <div class="container">
       <div class="row">
         <form method="Controller/Pesquisa.php" class="" method="get" id="pesquisar">

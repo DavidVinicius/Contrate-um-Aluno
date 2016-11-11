@@ -65,7 +65,8 @@
                           <div class="modal-content">
                             <h1 class="center-align flow-text">Nova Entrevista</h1>
                             <h4 class="flow-text"><?= $ResultMensagem -> de ?></h4>
-                            <a href="OnePage.php?link=VerPerfilEmpresa&id=<?=$idEmpresa?>"> Ver perfil</a>
+                            <a href="OnePage.php?link=VerPerfilEmpresa<?= '&empresa='.$idEmpresa.'&perfil='.$ResultEmpresa->codUsuario.'&anterior='.$_SERVER['QUERY_STRING'] ?>" > Ver perfil</a>
+
                             <p class="flow-text"><?= $ResultMensagem -> mensagem?></p>
                             <p>
                               <b>Dados sobre a vaga:</b><br>

@@ -124,7 +124,7 @@
   }
   else if($tabela && $tabela == "formacoes")
   {
-    $Consulta = $DB->SearchQuery("formacoes f, aluno a", "where f.codAluno = a.idAluno and curso like '%".$valor."%' or instituicao like '%".$valor."%'");
+    $Consulta = $DB->SearchQuery("formacoes f, aluno a", "where f.codAluno = a.idAluno and curso like '%".$valor."%' or instituicao like '%".$valor."%' group by a.nome");
     include_once "../Model/ModelFormacoes.class.php";
     if(isset($Consulta) )
     {

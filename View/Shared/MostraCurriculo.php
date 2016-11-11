@@ -59,7 +59,7 @@
                         <input type="text" name="nome" id="nome" value="<?= $AssocAluno['nome'] ?>" class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="aluno" data-campo="nome" data-idaluno="<?= $idAluno?>">
                     </div>
                     <div class="input-field col s12 m6 push-m2">
-                        <img src="Images/Upload/<?= $AssocAluno['foto'] ?>" alt="Foto Perfil" class="responsive-img mycircle">
+                        <img src="Images/Upload/<?= $AssocAluno['foto'] ?>" alt="Foto Perfil" class=" mycircle" width="150px" height="150px">
                     </div>
                 </div>
                 <div class="row">

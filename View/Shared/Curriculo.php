@@ -29,7 +29,7 @@
                         </div>
                         <br>
                         <div class="file-path-wrapper col s4 push-s3 m6 push-m1 center">
-                            <input class="file-path validate" type="text"> <img src="images/Padrao/PerfilPadrao.png" alt="Imagem Perfil" class='circle responsive-img' id='preview'> </div>
+                            <input class="file-path validate" type="text"> <img src="images/Padrao/PerfilPadrao.png" alt="Imagem Perfil" class='circle' id='preview' width="200px" height="200px"> </div>
                     </div>
                 </div>
                 <div class="row">

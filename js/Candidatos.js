@@ -22,6 +22,7 @@ $(document).ready(function() {
 
     $(this).keyup(function(event) {
       /* Act on the event */
+      // var dados = new FormData(this);
       if(event.which == 13){
         $.ajax({
             cache: false,

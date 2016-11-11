@@ -11,7 +11,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Contrate um Aluno</title>
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/materialize.js"></script>
     <script src='js/Candidatos.js'></script>
@@ -43,7 +43,7 @@
       </div>
         <div class="row" id="CandidatosSemPesquisa">
           <h1 class="center-align flow-text">Atuais Candidatos</h1>
-            <div class="">
+            <div class="row">
                 <?php
                 //verifica a página atual caso seja informada na URL, senão atribui como 1ª página
                 $pagina = (isset( $_GET['pagina']) ) ? $_GET['pagina'] : 1;
@@ -63,7 +63,7 @@
                 $inicio = ($registros*$pagina)-$registros;
 
                 //seleciona os itens por página
-                $queryAlunos   = $DB->SearchQuery("aluno", "order by idAluno desc limit $inicio,$registros");
+                $queryAlunos   = $DB -> SearchQuery("aluno", "order by idAluno desc limit $inicio, $registros");
 
                 while( $linha = mysqli_fetch_assoc($queryAlunos) ){
                   $idAluno = $linha['idAluno'];
@@ -81,7 +81,7 @@
                             <?php while($qualificacao = mysqli_fetch_assoc($ResultadoQ)){ ?>
                             <span class="chip"><?=$qualificacao['competencia']?></span>
                             <?php } ?>
-                            <a href="OnePage.php?link=Candidato&id=<?=$linha['idAluno']?>&cod=<?= $linha['codUsuario']?>"><button class="btn blue">Ver perfil</button></a>
+                            <a href="OnePage.php?link=Candidato<?= '&id='.$linha['idAluno'].'&cod='.$linha['codUsuario'].'&anterior='.$_SERVER['QUERY_STRING']?>"><button class="btn blue">Ver perfil</button></a>
                         </div>
                     </div>
                 </div>
@@ -91,30 +91,32 @@
                 ?>
 
             </div>
-        </div>
         <div class="row">
-            <ul class="pagination">
-                <li class="<?php if($pagina == 1) echo 'disabled' ?>">
-                    <a href="<?php if($pagina > 1) echo 'OnePage.php?link=Candidatos&pagina='.$paginaMenosUm ?>">
-                        <i class="material-icons">chevron_left</i>
-                    </a>
-                </li>
-                <?php
-                    for($i = 1; $i < $numPaginas + 1; $i++) {
-                         //echo "<a href='OnePage.php?link=Vagas&pagina=$i'>".$i."</a> ";
-                         if($i == $pagina)
-                            echo "<li class='active'><a href='OnePage.php?link=Candidatos&pagina='.$i>$i</a></li>";
-                         else
-                            echo "<li class='waves-effect'><a href='OnePage.php?link=Candidatos&pagina='.$i>$i</a></li>";
-                    }
-        ?>
-            <li class="waves-effect <?php if($pagina == $numPaginas) echo 'disabled' ?>">
-                <a href="<?php if($pagina < $numPaginas) echo 'OnePage.php?link=Candidatos&pagina='.$paginaMaisUm ?>">
-                    <i class="material-icons">chevron_right</i>
-                </a>
-            </li>
-        </ul>
+            <center>
+              <ul class="pagination">
+                  <li class="<?php if($pagina == 1) echo 'disabled' ?>">
+                      <a href="<?php if($pagina > 1) echo 'OnePage.php?link=Candidatos&pagina='.$paginaMenosUm ?>">
+                          <i class="material-icons">chevron_left</i>
+                      </a>
+                  </li>
+                  <?php
+                      for($i = 1; $i < $numPaginas + 1; $i++) {
+                           //echo "<a href='OnePage.php?link=Vagas&pagina=$i'>".$i."</a> ";
+                           if($i == $pagina)
+                              echo "<li class='active blue'><a href='OnePage.php?link=Candidatos&pagina='.$i>$i</a></li>";
+                           else
+                              echo "<li class='waves-effect'><a href='OnePage.php?link=Candidatos&pagina=".$i."'> $i</a></li>";
+                      }
+          ?>
+              <li class="waves-effect <?php if($pagina == $numPaginas) echo 'disabled' ?>">
+                  <a href="<?php if($pagina < $numPaginas) echo 'OnePage.php?link=Candidatos&pagina='.$paginaMaisUm ?>">
+                      <i class="material-icons">chevron_right</i>
+                  </a>
+              </li>
+          </ul>
+            </center>
         </div>
+      </div>
     </div>
     <div class="container">
       <div class="row" >

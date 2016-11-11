@@ -38,7 +38,7 @@ if($nivel == 1){
                 <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
                 <li><a href='OnePage.php?link=VerCurriculo'>Curriculo</a></li>
                 <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
-               <li><a href='' data-activates='Configuracoes' class='abrir'><img src='Images/Upload/".$fotoAluno."' class='circle' width='60px' style='margin-top:10px'>$notificacoes</a></li>
+               <li><a href='' data-activates='Configuracoes' class='abrir'><img src='Images/Upload/".$fotoAluno."' class='circle' width='60px' height='60px' >$notificacoes</a></li>
                 <li><a href='./Controller/Sair.php'>Sair</a></li>
                 <li><span style='margin-right:5%'>&nbsp &nbsp</span></li>
               </ul>

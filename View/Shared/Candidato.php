@@ -29,6 +29,8 @@
    $idAluno                = $_GET['id'];
    $idUsuario              = $_GET['cod'];
    $idUsuarioEmpresa       = $_SESSION['id'];
+   $anterior               = $_GET['anterior'];
+   $pagina                 = isset($_GET['pagina'])? '&pagina='.$_GET['pagina']:null;
    $Aluno                  = new ModelAluno();
    $Endereco               = new Enderecos();
    $Telefone               = new Telefones();
@@ -178,7 +180,7 @@
                 </div>
                 <div class="row">
                     <a href="#modal1" class="btn btn-large blue modal-trigger waves-effect waves-light">Marcar Entrevista</a>
-                    <a href="" class="btn btn-large waves-effect waves-light">Voltar a página de candidatos</a>
+                    <a href="OnePage.php?<?= $anterior.$pagina?>" class="btn btn-large waves-effect waves-light">Voltar a página de candidatos</a>
                 </div>
                 <div class="row">
                   <div id="modal1" class="modal modal-fixed-footer">

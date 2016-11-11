@@ -118,19 +118,88 @@
                   </div>
                   <div class="modal-footer">
                     <button data-target="<?= $ResultAluno -> rg?>" data-identrevista="<?=$idEntrevista?>" data-resposta="Recusado" class="modal-action modal-trigger modal-close waves-effect waves-red btn-flat " id="recusar">Cancelar Entrevista</button>
+                    <button data-target="<?= $ResultAluno -> cpf?>"  class="btn-flat btn waves-effect modal-trigger">
+                      Remarcar
+                    </button>
 
                     <?php
                       $data = date('d/m/Y', strtotime($ResultMensagem -> data));
                       $hora = $ResultMensagem -> hora;
                     ?>
-                    <button type="button" class="modal-action btn-flat">Enviado no dia: <?= $data. " as ". $hora ?></button>
+                    <button type="button" class="modal-action btn-flat disabled ">Enviado no dia: <?= $data. " as ". $hora ?></button>
 
                   </div>
                 </div>
                 <div class="modal modal-fixed-footer" id="<?=$ResultAluno -> rg ?>">
                         <div class="modal-content">
-                          aaaaaa
+                          <div class="col s12 m12 flow-text">
+                            Enviar para:
+                            <div class="chip flow-text">
+                               <img src="images/Upload/<?= $ResultAluno -> foto?>" alt="Contact Person" width="50px" height="50px">
+                               <?= $ResultAluno -> nome?>
+                             </div>
+                          </div>
+                          <form class="" action="index.html" method="post">
+                              <div class="input-field col s12 m12">
+                                <label for="motivo">Motivo:</label>
+                                <input type="text" name="motivo" id="motivo" required="true">
+                              </div>
+                              <div class="input-field col s12 m12">
+                                <label for="mensagem">Mensagem:</label>
+                                <textarea name="mensagem" class="materialize-textarea" id="mensagem" rows="8" cols="40" required="true"></textarea>
+                              </div>
+                          </form>
                         </div>
+                        <div class="modal-footer">
+                          <button class="btn btn-flat waves-effect waves-red modal-close">Fechar</button>
+                          <button class="btn btn-flat waves-effect waves-green">Cancelar entrevista</button>
+                        </div>
+                </div>
+                <div class="modal modal-fixed-footer" id="<?=$ResultAluno -> cpf ?>">
+                  <div class="modal-content">
+                    <div class="col s12 m12 flow-text">
+                      Enviar para:
+                      <div class="chip flow-text">
+                         <img src="images/Upload/<?= $ResultAluno -> foto?>" alt="Contact Person" width="50px" height="50px">
+                         <?= $ResultAluno -> nome?>
+                       </div>
+                    </div>
+                    <div class="col s12 m12">
+                      <form  action="" method="post" id="remarcar">
+                          <div class="row">
+                            <div class="input-field col s12 m12">
+                              <label for="data">Nova data:</label><br>
+                              <input type="date" name="data" id="data" placeholder="00/00/0000" required="true">
+                            </div>
+                            <div class="input-field col s12 m12">
+                              <label for="hora">Novo horário:</label><br>
+                              <input type="time" name="hora" id="hora" placeholder="00:00" required="true">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12 m12">
+                              <label for="motivo">Motivo da mudança:</label>
+                              <input type="text" name="motivo" id="motivo" required="true" length="40">
+                            </div>
+                            <div class="input-field col s12 m12">
+                              <label for="mensagem">Mensagem:</label>
+                              <textarea name="" id="" cols="30" rows="10" class="materialize-textarea" required="true" maxlength="255" length="255"></textarea>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-flat waves-effect waves-red modal-close">Cancelar</button>
+                    <button class="btn btn-flat waves-effect waves-yellow" type="submit">
+                      Enviar nova data
+                    </button>
+                    <input type="hidden" name="idAluno" value="<?= $ResultAluno -> idAluno ?>">
+                    <input type="hidden" name="idEntrevista" value="<?= $idEntrevista?>">
+                    <input type="hidden" name="codUsuarioAluno" value="<?= $ResultAluno -> codUsuario ?>">
+                    <input type="hidden" name="nomeEmpresa" value="<?= $ConsultEmpresa->nome ?>">
+                    <input type="hidden" name="empresa" value="empresa">
+                  </form>
+                  </div>
                 </div>
               <?php
                 }

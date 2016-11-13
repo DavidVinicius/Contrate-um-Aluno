@@ -35,6 +35,8 @@
             <ul class="tabs ">
               <li class="tab col s3 red-text"><a class="active " href="#Notificacao">Notificacões</a></li>
               <li class="tab col s3"><a href="#Entrevista">Entrevistas</a></li>
+              <li class="tab col s3"><a href="#Respostas">Respostas</a></li>
+              <li class="tab col s3"><a href="#Realizadas">Entrevistas realizadas</a></li>
             </ul>
             <div id="Notificacao" class="col s12">
               <ul class="collection">
@@ -115,7 +117,7 @@
               <?php
               if ($ConsultaNum > 0) {
                 ?>
-                <div class="col s12 m12">
+                <!-- <div class="col s12 m12"> -->
                   <ul class="collection">
                     <?php
 
@@ -126,21 +128,31 @@
                       $ResultEmpresa = mysqli_fetch_object($Empresa -> ReadEmpresa("where idEmpresa = $idEmpresa"));
                       ?>
                       <li class="collection-item avatar hoverable">
-                        <div class="col s4 m1">
+                        <div class="col s12 m1">
                           <img src="Images/Upload/<?=$ResultEmpresa -> foto ?>" alt="" class="circle" />
-                          <div class="secondary-content">
-                            <button data-target="<?= $idEntrevista?>" class=" modal-trigger btn-flat btn-large waves-effect waves-light">
+                          <div class="secondary-content col s1 m3 hide-on-small-only">
+                            <button data-target="<?= $idEntrevista ?>" class=" modal-trigger btn-flat btn-large waves-effect waves-light">
                               <i class="material-icons blue-text">add</i>
                             </button>
                             <button type="button" name="button" class="btn-flat ">
-                              <i class="material-icons apagarEntrevista red-text " data-idnotificacao="<?= $ResultN -> idMensagem ?>">delete</i>
+                              <i class="material-icons apagarEntrevista red-text " data-idaluno="<?= $result -> codAluno ?>" data-identrevista="<?= $idEntrevista?>" data-codusuarioempresa="<?= $ResultEmpresa -> codUsuario ?>">delete</i>
                             </button>
                           </div>
+
                         </div>
-                        <div class="col s8 m8 pull-m1">
+                        <div class="col s8 m8 pull-m1 ">
                           <span class="title">de: <?= $ResultMensagem -> de?></span>
                           <br>
                           <span class="flow-text">Você tem uma nova Entrevista </span>
+
+                        </div>
+                        <div class="col s4 hide-on-med-and-up">
+                          <button data-target="<?= $idEntrevista ?>" class=" modal-trigger btn-flat waves-effect waves-light">
+                            <i class="material-icons blue-text">add</i>
+                          </button>
+                          <button type="button" name="button" class="btn-flat ">
+                            <i class="material-icons apagarEntrevista red-text " data-idaluno="<?= $result -> codAluno ?>" data-identrevista="<?= $idEntrevista?>"  data-codusuarioempresa="<?= $ResultEmpresa -> codUsuario ?>">delete</i>
+                          </button>
 
                         </div>
 
@@ -187,8 +199,8 @@
                           </p>
                         </div>
                         <div class="modal-footer">
-                          <button data-identrevista="<?=$idEntrevista?>" data-resposta="Recusado" class="modal-action modal-close waves-effect waves-red btn-flat ">Recusar</button>
-                          <button data-identrevista="<?=$idEntrevista?>" data-resposta="Aceitado" class="modal-action waves-effect waves-green btn-flat">Aceitar</button>
+                          <button data-identrevista="<?=$idEntrevista?>" data-idaluno="<?= $result -> codAluno?>"  data-codusuarioempresa="<?= $ResultEmpresa -> codUsuario ?>" class="modal-action modal-close waves-effect waves-red btn-flat CancelarEntrevista col s12 m3">Recusar</button>
+                          <button data-identrevista="<?=$idEntrevista?>" data-resposta="Aceitado" class="modal-action waves-effect waves-green btn-flat col s12 m3">Aceitar</button>
                           <?php
                           $data = date('d/m/Y', strtotime($ResultMensagem -> data));
                           $hora = $ResultMensagem -> hora;
@@ -202,7 +214,7 @@
                     }
                     ?>
                   </ul>
-                </div>
+                <!-- </div> -->
                 <?php
               }
               else{
@@ -211,6 +223,12 @@
               ?>
 
 
+            </div>
+            <div class="col s12 m12" id="Respostas">
+              <h1 class="center-align flow-text">Respostas de entrevistas</h1>
+            </div>
+            <div class="col s12 m12 l12" id="Realizadas">
+              <h1 class="center-align flow-text">Entrevistas Realizadas</h1>
             </div>
           </div>
         </div>

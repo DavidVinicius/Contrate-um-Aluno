@@ -2,9 +2,12 @@
   require_once "Model/ModelEntrevistas.class.php";
   require_once "Model/ModelEmpresa.class.php";
   require_once "Model/ModelAluno.class.php";
+  require_once "Model/ModelVaga.class.php";
   $Entrevista      = new ModelEntrevistas();
   $Empresa         = new ModelEmpresa();
   $Aluno           = new ModelAluno();
+  $Vaga            = new ModelVaga();
+  $Notificacao     = new Mensagens();
   $idUsuario       = $_SESSION['id'];
   $ConsultEmpresa  = mysqli_fetch_object($Empresa -> ReadEmpresa("where codUsuario = $idUsuario"));
   $idEmpresa       = $ConsultEmpresa->idEmpresa;
@@ -13,12 +16,12 @@
       $ConsultaNum = mysqli_num_rows($Entrevista -> ReadEntrevista("where codEmpresa = $idEmpresa"));
       // $ResultEntrevista = mysqli_fetch_object($Entrevista -> ReadEntrevista("where codEmpresa = $idEmpresa"));
       $ConsultaEntrevista = $Entrevista -> ReadEntrevista("where codEmpresa = $idEmpresa");
-
-
   }
   else{
     $ConsultaNum = 0;
   }
+  $totalNotificacao = mysqli_num_rows($Notificacao -> ReadMensagens("where codUsuario = $idUsuario"));
+  $totalVaga = mysqli_num_rows($Vaga -> ReadVaga("where codEmpresa = $idEmpresa"));
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,18 +41,48 @@
       </div>
       <div class="row">
         <div class="col s12 m12">
-          <ul class="tabs">
-            <li class="tab col s3"><a href="#Notificacao" class="active">Notificações</a></li>
+          <ul class="tabs blue-text">
+            <li class="tab col s3 blue-text"><a href="#Notificacao" class="active blue-text">Notificações</a></li>
             <li class="tab col s3"><a href="#Candidato">Candidatos a vaga</a></li>
             <li class="tab col s3"><a  href="#Entrevista">Entrevistas</a></li>
           </ul>
           <div id="Notificacao" class="col s12">
 
             <h1 class="center-align flow-text">Notificações</h1>
+            <?php if ($totalNotificacao > 0) {
+              $ConsultaNotificacao  = $Notificacao -> ReadMensagens("where codUsuario = $idUsuario");
+              ?>
+                <ul class="collection">
+              <?php
+              while ($ResultNotificacao = mysqli_fetch_object($ConsultaNotificacao)) {
+                $codEntrevista = $ResultNotificacao -> codEntrevista;
+                $ResultEntrevistaNotificacao = mysqli_fetch_object($Entrevista -> ReadEntrevista("where idEntrevista = $codEntrevista"));
+                $idAluno = $ResultEntrevistaNotificacao -> codAluno;
+                $ResultAlunoNotficacao   = $Aluno -> ReadAluno("where idAluno = $idAluno");
+                ?>
+                <li class="collection-item avatar">
+                  <img src="Images/Upload/<?= $ResultAlunoNotficacao -> foto?>" alt="" class="responsive-img circle">
+                  <span class="title"><b>Assunto: </b><?= $ResultNotificacao -> titulo ?></span><br>
+                  <p><b>De:</b> <?= $ResultNotificacao -> de ?> <br>
+                     <b>Mensagem:</b><br>
+                     <?= $ResultNotificacao -> mensagem ?>
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons apagarNotificacao" data-idnotificacao="<?= $ResultNotificacao -> idMensagem ?>">delete</i></a>
+                </li>
+
+
+                <?php
+              }
+              ?>
+            </ul>
+              <?php
+            }else{
+              echo "Você não tem notificações";
+            } ?>
           </div>
           <div class="col s12 m12" id="Candidato">
             <?php if ($totalVaga > 0) {
-              # code...
+
             }else{
               echo "Você não tem vagas cadastradas";
             } ?>

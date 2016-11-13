@@ -76,6 +76,7 @@ CREATE TABLE `entrevistas`(
   `descricao` VARCHAR(255) NOT NULL,
   `codAluno` INT NOT NULL,
   `codEmpresa` INT NOT NULL,
+  `ativo` char(1) null,
   CONSTRAINT `fk_entrevistas_empresa` FOREIGN KEY(`codEmpresa`) REFERENCES `empresa`(`idEmpresa`),
   CONSTRAINT `fk_entrevistas_aluno` FOREIGN KEY(`codAluno`) REFERENCES `aluno`(`idAluno`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -163,5 +164,18 @@ CREATE TABLE `qualificacoes`(
   `codAluno` int not null,
   CONSTRAINT `fk_qualificacoes_usuario` FOREIGN KEY(`codAluno`) REFERENCES `aluno`(`idAluno`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `candidatouse`(
+`idCandidatouse`   int not null primary key auto_increment,
+`nome` 		       varchar(50) not null,
+`foto`             varchar(50) not null,
+`ativo`            char(1) NULL,
+`codAluno` 	       int not null,
+`codVaga` 	       int not null,
+`codUsuarioAluno`  int not null,
+Constraint `fk_candidatouse_aluno` foreign key(`codAluno`) references `aluno`(`idAluno`),
+CONSTRAINT `fk_candidatouse_vaga`  FOREIGN KEY(`codVaga`)  references `vaga`(`idVaga`),
+CONSTRAINT `fk_candidatouse_alunoUsuario` FOREIGN KEY(`codUsuarioAluno`) references `aluno`(`codUsuario`)
+);
 
 ALTER DATABASE `tcc` CHARSET = UTF8 COLLATE = utf8_general_ci;

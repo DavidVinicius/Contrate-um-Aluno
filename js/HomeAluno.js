@@ -27,6 +27,57 @@ $(document).ready(function() {
 
     $(".apagarEntrevista").click(function(event) {
       /* Act on the event */
-      alert("aa");
+      var idEntrevista = $(this).data('identrevista');
+      var idAluno      = $(this).data('idaluno');
+      var codUsuarioEmpresa = $(this).data("codusuarioempresa");
+
+      alert(idAluno + " " + idEntrevista + " " codUsuarioEmpresa);
+      var $toastContent = $("<span> tem certeza que deseja apagar, isso irá cancelar a entrevista? <button id='confirmar' class='btn red waves-effect waves-light'>confirmar</button></span>");
+       Materialize.toast($toastContent, 5000, '', function(){});
+       $("#confirmar").click(function(event) {
+
+         $.ajax({
+           url: "Controller/CancelarEntrevista.php",
+           method: "POST",
+           data:{idEntrevista:idEntrevista,idAluno:idAluno},
+           success: function(data){
+             alert(data);
+             Materialize.toast("Entrevista cancelada com sucesso");
+           },
+           error:function(){
+             Materialize.toast("Erro ao tentar cancelar a entrevista, tente novamente",4000);
+           }
+
+         });
+
+       });
     });
+
+
+    $(".CancelarEntrevista").click(function(event) {
+      /* Act on the event */
+      var idEntrevista = $(this).data("identrevista");
+      var idAluno      = $(this).data("idaluno");
+      var codUsuarioEmpresa = $(this).data("codusuarioempresa");
+      alert(idAluno + " " + idEntrevista + " " codUsuarioEmpresa);
+
+      var $toastContent = $("<span> tem certeza que deseja cancelar a entrevista? <button id='cancelar' class='btn red waves-effect waves-light'>confirmar</button></span>");
+      Materialize.toast($toastContent, 5000, '', function(){});
+      $("#cancelar").click(function(event) {
+
+        $.ajax({
+          url: "Controller/CancelarEntrevista.php",
+          method: "POST",
+          data:{idEntrevista:idEntrevista,idAluno:idAluno},
+          success: function(data){
+            alert(data);
+            Materialize.toast("Entrevista cancelada com sucesso");
+          },
+          error:function(){
+            Materialize.toast("Erro ao tentar cancelar a entrevista, tente novamente",4000);
+          }
+
+        });
+    });
+  });
 });

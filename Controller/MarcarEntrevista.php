@@ -48,6 +48,7 @@
         "salario"       => $salario,
         "cargaHoraria"  => $cargaHoraria,
         "descricao"     => $descricao,
+        "ativo"         => "S",
         "codAluno"      => $idAluno,
         "codEmpresa"    => $idEmpresa
     );

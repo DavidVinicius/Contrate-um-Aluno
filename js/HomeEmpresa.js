@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $('.modal-trigger').leanModal();
     $('input, textarea').characterCounter();
+      $('ul.tabs').tabs();
     $("#recusar").click(function(event) {
       /* Act on the event */
       // alert(candidato);
@@ -35,7 +36,7 @@ $(document).ready(function() {
             success: function(data)
             {
               alert(data);
-              Materialize.toast("A entrevista foi alterada e foi notificado ao aluno",4000);
+              Materialize.toast("A entrevista foi alterada e foi notificado ao aluno, clique para continuar",4000);
               $(apagarDiv).hide(1000);
             }
         });

@@ -49,6 +49,7 @@
         "cargaHoraria"  => $cargaHoraria,
         "descricao"     => $descricao,
         "ativo"         => "S",
+        "status"        => "Aguardando resposta",
         "codAluno"      => $idAluno,
         "codEmpresa"    => $idEmpresa
     );

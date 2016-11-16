@@ -14,6 +14,9 @@ app.controller("Candidato",["$scope", function($scope){
    $('.chips').click(function(event) {
       Materialize.toast("Digite e aperte enter para adicionar benefícios",4000);
    });
+   $(".chips").focus(function(){
+     Materialize.toast("Digite e aperte enter para adicionar benefícios",4000);
+   });
    $('.chips-placeholder').material_chip({
      placeholder: 'Enter a tag',
      secondaryPlaceholder: 'Digite ',
@@ -54,7 +57,7 @@ app.controller("Candidato",["$scope", function($scope){
           url: 'Controller/MarcarEntrevista.php',
           success: function(data)
           {
-              alert(data);
+              // alert(data);
               Materialize.toast("Entrevista marcada com sucesso, clique para continuar",4000);
               $(".modal").hide(1000);
           }

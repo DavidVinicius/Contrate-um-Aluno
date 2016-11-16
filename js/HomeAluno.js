@@ -1,7 +1,13 @@
 $(document).ready(function() {
     $('.modal-trigger').leanModal();
     $('.collapsible').collapsible();
-    $('ul.tabs').tabs();
+    $('ul.tabs').tabs({
+      onShow: function(){
+        var filho = $(this).data("filho");
+        var caminho = $(this).data("caminho");
+        $("#"+filho).load("View/Shared/AlunoNots/"+caminho);
+      }
+    });
 
     $(".ApagarNotificacao").click(function(event) {
         var idMensagem = $(this).data('idnotificacao');
@@ -27,11 +33,11 @@ $(document).ready(function() {
 
     $(".apagarEntrevista").click(function(event) {
       /* Act on the event */
-      var idEntrevista = $(this).data('identrevista');
-      var idAluno      = $(this).data('idaluno');
+      var idEntrevista      = $(this).data('identrevista');
+      var idAluno           = $(this).data('idaluno');
       var codUsuarioEmpresa = $(this).data("codusuarioempresa");
 
-      alert(idAluno + " " + idEntrevista + " " codUsuarioEmpresa);
+      alert(idAluno + " " + idEntrevista + " " + codUsuarioEmpresa);
       var $toastContent = $("<span> tem certeza que deseja apagar, isso irá cancelar a entrevista? <button id='confirmar' class='btn red waves-effect waves-light'>confirmar</button></span>");
        Materialize.toast($toastContent, 5000, '', function(){});
        $("#confirmar").click(function(event) {
@@ -39,7 +45,7 @@ $(document).ready(function() {
          $.ajax({
            url: "Controller/CancelarEntrevista.php",
            method: "POST",
-           data:{idEntrevista:idEntrevista,idAluno:idAluno},
+           data:{idEntrevista:idEntrevista,idAluno:idAluno,codUsuarioEmpresa:codUsuarioEmpresa},
            success: function(data){
              alert(data);
              Materialize.toast("Entrevista cancelada com sucesso");
@@ -59,7 +65,7 @@ $(document).ready(function() {
       var idEntrevista = $(this).data("identrevista");
       var idAluno      = $(this).data("idaluno");
       var codUsuarioEmpresa = $(this).data("codusuarioempresa");
-      alert(idAluno + " " + idEntrevista + " " codUsuarioEmpresa);
+      alert(idAluno + " " + idEntrevista + " " + codUsuarioEmpresa);
 
       var $toastContent = $("<span> tem certeza que deseja cancelar a entrevista? <button id='cancelar' class='btn red waves-effect waves-light'>confirmar</button></span>");
       Materialize.toast($toastContent, 5000, '', function(){});
@@ -68,10 +74,10 @@ $(document).ready(function() {
         $.ajax({
           url: "Controller/CancelarEntrevista.php",
           method: "POST",
-          data:{idEntrevista:idEntrevista,idAluno:idAluno},
+          data:{idEntrevista:idEntrevista,idAluno:idAluno,codUsuarioEmpresa:codUsuarioEmpresa},
           success: function(data){
             alert(data);
-            Materialize.toast("Entrevista cancelada com sucesso");
+            Materialize.toast("Entrevista cancelada com sucesso",4000);
           },
           error:function(){
             Materialize.toast("Erro ao tentar cancelar a entrevista, tente novamente",4000);

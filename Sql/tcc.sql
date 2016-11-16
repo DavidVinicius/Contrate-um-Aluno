@@ -77,6 +77,7 @@ CREATE TABLE `entrevistas`(
   `codAluno` INT NOT NULL,
   `codEmpresa` INT NOT NULL,
   `ativo` char(1) null,
+  `status` varchar(30) null,
   CONSTRAINT `fk_entrevistas_empresa` FOREIGN KEY(`codEmpresa`) REFERENCES `empresa`(`idEmpresa`),
   CONSTRAINT `fk_entrevistas_aluno` FOREIGN KEY(`codAluno`) REFERENCES `aluno`(`idAluno`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

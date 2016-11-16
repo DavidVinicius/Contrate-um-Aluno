@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    
+
      <div class="row">
       <?php
          include_once("View/Shared/Menu.php");
@@ -64,7 +64,7 @@
     </div>
 
 
-    <script src="js/jquery-3.1.0.min.js"></script>
+    <!-- <script src="js/jquery-3.1.0.min.js"></script> -->
     <script src="js/materialize.min.js"></script>
     <script>
             $(".teste").hide();

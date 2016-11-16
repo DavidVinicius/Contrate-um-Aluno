@@ -19,10 +19,30 @@ if($nivel == 1){
     if ($fetch) {
       $fotoAluno = $fetch['foto'];
       $nomeAluno = $fetch['nome'];
+      $disabled  = "<li><a href='OnePage.php?link=HomeAluno'>Home</a></li>
+                    <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
+                    <li><a href='OnePage.php?link=VerCurriculo'>Curriculo</a></li>
+                    <li><a href='OnePage.php?link=Perfil'>Config</a></li>
+                   <li><a href='' data-activates='Configuracoes' class='abrir'><img src='Images/Upload/".$fotoAluno."' class='circle' width='60px' height='60px' >$notificacoes</a></li>
+                    <li><a href='./Controller/Sair.php'>Sair</a></li>
+                    <li><span style='margin-right:5%'>&nbsp &nbsp</span></li>";
+
+      $disabledMobile ="<li><a href='OnePage.php?link=HomeAluno'>Home</a></li>
+                        <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
+                        <li><a href='OnePage.php?link=VerCurriculo'>Curriculo</a></li>
+                        <li><a href='OnePage.php?link=Perfil'>Config</a></li>" ;
     }
     else{
       $fotoAluno = "PerfilPadrao.png";
       $nomeAluno = "Não informado";
+      $disabled        = "<li><a href='OnePage.php?link=VerCurriculo'>Crie seu currículo para utilizar o site</a></li>
+                          <li><a href='OnePage.php?link=VerCurriculo'>Curriculo</a></li>
+                          <li><a href='' data-activates='Configuracoes' class='abrir'><img src='Images/Upload/".$fotoAluno."' class='circle' width='60px' height='60px' >$notificacoes</a></li>
+                          <li><a href='./Controller/Sair.php'>Sair</a></li>
+                          <li><span style='margin-right:5%'>&nbsp &nbsp</span></li>";
+      $disabledMobile = " <li><a href='OnePage.php?link=VerCurriculo'>Crie seu currículo para utilizar o site</a></li>
+                          <li><a href='OnePage.php?link=VerCurriculo'>Curriculo</a></li>
+                          <li><a href='./Controller/Sair.php'>Sair</a></li>";
     }
     // var_dump($fotoAluno);
     echo "<div class='navbar-fixed'>
@@ -34,13 +54,7 @@ if($nivel == 1){
               <a href='#!' class='brand-logo'><span style='margin-left:5%'></span>Contrate um Aluno</a>
               <a href='#' data-activates='menuLateral' class='button-collapse'><i class='material-icons'>	menu</i></a>
               <ul class='right hide-on-med-and-down'>
-                <li><a href='OnePage.php?link=HomeAluno'>Home</a></li>
-                <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
-                <li><a href='OnePage.php?link=VerCurriculo'>Curriculo</a></li>
-                <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
-               <li><a href='' data-activates='Configuracoes' class='abrir'><img src='Images/Upload/".$fotoAluno."' class='circle' width='60px' height='60px' >$notificacoes</a></li>
-                <li><a href='./Controller/Sair.php'>Sair</a></li>
-                <li><span style='margin-right:5%'>&nbsp &nbsp</span></li>
+                $disabled
               </ul>
               <ul class='side-nav' id='menuLateral'>
                <li><div class='userView'>
@@ -49,11 +63,8 @@ if($nivel == 1){
                   <a href='#!name'><span class='white-text name'>". $nomeAluno ."</span></a>
                   <a href='#!email'><span class='white-text email'>".$email ."</span></a>
                 </div></li>
-                <li><a href='OnePage.php?link=HomeAluno'>Home</a></li>
-                <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
-                <li><a href='OnePage.php?link=VerCurriculo'>Curriculo</a></li>
-                <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
-                <li><a href='./Controller/Sair.php'>Sair</a></li>
+                $disabledMobile
+
               </ul>
               <ul class='side-nav' id='Configuracoes'>
                   <li><div class='userView'>
@@ -62,9 +73,9 @@ if($nivel == 1){
                   <a href='#!name'><span class='white-text name'>".$nomeAluno ."</span></a>
                   <a href='#!email'><span class='white-text email'>$email</span></a>
                     </div></li>
-                    <li><a href=''>Notificações $notificacoes</a></li>
+                    <!--<li><a href=''>Notificações $notificacoes</a></li>
                     <li><a href=''>Alterar configurações de Login</a></li>
-                    <li><a href=''>Trocar Imagem de fundo</a></li>
+                    <li><a href=''>Trocar Imagem de fundo</a></li>!-->
               </ul>
             </div>
           </nav>
@@ -87,12 +98,26 @@ else if ($nivel == 2){
   $fetch         = mysqli_fetch_assoc($empresa->ReadEmpresa("where codUsuario = $idUsuario"));
   $email         = $_SESSION['usuario'];
   if ($fetch) {
-    $fotoEmpresa = $fetch['foto'];
-    $nomeEmpresa = $fetch['nome'];
+    $fotoEmpresa      = $fetch['foto'];
+    $nomeEmpresa      = $fetch['nome'];
+    $disabled         = "<li><a href='OnePage.php?link=HomeEmpresa'>Home</a></li>
+                          <li><a href='OnePage.php?link=Candidatos'>Candidatos</a></li>
+                          <li><a href='OnePage.php?link=VerEmpresa'>Suas Informações</a></li>
+                          <li><a href='OnePage.php?link=CriarVaga'>Criar Vaga</a></li>
+                          <li><a href='OnePage.php?link=Perfil'>Config</a></li>";
+    $disabledMobile   =  "<li><a href='OnePage.php?link=HomeEmpresa'>Home</a></li>
+                          <li><a href='OnePage.php?link=Candidatos'>Candidatos</a></li>
+                          <li><a href='OnePage.php?link=Empresa'>Suas Informações</a></li>
+                          <li><a href='OnePage.php?link=CriarVaga'>Criar Vaga</a></li>
+                          <li><a href='OnePage.php?link=Perfil'>Config</a></li>";
   }
   else{
-    $fotoEmpresa = "PerfilPadrao.png";
-    $nomeEmpresa = "Não informado";
+    $fotoEmpresa     = "PerfilPadrao.png";
+    $nomeEmpresa     = "Não informado";
+    $disabled        = "<li><a href='OnePage.php?link=VerEmpresa'>Crie seu perfil para utilizar o site</a></li>
+                        <li><a href='OnePage.php?link=VerEmpresa'>Suas Informações</a></li>";
+    $disabledMobile  =  "<li><a href='OnePage.php?link=VerEmpresa'>Crie seu perfil para utilizar o site</a></li>
+                        <li><a href='OnePage.php?link=VerEmpresa'>Suas Informações</a></li>";
 
   }
     echo "<div class='navbar-fixed'>
@@ -104,11 +129,7 @@ else if ($nivel == 2){
               <a href='#!' class='brand-logo'><span style='margin-left:5%'></span>Contrate um Aluno</a>
               <a href='#' data-activates='menuLateral' class='button-collapse'><i class='material-icons'>	menu</i></a>
               <ul class='right hide-on-med-and-down'>
-                <li><a href='OnePage.php?link=HomeEmpresa'>Home</a></li>
-                <li><a href='OnePage.php?link=Candidatos'>Candidatos</a></li>
-                <li><a href='OnePage.php?link=VerEmpresa'>Suas Informações</a></li>
-                <li><a href='OnePage.php?link=CriarVaga'>Criar Vaga</a></li>
-                <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
+                $disabled
                <li><a href='' data-activates='Configuracoes' class='abrir'><img src='Images/Upload/".$fotoEmpresa."' class='circle responsive-img valign' width='60px' style='margin-top:10px'>$notificacoes</a></li>
                 <li><a href='./Controller/Sair.php'>Sair</a></li>
                 <li><span style='margin-right:5%'>&nbsp &nbsp</span></li>
@@ -120,11 +141,7 @@ else if ($nivel == 2){
                   <a href='#!name'><span class='white-text name'>".$nomeEmpresa."</span></a>
                   <a href='#!email'><span class='white-text email'".$email."</span></a>
                 </div></li>
-                <li><a href='OnePage.php?link=HomeEmpresa'>Home</a></li>
-                <li><a href='OnePage.php?link=Candidatos'>Candidatos</a></li>
-                <li><a href='OnePage.php?link=Empresa'>Suas Informações</a></li>
-                <li><a href='OnePage.php?link=CriarVaga'>Criar Vaga</a></li>
-                <li><a href='OnePage.php?link=Perfil'>Perfil</a></li>
+                $disabledMobile
                 <li><a href='./Controller/Sair.php'>Sair</a></li>
               </ul>
               <ul class='side-nav' id='Configuracoes'>
@@ -134,9 +151,9 @@ else if ($nivel == 2){
                   <a href='#!name'><span class='white-text name'>".$nomeEmpresa."</span></a>
                   <a href='#!email'><span class='white-text email'>". $email ."</span></a>
                     </div></li>
-                    <li><a href=''>Notificações $notificacoes</a></li>
+                    <!--<li><a href=''>Notificações $notificacoes</a></li>
                     <li><a href=''>Alterar configurações de Login</a></li>
-                    <li><a href=''>Trocar Imagem de fundo</a></li>
+                    <li><a href=''>Trocar Imagem de fundo</a></li>--!>
               </ul>
             </div>
           </nav>

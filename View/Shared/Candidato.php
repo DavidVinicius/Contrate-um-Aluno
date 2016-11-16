@@ -180,7 +180,7 @@
                 </div>
                 <div class="row">
                     <a href="#modal1" class="btn btn-large blue modal-trigger waves-effect waves-light">Marcar Entrevista</a>
-                    <a href="OnePage.php?<?= $anterior.$pagina?>" class="btn btn-large waves-effect waves-light">Voltar a página de candidatos</a>
+                    <a href="OnePage.php?<?= $anterior.$pagina?>" class="btn btn-large blue darken-1 waves-effect waves-light">Voltar</a>
                 </div>
                 <div class="row">
                   <div id="modal1" class="modal modal-fixed-footer">
@@ -214,7 +214,7 @@
                             </div>
                             <div class="input-field col s12 m4">
                               <label for="completemento">Complemento</label>
-                              <input type="text" name="complemento" id="complemento" required="true">
+                              <input type="text" name="complemento" id="complemento">
                             </div>
                             <div class="input-field col s12 m4">
                               <label for="cidade">Cidade:</label>

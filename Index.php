@@ -61,7 +61,7 @@
             <h1 class="center-align white-text">A ideia</h1>
         </div>
     </section>
-    <div class="EmpresasParralax">
+    <!-- <div class="EmpresasParralax">
       <div class="parallax-container">
         <div class="parallax"><img src="Images/Office.jpg"></div>
         <div class="carousel">
@@ -95,11 +95,11 @@
         </div>
       </div>
 
-    </div>
+    </div> -->
     <section class="section SobreOsDesenvolvedores menuCor">
             <h1 class="center-align white-text">Sobre os Desenvolvedores</h1>
     </section>
-    <section class="AlunosParallax section ">
+    <!-- <section class="AlunosParallax section ">
       <div class="parallax-container">
         <div class="parallax"><img src="Images/Office.jpg"></div>
         <div class="carousel">
@@ -133,9 +133,9 @@
           </p>
         </div>
       </div>
-    </section>
+    </section> -->
     <section class="footer ">
-      <footer class="page-footer grey darken-4">
+      <!-- <footer class="page-footer grey darken-4"> -->
         <div class="container  ">
           <div class="row  ">
             <div class="col l6 s12">
@@ -147,7 +147,7 @@
               <ul>
                 <li><a class="grey-text text-lighten-3" href="#!">A ideia</a></li>
                 <li><a class="grey-text text-lighten-3" href="#!">Sobre os Desenvolvedores</a></li>
-              
+
               </ul>
             </div>
           </div>
@@ -180,7 +180,7 @@
         $(document).ready(function(){
              $(".button-collapse").sideNav();
             $(".abrirFormulario").leanModal();
-            $('.parallax').parallax();
+            // $('.parallax').parallax();
             $('.carousel').carousel();
             $(".abrirFormulario").click(function(){
 

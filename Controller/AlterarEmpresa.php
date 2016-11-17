@@ -45,11 +45,7 @@ if (isset($_POST['existeEmpresa'] )) {
        echo "deu certo valores $valor";
      }
 
-
    }
-
-
-
 }
 if(isset($_POST['existeFoto']))
 {

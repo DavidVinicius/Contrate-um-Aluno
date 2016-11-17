@@ -20,7 +20,7 @@
 <body ng-app="myapp" ng-controller="CriarVaga">
     <div class="container">
         <div class="row">
-            <h3 class="center-align">Publique sua vaga no Contrate um Aluno</h3>
+            <h3 class="center-align flow-text">Publique sua vaga no Contrate um Aluno</h3>
             <div class="col s12 m12">
                 <form action="Controller/Cadastro/CadastroVaga.php" method="post">
                     <div class="row">

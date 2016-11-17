@@ -51,7 +51,7 @@ app.controller("CriarVaga",["$scope",function($scope){
                         success: function(data)
                         {
                             Materialize.toast('Vaga cadastrada com sucesso',4000);
-                            alert(data);
+                            //alert(data);
                         },
                         error: function(){
                             Materialize.toast('Erro ao cadastrar vaga, tente novamente',4000);
@@ -87,7 +87,7 @@ app.controller("CriarVaga",["$scope",function($scope){
                 method: "POST",
                 data:{alterar:dadoAlteracao},
                 success:function(data){
-                    alert(data);
+                    //alert(data);
                     Materialize.toast("Alterado com sucesso",4000);
 
                 }

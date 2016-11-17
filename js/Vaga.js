@@ -3,6 +3,7 @@
       $('.parallax').parallax();
 
       $("#candidatar").submit(function(e){
+        var botaoCandidatarse = $(this);
         var dados = new FormData(this);
         e.preventDefault();
         // alert("teste");
@@ -16,8 +17,9 @@
             url: 'Controller/Candidatarse.php',
             success: function(data)
             {
-              alert(data);
-
+              //alert(data);
+              Materialize.toast("Candidato com sucesso!",4000);
+              $(botaoCandidatarse).attr('disabled', true);
             }
         });
       });

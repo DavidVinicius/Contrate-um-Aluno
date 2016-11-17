@@ -261,7 +261,7 @@
                             </div>
                             <div class="input-field col s12 m3">
                               <label for="salario">Qual o salário?</label>
-                              <input type="text" name="salario" id="salario" required="true">
+                              <input type="text" name="salario" id="salario">
                             </div>
                             <div class="input-field col s12 m3">
                               <label for="cargaHoraria">Carga horária semanal:</label>

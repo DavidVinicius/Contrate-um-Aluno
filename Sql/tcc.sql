@@ -109,8 +109,6 @@ CREATE TABLE `beneficiosEntrevista`(
   CONSTRAINT `fk_beneficiosVaga_entrevistas` FOREIGN KEY(`codEntrevista`) REFERENCES `entrevistas`(`idEntrevista`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
 CREATE TABLE `professor` (
   `idProfessor` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(40) NOT NULL,
@@ -167,16 +165,28 @@ CREATE TABLE `qualificacoes`(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `candidatouse`(
-`idCandidatouse`   int not null primary key auto_increment,
-`nome` 		       varchar(50) not null,
-`foto`             varchar(50) not null,
-`ativo`            char(1) NULL,
-`codAluno` 	       int not null,
-`codVaga` 	       int not null,
-`codUsuarioAluno`  int not null,
-Constraint `fk_candidatouse_aluno` foreign key(`codAluno`) references `aluno`(`idAluno`),
-CONSTRAINT `fk_candidatouse_vaga`  FOREIGN KEY(`codVaga`)  references `vaga`(`idVaga`),
-CONSTRAINT `fk_candidatouse_alunoUsuario` FOREIGN KEY(`codUsuarioAluno`) references `aluno`(`codUsuario`)
-);
+  `idCandidatouse` int not null primary key auto_increment,
+  `nome` varchar(50) not null,
+  `foto` varchar(50) not null,
+  `ativo` char(1) NULL,
+  `codAluno` int not null,
+  `codVaga` int not null,
+  `codUsuarioAluno` int not null,
+  Constraint `fk_candidatouse_aluno` foreign key(`codAluno`) references `aluno`(`idAluno`),
+  CONSTRAINT `fk_candidatouse_vaga`  FOREIGN KEY(`codVaga`)  references `vaga`(`idVaga`),
+  CONSTRAINT `fk_candidatouse_alunoUsuario` FOREIGN KEY(`codUsuarioAluno`) references `aluno`(`codUsuario`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `notificacoesCandidatouse`(
+    `idNotificacoesCandidatouse` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `titulo` VARCHAR(40) NOT NULL,
+    `de` VARCHAR(40) NOT NULL,
+    `data` DATE NOT NULL,
+    `hora` TIME NOT NULL,
+    `mensagem` TEXT NOT NULL,
+    `codCandidatouse` INT NOT NULL,
+    CONSTRAINT `fk_notificacoesCandidatouse_candidatouse` FOREIGN KEY(`codCandidatouse`)
+      REFERENCES `candidatouse`(`idCandidatouse`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER DATABASE `tcc` CHARSET = UTF8 COLLATE = utf8_general_ci;

@@ -2,9 +2,19 @@
     include_once "Model/DataBase.class.php";
     include_once "Model/ModelQualificacoes.class.php";
     include_once "Model/ModelAluno.class.php";
+
+    $DB = new DataBase();
+    $id = $_SESSION['id'];
+
+
+    $ConsultaAluno  = $DB->SearchQuery("aluno");
+    $Qualificacoes  = new ModelQualificacoes();
+    $Aluno      = new ModelAluno();
+
     $Aluno  = new ModelAluno();
     $DB     = new DataBase();
     $id = $_SESSION['id'];
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -45,6 +55,12 @@
           <h1 class="center-align flow-text">Atuais Candidatos</h1>
             <div class="row">
                 <?php
+
+                while( $linha = mysqli_fetch_assoc($ConsultaAluno) ){
+                    $idUsuario  = $_SESSION['id'];
+                    $LerAluno   = $Aluno->ReadAluno("where codUsuario = $idUsuario");
+                    $FetchAluno = mysqli_fetch_assoc($LerAluno);
+                 ?>
                 //verifica a página atual caso seja informada na URL, senão atribui como 1ª página
                 $pagina = (isset( $_GET['pagina']) ) ? $_GET['pagina'] : 1;
 
@@ -70,6 +86,7 @@
                   $Qualificacao = new ModelQualificacoes();
                   $ResultadoQ = $Qualificacao->ReadQualificacoes("where codAluno = $idAluno");
                 ?>
+
                 <div class="col s12 m6">
                     <div class="card horizontal hoverable">
                         <div class="card-image activator">
@@ -77,11 +94,18 @@
                             <span class="card-title black-text"><?=$linha['nome']?></span>
                         </div>
                         <div class="card-content">
+
+                            <?php while($qualificacao = mysqli_fetch_assoc($Ler)){ ?>
+                            <span class="chip blue"><?= $qualificacao['competencia'] ?></span>
+                            <?php } ?>
+                            <a href="OnePage.php?link=Candidato&id=<?=$linha['idAluno']?>"><button class="btn blue">Ver perfil</button></a>
+
                           <!-- <span class="center-align">Habilidades:</span> -->
                             <?php while($qualificacao = mysqli_fetch_assoc($ResultadoQ)){ ?>
                             <span class="chip"><?=$qualificacao['competencia']?></span>
                             <?php } ?>
                             <a href="OnePage.php?link=Candidato<?= '&id='.$linha['idAluno'].'&cod='.$linha['codUsuario'].'&anterior='.$_SERVER['QUERY_STRING']?>"><button class="btn blue">Ver perfil</button></a>
+
                         </div>
                     </div>
                 </div>

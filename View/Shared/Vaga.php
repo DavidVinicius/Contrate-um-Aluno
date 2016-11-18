@@ -1,13 +1,18 @@
 <?php
     include_once("Model/DataBase.class.php");
     require_once "Model/ModelCandidatouse.class.php";
-    $IdVaga    = $_GET['id'];
-    $idUsuario = $_SESSION['id'];
-    $pesquisa  = isset($_GET['pesquisa'])? "&pesquisa=".$_GET['pesquisa']:null;
-    $filtro    = isset($_GET['filtro'])?"&filtro=".$_GET['filtro']:null;
-    $anterior  = $_GET['anterior'];
-    $Candidato  =  new Candidatouse();
-    $Num        = mysqli_num_rows($Candidato -> ReadCandidatouse("where codUsuarioAluno = $idUsuario && codVaga = $IdVaga"));
+    require_once "Model/ModelAluno.class.php";
+
+    $IdVaga          = $_GET['id'];
+    $codUsuarioAluno = $_SESSION['id'];
+    $pesquisa        = isset($_GET['pesquisa'])? "&pesquisa=".$_GET['pesquisa']:null;
+    $filtro          = isset($_GET['filtro'])?"&filtro=".$_GET['filtro']:null;
+    $anterior        = $_GET['anterior'];
+    $Aluno            =  new ModelAluno();
+    $Candidato        =  new Candidatouse();
+    $ResultAluno      = mysqli_fetch_object($Aluno -> ReadAluno("where codUsuario = $codUsuarioAluno"));
+    $idAluno          = $ResultAluno -> idAluno;
+    $Num              = mysqli_num_rows($Candidato -> ReadCandidatouse("where codAluno = $idAluno && codVaga = $IdVaga"));
     if ($Num > 0) {
        $disabled = "disabled='true'";
        $candidatar = 'Você já se candidatou-se para essa vaga';
@@ -29,6 +34,7 @@
     $Result2       = $DB->SearchQuery("empresa", "where idEmpresa = $CodEmpresa");
     $EmpresaAssoc  = mysqli_fetch_assoc($Result2);
     $nomeEmpresa   = $EmpresaAssoc['nome'];
+    $codUsuarioEmpresa = $EmpresaAssoc['codUsuario'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -109,8 +115,10 @@
 
           <div class="row">
               <form action="Controller/Candidatarse.php" method="post" id="candidatar">
-                <input type="hidden" name="idUsuario" value="<?= $idUsuario ?>">
+                <input type="hidden" name="idUsuario" value="<?= $codUsuarioEmpresa ?>">
                 <input type="hidden" name="idVaga" value="<?= $IdVaga ?>">
+                <input type="hidden" name="codUsuarioAluno" value="<?= $codUsuarioAluno ?>">
+                <input type="hidden" name="idEmpresa" value="<?= $CodEmpresa ?>">
                 <!-- <a href="" class='btn btn-large blue'>Candidatar-se</a> -->
                 <button class="btn btn-large blue waves-effect waves-light " type="submit" <?= $disabled?>><?= $candidatar ?></button>
                 <a href="OnePage.php?<?=$anterior.$pesquisa.$filtro ?>"><button type="button" name="button" class="btn btn-large waves-effect waves-light">Voltar</button></a>

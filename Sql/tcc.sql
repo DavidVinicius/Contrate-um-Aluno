@@ -171,10 +171,10 @@ CREATE TABLE `candidatouse`(
   `ativo` char(1) NULL,
   `codAluno` int not null,
   `codVaga` int not null,
-  `codUsuarioAluno` int not null,
+  `codEmpresa` int not null,
   Constraint `fk_candidatouse_aluno` foreign key(`codAluno`) references `aluno`(`idAluno`),
   CONSTRAINT `fk_candidatouse_vaga`  FOREIGN KEY(`codVaga`)  references `vaga`(`idVaga`),
-  CONSTRAINT `fk_candidatouse_alunoUsuario` FOREIGN KEY(`codUsuarioAluno`) references `aluno`(`codUsuario`)
+  CONSTRAINT `fk_candidatouse_empresa` FOREIGN KEY(`codEmpresa`) REFERENCES `empresa`(`idEmpresa`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `notificacoesCandidatouse`(
@@ -185,6 +185,8 @@ CREATE TABLE `notificacoesCandidatouse`(
     `hora` TIME NOT NULL,
     `mensagem` TEXT NOT NULL,
     `codCandidatouse` INT NOT NULL,
+    `codUsuario`		INT NOT NULL,
+    CONSTRAINT `fk_notificacoesCandidatouse_usuario` FOREIGN KEY(`codUsuario`) REFERENCES `usuario`(`idUsuario`),
     CONSTRAINT `fk_notificacoesCandidatouse_candidatouse` FOREIGN KEY(`codCandidatouse`)
       REFERENCES `candidatouse`(`idCandidatouse`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

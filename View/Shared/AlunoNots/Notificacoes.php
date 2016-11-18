@@ -5,21 +5,20 @@
 </head>
 <?php
   session_start();
-  include_once "../../../Model/ModelCandidatouse.class.php";
+
+  require_once "../../../Model/ModelNotificacoesCandidatouse.class.php";
   include_once "../../../Model/ModelEntrevistas.class.php";
-  include_once "../../../Model/ModelAluno.class.php";
   include_once "../../../Model/ModelMensagens.class.php";
   require_once "../../../Model/ModelEmpresa.class.php";
 
-  $candidatouse     = new Candidatouse();
+
   $notfCandidatouse = new ModelNotificacoesCandidatouse();
-  $Aluno            = new ModelAluno();
   $Entrevista       = new ModelEntrevistas();
   $Notificacao      = new Mensagens();
   $Empresa          = new ModelEmpresa();
 
   $idUsuario        = $_SESSION['id'];
-  $ConsultaAluno    = mysqli_fetch_object($Aluno->ReadAluno("where codUsuario = $idUsuario"));
+
   $idAluno          = isset($ConsultaAluno->idAluno)?$ConsultaAluno->idAluno:null;
 
    if($Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = 'S' ")){
@@ -35,15 +34,15 @@
   if ($total > 0) {
      $nots = "<span class='white-text chip red'>$total</span>";
   }
-  $ConsultaEntrevista            = $Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = 'S' and ativo is not null");
-  $ConsultaEntrevistaFinalizadas = $Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = '' ");
-  $resultNotfNumRowsCandidatouse = mysqli_num_rows($notfCandidatouse->ReadNotificacoesCandidatouse());
-  $consultaNotfCandidatouse      = mysqli_fetch_object($notfCandidatouse->ReadNotificacoesCandidatouse());
+  // $ConsultaEntrevista            = $Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = 'S' and ativo is not null");
+
+  // $resultNotfNumRowsCandidatouse = mysqli_num_rows($notfCandidatouse->ReadNotificacoesCandidatouse());
+  // $consultaNotfCandidatouse      = mysqli_fetch_object($notfCandidatouse->ReadNotificacoesCandidatouse());
  ?>
 
  <ul class="collection">
  <?php
-       if ($total > 0 || $resultNotfNumRowsCandidatouse > 0) {
+       if ($total > 0 ) {
              $pagina = (isset( $_GET['pagina']) ) ? $_GET['pagina'] : 1;
              $registros = 5;
 
@@ -53,20 +52,20 @@
 
              $ConsultaNot = $Notificacao -> ReadMensagens("where codUsuario = $idUsuario order by idMensagem desc limit $inicio, $registros") ;
 
-             while($object = mysqli_fetch_object( $consultaCandidatouse )){
-                 //
-                 ?>
-                 <li class="collection-item avatar">
-                     <img src="Images/Upload/<?= $EmpresaN -> foto?>" alt="" class="responsive-img circle">
-                     <span class="title"><b>Assunto: </b><?= $object -> titulo ?></span><br>
-                     <p><b>De:</b> <?= $object -> de ?> <br>
-                        <b>Mensagem:</b><br>
-                        <?= $object -> mensagem ?>
-                     </p>
-                     <a href="#!" class="secondary-content"><i class="material-icons ApagarNotificacao" data-idnotificacao="<?= $object -> idMensagem ?>">delete</i></a>
-                   </li>
+            //  while($object = mysqli_fetch_object( $consultaCandidatouse )){
+            //      //
+            //      ?>
+            <!-- //      <li class="collection-item avatar">
+            //          <img src="Images/Upload/<?= $EmpresaN -> foto?>" alt="" class="responsive-img circle">
+            //          <span class="title"><b>Assunto: </b><?= $object -> titulo ?></span><br>
+            //          <p><b>De:</b> <?= $object -> de ?> <br>
+            //             <b>Mensagem:</b><br>
+            //             <?= $object -> mensagem ?>
+            //          </p>
+            //          <a href="#!" class="secondary-content"><i class="material-icons ApagarNotificacao" data-idnotificacao="<?= $object -> idMensagem ?>">delete</i></a>
+            //        </li> -->
                    <?php
-             }
+            //  }
 
              while ($ResultN = mysqli_fetch_object($ConsultaNot)) {
                    $codEntrevista = $ResultN -> codEntrevista;

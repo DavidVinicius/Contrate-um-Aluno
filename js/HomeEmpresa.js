@@ -31,13 +31,15 @@ $(document).ready(function() {
       });
 
     });
+
     $(".ApagarNotificacao").click(function(event) {
+        var tabela     = $(this).data("tabela");
         var idMensagem = $(this).data('idnotificacao');
         var Notificacao = $(this).parent().parent().hide();
         $.ajax({
           url: "Controller/ApagarNotificacao.php",
           method: "POST",
-          data:{idMensagem: idMensagem},
+          data:{idMensagem: idMensagem, tabela:tabela},
           success: function(data){
               // alert(data);
               Materialize.toast("Apagado com sucesso", 4000);
@@ -102,7 +104,7 @@ $(document).ready(function() {
           }
         });
       }
-      
+
 
     });
 

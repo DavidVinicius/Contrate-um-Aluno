@@ -20,7 +20,7 @@
     $LerTelefones = $Telefones->ReadTelefones("where codUsuario=$idUsuario");
 
     $Qualificacoes = new ModelQualificacoes();
-    $LerQualificacoes = $Qualificacoes->ReadQualificacoes("where codUsuario=$idUsuario");
+    $LerQualificacoes = $Qualificacoes->ReadQualificacoes("where codAluno=$idAluno");
 //    $AssocQualificacoes = mysqli_fetch_assoc($LerQualificacoes);
 
     $Formacoes = new Formacoes();
@@ -59,7 +59,7 @@
                         <input type="text" name="nome" id="nome" value="<?= $AssocAluno['nome'] ?>" class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="aluno" data-campo="nome" data-idaluno="<?= $idAluno?>">
                     </div>
                     <div class="input-field col s12 m6 push-m2">
-                        <img src="Images/Upload/<?= $AssocAluno['foto'] ?>" alt="Foto Perfil" class="responsive-img mycircle">
+                        <img src="Images/Upload/<?= $AssocAluno['foto'] ?>" alt="Foto Perfil" class=" mycircle" width="150px" height="150px">
                     </div>
                 </div>
                 <div class="row">
@@ -77,18 +77,51 @@
                     </div>
                 </div>
                 <div class="row">
+                  <div class="col s12 m8 push-m4">
+                    <button class="btn blue" id="adicionarTelefone">Adicionar Novo telefone</button>
+                  </div>
+                  <div class="col s12 m12" id="novoTelefone">
+                    <div class="input-field">
+                      <input type="radio" name="radio" id="celular" class="with-gap" value="Celular">
+                      <label for="celular">Celular</label>
+                      <input type="radio" name="radio" id="comercial" class="with-gap" value="Comercial">
+                      <label for="comercial">Comercial</label>
+                      <input type="radio" name="radio" id="recado" class="with-gap" value="Recado">
+                      <label for="recado">Recado</label>
+                      <input type="radio" name="radio" id="residencial" class="with-gap" value="Residencial">
+                      <label for="residencial">Residencial</label>
+                    </div><br>
+                    <div class="input-field">
+                      <label for="telefone">Adicionar novo telefone</label>
+                      <input type="text" name="telefone" id="telefone" class="flow-text" style="font-size:22px" ng-model="telefone">
+                    </div>
+                    <div class="input-field">
+                      <button class="btn blue" id="adicionarNovoTelefone" ng-click="adicionarNovoTelefone()">Adicionar novo telefone</button>
+                      <button class="btn red" id="esconderTelefone">Esconder</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+
+                  <div class="col s12 m12">
+                    <div class="input-field col s12 m4" ng-repeat="x in telefones">
+                      <label for="{{x.telefone}}">Telefone {{x.tipo}}:</label>
+                      <input placeholder=" " type="tel" name="{{x.telefone}}" id="{{x.telefone}}" value="{{x.telefone}}" data-position="right" data-delay="50" data-tooltip="É preciso atualizar para editar ou excluir" class="tooltipped" readonly>
+                      <span class="yellow-text ">É preciso atualizar para editar ou excluir</span>
+
+                    </div>
                     <?php
                         while($ResultTelefone = mysqli_fetch_assoc($LerTelefones))
                         {
                     ?>
-                        <div class="input-field col s12 m4">
-                            <label for="<?=$ResultTelefone['idTelefone']?>">Telefone <?= $ResultTelefone['tipo']?>:</label>
-                            <input type="text" name="<?=$ResultTelefone['idTelefone']?>" id="<?=$ResultTelefone['idTelefone']?>" value="<?=$ResultTelefone['telefone']?>" class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="telefones" data-campo="telefone" data-idaluno="<?= $idAluno?>" data-idtelefone="<?= $ResultTelefone['idTelefone'] ?>" >
-                        </div>   
-                    
-                    <?php        
+                    <div class="input-field col s12 m3">
+                            <label for="<?=$ResultTelefone['idTelefone']?>">Telefone <?= $ResultTelefone['tipo']?>: </label>
+                            <input type="text" name="<?=$ResultTelefone['idTelefone']?>" id="<?=$ResultTelefone['idTelefone']?>" value="<?=$ResultTelefone['telefone']?>" class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="telefones" data-campo="telefone" data-idaluno="<?= $idAluno?>"       data-idtelefone="<?= $ResultTelefone['idTelefone'] ?>"><span class="red-text excluir" style="cursor:pointer" data-tabela="telefones" data-idtelefone="<?= $ResultTelefone['idTelefone'] ?>">Excluir</span>
+                        </div>
+                    <?php
                         }
                     ?>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12 m2">
@@ -122,7 +155,18 @@
                         <input type="text" name="estado" id="estado" value="<?= $AssocEndereco['estado']?>" class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="enderecos" data-campo="estado" data-idaluno="<?= $idAluno?>">
                     </div>
                 </div>
+
                 <div class="row">
+                  <div class="col s12 m8 push-m4">
+                    <button class="blue btn " id="adicionarNovaHabilidade">Adicionar nova habilidade</button>
+                  </div><br>
+                  <div class="col s12 m12" id="novaHabilidade">
+                    <div class="input-field col s12 m12">
+                      <label for="competencia">Nova Habilidade: </label>
+                      <input type="text" name="competencia" id="competencia" ng-model="competencia">
+                      <button class="btn red" id="esconderNovaHabilidade">Esconder</button>
+                    </div>
+                  </div>
                     <p class="center-align flow-text">Habilidades</p>
                              <div class="col s12 m12">
                     <?php
@@ -130,13 +174,17 @@
                         {
                             ?>
                                 <div class="chip">
-                                    <span class="tooltipped contentEditable flow-text" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="enderecos" data-campo="estado" data-idaluno="<?= $idAluno?>" contentEditable='true'><?= $AssocQualificacoes["competencia"]?></span>
-                                    <i class="close material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Excluir">close</i>
+                                    <span class="tooltipped contentEditable flow-text" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="qualificacoes" data-campo="competencia" data-idaluno="<?= $idAluno?>" contentEditable='true' data-idqualificacao="<?= $AssocQualificacoes['idQualificacoes']?>"><?= $AssocQualificacoes["competencia"]?></span>
+                                    <i class="close material-icons excluir" data-tabela="qualificacoes" data-idqualificacao="<?= $AssocQualificacoes['idQualificacoes']?>">close</i>
                                 </div>
                             <?php
                         }
                     ?>
-                             </div>                            
+                                <div class="chip" ng-repeat="x in qualificacoes">
+                                  <span class="flow-text">{{x.competencia}}</span>
+                                  <i class="material-icons close">close</i>
+                                </div>
+                             </div>
                 </div><br>
                 <div class="row" >
                     <div class="col s12 m8 push-m4">
@@ -152,110 +200,146 @@
                             <input type="text" class='validate length' id="titulo" ng-model='curso' length="35" maxlength="35"> </div>
                         <div class="input-field col s12 m12">
                             <label for="instituicao">Instituição</label>
-                            <input type="text" class='validate length' id="instituicao" ng-model="escola" length="30" maxlength="30"> </div> <a class="btn blue" ng-click='adicionarFormacao()'>Adicionar Formação</a> 
+                            <input type="text" class='validate length' id="instituicao" ng-model="escola" length="30" maxlength="30"> </div> <a class="btn blue" ng-click='adicionarFormacao()'>Adicionar Formação</a>
                             <input type="hidden" name="idAluno" value="<?= $idAluno?>">
                             <button class="btn red" id="esconderNovaFormacao">Esconder </button>
                     </div>
                 <br>
                    <p class="center-align flow-text">Suas formações</p>
-                    
-                    <div class="col s12 m12">    
-                        
-                    <div class="card col m6 hoverable" ng-repeat='x in formacao'> 
-                       <span class="card-title"><h6>{{x.ano}} - {{x.instituicao}}</h6></span>
+
+                    <div class="col s12 m12">
+
+                    <div class="card col m6 hoverable" ng-repeat='x in formacao'>
+                       <span class="card-title"> {{x.curso}} </span>
                         <div class="card-content">
-                            {{x.curso}}
+                            <h6>{{x.ano}} - {{x.instituicao}}</h6>
                         </div>
                         <div class="card-action">
-                              <button class="btn red excluir">Excluir</button>
+                              <button class="btn yellow excluir" ng-click="excluirAngular()">Atualize a página para poder Excluir</button>
                         </div>
                     </div>
-                        
-                    
+
+
                     <?php
                         while($ResultFormacoes = mysqli_fetch_assoc($LerFormacoes))
                         {
-                    
+
                         ?>
                             <div class="card hoverable  col m6" >
-                               
+
                                 <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="formacoes" data-campo="curso" data-idaluno="<?= $idAluno?>" data-idformacao="<?= $ResultFormacoes['idFormacao'] ?>" contenteditable="true"><?=  $ResultFormacoes['curso'] ?></span>
                                 <div class="card-content">
                                     <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="formacoes" data-campo="anoConclusao" data-idaluno="<?= $idAluno?>" data-idformacao="<?= $ResultFormacoes['idFormacao'] ?>" contenteditable="true"><?= $ResultFormacoes['anoConclusao']?></span>  -
-                                    
+
                                       <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="formacoes" data-campo="instituicao" data-idaluno="<?= $idAluno?>" data-idformacao="<?= $ResultFormacoes['idFormacao'] ?>" contenteditable="true"><?= $ResultFormacoes['instituicao'] ?></span>
                                 </div>
                                 <div class="card-action">
-                                    <button class="btn red excluir" data-idformacao="<?= $ResultFormacoes['idFormacao'] ?>">Excluir</button>
+                                    <button class="btn red excluir" data-idlinha="<?= $ResultFormacoes['idFormacao'] ?>" data-tabela="formacoes">Excluir</button>
                                 </div>
-                                
-                            </div>                        
-                        
+
+                            </div>
+
                         <?php
-                        }             
-                    
+                        }
+
                     ?>
                     </div>
                 </div><br>
                 <div class="row">
                             <div class="col s12 m8 push-m4">
-                                <button class="btn blue " id="adicionarNovaExperiencia">Adicionar nova Experiência</button>
+                                <button class="btn blue " id="adicionarExperiencia">Adicionar nova Experiência</button>
                             </div>
                              <div class="input-field col s12 m12" id="novaExperiencia">
                                     <div class="col s12 m12">
                                         <h1 class='flow-text center-align'>Experiência</h1>
                                         <div class="input-field col s12 m6">
-                                            <label for="deExp">Data de inicio:</label>
-                                            <input type="text" name="deExp" id="deExp" ng-model="deExp"> </div>
+                                            <label for="deExp">Data de inicio:</label><br>
+                                            <input type="date" name="deExp" id="deExp" ng-model="deExp">
+                                        </div>
                                         <div class="input-field col s12 m6">
+                                           <label for="ateExp" ng-If="!atualExp">Data de Saída:</label><br>
                                             <input type="date" name="ateExp" id="ateExp" class="" ng-model="ateExp" ng-If="!atualExp">
                                             <input type="checkbox" id="atualExp" ng-model="atualExp" />
                                             <label for="atualExp">É o atual?</label>
                                         </div>
                                     </div>
                                     <div class="input-field col s12 m12">
+                                      <label for="empresa">Empresa:</label>
+                                      <input type="text" name="empresa" id="empresa" ng-model="empresa">
+                                    </div>
+                                    <div class="input-field col s12 m12">
                                         <label for="cargo">Cargo</label>
-                                        <input type="text" class='validate' id="cargo" ng-model='nomeExperiencia'> </div>
+                                        <input type="text" class='validate' id="cargo" ng-model='nomeExperiencia'>
+                                    </div>
                                     <div class="input-field col s12 m12">
                                         <label for="experiencia">Diga sobre sua experiência</label>
                                         <textarea name="" id="experiencia" cols="30" rows="10" class='materialize-textarea' length='255' ng-model="textoExperiencia"></textarea>
-                                    </div> 
-                                         <a class="btn blue" ng-click='adicionarExperiencia()'>Adicionar Experiência</a>
+                                    </div>
+
+                                        <input type="hidden" name="idAluno" value="<?= $idAluno?>">
+
+                                         <a class="btn blue" ng-click='adicionarNovaExperiencia()'>Adicionar Experiência</a>
                                           <a class="btn red" id="esconderNovaExperiencia" >Esconder</a>
                              </div>
                              <br>
                               <p class="center-align flow-text">Suas Experiências</p>
 
+                        <div class=" col s12 m12">
+                        <div class="card col s12 m6" ng-repeat="x in experiencias">
+                            <span class="card-title" contenteditable="true"> {{x.cargo}}</span>
+                            <div class="card-content">
+                                <p>Data de início: <span class="flow-text">{{x.de}}</span></p>
+                                <p>Data de Saída:    <span class="flow-text">{{x.ate}}</span></p>
+                               <p> descrição: <br>{{x.descricao}}</p>
+                            </div>
+                            <div class="card-action">
+                                <button class="btn red excluir">Excluir</button>
+                            </div>
+
+                        </div>
                     <?php
                         while($ResultExperiencia = mysqli_fetch_assoc($LerExperiencias)){
                     ?>
-                        <div class="card col s12 m6 hoverable">
-                            <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" contenteditable="true" >
-                                <?= $ResultExperiencia['dataInicio']?></span>
-                                
-                             - <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataSaida" data-idaluno="<?= $idAluno?>" contenteditable="true"> <?= $ResultExperiencia['dataSaida']  ?></span>
-                                
-                                <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="cargo" data-idaluno="<?= $idAluno?>" contenteditable="true"> - <?= $ResultExperiencia['cargo']  ?></span>
-                            <div class="card-content">
-                                <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="descricao" data-idaluno="<?= $idAluno?>" contenteditable="true"><?= $ResultExperiencia['descricao']  ?></span>
-                            </div>
-                            <div class="card-action">
-                                <a href="" class="btn red excluir">Excluir</a>
-                            </div>
-                            
-                        </div>
+                           <div class="card hoverable col m6 s12">
+
+
+                                    <span class="tooltipped contentEditable card-title" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="cargo" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" maxlength="20"><?= $ResultExperiencia['cargo']  ?></span> -
+
+                                    <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="empresa" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" >
+                                      <?= $ResultExperiencia['empresa']?></span>
+                                <div class="card-content">
+                                  <p>
+                                    Data de Inicio:
+                                     <span class=" tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" >
+                                         <?= $ResultExperiencia['dataInicio']?></span>
+                                  </p>
+                                  <p>
+                                    Data de Saída:
+                                    - <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataSaida" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>"  contenteditable="true"> <?= $ResultExperiencia['dataSaida']  ?></span>
+
+                                  </p>
+                                    <p>
+                                      Descrição: <br>
+                                      <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="descricao" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true"><?= $ResultExperiencia['descricao']  ?></span>
+                                    </p>
+                                </div>
+                                <div class="card-action">
+                                    <button class="btn red excluir" data-idlinha="<?= $ResultExperiencia['idExperiencia'] ?>" data-tabela="experiencias" >Excluir</button>
+                                </div>
+                           </div>
+
                     <?php
                         }
                     ?>
+                        </div>
                 </div>
-                <div class="row">
-                    <a href="" class="btn blue">Alguma ação</a>
-                </div>
-                
+
+
             </div>
         </div>
     </div>
-    
-   
+
+
+
 </body>
 </html>

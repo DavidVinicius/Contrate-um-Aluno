@@ -1,6 +1,7 @@
 <?php
+    session_start();
 
-    if(isset($_POST['tabela']) == "formacoes")
+    if(isset($_POST['tabela']) && $_POST['tabela'] == "formacoes")
     {
         require_once("../Model/ModelFormacoes.class.php");
         $idAluno      = isset($_POST['idAluno'])        ?   $_POST['idAluno']:null;
@@ -15,7 +16,10 @@
             "codAluno"     => $idAluno
         );
         $Formacao->CreateFormacoes($dados);
-    } else if(isset($_POST['tabela']) == "telefones")
+        //$Formacao->SearchQuery("where codAluno = $idAluno order by idFormacao desc limit 1");
+    }
+
+    if(isset($_POST['tabela']) && $_POST['tabela'] == "telefones")
     {
         require_once("../Model/ModelTelefones.class.php");
         $codUsuario     = $_SESSION['id'];
@@ -28,8 +32,16 @@
             "tipo"              => $tipo,
             "codUsuario"        => $codUsuario
         );
-        $Telefone->CreateTelefones($dados);
-    }  else if(isset($_POST['tabela']) == "experiencias")
+        if($Telefone->CreateTelefones($dados))
+        {
+          require_once("../Model/DataBase.class.php");
+          $DB = new DataBase();
+          $idTelefone = $DB->SearchReturnLast("telefones","where codUsuario = $codUsuario and telefone = $telefone order by idTelefone desc limit 1", "idTelefone");
+          echo $idTelefone["idTelefone"];
+        }
+    }
+
+    if(isset($_POST['tabela']) && $_POST["tabela"] == "experiencias")
     {
         require_once("../Model/ModelExperiencias.class.php");
         $idAluno    = isset($_POST['idAluno'])      ?   $_POST['idAluno']:null;
@@ -37,6 +49,7 @@
         $dataInicio = isset($_POST['dataInicio'])   ?   $_POST['dataInicio']:null;
         $dataSaida  = isset($_POST['dataSaida'])    ?   $_POST['dataSaida']:null;
         $cargo      = isset($_POST['cargo'])        ?   $_POST['cargo']:null;
+        $empresa    = isset($_POST['empresa'])      ?   $_POST['empresa']:null;
 
         $Experiencia   = new Experiencias();
         $dados = array(
@@ -44,9 +57,27 @@
             "dataInicio"    => $dataInicio,
             "dataSaida"     => $dataSaida,
             "cargo"         => $cargo,
+            "empresa"       => $empresa,
             "codAluno"      => $idAluno
         );
-        $Experiencia->CreateExperiencias($dados);
+        if($Experiencia->CreateExperiencias($dados))
+            echo "deu certo";
+    }
+
+    if(isset($_POST['tabela']) && $_POST["tabela"] == "qualificacoes")
+    {
+        require_once("../Model/ModelQualificacoes.class.php");
+        $valor    = isset($_POST['valor']) ? $_POST['valor']:null;
+        $idAluno  = isset($_POST['idAluno']) ? $_POST['idAluno']:null;
+
+
+        $Qualificacao   = new ModelQualificacoes();
+        $dados = array(
+            "competencia"   => $valor,
+            "codAluno"      => $idAluno
+        );
+        if($Qualificacao->CreateQualificacoes($dados))
+            echo "deu certo";
     }
 
 ?>

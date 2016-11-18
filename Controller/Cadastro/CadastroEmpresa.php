@@ -1,35 +1,72 @@
 <?php
     session_start();
-    include_once("../Banco/funcoesBanco.php");
-    include_once("../../Util.php");
-    include_once("../VerificaSeEstaLogado.class.php");
+    include_once("../../Model/DataBase.class.php");
 
     $DB = new DataBase();
-    
-    //$VerificaSeEstaLogado = new VerificaSeEstaLogado();
-    //$VarSessions = $VerificaSeEstaLogado->EstaLogado();
+    $idUsuario = $_SESSION['id'];
 
-    $dados = array(
-        "nome"          => (isset($_POST["nome"]))      ? $_POST["nome"] : $msg,
-        "cnpj"          => (isset($_POST["cnpj"]))      ? $_POST["cnpj"] : $msg,
-        "email"         => (isset($_POST["email"]))     ? $_POST["email"] : $msg,
-        "telefone"      => (isset($_POST["telefone"]))  ? $_POST["telefone"] : $msg,
-        "endereco"      => (isset($_POST["endereco"]))  ? $_POST["endereco"] : $msg,
-        "codUsuario"    => $_SESSION['id']
+    $Telefones  = json_decode($_POST['Telefones'],true);
+    $Valores    = json_decode($_POST['valores'],true);
+
+    if(isset($_FILES['foto'])){
+        $nomeTemporario = $_FILES['foto']['tmp_name']; #O nome temporário com o qual o arquivo
+        $diretorio      = "../../Images/Upload/";
+        $extensao       = strtolower(substr($_FILES['foto']['name'], -4));
+        $novoNome       = md5(time()).$extensao;
+
+        $localFull = $diretorio.$novoNome;
+        if(move_uploaded_file($nomeTemporario, $localFull))#Move o arquivo temporário para pasta
+            echo "Upou a foto<br>";
+        else
+            echo "Erro ao upar a foto<br>";
+    } else {
+        $novoNome = "PerfilPadrao.png";
+    }
+
+    for($i = 0; $i < count($Telefones); $i++){
+        $dados = array(
+            "telefone"      => $Telefones[$i]['telefone'],
+            "tipo"          => $Telefones[$i]['tipo'],
+            "codUsuario"    => $_SESSION['id']
+        );
+        $Result22 = $DB->InsertQuery("telefones",$dados);
+    }
+
+    $dados22 = array(
+      "numero"      => $_POST['numero'],
+      "rua"         => $_POST['rua'],
+      "bairro"      => $_POST['bairro'],
+      "cidade"      => $_POST['cidade'],
+      "estado"      => $_POST['estado'],
+      "cep"         => $_POST['cep'],
+      "complemento" => $_POST['complemento'],
+      "codUsuario"  => $_SESSION['id']
     );
 
-    $resultado = $DB->InsertQuery("empresa", $dados);
+    $DB->InsertQuery("enderecos", $dados22);
 
-    if($resultado){
-        echo "<script>
-                    window.location.href = '../../OnePage.html';
-                    alert('".$Sucess."');
-                </script>";
+    $dados = array(
+      "nome"        => $_POST['nome'],
+      "cnpj"        => $_POST['cnpj'],
+      "areaAtuacao" => $_POST['areaAtuacao'],
+      "foto"        => $novoNome,
+      "missao"      => $_POST['missao'],
+      "visao"       => $_POST['visao'],
+      "historia"    => $_POST['historia'],
+      "codUsuario"  => $_SESSION['id']
+    );
+    $Result = $DB->InsertQuery("empresa", $dados);
+
+    $consultaEmpresa = $DB->SearchReturnLast("empresa", "where codUsuario = $idUsuario", "idEmpresa");
+    $idEmpresa = $consultaEmpresa['idEmpresa'];
+
+    for($i = 0; $i < count($Valores); $i++){
+        $dados1 = array(
+          "valor"     => $Valores[$i]['tag'],
+          "codEmpresa"=> $idEmpresa
+        );
+        $Result2 = $DB->InsertQuery("valores", $dados1);
     }
-    else{
-        echo "<script>
-                    window.location.href = '../../OnePage.html';
-                    alert('".$Sucess."');
-                </script>";
-    }
+
+    header("location:../../OnePage.php?link=VerEmpresa");
 ?>

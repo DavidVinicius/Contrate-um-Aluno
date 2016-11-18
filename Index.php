@@ -1,15 +1,13 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <?php
     session_start();
-
     if(isset($_SESSION['id']) and isset($_SESSION['senha']) and isset($_SESSION['usuario']) and isset($_SESSION['nivel']) )
         header("location: OnePage.php");
-
 ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Contrate um Aluno</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -17,10 +15,10 @@
 </head>
 <body>
   <video src="videos/conversa.mp4" class="responsive-video" autoplay loop muted>
-      
+
   </video>
   <div class="navbar-fixed">
-     
+
        <nav>
         <div class="nav-wrapper menuCor ">
           <a href="#!" class="brand-logo"><span style="margin-left:5%;"></span> Contrate um Aluno</a>
@@ -40,7 +38,7 @@
       </nav>
    </div>
     <div class="container zIndex abaixo-1">
-        
+
         <section class="section">
         <div class="row">
             <div class="center-align">
@@ -51,38 +49,139 @@
                     <a href="#modal1">
                         <button class="abrirFormulario waves-effect waves-light btn-large btn-flat col m5 s12 push-m1 text-white" data-page="Modal/CadastroEmpresa.html" style="border:1px solid white" data-target="modal1"><i class="fa fa-building text-white" style="margin-right:1%;"></i>Sou Empresa</button></a>
                 </div>
-            </div>   
-           
-           
+            </div>
+
+
         </div>
         </section>
-        <section class="Aideia section">
-            <div class="row">
-                <h1 class="center-align white-text">A ideia</h1>
-            </div>
-        </section>
+
     </div>
+    <section class="Aideia section">
+        <div class="row">
+            <h1 class="center-align white-text">A ideia</h1>
+        </div>
+    </section>
+    <!-- <div class="EmpresasParralax">
+      <div class="parallax-container">
+        <div class="parallax"><img src="Images/Office.jpg"></div>
+        <div class="carousel">
+          <h3 class="center-align mytext white-text">Empresas cadastradas</h3>
+          <?php
+              require_once "Model/ModelEmpresa.class.php";
+              $Empresa = new ModelEmpresa();
+              $ResultEmpresa = $Empresa -> ReadEmpresa("order by idEmpresa desc limit 5");
+              while ($Empresas = mysqli_fetch_object($ResultEmpresa) ) {
+                # code...
+           ?>
+
+                <a class="carousel-item" href="#!">
+                  <center>
+                    <span class="center flow-text white-text">
+                      <?= $Empresas -> nome ?>
+                    </span>
+                  </center>
+                  <img src="Images/Upload/<?= $Empresas -> foto?>" class="circle" width="200px" height="200px">
+                  <center>
+                    <span class="center flow-text white-text">
+                      <?= $Empresas -> areaAtuacao ?>
+                    </span>
+                  </center>
+                </a>
+
+        <?php
+              }
+         ?>
+
+        </div>
+      </div>
+
+    </div> -->
+    <section class="section SobreOsDesenvolvedores menuCor">
+            <h1 class="center-align white-text">Sobre os Desenvolvedores</h1>
+    </section>
+    <!-- <section class="AlunosParallax section ">
+      <div class="parallax-container">
+        <div class="parallax"><img src="Images/Office.jpg"></div>
+        <div class="carousel">
+          <h4 class="center-align mytext white-text">Alunos cadastrados</h4>
+          <?php
+              require_once "Model/ModelAluno.class.php";
+              $Aluno = new ModelAluno();
+              $ResultAluno = $Aluno -> ReadAluno("order by idAluno desc limit 5");
+              while ($Alunos = mysqli_fetch_object($ResultAluno) ) {
+                # code...
+           ?>
+                <a class="carousel-item" href="#!" class="white-text">
+                   <center>
+                     <span class="center flow-text white-text">
+                       <?= $Alunos -> nome ?>
+                     </span>
+                   </center>
+                   <img src="Images/Upload/<?= $Alunos -> foto?>" class="circle" width="200px" height="200px">
+                   <center>
+                     <span class="center flow-text white-text">
+                       <?= $Alunos -> objetivo ?>
+                     </span>
+                   </center><br>
+                 </a>
+
+        <?php
+              }
+         ?>
+          <p>
+
+          </p>
+        </div>
+      </div>
+    </section> -->
+    <section class="footer ">
+      <!-- <footer class="page-footer grey darken-4"> -->
+        <div class="container  ">
+          <div class="row  ">
+            <div class="col l6 s12">
+              <h5 class="white-text">Footer Content</h5>
+              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Links</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">A ideia</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Sobre os Desenvolvedores</a></li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright  ">
+          <div class="container  ">
+          © 2016 Copyright Text
+          <a class="grey-text text-lighten-4 right" href="#!">Produzido com <i class="fa fa-heart red-text" aria-hidden="true"></i> por David Vinicius e Matheus Picioli</a>
+          </div>
+        </div>
+      </footer>
+    </section>
     <div class="col s12 m4 l4">
         <div id="modal1" class="modal modal-top">
              <div class="modal-content">
-                   
+
                </div>
         </div>
     </div>
     <!-- Modal Trigger -->
 
   <!-- Modal Structure -->
-  
+
     <div class="fundoPreto"></div>
     <div class="fundoModal"></div>
-    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script>
         $(document).ready(function(){
              $(".button-collapse").sideNav();
             $(".abrirFormulario").leanModal();
-            
+            // $('.parallax').parallax();
+            $('.carousel').carousel();
             $(".abrirFormulario").click(function(){
 
                 var pagina = $(this).data("page");
@@ -90,10 +189,10 @@
                     method:"POST",
                     url: "View/"+pagina,
                     success: function(retorno){
-                        $(".modal-content").html(retorno);      
+                        $(".modal-content").html(retorno);
                     }
                 });
-                
+
             });
         });
     </script>

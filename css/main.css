@@ -3,8 +3,8 @@
 
 /*# sourceMappingURL=main.css.map */
 .menuCor{
-            background-color: rgb(50,49,51);    
-            
+            background-color: rgb(50,49,51);
+
         }
         video{
             width: 100%;
@@ -12,7 +12,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            
+
         }
         .zIndex{
             z-index: 2;
@@ -26,8 +26,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            
-            
+
+
         }
         .fundoModal{
             display: none;
@@ -39,8 +39,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            
-            
+
+
         }
         .text-white{
             color: white;
@@ -48,8 +48,11 @@
         .abaixo-1{
             margin-top: 10%;
         }
+        .mytext{
+          font-weight: 300;
+        }
         .Aideia{
-            
+
             height: 100%;
             width: 100%;
             max-width: 100%;
@@ -57,6 +60,42 @@
             top:100%;
             left:0;
             background: #3C3B3D;
+        }
+        .EmpresasParralax{
+          height: 100%;
+          width: 100%;
+          max-width: 100%;
+          position: absolute;
+          top:200%;
+          left:0;
+          /*background-color: white;*/
+        }
+        .SobreOsDesenvolvedores{
+          height: 100%;
+          width: 100%;
+          max-width: 100%;
+          position: absolute;
+          top:275%;
+          left:0;
+          /*background-color: #3C3B3D;*/
+        }
+        .AlunosParallax{
+          height: 100%;
+          width: 100%;
+          max-width: 100%;
+          position: absolute;
+          top:370%;
+          left:0;
+          /*background-color: white;*/
+        }
+        .footer{
+          height: 10%;
+          width: 100%;
+          max-width: 100%;
+          position: absolute;
+          top:445%;
+          left:0;
+          /*background-color: white;*/
         }
         .modal.modal-top{
             display: none;
@@ -74,6 +113,33 @@
               border-radius: 2px;
 /*              will-change: top, opacity;*/
             z-index: 1000;
+        }
+        .myparallax-container {
+          position: relative;
+          overflow: hidden;
+          height: 500px;
+        }
+
+        .myparallax {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: -1;
+        }
+
+        .myparallax img {
+          /*display: none;*/
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          min-width: 100%;
+          min-height: 100%;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+          -webkit-transform: translateX(-50%);
+                  transform: translateX(-50%);
         }
 
 @media screen and (min-width:320px) and (max-width:768px)
@@ -95,7 +161,34 @@
 /*              will-change: top, opacity;*/
             z-index: 1000;
         }
-    
+        .EmpresasParralax{
+          height: 100%;
+          width: 100%;
+          max-width: 100%;
+          position: absolute;
+          top:200%;
+          left:0;
+          /*background-color: white;*/
+        }
+        .SobreOsDesenvolvedores{
+          height: 100%;
+          width: 100%;
+          max-width: 100%;
+          position: absolute;
+          top:293%;
+          left:0;
+          /*background-color: #3C3B3D;*/
+        }
+        .AlunosParallax{
+          height: 100%;
+          width: 100%;
+          max-width: 100%;
+          position: absolute;
+          top:390%;
+          left:0;
+          /*background-color: white;*/
+        }
+
     .abaixo-1
     {
         margin-top:5%;

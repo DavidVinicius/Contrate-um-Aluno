@@ -1,5 +1,5 @@
 
-    <h2 class="flow-text center-align"> Bem-vindo ao Contrate um Aluno</h2>
+    <h2 class="flow-text center-align"> Sou Empresa</h2>
     <div class="row">
         <form  method="post" action="Controller/Cadastro/CadastroUsuario.php" autocomplete="false">
            <input type="hidden" value='2' name="valor">
@@ -11,18 +11,18 @@
                    </div>
                 </div><br>
 
-            
-            
+
+
                  <div class="input-field col s12 m12 l12">
                     <div class="col s12 m6 push-m3">
-                        
+
                        <label for="senha"><i class='fa fa-at '></i> Digite sua Senha</label>
                         <input type="password" id="senha" name="senha" class="validate col m12" required>
-                    </div>                
+                    </div>
                 </div><br>
 
-            
-            
+
+
                 <div class="input-field col s12 m12 l12">
                     <div class="col s12 m6 push-m3">
 
@@ -30,8 +30,8 @@
                         <input type="password" id="senhaConfirmacao" name="senha2" class="validate" required>
                     </div>
                 </div>
-            
-            
+
+
                 <div class="center-align hide-on-med-and-up">
                     <input type="submit" value="Cadastrar" class="btn blue col s12 validar">
                     <a href="" id="fechar" class="btn red abaixo-1 waves-effect waves-light modal-close col s12">Cancelar</a>
@@ -41,7 +41,7 @@
                     <a href="" id="fechar" class="btn red waves-effect waves-light modal-close">Cancelar</a>
                 </div>
             </div>
-            
+
         </form>
     </div>
     <script>
@@ -50,23 +50,23 @@
                 {
                     Materialize.toast("A senha deve ser maior que 5 dígitos",4000);
                     e.preventDefault();
-                    
-                    
+
+
                 }
                 if($("#senha").val() != $("#senhaConfirmacao").val())
                 {
                     e.preventDefault();
                     Materialize.toast("As senhas estão diferentes",4000);
                 }
-                
+
             });
         $("#emailLogin").change(function(){
-            
+
             var valor = $(this).val();
             var error = $(this).next().data('error');
-            
-            
-            
+
+
+
             $.ajax({
                 url:"./Controller/ConsultaDados.php",
                 method: "POST",
@@ -84,4 +84,3 @@
             });
         });
     </script>
-    

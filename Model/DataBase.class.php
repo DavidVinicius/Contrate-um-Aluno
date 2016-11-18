@@ -6,7 +6,7 @@
  * Date: 15/09/2016
  * Time: 18:37
  */
-    class DataBase 
+    class DataBase
     {
         private $User;
         private $Pass;
@@ -23,19 +23,20 @@
 
         public function ConnectDataBase()
         {
-            $Connection = mysqli_connect( $this->getHost(), $this->getUser(), $this->getPass(), $this->getDataBase() );
+            //$Connection = mysqli_connect( $this->getHost(), $this->getUser(), $this->getPass(), $this->getDataBase() );
+            $Connection = new mysqli($this->getHost(), $this->getUser(), $this->getPass(), $this->getDataBase());
             return $Connection;
         }
 
         public function CloseConnectionDataBase($Connection)
         {
-            $Result = mysqli_close($Connection);
+            $Result = $Connection->close();
             return $Result;
         }
 
         public function ExecuteQuery($Connection, $Query)
         {
-            $Result = mysqli_query($Connection, $Query);
+            $Result = $Connection->query($Query);
             return $Result;
         }
 
@@ -74,10 +75,15 @@
         {
             $Connection = $this->ConnectDataBase();
             $Query = "SELECT {$Fields} FROM {$Table} {$Condition}";
-            //var_dump($Query);
             $Result = $this->ExecuteQuery($Connection, $Query);
             $this->CloseConnectionDataBase($Connection);
             return $Result;
+        }
+
+        public function SearchReturnLast($Table, $Condition = null, $Fields = "*")
+        {
+          $Query = $this->SearchQuery("$Table", $Condition, $Fields);
+          return mysqli_fetch_assoc($Query);
         }
 
         public function getHost()

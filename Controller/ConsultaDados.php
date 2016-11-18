@@ -14,6 +14,19 @@ include "./../Model/Database.class.php";
             echo 0;    
         }
     }
+    if(isset($_POST['excluirAngularFormacao']) == "sim")
+    {
+        $idAluno = isset($_POST['idAluno'])?$_POST['idAluno']:null;
+        
+        $DB = new Database();
+        $Consulta = $DB->SearchQuery("select idFormacao from formacoes where codAluno = $idAluno order by idFormacao DESC limit 1");
+        
+        $pegaUltimoId = mysqli_fetch_assoc($Consulta);
+        
+        echo $pegaUltimoId['idFormacao'];
+            
+            
+    }
 
      
 

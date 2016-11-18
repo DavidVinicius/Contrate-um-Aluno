@@ -1,10 +1,10 @@
- 
+
 var app = angular.module('curriculo',[]);
 
 app.controller('Curriculo',['$scope',function($scope){
-    
+
     $scope.formacao = [];
-    
+
         $scope.ano = "";
         $scope.curso = "";
         $scope.escola = "";
@@ -12,37 +12,37 @@ app.controller('Curriculo',['$scope',function($scope){
         $scope.anoExperiencia = "";
         $scope.nomeExperiencia = "";
         $scope.textoExperiencia = "";
-    
+
     $scope.Telefones =[];
-    
-            
-            
+
+
+
             $scope.adicionarFormacao = function(){
                 var anoFormacao = $("#data").val();
                if($scope.anoC == ""){
                    Materialize.toast("O campo Ano de conclusão está vazio", 4000);
                }
                 else if($scope.curso == ""){
-                   Materialize.toast("O campo curso está vazio", 4000); 
+                   Materialize.toast("O campo curso está vazio", 4000);
                 }
                 else if($scope.escola == ""){
-                  Materialize.toast("O campo Instituição está vazio", 4000);  
+                  Materialize.toast("O campo Instituição está vazio", 4000);
                 }
                 else if($scope.anoC.length > 4 || $scope.anoC.length < 4){
                     Materialize.toast("O ano deve ter 4 dígitos",4000);
                 }
                 else{
-                    
-                    
+
+
                      $scope.formacao.push({ano:$scope.anoC,curso:$scope.curso,instituicao:$scope.escola});
                     $scope.anoC = "";
                     $scope.curso = "";
                     $scope.escola = "";
-                    Materialize.toast('Adicionado com Sucesso', 4000);    
+                    Materialize.toast('Adicionado com Sucesso', 4000);
                 }
             }
             $scope.remove = function(x){
-                
+
                 if($scope.formacao.splice(x,1)){
                     Materialize.toast("Excluido com sucesso",4000);
                 }
@@ -50,24 +50,30 @@ app.controller('Curriculo',['$scope',function($scope){
                     Materialize.toast("Erro ao excluir",4000);
                 }
             }
-            
+
             $scope.adicionarExperiencia = function(){
-                 var tempo = "";
-                
+                //  var tempo = "";
+
                  if( $scope.atualExp == true){
-                     var tempo = "Emprego atual";                   
-                    
+                     var tempoS = "Emprego atual";
+
                 }
                 else{
-                    var tempo = $scope.ateExp;
-                }
-                
-                
+                    var tempoS = $("[name=ateExp]").val();
+                  }
+
+
                 if($scope.deExp == null){
                     Materialize.toast("Indique o inicio da sua experiência",4000);
+                }else {
+                  var tempoI = $("[name=deExp]").val();
                 }
-                if($scope.ateExp == null && $scope.atualExp != true){
-                    Materialize.toast("Indique a data de saída");
+
+                if(tempoS == null || tempoS == ""){
+                    Materialize.toast("Indique a data de saída",4000);
+                }
+                else if ($scope.empresa == null) {
+                  Materialize.toast("O campo empresa está vazio", 4000);
                 }
                  else if($scope.nomeExperiencia == null){
                     Materialize.toast("Campo cargo está vazio",4000);
@@ -75,22 +81,23 @@ app.controller('Curriculo',['$scope',function($scope){
                 else if($scope.textoExperiencia == null ){
                     Materialize.toast("Campo experiência está vazio",4000);
                 }
-                else if($scope.textoExperiencia.length > 254){
+                else if($scope.textoExperiencia.length > 255){
                     Materialize.toast("No máximo são 255 caracteres na descrição da experiência",4000);
                 }
                 else{
-                    
-                    $scope.Experiencia.push({de:$scope.deExp, ate: tempo, cargo: $scope.nomeExperiencia, texto: $scope.textoExperiencia});
-                    $scope.deExp = "";
-                    $scope.ateExp = "";
-                    $scope.atualExp = false;
-                    $scope.nomeExperiencia = "";
+
+                    $scope.Experiencia.push({de:tempoI, ate: tempoS, cargo: $scope.nomeExperiencia, texto: $scope.textoExperiencia, empresa:$scope.empresa});
+                    $scope.deExp            = "";
+                    $scope.ateExp           = "";
+                    $scope.atualExp         = false;
+                    $scope.nomeExperiencia  = "";
                     $scope.textoExperiencia = "";
+                    $scope.empresa          = ""
                 }
             }
-            
+
             $scope.adicionarTelefone = function(){
-                
+
                 if($scope.telefone == ""){
                     Materialize.toast("Campo telefone vazio",4000);
                 }
@@ -113,7 +120,7 @@ app.controller('Curriculo',['$scope',function($scope){
                     Materialize.toast("Erro ao apagar telefone",4000);
                 }
             }
-            
+
             $scope.removeExp = function(x){
                 if($scope.Experiencia.splice(x,1)){
                     Materialize.toast("Removido com sucesso",4000);
@@ -123,33 +130,33 @@ app.controller('Curriculo',['$scope',function($scope){
                 }
             }
             $scope.verExp = function(x){
-                
+
             }
             $scope.Qualificacoes = [];
               $('.chips').on('chip.add', function(e, chip){
                     // you have the added chip here
-                 
+
                   var a = $(".chips").material_chip('data');
                   console.log(a);
                   $scope.Qualificacoes.push(chip);
-                 
+
             });
             $('.chips').on('chip.delete', function(e, chip){
-                    
+
                   var a = [];
                   var a = $(".chips").material_chip('data');
                   console.log(a);
                     console.log(chip);
-                  $scope.qualificacoes.splice(chip,1);
+                  $scope.qualificacoes.splice(chip);
                   console.log($scope.qualificacoes);
 //                  alert(a);
             });
-            
+
             $('.chips').focusin(function(){
                 Materialize.toast("Digite suas qualificações e aperte enter para adicionar",4000);
             });
-            
-       
+
+
     $('.datepicker').pickadate({
             selectMonths: true,
             selectYears: 100,
@@ -160,15 +167,15 @@ app.controller('Curriculo',['$scope',function($scope){
             close: 'Fechar',
             weekdaysFull:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
             weekdaysShort:['Dom','Seg','Ter','Qua','Qui','S','Sáb'],
-            
+
             monthsFull:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-            monthsShort:['Jan','Fev','Mar','Abril','Maio','Jun','Jul','Ago','Set','Out','Nov','Dez'],         
+            monthsShort:['Jan','Fev','Mar','Abril','Maio','Jun','Jul','Ago','Set','Out','Nov','Dez'],
             labelMonthNext: 'Próximo mês',
             labelMonthPrev: 'Mês anterior',
             labelMonthSelect: 'Selecione o Mês',
             min: new Date(1950,1,1),
             max: [2020,12,12]
-            
+
         });
         $(".anoFormacao").pickadate({
             selectYears: 100,
@@ -178,15 +185,15 @@ app.controller('Curriculo',['$scope',function($scope){
             format: 'yyyy',
             weekdaysFull:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
             weekdaysShort:['Dom','Seg','Ter','Qua','Qui','S','Sáb'],
-            
+
             monthsFull:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-            monthsShort:['Jan','Fev','Mar','Abril','Maio','Jun','Jul','Ago','Set','Out','Nov','Dez'],  
+            monthsShort:['Jan','Fev','Mar','Abril','Maio','Jun','Jul','Ago','Set','Out','Nov','Dez'],
         });
-        
+
         $('.chips-placeholder').material_chip({
             placeholder: "word, excel ..",
             secondaryPlaceholder: "Suas qualificações",
-            
+
         });
     $('#experiencia').characterCounter();
     $('.length').characterCounter();
@@ -198,6 +205,6 @@ app.controller('Curriculo',['$scope',function($scope){
 //      "Google": 'http://placehold.it/250x250'
 //    }
 //  });
-        
-        
+
+
 }])

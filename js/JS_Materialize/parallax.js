@@ -1,11 +1,11 @@
 (function ($) {
 
-    $.fn.parallax = function () {
+    $.fn.myparallax = function () {
       var window_width = $(window).width();
       // Parallax Scripts
       return this.each(function(i) {
         var $this = $(this);
-        $this.addClass('parallax');
+        $this.addClass('myparallax');
 
         function updateParallax(initial) {
           var container_height;

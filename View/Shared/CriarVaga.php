@@ -1,23 +1,11 @@
 <?php
-    include "Model/DataBase.class.php";
-    $DB                 = new DataBase();
-    $idUsuario          =  $_SESSION['id'];
-    $ConsultaEmpresa    = $DB   -> SearchQuery('empresa',"where codUsuario = $idUsuario");
-    $ResultEmpresa      = mysqli_fetch_assoc($ConsultaEmpresa);
-    $idEmpresa          = $ResultEmpresa['idEmpresa'];
-    $ConsultaVaga       = $DB   -> SearchQuery('vaga',"where codEmpresa = $idEmpresa");
-    $ResultVaga         = mysqli_fetch_assoc($ConsultaVaga);
-    if(isset($_GET['idVaga']))
-    {
-        $idVaga = $_GET['idVaga'];
-        if($DB->DeleteQuery('vaga',"where idVaga = $idVaga"))
-        {
-            echo "<script>alert('Excluido com sucesso')</script>";
-            
-        }
-    }
-    
-
+    include_once "Model/DataBase.class.php";
+    //include_once "Model/ModelEmpresa.class.php";
+    $DB               = new DataBase();
+    $idUsuario        = $_SESSION['id'];
+    $consultaEmpresa  = mysqli_fetch_assoc($DB->SearchQuery("empresa", "where codUsuario = $idUsuario"));
+    $idEmpresa        = $consultaEmpresa['idEmpresa'];
+    $ConsultaVaga     = $DB->SearchQuery("vaga", "where codEmpresa = $idEmpresa");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +20,7 @@
 <body ng-app="myapp" ng-controller="CriarVaga">
     <div class="container">
         <div class="row">
-            <h3 class="center-align">Publique sua vaga no contrate um aluno</h3>
+            <h3 class="center-align flow-text">Publique sua vaga no Contrate um Aluno</h3>
             <div class="col s12 m12">
                 <form action="Controller/Cadastro/CadastroVaga.php" method="post">
                     <div class="row">
@@ -40,22 +28,20 @@
                             <label for="titulo">Nome da vaga</label>
                             <input type="text" name="titulo" id="titulo" class="flow-text" style="font-size:22px" ng-model="titulo" required>
                         </div>
-                        <div class="input-field col s12 m6">
-                            <label for="cargaHoraria">Carga horária semanal</label>
+                        <div class="input-field col s12 m3">
+                          <label for="salario">Salário:</label>
+                          <input type="number" name="salario" id="salario" min="400" ng-model="salario" required>
+                        </div>
+                        <div class="input-field col s12 m3">
+                            <label for="cargaHoraria">Carga horária semanal:</label>
                             <input type="number" class="flow-text" name="cargaHoraria" id="cargaHoraria" max="50" min="24" maxlength="2" style="font-size:22px" ng-model="cargaHoraria" required >
                         </div>
                     </div>
                     <div class="row">
-                       
-                        
-                        <div class="input-field col s12 m6">
-                           <div class="chips chips-placeholder"></div>
-                           
+                      <div class="input-field col s12 m12">
+                          <label for="beneficios">Beneficios</label><br><br>
+                           <div class="chips chips-placeholder" id="chips"></div>
                        </div>
-                        <div class="input-field col s12 m6">
-                            <label for="salario">Salário</label>
-                            <input type="number" name="salario" id="salario" min="400" ng-model="salario" required>
-                        </div>
                     </div>
                     <div class="row">
                        <div class="input-field col s12 m6">
@@ -66,12 +52,13 @@
                             <label for="descricao">Descrição</label>
                             <textarea name="descricao" id="descricao" cols="30" rows="10" class="materialize-textarea" ng-model="descricao" required></textarea>
                         </div>
-                        
+
                     </div>
                     <div class="row">
-                        
+
                         <button class="btn blue" ng-click='adicionarVaga()'>Adicionar vaga</button>
                     </div>
+                    <input type="hidden" name="beneficios" id="beneficios" value="{{beneficios}}">
                 </form>
             </div>
         </div>
@@ -89,35 +76,55 @@
                           <p class="truncate contentEditable" contenteditable="true">Descrição: {{x.descricao}}</p>
                         </div>
                         <div class="card-action">
-                          <form action="" method="get">
-                              <input type="submit" value="Excluir" class="btn red ">
-                              
-                          </form>
+                          <button class="btn yellow" ng-click="atualizar()">Atualize para editar ou excluir</button>
                         </div>
                       </div>
                 </div>
        <?php
+       if($ConsultaVaga){
             while($ResultVaga = mysqli_fetch_assoc($ConsultaVaga))
             {
+              $idVaga  = $ResultVaga['idVaga'];
             ?>
             <div class="card col s12 m6 hoverable">
                 <span class="card-title"><?= $ResultVaga['titulo'] ?></span>
                 <div class="card-content">
                     <p>Carga horária: <span class="contentEditable" contenteditable="true"><?= $ResultVaga['cargaHoraria']?></span></p>
                     <p>Salario: <span class="contentEditable" contenteditable="true"><?= $ResultVaga['salario']?></span></p>
-                    <p>Benefícios: <span class="contentEditable" contenteditable="true"><?= $ResultVaga['beneficios']?></span></p>
+                    <p>
+                      Benefícios:
+                    <?php
+                    require_once "Model/ModelBeneficiosVaga.class.php";
+                    $Beneficio   = new ModelBeneficiosVaga();
+                    $Consulta    = $Beneficio->ReadBeneficiosVaga("where codVaga = $idVaga");
+                      while ($ResultBeneficios = mysqli_fetch_object($Consulta)) {
+                      ?>
+                       <span class="chip"><?= $ResultBeneficios -> beneficio?></span>
+
+                      <?php
+                      }
+                     ?>
+                   </p>
+                    <p>
+                      Requisitos: <span>
+                        <?=$ResultVaga['requisitos']?>
+                      </span>
+                    </p>
                     <p>Descrição: <span class="contentEditable" contenteditable="true"><?= $ResultVaga['descricao']?></span></p>
                 </div>
                 <div class="card-action">
-                          <form action="OnePage.php?link=CriarVaga&idVaga=<?=$ResultVaga['idVaga'] ?>" method="post">
+                          <form action="Controller/ExcluirDadosEmpresa.php" method="post" class="excluir">
+                              <input type="hidden" name="tabela" id="tabela" value="vaga">
+                              <input type="hidden" name="idVaga" value="<?= $ResultVaga['idVaga'] ?>">
                               <input type="submit" value="Excluir" class="btn red">
                           </form>
-                          
+
                 </div>
             </div>
-            
+
             <?php
             }
+          } else echo "Não tem vagas";
        ?>
        </div>
    </div>

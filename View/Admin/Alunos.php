@@ -1,65 +1,52 @@
 <?php
-    include "Model/DataBase.class.php";
-    $id = $_SESSION['id'];
+  require_once "Model/ModelAluno.class.php";
+  $Aluno = new ModelAluno();
+  $ConsultaNumAlunos = mysqli_num_rows($Aluno -> ReadAluno(""));
 
-    $Banco = new DataBase();
-
-    for($i=1;$i<=7;$i++){
-    $consulta = $Banco -> SearchQuery("aluno","where idAluno = '$i'");
-    $result = mysqli_fetch_assoc($consulta);
-    $a[$i] = $result;
-//        echo "<pre>";
-//    print_r($result);
-//        echo "</pre>";
-//    echo json_encode($result);
-    }
-    $idBotao = $_GET['escondido'];
-    if($idBotao){
-        echo "O botão de id nº $idBotao foi clicado";
-        
-    }
-
-    
-?>
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!--   <link rel="stylesheet" href="../../css/materialize.css">-->
-<!--   <link rel="stylesheet" href="../../fonts/material-icons.css">-->
-    <meta charset="utf-8">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 </head>
-<body ng-app='app' ng-controller='div'>
-    <h1 class="center-align">Alunos cadastrados</h1>
-    
-    <div class="col m8 s12 push-m2">
-        <div class='card-panel medium' ng-repeat="t in usuario" >
-        
-            <h2 class='flow-text'>O id é {{t.idAluno}} </h2>
-            <p class='flow-text hoverable' ng-click='ola(this)'> {{t.nome}} <span class='chip' ng-init="  " ><i class='material-icons'>cloud</i></span> </p>
-            <p> {{t.email}} </p>
-            <p> {{t.nivel}} </p>
-            <form action="" method='get'>
-               <input type="hidden" name="escondido" value='{{t.idUsuario}}'>
-                <input type='submit' class="btn red" value='Excluir'>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <?php
 
-            </form>
-        </div>
+        if ($ConsultaNumAlunos > 0 ) {
+          echo "<h1 class='center-align flow-text'>Alunos cadastrados</h1>";
+          $ConsultaAlunos = $Aluno -> ReadAluno("");
+          echo "<ul class='collection'>";
+          while ($ResultAluno = mysqli_fetch_object($ConsultaAlunos)) {
+
+              ?>
+              <li class="collection-item avatar">
+                <img src="Images/Upload/<?= $ResultAluno -> foto ?>" alt="foto perfil" class="circle">
+                <span class="title"><b>Nome:</b> <?= $ResultAluno -> nome ?></span>
+                <p><b>visualizacoes perfil: </b><?= $ResultAluno -> visualizacoes ?><br>
+                   <a href="#">
+                     Ver Perfil
+                   </a>
+                </p>
+                <a href="#!" class="secondary-content"><i class="material-icons red-text">delete</i></a>
+              </li>
+
+              <?php
+
+          }
+          echo "</ul>";
+        }else{
+          echo "Sem alunos cadastrados";
+        }
+         ?>
+      </div>
     </div>
-    
-            
-    <script src='js/angular.min.js'></script>
-    <script>
-     var app = angular.module('app',[]);
-        app.controller('div',['$scope',function($scope){
-            $scope.usuario =  <?= json_encode($a); ?> ;
-            $scope.filtrar = "";
-            $scope.ola = function(a){
-                var id = a.id;
-                alert("olá" + id);
-            }
-        }]);
-    
-    </script>
+  </div>
 </body>
 </html>

@@ -10,17 +10,21 @@ $(document).ready(function() {
     });
 
     $(".ApagarNotificacao").click(function(event) {
+        var tabela     = $(this).data("tabela");
         var idMensagem = $(this).data('idnotificacao');
         var Notificacao = $(this).parent().parent().hide();
+        console.log("tabela: " + tabela + "\n idMensagem: "+idMensagem);
         $.ajax({
           url: "Controller/ApagarNotificacao.php",
           method: "POST",
-          data:{idMensagem: idMensagem},
+          data:{idMensagem: idMensagem,tabela:tabela},
           success: function(data){
               // alert(data);
+              console.log(data);
               Materialize.toast("Apagado com sucesso", 4000);
           }
         });
+
         // var $toastContent = $("<span> desfazer? <button id='confirmar' class='btn red waves-effect waves-light'>confirmar</button></span>");
         //
         //  Materialize.toast($toastContent, 5000, '', function(){});
@@ -58,7 +62,7 @@ $(document).ready(function() {
 
        });
     });
-
+    
 
     $(".CancelarEntrevista").click(function(event) {
       /* Act on the event */

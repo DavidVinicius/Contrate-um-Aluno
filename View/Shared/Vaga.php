@@ -12,7 +12,7 @@
     $Candidato        =  new Candidatouse();
     $ResultAluno      = mysqli_fetch_object($Aluno -> ReadAluno("where codUsuario = $codUsuarioAluno"));
     $idAluno          = $ResultAluno -> idAluno;
-    $Num              = mysqli_num_rows($Candidato -> ReadCandidatouse("where codAluno = $idAluno && codVaga = $IdVaga"));
+    $Num              = mysqli_num_rows($Candidato -> ReadCandidatouse("where codAluno = $idAluno and codVaga = $IdVaga and ativo = 'S'"));
     if ($Num > 0) {
        $disabled = "disabled='true'";
        $candidatar = 'Você já se candidatou-se para essa vaga';

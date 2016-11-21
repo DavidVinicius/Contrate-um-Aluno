@@ -8,6 +8,6 @@
   <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
-  <h1>Home Admin</h1>
+  <h1>Empresas Admin</h1>
 </body>
 </html>

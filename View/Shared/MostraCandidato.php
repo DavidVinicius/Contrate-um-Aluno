@@ -11,7 +11,6 @@
    $idUsuario              = $_GET['cod'];
    $idUsuarioEmpresa       = $_SESSION['id'];
    $anterior               = isset($_GET['anterior'])?$_GET['anterior']:null;
-   $pagina                 = isset($_GET['pagina'])? '&pagina='.$_GET['pagina']:null;
    $Aluno                  = new ModelAluno();
    $Endereco               = new Enderecos();
    $Telefone               = new Telefones();
@@ -31,9 +30,8 @@
     <meta charset="UTF-8">
     <title>Contrate um Aluno</title>
     <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="js/angular.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/Candidato.js">    </script>
+    <!-- <script type="text/javascript" src="js/angular.min.js"></script> -->
+    <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
 </head>
 <body ng-app="myapp" ng-controller="Candidato">
     <div class="container">
@@ -160,116 +158,9 @@
                     ?>
                 </div>
                 <div class="row">
-                    <a href="#modal1" class="btn btn-large blue modal-trigger waves-effect waves-light">Marcar Entrevista</a>
-                    <a href="OnePage.php?<?= $anterior.$pagina?>" class="btn btn-large blue darken-1 waves-effect waves-light">Voltar</a>
+                    <a href="OnePage.php?<?= $anterior?>" class="btn btn-large blue darken-1 waves-effect waves-light">Voltar</a>
                 </div>
-                <div class="row">
-                  <div id="modal1" class="modal modal-fixed-footer">
-                    <div class="modal-content">
-                      <h1 class="center-align flow-text">Preencha e marque a entrevista</h1>
-                      <div class="col s12 m12 l12">
-                        <form action="Controller/MarcarEntrevista.php" method="post" id="marcarEntrevista">
-                          <div class="row">
-                            <div class="input-field col s12 m6">
-                              <label for="data">Data da Entrevista</label><br>
-                              <input type="date" name="data" id="data" required="true">
-                            </div>
-                            <div class="input-field col s12 m6">
-                              <label for="hora">Hora da entrevista</label><br>
-                              <input type="time" name="hora" id="hora" required="true">
-                            </div>
-                          </div>
-                          <div class="row">
 
-                            <div class="input-field col s12 m6">
-                              <label for="local">Local da entrevista:</label>
-                              <input type="text" name="local" id="local" required="true">
-                            </div>
-                            <div class="input-field col s12 m2">
-                              <label for="numero">Número:</label>
-                              <input type="text" name="numero" id="numero" required="true">
-                            </div>
-                            <div class="input-field col s12 m4">
-                              <label for="bairro">Bairro:</label>
-                              <input type="text" name="bairro" id="bairro" required="true">
-                            </div>
-                            <div class="input-field col s12 m4">
-                              <label for="completemento">Complemento</label>
-                              <input type="text" name="complemento" id="complemento">
-                            </div>
-                            <div class="input-field col s12 m4">
-                              <label for="cidade">Cidade:</label>
-                              <input type="text" name="cidade" id="cidade" required="true">
-                            </div>
-                            <div class="input-field col s12 m3" >
-                              <!-- <label for="estado">Estado</label> -->
-                              <select name="estado" id="estado" required="true">
-                                  <option value="" selected disabled>Estado</option>
-                                  <option value="AC">AC</option>
-                                  <option value="AL">AL</option>
-                                  <option value="AM">AM</option>
-                                  <option value="AP">AP</option>
-                                  <option value="BA">BA</option>
-                                  <option value="CE">CE</option>
-                                  <option value="DF">DF</option>
-                                  <option value="ES">ES</option>
-                                  <option value="GO">GO</option>
-                                  <option value="MA">MA</option>
-                                  <option value="MG">MG</option>
-                                  <option value="MS">MS</option>
-                                  <option value="MT">MT</option>
-                                  <option value="PA">PA</option>
-                                  <option value="PB">PB</option>
-                                  <option value="PE">PE</option>
-                                  <option value="PI">PI</option>
-                                  <option value="PR">PR</option>
-                                  <option value="RJ">RJ</option>
-                                  <option value="RN">RN</option>
-                                  <option value="RO">RO</option>
-                                  <option value="RR">RR</option>
-                                  <option value="RS">RS</option>
-                                  <option value="SC">SC</option>
-                                  <option value="SE">SE</option>
-                                  <option value="SP">SP</option>
-                                  <option value="TO">TO</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="input-field col s12 m6">
-                              <label for="vaga">Qual a vaga que vai oferecer?</label>
-                              <input type="text" name="vaga" id="vaga" required="true">
-                            </div>
-                            <div class="input-field col s12 m3">
-                              <label for="salario">Qual o salário?</label>
-                              <input type="text" name="salario" id="salario">
-                            </div>
-                            <div class="input-field col s12 m3">
-                              <label for="cargaHoraria">Carga horária semanal:</label>
-                              <input type="number" name="cargaHoraria" id="cargaHoraria" maxlength="2" max="44" min="20" required="true">
-                            </div>
-                            <div class="input-field col s12 m12">
-                              <label for="beneficios">Benefícios:</label><br><br>
-                              <div class="chips chips-placeholder"></div>
-                            </div>
-                            <div class="input-field col s12 m12">
-                              <label for="descricao">Descrição:</label>
-                              <textarea name="descricao" rows="8" cols="40" class="materialize-textarea" ng-model="descricao" required="true"></textarea>
-                            </div>
-                           </div>
-                        <input type="hidden" name="beneficios" id="beneficios" value="{{beneficios}}">
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="" class="btn-flat red-text modal-close">Cancelar</a>
-                      <input type="hidden" id="idAluno" name="idAluno" value="<?= $idAluno ?>" />
-                      <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $idUsuarioEmpresa ?>" />
-                      <input type="submit" value="Marcar entrevista" class="btn-flat waves-light waves-green">
-                    </form>
-                    </div>
-                  </div>
-
-                </div>
 
             </div>
         </div>

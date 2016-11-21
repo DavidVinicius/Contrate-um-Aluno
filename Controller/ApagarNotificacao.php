@@ -6,9 +6,13 @@
     $idMensagem = isset($_POST['idMensagem'])?$_POST['idMensagem']:null;
 
    if ($Notificao -> DeleteMensagens("where idMensagem = $idMensagem")) {
-       echo "deu certo";
+       echo "<br /> apagou a notificação";
+   }else{
+     echo "<br /> não apagou a notificacão";
    }
-  }
+ }else{
+   echo "<br /> não achou a tabela notificações ";
+ }
 
   if (isset($_POST['tabela']) && $_POST['tabela'] == "notificacoesCandidatouse") {
     require_once "../Model/ModelNotificacoesCandidatouse.class.php";
@@ -18,7 +22,9 @@
     if ($NotCandidatouse -> DeleteNotificacoesCandidatouse("where idNotificacoesCandidatouse = $idNotificacoesCandidatouse")) {
           echo "Apagou a notificaçao de candidatou-se";
     }else{
-      echo "Erro ao apagar a notificacão de candidatou-se";
+      echo "<br />Erro ao apagar a notificacão de candidatou-se";
     }
+  }else{
+    echo "<br />Não achou a tabela notificações Candidatou-se";
   }
  ?>

@@ -89,7 +89,7 @@
                                      <b>Mensagem:</b><br>
                                      <?= $ResultN -> mensagem ?>
                                   </p>
-                                  <a href="#!" class="secondary-content"><i class="material-icons ApagarNotificacao" data-idnotificacao="<?= $ResultN -> idMensagem ?>">delete</i></a>
+                                  <a href="#!" class="secondary-content"><i class="material-icons ApagarNotificacao" data-idnotificacao="<?= $ResultN -> idMensagem ?>" data-tabela="notificacoes">delete</i></a>
                                 </li>
 
 
@@ -126,7 +126,7 @@
                         </div>
                           <?php
                     }else{
-                      echo "Você não tem notificações";
+                      echo "<h1 class='center-align flow-text'>Você não possui notificações</h1>";
                     }
                ?>
             </div>

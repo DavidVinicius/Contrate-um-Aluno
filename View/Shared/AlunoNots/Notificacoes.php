@@ -52,21 +52,6 @@
 
              $ConsultaNot = $Notificacao -> ReadMensagens("where codUsuario = $idUsuario order by idMensagem desc limit $inicio, $registros") ;
 
-            //  while($object = mysqli_fetch_object( $consultaCandidatouse )){
-            //      //
-            //      ?>
-            <!-- //      <li class="collection-item avatar">
-            //          <img src="Images/Upload/<?= $EmpresaN -> foto?>" alt="" class="responsive-img circle">
-            //          <span class="title"><b>Assunto: </b><?= $object -> titulo ?></span><br>
-            //          <p><b>De:</b> <?= $object -> de ?> <br>
-            //             <b>Mensagem:</b><br>
-            //             <?= $object -> mensagem ?>
-            //          </p>
-            //          <a href="#!" class="secondary-content"><i class="material-icons ApagarNotificacao" data-idnotificacao="<?= $object -> idMensagem ?>">delete</i></a>
-            //        </li> -->
-                   <?php
-            //  }
-
              while ($ResultN = mysqli_fetch_object($ConsultaNot)) {
                    $codEntrevista = $ResultN -> codEntrevista;
                    $ConsultEA = mysqli_fetch_object($Entrevista -> ReadEntrevista("where idEntrevista = $codEntrevista"));
@@ -81,7 +66,7 @@
                         <b>Mensagem:</b><br>
                         <?= $ResultN -> mensagem ?>
                      </p>
-                     <a href="#!" class="secondary-content"><i class="material-icons ApagarNotificacao" data-idnotificacao="<?= $ResultN -> idMensagem ?>">delete</i></a>
+                     <a href="#!" class="secondary-content"><i class="material-icons ApagarNotificacao" data-idnotificacao="<?= $ResultN -> idMensagem ?>" data-tabela="notificacoes">delete</i></a>
                    </li>
                    <?php
              }

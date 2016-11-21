@@ -60,7 +60,6 @@
                     $idUsuario  = $_SESSION['id'];
                     $LerAluno   = $Aluno->ReadAluno("where codUsuario = $idUsuario");
                     $FetchAluno = mysqli_fetch_assoc($LerAluno);
-                 ?>
                 //verifica a página atual caso seja informada na URL, senão atribui como 1ª página
                 $pagina = (isset( $_GET['pagina']) ) ? $_GET['pagina'] : 1;
 
@@ -85,6 +84,7 @@
                   $idAluno = $linha['idAluno'];
                   $Qualificacao = new ModelQualificacoes();
                   $ResultadoQ = $Qualificacao->ReadQualificacoes("where codAluno = $idAluno");
+
                 ?>
 
                 <div class="col s12 m6">
@@ -94,11 +94,6 @@
                             <span class="card-title black-text"><?=$linha['nome']?></span>
                         </div>
                         <div class="card-content">
-
-                            <?php while($qualificacao = mysqli_fetch_assoc($Ler)){ ?>
-                            <span class="chip blue"><?= $qualificacao['competencia'] ?></span>
-                            <?php } ?>
-                            <a href="OnePage.php?link=Candidato&id=<?=$linha['idAluno']?>"><button class="btn blue">Ver perfil</button></a>
 
                           <!-- <span class="center-align">Habilidades:</span> -->
                             <?php while($qualificacao = mysqli_fetch_assoc($ResultadoQ)){ ?>
@@ -110,6 +105,7 @@
                     </div>
                 </div>
                 <?php }
+              }
                 $paginaMenosUm  = isset($_GET['pagina']) ? ($_GET['pagina'] - 1) : 1;
                 $paginaMaisUm   = isset($_GET['pagina']) ? ($_GET['pagina'] + 1) : 1;
                 ?>

@@ -92,7 +92,7 @@
                      <b>Mensagem:</b><br>
                      <?= $ResultNotificacao -> mensagem ?>
                   </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons ApagarNotificacao" data-idnotificacao="<?= $ResultNotificacao -> idMensagem ?>">delete</i></a>
+                  <a href="#!" class="secondary-content"><i class="material-icons ApagarNotificacao" data-tabela="notificacoes" data-idnotificacao="<?= $ResultNotificacao -> idMensagem ?>">delete</i></a>
                 </li>
 
 

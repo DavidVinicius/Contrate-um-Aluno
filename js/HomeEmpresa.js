@@ -1,12 +1,21 @@
 $(document).ready(function() {
     $('.modal-trigger').leanModal();
     $('input, textarea').characterCounter();
+    $('.chips').material_chip();
+    $('select').material_select();
+    $('.chips').click(function(event) {
+       Materialize.toast("Digite e aperte enter para adicionar benefícios",4000);
+    });
+    $(".chips").focusin(function(){
+      Materialize.toast("Digite e aperte enter para adicionar benefícios",4000);
+    });
 
       $('ul.tabs').tabs({
         onShow: function(){
           var filho   = $(this).data("filho");
           var caminho = $(this).data("caminho");
           // alert(filho);
+
           $.ajax({
             url:"View/Shared/EmpresaNots/"+ caminho,
             method:"POST",
@@ -33,16 +42,21 @@ $(document).ready(function() {
     });
 
     $(".ApagarNotificacao").click(function(event) {
-        var tabela     = $(this).data("tabela");
+        var tabela     = $(this).data('tabela');
         var idMensagem = $(this).data('idnotificacao');
         var Notificacao = $(this).parent().parent().hide();
+        console.log("tabela:"+ tabela +"\n idMensagem:" +idMensagem);
         $.ajax({
           url: "Controller/ApagarNotificacao.php",
           method: "POST",
           data:{idMensagem: idMensagem, tabela:tabela},
           success: function(data){
               // alert(data);
+              console.log(data);
               Materialize.toast("Apagado com sucesso", 4000);
+          },
+          error:function(err){
+            console.log(err);
           }
         });
 });
@@ -108,6 +122,25 @@ $(document).ready(function() {
 
     });
 
+    $(".cancelarCandidato").click(function(){
+      var Formulario     = $(this).data('form');
+      var idAluno        = $(this).data('idaluno');
+      var idCandidatouse = $(this).data("idcandidatouse");
+      console.log("Form id:" + Formulario + " \n idAluno:" + idAluno + " \n idCandidatouse: " + idCandidatouse);
+      $("#"+Formulario).submit(function(e){
+        var dados = new FormData(this);
+        // e.preventDefault();
+        $.ajax({
+          url:"Controller/NegarCandidato.php",
+          method:"POST",
+          data: dados,
+          success:function(data){
+            console.log(data);
+          }
+        });
+      });
+    });
+
       $("#CancelarEntrevistaEmpresa").submit(function(e){
           var dados = new FormData(this);
           var apagarDiv = $(this).parent().parent().parent();
@@ -147,6 +180,45 @@ $(document).ready(function() {
             error:function(){
               Materialize.toast("Erro tente novamente",4000);
             }
+          });
+        });
+        $(".marcar").click(function(){
+          var Formulario = $(this).data('form');
+          var Linha      = $(this).data('linha');
+          var idCandidatouse = $(this).data("idcandidatouse");
+          alert(idCandidatouse);
+          $("#"+Formulario).submit(function(e){
+            var dados = new FormData(this);
+            e.preventDefault();
+            $.ajax({
+              cache: false,
+              processData:false,
+              contentType: false,
+              mimeType:"multipart/form-data",
+              data: dados,
+              type: 'POST',
+              url: 'Controller/MarcarEntrevista.php',
+              success: function(data)
+              {
+                // alert(data);
+                Materialize.toast("Entrevista marcada com sucesso, clique para continuar",4000);
+                $(".modal").hide(1000);
+                $("#"+Linha).remove();
+                $.ajax({
+                  url: "Controller/ModificaStatusCandidatouse.php",
+                  method: "POST",
+                  data:{idCandidatouse:idCandidatouse},
+                  success:function(data){
+                    alert(data);
+                    Materiliaze.toast("Status modificado com sucesso",4000);
+                  },
+                  error:function(err){
+                    alert(err);
+                  }
+
+                });
+              }
+            });
           });
         });
 });

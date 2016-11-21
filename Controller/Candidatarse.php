@@ -19,16 +19,22 @@
   $ResultAluno = mysqli_fetch_object($Aluno -> ReadAluno("where codUsuario = $codUsuarioAluno"));
   $idAluno     = $ResultAluno -> idAluno;
 
-  $nome        = $ResultAluno -> nome;
-  $foto        = $ResultAluno -> foto;
+  $nome                    = $ResultAluno -> nome;
+  $foto                    = $ResultAluno -> foto;
+  $tokenModal              = md5($nome);
+  $tokenRecusarEntrevista  = md5($foto);
+  $tokenMarcarEntrevista   = time();
 
   $data        = array(
-                    "nome"            => $nome,
-                    "foto"            => $foto,
-                    "ativo"           => 'S',
-                    "codAluno"        => $idAluno,
-                    "codVaga"         => $idVaga,
-                    "codEmpresa"      => $idEmpresa
+                    "nome"                    => $nome,
+                    "foto"                    => $foto,
+                    "ativo"                   => 'S',
+                    "codAluno"                => $idAluno,
+                    "codVaga"                 => $idVaga,
+                    "codEmpresa"              => $idEmpresa,
+                    "tokenModal"              => $tokenModal,
+                    "tokenRecusarEntrevista"  => $tokenRecusarEntrevista,
+                    "tokenMarcarEntrevista"   => $tokenMarcarEntrevista
                );
 
   if ($Candidato -> CreateCandidatouse($data)) {

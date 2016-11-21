@@ -14,7 +14,7 @@ app.controller("Candidato",["$scope", function($scope){
    $('.chips').click(function(event) {
       Materialize.toast("Digite e aperte enter para adicionar benefícios",4000);
    });
-   $(".chips").focus(function(){
+   $(".chips").focusin(function(){
      Materialize.toast("Digite e aperte enter para adicionar benefícios",4000);
    });
    $('.chips-placeholder').material_chip({

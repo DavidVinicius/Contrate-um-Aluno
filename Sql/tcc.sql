@@ -172,6 +172,9 @@ CREATE TABLE `candidatouse`(
   `codAluno` int not null,
   `codVaga` int not null,
   `codEmpresa` int not null,
+  `tokenModal`      VARCHAR(50) NOT NULL,
+  `tokenRecusarEntrevista` VARCHAR(50) NOT NULL,
+  `tokenMarcarEntrevista`  VARCHAR(50) NOT NULL,
   Constraint `fk_candidatouse_aluno` foreign key(`codAluno`) references `aluno`(`idAluno`),
   CONSTRAINT `fk_candidatouse_vaga`  FOREIGN KEY(`codVaga`)  references `vaga`(`idVaga`),
   CONSTRAINT `fk_candidatouse_empresa` FOREIGN KEY(`codEmpresa`) REFERENCES `empresa`(`idEmpresa`)

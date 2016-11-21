@@ -19,6 +19,7 @@ if (mysqli_num_rows($Entrevista -> ReadEntrevista("where codEmpresa = $idEmpresa
 }
 else{
   $ConsultaNum = 0;
+  $ConsultaEntrevistaFinalizada = false;
 }
 $totalNotificacao = mysqli_num_rows($Notificacao -> ReadMensagens("where codUsuario = $idUsuario"));
 $totalVaga        = mysqli_num_rows($Vaga -> ReadVaga("where codEmpresa = $idEmpresa"));
@@ -31,6 +32,16 @@ $totalVaga        = mysqli_num_rows($Vaga -> ReadVaga("where codEmpresa = $idEmp
 
 
 <?php
+if ($ConsultaEntrevistaFinalizada) {
+  $pagina = (isset( $_GET['pagina']) ) ? $_GET['pagina'] : 1;
+  $registros = 5;
+
+  $numPaginas = ceil($total/$registros);
+
+  $inicio = ($registros*$pagina)-$registros;
+
+  $ConsultaNot = $Notificacao -> ReadMensagens("where codUsuario = $idUsuario order by idMensagem desc limit $inicio, $registros") ;
+  # code...
 while ($ResultFinalizada = mysqli_fetch_object($ConsultaEntrevistaFinalizada)) {
   $idAluno        = $ResultFinalizada -> codAluno;
   $idEntrevista   = $ResultFinalizada ->idEntrevista;
@@ -63,6 +74,9 @@ while ($ResultFinalizada = mysqli_fetch_object($ConsultaEntrevistaFinalizada)) {
 
   </li><br>
   <?php
+  }
+ echo "</ul>";
+}else{
+  echo "<h1 class='center-align flow-text'>Nenhuma entrevista finalizada</h1>";
 }
- ?>
-</ul>
+?>

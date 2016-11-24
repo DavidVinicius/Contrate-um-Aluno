@@ -32,6 +32,7 @@
 
 </head>
 <body>
+  <div id="barra"></div>
     <div class="container">
       <div class="row">
       </div>

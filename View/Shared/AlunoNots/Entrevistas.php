@@ -18,34 +18,30 @@
   $idAluno          = isset($ConsultaAluno->idAluno)?$ConsultaAluno->idAluno:null;
    if($Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = 'S' ")){
       $ConsultaNum      = mysqli_num_rows($Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = 'S'"));
-      $badge = "<span class='chip red white-text'>$ConsultaNum</span>";
-
   }
   else{
     $ConsultaNum      = 0;
-    $badge = "";
   }
-  $total = mysqli_num_rows($Notificacao -> ReadMensagens("where codUsuario = $idUsuario"));
-  if ($total > 0) {
-     $nots = "<span class='white-text chip red'>$total</span>";
-  }
-  $ConsultaEntrevista            = $Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = 'S' and ativo is not null");
-  $ConsultaEntrevistaFinalizadas = $Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = '' ");
+
+  $ConsultaEntrevista            = $Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = 'S' and ativo is not null order by idEntrevista desc");
  ?>
+
               <?php
               if ($ConsultaNum > 0) {
+                $identificador = "linha";
+                $i =0;
                 ?>
                 <!-- <div class="col s12 m12"> -->
                   <ul class="collection">
                     <?php
 
                     while ($result = mysqli_fetch_object($ConsultaEntrevista)) {
-                      $idEmpresa = $result->codEmpresa;
+                      $idEmpresa    = $result->codEmpresa;
                       $idEntrevista = $result->idEntrevista;
                       $ResultMensagem = mysqli_fetch_object($Notificacao->ReadMensagens("where codEntrevista = $idEntrevista"));
                       $ResultEmpresa = mysqli_fetch_object($Empresa -> ReadEmpresa("where idEmpresa = $idEmpresa"));
                       ?>
-                      <li class="collection-item avatar hoverable">
+                      <li class="collection-item avatar hoverable" id="<?= $identificador.$i  ?>">
                         <div class="col s12 m1">
                           <img src="Images/Upload/<?=$ResultEmpresa -> foto ?>" alt="" class="circle" />
                           <div class="secondary-content col s1 m3 hide-on-small-only">
@@ -121,9 +117,14 @@
                           </p>
                         </div>
                         <div class="modal-footer">
-                          <button data-identrevista="<?=$idEntrevista?>" data-idaluno="<?= $result -> codAluno?>"  data-codusuarioempresa="<?= $ResultEmpresa -> codUsuario ?>" class="modal-action modal-close waves-effect waves-red btn-flat CancelarEntrevista col s12 m3">Recusar</button>
-                          <button class="waves-effect waves-yellow btn-flat col s12 m4">Pedir para remarcar</button>
-                          <button data-identrevista="<?=$idEntrevista?>" data-resposta="Aceitado" class="modal-action waves-effect waves-green btn-flat col s12 m3">Aceitar</button>
+                          <button  data-identrevista="<?=$idEntrevista?>" data-idempresa="<?=$idEmpresa?>" data-idaluno="<?= $result -> codAluno ?>" data-linha="<?= $identificador.$i  ?>" class="modal-action waves-effect waves-green btn-flat col s12 m3 aceitar modal-close">
+                            Aceitar
+                          </button>
+                          <button class="waves-effect waves-yellow btn-flat col s12 m4">
+                            Pedir para remarcar
+                          </button>
+                          <button data-identrevista="<?=$idEntrevista?>" data-idaluno="<?= $result -> codAluno?>"  data-codusuarioempresa="<?= $ResultEmpresa -> codUsuario ?>" class="modal-action modal-close waves-effect waves-red btn-flat CancelarEntrevista col s12 m3">Recusar
+                          </button>
 
 
                         </div>

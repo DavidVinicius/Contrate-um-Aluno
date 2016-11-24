@@ -7,40 +7,25 @@
   session_start();
   include_once "../../../Model/ModelEntrevistas.class.php";
   include_once "../../../Model/ModelAluno.class.php";
-  include_once "../../../Model/ModelMensagens.class.php";
   require_once "../../../Model/ModelEmpresa.class.php";
   $Aluno            = new ModelAluno();
   $Entrevista       = new ModelEntrevistas();
-  $Notificacao      = new Mensagens();
   $Empresa          = new ModelEmpresa();
   $idUsuario        = $_SESSION['id'];
   $ConsultaAluno    = mysqli_fetch_object($Aluno->ReadAluno("where codUsuario = $idUsuario"));
   $idAluno          = isset($ConsultaAluno->idAluno)?$ConsultaAluno->idAluno:null;
-   if($Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = 'S' ")){
-      $ConsultaNum      = mysqli_num_rows($Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = 'S'"));
-      $badge = "<span class='chip red white-text'>$ConsultaNum</span>";
 
-  }
-  else{
-    $ConsultaNum      = 0;
-    $badge = "";
-  }
-  $total = mysqli_num_rows($Notificacao -> ReadMensagens("where codUsuario = $idUsuario"));
-  if ($total > 0) {
-     $nots = "<span class='white-text chip red'>$total</span>";
-  }
-  $ConsultaEntrevista            = $Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = 'S' and ativo is not null");
-  $ConsultaEntrevistaFinalizadas = $Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = '' ");
+  $ConsultaNumEntrevistasFinalizdas = mysqli_num_rows($Entrevista -> ReadEntrevista("where codAluno = $idAluno and ativo = ''"));
+  $ConsultaEntrevistaFinalizadas = $Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = '' order by idEntrevista desc ");
+if ($ConsultaNumEntrevistasFinalizdas > 0) {
+  # code...
  ?>
-
-
-
 <ul class="collection">
+
 <?php
   while ($ResultFinalizada = mysqli_fetch_object($ConsultaEntrevistaFinalizadas)) {
     $idEmpresa      = $ResultFinalizada -> codEmpresa;
     $idEntrevista   = $ResultFinalizada ->idEntrevista;
-    $ResultMensagem = mysqli_fetch_object($Notificacao->ReadMensagens("where codEntrevista = $idEntrevista"));
     $ResultEmpresa  = mysqli_fetch_object($Empresa -> ReadEmpresa("where idEmpresa = $idEmpresa"));
     $Resposta       = 0;
     ?>
@@ -70,6 +55,9 @@
     </li><br>
     <?php
   }
+}else{
+  echo "<h1 class='center-align flow-text'>Você não possui nenhuma entrevista finalizada</h1>";
+}
  ?>
 
  </ul>

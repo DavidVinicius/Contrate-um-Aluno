@@ -24,13 +24,13 @@
                       if (mysqli_num_rows($BD -> SearchQuery('aluno',"where codUsuario = $idUsuario")) == 1 ) {
                         echo "<script>
                                 window.location.href='../OnePage.php';
-                                alert('Logado com sucesso!');
+
                               </script>";
                       }
                       else{
                         echo "<script>
                                 window.location.href='../OnePage.php?link=VerCurriculo';
-                                alert('Logado com sucesso!');
+
                               </script>";
                       }
                   }
@@ -38,13 +38,13 @@
                         if (mysqli_num_rows($BD -> SearchQuery('empresa',"where codUsuario = $idUsuario")) == 1 ) {
                           echo "<script>
                                   window.location.href='../OnePage.php';
-                                  alert('Logado com sucesso!');
+
                                 </script>";
                         }
                         else{
                           echo "<script>
                                   window.location.href='../OnePage.php?link=VerEmpresa';
-                                  alert('Logado com sucesso!');
+
                                 </script>";
                         }
                   }
@@ -52,20 +52,20 @@
                         if (mysqli_num_rows($BD -> SearchQuery('professor',"where codUsuario = $idUsuario")) == 1 ) {
                           echo "<script>
                                   window.location.href='../OnePage.php';
-                                  alert('Logado com sucesso!');
+
                                 </script>";
                         }
                         else{
                           echo "<script>
                                   window.location.href='../OnePage.php?link=VerEmpresa';
-                                  alert('Logado com sucesso!');
+
                                 </script>";
                         }
                   }
                   else {
                         echo "<script>
                                 window.location.href='../OnePage.php';
-                                alert('Logado com sucesso!');
+                                
                               </script>";
                     }
 

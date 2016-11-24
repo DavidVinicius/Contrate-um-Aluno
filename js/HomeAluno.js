@@ -5,10 +5,55 @@ $(document).ready(function() {
       onShow: function(){
         var filho = $(this).data("filho");
         var caminho = $(this).data("caminho");
-        $("#"+filho).load("View/Shared/AlunoNots/"+caminho);
+        var barra   = " <div class='progress'><div class='indeterminate'></div></div>";
+        // $("#"+filho).load("View/Shared/AlunoNots/"+caminho);
+        $.ajax({
+          url:"View/Shared/AlunoNots/"+caminho,
+          method:"PUT",
+          cache:false,
+          beforeSend:function(){
+            $("#"+filho).html(barra);
+
+          },
+          success:function(data){
+            console.log("deu certo");
+            setTimeout(function () {
+              $("#"+filho).html(data);
+              console.log('esperando...');
+            }, 1000);
+          },
+          error:function(data){
+            console.log(data);
+          },
+          complete:function(data){
+          }
+        });
       }
     });
+    $('.aceitar').click(function(){
+        var idEntrevista = $(this).data('identrevista');
+        var idEmpresa    = $(this).data('idempresa');
+        var idAluno      = $(this).data('idaluno');
+        var linha        = $(this).data('linha');
+        var barra        = " <div class='progress'><div class='indeterminate'></div></div>";
+        $.ajax({
+          url:"Controller/AceitarEntrevista.php",
+          method:"POST",
+          data:{idEntrevista:idEntrevista,idEmpresa:idEmpresa,idAluno:idAluno},
+          beforeSend: function(){
+            $("#barra").html(barra);
+          },
+          success:function(data){
+            console.log(data);
+            setTimeout(function () {
+              Materialize.toast("A entrevista foi confirmada", 4000);
+              $("#barra").html('');
+              $("#"+linha).remove();
+            }, 1000);
 
+          }
+        });
+    });
     $(".ApagarNotificacao").click(function(event) {
         var tabela     = $(this).data("tabela");
         var idMensagem = $(this).data('idnotificacao');
@@ -24,15 +69,6 @@ $(document).ready(function() {
               Materialize.toast("Apagado com sucesso", 4000);
           }
         });
-
-        // var $toastContent = $("<span> desfazer? <button id='confirmar' class='btn red waves-effect waves-light'>confirmar</button></span>");
-        //
-        //  Materialize.toast($toastContent, 5000, '', function(){});
-        //  $("#confirmar").click(function(event) {
-        //
-        //    $(Notificacao).show();
-        //  });
-
     });
 
     $(".apagarEntrevista").click(function(event) {
@@ -62,7 +98,7 @@ $(document).ready(function() {
 
        });
     });
-    
+
 
     $(".CancelarEntrevista").click(function(event) {
       /* Act on the event */

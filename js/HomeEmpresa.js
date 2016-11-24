@@ -14,13 +14,27 @@ $(document).ready(function() {
         onShow: function(){
           var filho   = $(this).data("filho");
           var caminho = $(this).data("caminho");
+          var barra   = " <div class='progress'><div class='indeterminate'></div></div>";
           // alert(filho);
-
           $.ajax({
             url:"View/Shared/EmpresaNots/"+ caminho,
-            method:"POST",
+            method:"PUT",
+            cache:false,
+            beforeSend:function(){
+              $("#"+filho).html(barra);
+
+            },
             success:function(data){
-              $("#"+filho).html(data);
+              console.log("deu certo");
+              setTimeout(function () {
+                $("#"+filho).html(data);
+                console.log('esperando...');
+              }, 1000);
+            },
+            error:function(data){
+              console.log(data);
+            },
+            complete:function(data){
             }
           });
           // $().load();
@@ -45,15 +59,22 @@ $(document).ready(function() {
         var tabela     = $(this).data('tabela');
         var idMensagem = $(this).data('idnotificacao');
         var Notificacao = $(this).parent().parent().hide();
+        var barra   = " <div class='progress'><div class='indeterminate'></div></div>";
         console.log("tabela:"+ tabela +"\n idMensagem:" +idMensagem);
         $.ajax({
           url: "Controller/ApagarNotificacao.php",
           method: "POST",
           data:{idMensagem: idMensagem, tabela:tabela},
+          beforeSend:function(){
+              $("#barra").html(barra);
+          },
           success: function(data){
               // alert(data);
               console.log(data);
-              Materialize.toast("Apagado com sucesso", 4000);
+              setTimeout(function () {
+                Materialize.toast("Apagado com sucesso", 4000);
+                $("#barra").html('');
+              }, 1000);
           },
           error:function(err){
             console.log(err);

@@ -8,20 +8,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Contrate um Aluno</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 and max-scale=1.0">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <video src="videos/conversa.mp4" class="responsive-video" autoplay loop muted>
+  <video src="videos/conversa.mp4" class="responsive-video" autoplay="true" loop="true" muted="true">
 
   </video>
-  <div class="navbar-fixed">
+  <img src="Images/Office.jpg" alt="" class="imgfundo">
+    <div class="navbar-fixed">
 
        <nav>
         <div class="nav-wrapper menuCor ">
-          <a href="#!" class="brand-logo"><span style="margin-left:5%;"></span> Contrate um Aluno</a>
+          <a href="#!" class="brand-logo"></span> Contrate um Aluno</a>
 
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars" style="font-siz:20px margin-left:5%;"></i></a>
           <ul class="right hide-on-med-and-down">
@@ -62,9 +63,11 @@
             <h1 class="center-align white-text">A ideia</h1>
         </div>
     </section>
-    <!-- <div class="EmpresasParralax">
+    <div class="EmpresasParralax">
       <div class="parallax-container">
-        <div class="parallax"><img src="Images/Office.jpg"></div>
+        <div class="parallax">
+          <img src="Images/Office.jpg" >
+        </div>
         <div class="carousel">
           <h3 class="center-align mytext white-text">Empresas cadastradas</h3>
           <?php
@@ -96,11 +99,50 @@
         </div>
       </div>
 
-    </div> -->
+    </div>
     <section class="section SobreOsDesenvolvedores menuCor">
-            <h1 class="center-align white-text">Sobre os Desenvolvedores</h1>
+            <h1 class="center-align white-text">Sobre os Fundadores</h1>
+            <div class="row">
+              <div class="col s12  m6">
+                <h1 class="center-align flow-text white-text">David Vinicius da Silva</h1>
+                <div class="row">
+                  <div class="col s6 m6 white-text">
+                    Desenvolvedor front end sssssssssssss sssssssssssssssssss
+                  </div>
+                  <div class="col s3 pull-s1 m4 push-m2">
+                    <img src="Images/Office.jpg" alt="" class=" circle" width="150px" height="150px">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 pull-s2 m12">
+                    <span class="right">
+                      <button class="btn-flat white-text"><i class="fa fa-facebook"></i></button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col s12 m6 abaixo-1">
+                <h1 class="center-align flow-text white-text">Matheus Augusto Picioli</h1>
+                <div class="row">
+                  <div class="col s4 pull-s1 m4">
+                    <img src="Images/Office.jpg" alt="" class=" circle" width="150px" height="150px">
+                  </div>
+                  <div class="col s6  m6">
+                    <span class="right white-text">Desenvolvedor Back-end <br>
+                    Adoro banco de dados, LOL é minha vidassssssssssss
+
+                     </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 push-s2 m12">
+                    <button class="btn-flat white-text"><i class="fa fa-github"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
     </section>
-    <!-- <section class="AlunosParallax section ">
+     <section class="AlunosParallax section ">
       <div class="parallax-container">
         <div class="parallax"><img src="Images/Office.jpg"></div>
         <div class="carousel">
@@ -134,9 +176,9 @@
           </p>
         </div>
       </div>
-    </section> -->
+    </section>
     <section class="footer ">
-      <!-- <footer class="page-footer grey darken-4"> -->
+      <footer class="page-footer grey darken-4">
         <div class="container  ">
           <div class="row  ">
             <div class="col l6 s12">
@@ -175,14 +217,18 @@
     <div class="fundoPreto"></div>
     <div class="fundoModal"></div>
     <script src="js/jquery.js"></script>
-    <script src="js/angular.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script>
         $(document).ready(function(){
              $(".button-collapse").sideNav();
             $(".abrirFormulario").leanModal();
-            // $('.parallax').parallax();
+            $('.parallax').parallax();
             $('.carousel').carousel();
+            if ($(window).width() < 769) {
+              alert();
+              $('video').remove();
+              $('.imgfundo').show();
+            }
             $(".abrirFormulario").click(function(){
 
                 var pagina = $(this).data("page");

@@ -30,9 +30,9 @@
 
 
 
- <ul class="collection">
-   <?php if ($ConsultaNum > 0){
 
+   <?php if ($ConsultaNum > 0){
+  echo "<h1 class='center-align flow-text'>Suas entrevistas</h1>  <ul class='collection'> ";
      $Notificao = new Mensagens();
      while ($result = mysqli_fetch_object($ConsultaEntrevista)) {
        $idEntrevista = $result->idEntrevista;

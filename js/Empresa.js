@@ -8,6 +8,7 @@ $scope.telefones = [];
 $scope.tipo      = "";
 $scope.Tel  = "";
 
+$('.modal-trigger').leanModal();
 $("[name=radio]").click(function(){
   $scope.tipo = $(this).val();
 });
@@ -30,6 +31,11 @@ $scope.adicionarTelefone = function(){
   }
 };
 
+// $("#CadastrarEmpresa").submit(function(e){
+//   var dados = new FormData(this);
+//   // e.preventDefault();
+//
+// });
 // $scope.adicionarTelefone = function(){
 //       alert("aaaa");
 // };
@@ -37,6 +43,7 @@ $(".cancelaEvento").click(function(e){
   e.preventDefault();
 
 });
+
 
 
  $scope.Valores   = [];
@@ -63,6 +70,9 @@ $('.chips').on('chip.delete', function(e, chip){
 //                  alert(a);
 });
  $(".chips").click(function(){
+   Materialize.toast("Digite os valores e aperte enter para adicionar",4000);
+ });
+ $(".chips").focusin(function(event) {
    Materialize.toast("Digite os valores e aperte enter para adicionar",4000);
  });
  $('.chips').material_chip({

@@ -27,6 +27,7 @@
           <ul class="right hide-on-med-and-down">
             <li><a href="sass.html">A ideia</a></li>
             <li><a href="badges.html">Sobre os Desenvolvedores</a></li>
+            <li><a href="http://www.estudeaqui.pe.hu" class="btn orange">Estude aqui</a></li>
             <li><a href="" class="abrirFormulario waves-effect waves-light btn blue" data-target="modal1" data-page="Login/LoginModal.php">Login</a></li>
           </ul>
           <ul class="side-nav" id="mobile-demo">

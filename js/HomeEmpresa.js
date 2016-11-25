@@ -10,36 +10,35 @@ $(document).ready(function() {
       Materialize.toast("Digite e aperte enter para adicionar benefícios",4000);
     });
 
-      $('ul.tabs').tabs({
-        onShow: function(){
-          var filho   = $(this).data("filho");
-          var caminho = $(this).data("caminho");
-          var barra   = " <div class='progress'><div class='indeterminate'></div></div>";
-          // alert(filho);
-          $.ajax({
-            url:"View/Shared/EmpresaNots/"+ caminho,
-            method:"PUT",
-            cache:false,
-            beforeSend:function(){
-              $("#"+filho).html(barra);
+      $(".conteudo").click(function(){
+        var filho   = $(this).data("filho");
+        var caminho = $(this).data("caminho");
+        var barra   = " <div class='progress '><div class='indeterminate'></div></div>";
+        $.ajax({
+          url:"View/Shared/EmpresaNots/"+ caminho,
+          method:"PUT",
+          cache:false,
+          beforeSend:function(){
+            $("#barra").html(barra);
 
-            },
-            success:function(data){
-              console.log("deu certo");
-              setTimeout(function () {
-                $("#"+filho).html(data);
-                console.log('esperando...');
-              }, 1000);
-            },
-            error:function(data){
-              console.log(data);
-            },
-            complete:function(data){
-            }
-          });
-          // $().load();
-        }
+          },
+          success:function(data){
+            console.log("deu certo");
+            setTimeout(function () {
+              $("#barra").html('');
+              $("#conteudo").html(data);
+              console.log('esperando...');
+            }, 1000);
+          },
+          error:function(data){
+            console.log(data);
+          },
+          complete:function(data){
+          }
+        });
       });
+
+      
     $("#recusar").click(function(event) {
       /* Act on the event */
       // alert(candidato);

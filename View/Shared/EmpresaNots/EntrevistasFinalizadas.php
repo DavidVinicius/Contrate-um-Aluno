@@ -28,15 +28,15 @@ $totalVaga        = mysqli_num_rows($Vaga -> ReadVaga("where codEmpresa = $idEmp
 
   <script type="text/javascript" src="js/HomeEmpresa.js"></script>
 </head>
-<ul class="collection">
 
 
 <?php
 if ($ConsultaEntrevistaFinalizada) {
+  echo "<h1 class='center-align flow-text'>Entrevistas já finalizadas</h1><ul class='collection'>";
   $pagina = (isset( $_GET['pagina']) ) ? $_GET['pagina'] : 1;
   $registros = 5;
 
-  $numPaginas = ceil($total/$registros);
+  $numPaginas = ceil($totalVaga/$registros);
 
   $inicio = ($registros*$pagina)-$registros;
 
@@ -46,12 +46,12 @@ while ($ResultFinalizada = mysqli_fetch_object($ConsultaEntrevistaFinalizada)) {
   $idAluno        = $ResultFinalizada -> codAluno;
   $idEntrevista   = $ResultFinalizada ->idEntrevista;
   $ResultMensagem = mysqli_fetch_object($Notificacao->ReadMensagens("where codEntrevista = $idEntrevista"));
-  $ResultAluno    = mysqli_fetch_object($Aluno -> ReadAluno("where idAluno = $idEmpresa"));
+  $ResultAluno    = mysqli_fetch_object($Aluno -> ReadAluno("where idAluno = $idAluno"));
   $Resposta       = 0;
   ?>
   <li class="collection-item avatar hoverable">
     <div class="col s12 m1">
-      <img src="Images/Upload/<?=$ResultAluno -> foto ?>" alt="" class="circle" />
+      <img src="Images/Upload/<?= $ResultAluno -> foto ?>" alt="" class="circle" />
 
 
     </div>

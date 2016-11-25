@@ -150,8 +150,7 @@
                           <div class="input-field col s12 m4">
                             <label for="">Telefone <?= $ResultTelefone['tipo']?></label>
                             <input placeholder=" " type="tel" name="<?= $ResultTelefone['telefone']?>" value="<?= $ResultTelefone['telefone']?>" data-idtelefone="<?= $ResultTelefone['idTelefone']?>" data-position="right" data-delay="50"  data-tooltip="Clique para editar" class="tooltipped" data-tabela="telefones" data-campo="telefone">
-                            <span class="red-text excluir" data-tabela="telefones" data-idtelefone="<?= $ResultTelefone['idTelefone']?>">Excluir</span>
-
+                            <span class="red-text excluir" data-tabela="telefones" data-idtelefone="<?= $ResultTelefone['idTelefone']?>" style="cursor:pointer">Excluir</span>
                           </div>
                         <?php
                       }

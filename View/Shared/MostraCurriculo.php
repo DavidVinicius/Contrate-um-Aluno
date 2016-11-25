@@ -286,11 +286,11 @@
 
                         <div class=" col s12 m12">
                         <div class="card col s12 m6" ng-repeat="x in experiencias">
-                            <span class="card-title" contenteditable="true"> {{x.cargo}}</span>
+                            <span class="card-title" contenteditable="true"> {{x.cargo}} - {{x.empresa}}</span>
                             <div class="card-content">
-                                <p>Data de início: <span class="flow-text">{{x.de}}</span></p>
-                                <p>Data de Saída:    <span class="flow-text">{{x.ate}}</span></p>
-                               <p> descrição: <br>{{x.descricao}}</p>
+                                <p>Data de início: <span class="">{{x.de}}</span></p>
+                                <p>Data de Saída:    <span class="">{{x.ate}}</span></p>
+                               <p> Descrição: <br>{{x.descricao}}</p>
                             </div>
                             <div class="card-action">
                                 <button class="btn red excluir">Excluir</button>
@@ -308,20 +308,25 @@
                                     <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="empresa" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" >
                                       <?= $ResultExperiencia['empresa']?></span>
                                 <div class="card-content">
-                                  <p>
-                                    Data de Inicio:
-                                     <span class=" tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" >
-                                         <?= $ResultExperiencia['dataInicio']?></span>
-                                  </p>
-                                  <p>
-                                    Data de Saída:
-                                    - <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataSaida" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>"  contenteditable="true"> <?= $ResultExperiencia['dataSaida']  ?></span>
+                                  <div class="row">
+                                    <div class="col s12 m6">
+                                      <label for="dataInicioE">Data de Inicio</label>
+                                      <input type="text" name="" id="dataInicioE" value="<?= date('d/m/Y', strtotime($ResultExperiencia['dataInicio']))?>" class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true">
 
-                                  </p>
+                                    </div>
+                                    <div class="col s12 m6">
+                                      <label for="dataSaidaF">Data de Saída:</label>
+                                      <input type="text" name="" id="dataSaidaF" value="<?=  date('d/m/Y', strtotime($ResultExperiencia['dataSaida']))  ?>" class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataSaida" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia']?>" contenteditable="true">
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    
+
                                     <p>
                                       Descrição: <br>
                                       <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="descricao" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true"><?= $ResultExperiencia['descricao']  ?></span>
                                     </p>
+                                  </div>
                                 </div>
                                 <div class="card-action">
                                     <button class="btn red excluir" data-idlinha="<?= $ResultExperiencia['idExperiencia'] ?>" data-tabela="experiencias" >Excluir</button>

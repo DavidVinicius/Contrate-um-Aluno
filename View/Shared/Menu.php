@@ -2,20 +2,33 @@
 <?php
  $nivel = $_SESSION['nivel'];
  $idUsuario = $_SESSION['id'];
+ $email = $_SESSION['usuario'];
 if($nivel == 1){
     include_once "Model/ModelAluno.class.php";
     include_once "Model/ModelMensagens.class.php";
+    include_once "Model/ModelEntrevistas.class.php";
+
     $aluno = new ModelAluno();
     $Mensagem = new Mensagens();
+    $Entrevista = new ModelEntrevistas();
+
+    $fetch = mysqli_fetch_assoc($aluno->ReadAluno("where codUsuario = $idUsuario"));
+    $idAluno = $fetch['idAluno'];
+
+    $NumEntrevistas = mysqli_num_rows($Entrevista -> ReadEntrevista("where codAluno = $idAluno and ativo='S' "))
+    ?
+    mysqli_num_rows($Entrevista -> ReadEntrevista("where codAluno = $idAluno and ativo='S' "))
+    :'';
+
     $numMensagens = mysqli_num_rows($Mensagem->ReadMensagens("where codUsuario = $idUsuario"));
+
     if($numMensagens != 0){
-     $notificacoes =  "<span class='badge red circle white-text'>$numMensagens</span>";
+     $totalnotificacoes = $NumEntrevistas + $numMensagens;
+     $notificacoes =  "<span class='chip red white-text'> $totalnotificacoes </span>";
     }
     else{
       $notificacoes = "";
     }
-    $fetch = mysqli_fetch_assoc($aluno->ReadAluno("where codUsuario = $idUsuario"));
-    $email = $_SESSION['usuario'];
     if ($fetch) {
       $fotoAluno = $fetch['foto'];
       $nomeAluno = $fetch['nome'];
@@ -23,14 +36,15 @@ if($nivel == 1){
                     <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
                     <li><a href='OnePage.php?link=VerCurriculo'>Curriculo</a></li>
                     <li><a href='OnePage.php?link=Perfil'>Config</a></li>
-                   <li><a href='' data-activates='Configuracoes' class='abrir'><img src='Images/Upload/".$fotoAluno."' class='circle' width='60px' height='60px' >$notificacoes</a></li>
+                   <li><a href='' data-activates='Configuracoes' class='abrir'><img src='Images/Upload/".$fotoAluno."' class='circle' style='margin-top:5px' width='50px' height='50px' >$notificacoes</a></li>
                     <li><a href='./Controller/Sair.php'>Sair</a></li>
                     <li><span style='margin-right:5%'>&nbsp &nbsp</span></li>";
 
       $disabledMobile ="<li><a href='OnePage.php?link=HomeAluno'>Home</a></li>
                         <li><a href='OnePage.php?link=Vagas'>Vagas</a></li>
                         <li><a href='OnePage.php?link=VerCurriculo'>Curriculo</a></li>
-                        <li><a href='OnePage.php?link=Perfil'>Config</a></li>" ;
+                        <li><a href='OnePage.php?link=Perfil'>Config</a></li>
+                        <li><a href='./Controller/Sair.php'>Sair</a></li>" ;
     }
     else{
       $fotoAluno = "PerfilPadrao.png";
@@ -89,10 +103,12 @@ else if ($nivel == 2){
   $Mensagem = new Mensagens();
   $numMensagens = mysqli_num_rows($Mensagem->ReadMensagens("where codUsuario = $idUsuario"));
   if($numMensagens != 0){
-   $notificacoes =  "<span class='badge red circle white-text'>$numMensagens</span>";
+   $notificacoes =  "<span class='chip red white-text'> $numMensagens </span>";
+
   }
   else{
     $notificacoes = "";
+    $numMensagens = "";
   }
   $empresa       = new ModelEmpresa();
   $fetch         = mysqli_fetch_assoc($empresa->ReadEmpresa("where codUsuario = $idUsuario"));

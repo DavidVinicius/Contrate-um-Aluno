@@ -32,6 +32,7 @@
                 $i =0;
                 ?>
                 <!-- <div class="col s12 m12"> -->
+                <h1 class="center-align flow-text">Suas entrevistas marcadas</h1>
                   <ul class="collection">
                     <?php
 

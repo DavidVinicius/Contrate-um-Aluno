@@ -48,6 +48,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                             },
 
                             success:function(data){
+                              console.log(data);
                                 Materialize.toast('Adicionado com Sucesso', 4000);
 
                             }
@@ -97,23 +98,25 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                     },
                     success: function(data){
                         // alert(data);
+                        console.log(data);
                         Materialize.toast("Adicionado com sucesso", 4000);
                     }
                 });
 
                         $scope.experiencias.push({de:$('[name=deExp]').val(), ate:ate, cargo:$scope.nomeExperiencia, descricao:$scope.textoExperiencia});
 
-                $scope.deExp = "";
-                $scope.ateExp = "";
-                $scope.nomeExperiencia = "";
+                $scope.deExp            = "";
+                $scope.ateExp           = "";
+                $scope.nomeExperiencia  = "";
                 $scope.textoExperiencia = "";
+                $scope.empresa          = "";
 
             }
 
     }
 
     $("[name=radio]").click(function(){
-      $scope.tipo = $(this).val();
+        $scope.tipo = $(this).val();
     });
     $scope.adicionarNovoTelefone = function(){
       if ($scope.tipo == "" || $scope.tipo == null) {
@@ -139,9 +142,14 @@ app.controller("MostraCurriculo",["$scope",function($scope){
           },
           success:function(data){
             // alert(data);
+            console.log(data);
             $scope.idtelefones.push({idtelefone:data});
             Materialize.toast("Adicionado com sucesso",4000);
 
+          },
+          error:function(data){
+            console.log(data);
+            Materialize.toast("Erro ao tentar adicionar, tente novamente",4000);
           }
         });
         $scope.tipo     = "";
@@ -164,6 +172,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                     data:{tabela:"qualificacoes", valor:valor, idAluno:idAluno},
                     success:function(data){
                       // alert(data);
+                      console.log(data);
                       Materialize.toast("Adicionado com sucesso",400);
                     }
                   });
@@ -240,6 +249,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
             data:{ tabela:tabela, idLinha:idLinha, idTelefone: idTelefone, idQualificacoes:idQualificacoes },
             success:function(data){
               // alert(data);
+              console.log(data);
                     if (tabela == "telefones" || tabela == "qualificacoes") {
                       $(divPai).remove();
                       Materialize.toast("Excluido com sucesso", 4000);
@@ -274,6 +284,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                     data:{existeCurriculo:"sim", valor: valor, tabela: tabela, campo: campo, idAluno: idAluno, idTelefone:idTelefone, idFormacao: idFormacao, idExperiencia:idExperiencia, idQualificacoes: idQualificacoes},
                     success:function(data){
                       //  alert(data);
+                      console.log(data);
                         Materialize.toast("Alterado com sucesso",4000);
                     }
                 });

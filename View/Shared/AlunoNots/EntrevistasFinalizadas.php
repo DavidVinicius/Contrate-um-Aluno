@@ -35,22 +35,14 @@ if ($ConsultaNumEntrevistasFinalizdas > 0) {
 
 
       </div>
-      <div class="col s8 m8 pull-m1 ">
+      <div class="col s12 m8 pull-m1 ">
         <span class="title">Empresa: <?= $ResultEmpresa -> nome ?></span>
         <br>
         <span>Vaga: <?= $ResultFinalizada -> vaga ?></span><br>
         <span class=""> Status: <?= $ResultFinalizada -> status ?></span>
 
       </div>
-      <div class="col s4 hide-on-med-and-up">
-        <button data-target="<?= $idEntrevista ?>" class=" modal-trigger btn-flat waves-effect waves-light">
-          <i class="material-icons blue-text">add</i>
-        </button>
-        <button type="button" name="button" class="btn-flat ">
-          <i class="material-icons apagarEntrevista red-text " data-idaluno="<?= $result -> codAluno ?>" data-identrevista="<?= $idEntrevista?>"  data-codusuarioempresa="<?= $ResultEmpresa -> codUsuario ?>">delete</i>
-        </button>
-
-      </div>
+      
 
     </li><br>
     <?php

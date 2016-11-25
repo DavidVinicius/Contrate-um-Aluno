@@ -20,7 +20,7 @@
     <div class="container">
     <div class="row">
         <div class="col s12 m12">
-            <form action="Controller/Cadastro/CadastroEmpresa.php" method="post" enctype="multipart/form-data">
+            <form action="Controller/Cadastro/CadastroEmpresa.php" method="post" enctype="multipart/form-data" id="CadastrarEmpresa">
                 <div class="row">
                   <div class="input-field col s12 m6">
                       <label for="nome">Nome Fantasia:</label>
@@ -162,12 +162,30 @@
                   </div>
                 </div>
 
-                <input type="submit" value="Salvar dados" class="btn blue">
 
-                <input type="text" name="Telefones" id="Telefones" value="{{telefones}}" autocomplete="off">
-                <input type="text" name="valores" id="valores" value="{{Valores}}" autocomplete="off">
+                <a href="#confirmacao" class="btn blue waves-effect waves-light modal-trigger btn-large" data-target="confirmacao" >Cadastrar dados</a>
+                <input type="hidden" name="Telefones" id="Telefones" value="{{telefones}}" autocomplete="off">
+                <input type="hidden" name="valores" id="valores" value="{{Valores}}" autocomplete="off">
 
-            </form>
+            <div class="modal modal-fixed-bottom" id="confirmacao">
+              <div class="modal-content">
+                  <h1 class="center-align flow-text yellow-text">Atenção</h1>
+                  <p><b> Seus dados estarão sujeitos a verificação, em caso de falsas informações seu usuário será excluido! </b></p>
+                   <div class="switch">
+                      <label>
+                        Não concordo
+                        <input  type="checkbox" ng-model="check">
+                        <span class="lever"></span>
+                        Concordo
+                      </label>
+                    </div>
+              </div>
+              <div class="modal-footer">
+                  <input type="submit" value="Salvar dados" class="btn blue modal-close" data-target="confirmacao" ng-disabled="!check">
+                </form>
+                  <a href="#!" class="btn-flat red-text waves-effect waves-red modal-close">Cancelar</a>
+              </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,6 +1,13 @@
 <?php
   require_once "Model/ModelAluno.class.php";
-  $Aluno = new ModelAluno();
+  require_once "Controller/PaginaPrivadaOuPublica.class.php";
+
+  $pagina = new PaginaPrivadaOuPublica();
+
+  if( !$Aluno = new ModelAluno() )
+    header("location: Index.php");
+
+
   $ConsultaNumAlunos = mysqli_num_rows($Aluno -> ReadAluno(""));
 
  ?>

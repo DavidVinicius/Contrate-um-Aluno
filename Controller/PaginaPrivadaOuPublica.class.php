@@ -1,20 +1,23 @@
 <?php
     /**
-        Se a página for pública o retorno será true,
-        mas se a página for privada, irá retornar false;
+        Se o método PrivadaOuPublica retornar false,
+        significa que o usuário não está logado.
+        ***Tratamento do false é feita na implementação
     */
     class PaginaPrivadaOuPublica{
-        function __construct(){
+
+        public function PrivadaOuPublica(){
             $usuario= isset($_SESSION['usuario'])   ? $_SESSION['usuario']  : null;
             $senha  = isset($_SESSION['senha'])     ? $_SESSION['senha']    : null;
             $id     = isset($_SESSION['id'])        ? $_SESSION['id']       : null;
             $nivel  = isset($_SESSION['nivel'])     ? $_SESSION['nivel']    : null;
 
-            if( $usuario == null || $senha == null || $nivel == null || $id == null)
+            if(!$usuario or !$senha or !$id or !$nivel ){
                 return false;
-            else
+            }else
                 return true;
         }
+
     }
 
 ?>

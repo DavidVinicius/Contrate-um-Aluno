@@ -14,7 +14,9 @@
     else
       echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
 
-  $pagina = new PaginaPrivadaOuPublica() ? new PaginaPrivadaOuPublica() : null;
+  $pagina = new PaginaPrivadaOuPublica();
+  if(!$pagina->PrivadaOuPublica())
+    header("location: ../../Index.php");
 
   $Aluno = new ModelAluno() ? new ModelAluno() : null;
   if( !$Aluno )

@@ -17,6 +17,8 @@
   $pagina = new PaginaPrivadaOuPublica();
   if(!$pagina->PrivadaOuPublica())
     header("location: ../../Index.php");
+  else
+    header("location: ../../Home.php");
 
   $Aluno = new ModelAluno() ? new ModelAluno() : null;
   if( !$Aluno )

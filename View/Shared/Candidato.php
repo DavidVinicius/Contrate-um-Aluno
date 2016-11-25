@@ -1,12 +1,60 @@
 <?php
+   if(file_exists("Model/ModelTelefones.class.php"))
+        include_once "Model/ModelTelefones.class.php";
+    elseif(file_exists("../../Model/ModelTelefones.class.php"))
+        include_once "../../Model/ModelTelefones.class.php";
+    else
+        echo "<h1>Impossível encontrar o arquivo ModelTelefones.class.php</h1>";
 
-   include_once "Model/ModelTelefones.class.php";
-   include_once "Model/ModelAluno.class.php";
-   include_once "Model/ModelEnderecos.class.php";
-   include_once "Model/ModelExperiencias.class.php";
-   include_once "Model/ModelFormacoes.class.php";
-   include_once "Model/ModelAluno.class.php";
-   include_once "Model/ModelQualificacoes.class.php";
+    if(file_exists("Model/ModelAluno.class.php"))
+        include_once "Model/ModelAluno.class.php";
+    elseif(file_exists("../../Model/ModelAluno.class.php"))
+        include_once "../../Model/ModelAluno.class.php";
+    else
+        echo "<h1>Impossível encontrar o arquivo ModelAluno.class.php</h1>";
+
+    if(file_exists("Model/ModelEnderecos.class.php"))
+        include_once "Model/ModelEnderecos.class.php";
+    elseif(file_exists("../../Model/ModelEnderecos.class.php"))
+        include_once "../../Model/ModelEnderecos.class.php";
+    else
+        echo "<h1>Impossível encontrar o arquivo ModelEnderecos.class.php</h1>";
+
+    if(file_exists("Model/ModelExperiencias.class.php"))
+        include_once "Model/ModelExperiencias.class.php";
+    elseif(file_exists("../../Model/ModelExperiencias.class.php"))
+        include_once "../../Model/ModelExperiencias.class.php";
+    else
+        echo "<h1>Impossível encontrar o arquivo ModelExperiencias.class.php</h1>";
+
+    if(file_exists("Model/ModelFormacoes.class.php"))
+        include_once "Model/ModelFormacoes.class.php";
+    elseif(file_exists("../../Model/ModelFormacoes.class.php"))
+        include_once "../../Model/ModelFormacoes.class.php";
+    else
+        echo "<h1>Impossível encontrar o arquivo ModelExperiencias.class.php</h1>";
+
+    if(file_exists("Model/ModelQualificacoes.class.php"))
+        include_once "Model/ModelQualificacoes.class.php";
+    elseif(file_exists("../../Model/ModelQualificacoes.class.php"))
+        include_once "../../Model/ModelQualificacoes.class.php";
+    else
+        echo "<h1>Impossível encontrar o arquivo ModelQualificacoes.class.php</h1>";
+
+    if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
+      require_once "Controller/PaginaPrivadaOuPublica.class.php";
+    elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
+      require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
+    else
+      echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
+
+  $pagina = new PaginaPrivadaOuPublica();
+  if(!$pagina->PrivadaOuPublica())
+    header("location: ../../Index.php");
+  else
+    header("location: ../../Home.php");
+
+   
    $idAluno                = $_GET['id'];
    $idUsuario              = $_GET['cod'];
    $idUsuarioEmpresa       = $_SESSION['id'];

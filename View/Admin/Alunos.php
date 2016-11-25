@@ -1,10 +1,19 @@
 <?php
-  require_once "Model/ModelAluno.class.php";
-  require_once "Controller/PaginaPrivadaOuPublica.class.php";
 
-  $pagina = new PaginaPrivadaOuPublica();
+    if(file_exists("Model/ModelAluno.class.php"))
+      require_once "Model/ModelAluno.class.php";
+    elseif(file_exists("../../Model/ModelAluno.class.php"))
+      require_once "../../Model/ModelAluno.class.php";
 
-  if( !$Aluno = new ModelAluno() )
+    if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
+      require_once "Controller/PaginaPrivadaOuPublica.class.php";
+    elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
+      require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
+
+  $pagina = new PaginaPrivadaOuPublica() ? new PaginaPrivadaOuPublica() : null;
+
+  $Aluno = new ModelAluno() ? new ModelAluno() : null;
+  if( !$Aluno )
     header("location: Index.php");
 
 

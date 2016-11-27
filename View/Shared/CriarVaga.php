@@ -5,7 +5,7 @@
     $idUsuario        = $_SESSION['id'];
     $consultaEmpresa  = mysqli_fetch_assoc($DB->SearchQuery("empresa", "where codUsuario = $idUsuario"));
     $idEmpresa        = $consultaEmpresa['idEmpresa'];
-    $ConsultaVaga     = $DB->SearchQuery("vaga", "where codEmpresa = $idEmpresa");
+    $ConsultaVaga     = $DB->SearchQuery("vaga", "where codEmpresa = $idEmpresa and ativo = 'S'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +118,6 @@
                               <input type="hidden" name="idVaga" value="<?= $ResultVaga['idVaga'] ?>">
                               <input type="submit" value="Excluir" class="btn red">
                           </form>
-
                 </div>
             </div>
 

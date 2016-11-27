@@ -320,7 +320,7 @@
                                     </div>
                                   </div>
                                   <div class="row">
-                                    
+
 
                                     <p>
                                       Descrição: <br>
@@ -336,7 +336,93 @@
                     <?php
                         }
                     ?>
+                        </div> 
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <button data-target="curriculo" class="btn btn-large blue modal-trigger">Gerar currículo</button>
+                    <div class="modal modal-fixed-bottom" id="curriculo">
+                      <div class="modal-content">
+                        <h1 class="flow-text center-align">Gerar currículo</h1>
+                        <div class="col s12 m12 l12">
+                          <div class="row">
+                            <div class="col s12 m5 l5">
+                              <div class="input-field">
+                                <div class="switch">
+                                  <label>
+                                    Sem foto
+                                    <input type="checkbox" ng-model="comFoto">
+                                    <span class="lever"></span>
+                                    Com foto
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m7 l7">
+                              <div class="input-field">
+                                <div class="switch">
+                                  <label>
+                                    Sem competências
+                                    <input type="checkbox" ng-model="competencias">
+                                    <span class="lever"></span>
+                                    Com competências
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col s12 m7 l7">
+                              <div class="input-field">
+                                <div class="switch">
+                                  <label>
+                                    Não gerar PDF
+                                    <input type="checkbox" ng-model="pdf" checked="email">
+                                    <span class="lever"></span>
+                                     gerar PDF
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m5 l5">
+                              <div class="input-field">
+                                <div class="switch">
+                                  <label>
+                                    Apenas gere
+                                    <input type="checkbox" ng-model="email">
+                                    <span class="lever"></span>
+                                    Enviar por email
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div> <br>
+                          <form class="" action="Controller/GerarCurriculo.php" method="post">
+                          <div class="row" ng-if="email">
+                              <p>
+                                 <input type="checkbox" id="enviarNoMeuEmail" name="enviarNoMeuEmail" ng-model="seuemail" />
+                                 <label for="enviarNoMeuEmail">Meu email</label>
+                              </p>
+                              <div class="input-field" ng-if="!seuemail" >
+                                <label for="emailE">Qual email?</label>
+                                <input type="email" name="enviarEmail" id="enviarEmail" ng-model="emailenviar">
+                              </div>
+                          </div>
                         </div>
+                      </div>
+                      <div class="modal-footer">
+
+
+                            <input type="hidden" name="enviarE" value="{{email}}">
+                            <input type="hidden" name="gerarPDF" id="" value="{{pdf}}">
+                            <input type="hidden" name="ComFoto" value="{{comFoto}}">
+                            <input type="hidden" name="comCompetencias" value="{{competencias}}">
+                            <button class="btn btn-flat" type="submit">Gerar currículo</button>
+                          <button class="btn btn-flat modal-close">Cancelar</button>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
                 </div>
 
 

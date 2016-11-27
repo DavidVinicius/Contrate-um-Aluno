@@ -25,6 +25,7 @@ require_once "../Model/ModelRespostas.class.php";
   $mensagem           = "O Aluno $nomeAluno recusou a entrevista para a vaga de $nomeVaga";
 
   if ($Entrevista -> UpdateEntrevista("ativo","","where idEntrevista = $idEntrevista") && $Entrevista -> UpdateEntrevista("status","recusado pelo aluno","where idEntrevista = $idEntrevista")) {
+    echo "Fez o update na tabela entrevista e criou a notificação\n";
        $dados = array(
          "titulo"        => "Entrevista recusada",
          "de"            => $nomeAluno,
@@ -36,19 +37,14 @@ require_once "../Model/ModelRespostas.class.php";
        );
        if ($Notificacao -> CreateMensagens($dados)) {
          # code...
-          echo "deu certo cachorreira 1";
-          $dados2 = array(
-            "resposta" => 0,
-            "codEntrevista" => $idEntrevista
-          );
-          if ($Resposta -> CreateRespostas($dados2)) {
-            echo "deu certo cachorreira 2";
-            # code...
-          }
+          echo "\nCriou a notificação";
+
+       }else{
+         echo "Erro ao criar notificação";
        }
 
   }
   else {
-    echo "Deu erro ao update na entrevista";
+    echo "\nDeu erro ao update na entrevista";
   }
 ?>

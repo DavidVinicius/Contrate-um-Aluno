@@ -94,7 +94,8 @@ if($nivel == 1){
             </div>
           </nav>
 
-      </div>";
+      </div>
+    ";
 }
 else if ($nivel == 2){
   include_once "Model/ModelEmpresa.class.php";
@@ -220,8 +221,8 @@ else if ($nivel == 3){
               </ul>
             </div>
           </nav>
-
-      </div>";
+      </div>
+      ";
 }
 else{
     echo "<div class='navbar-fixed'>

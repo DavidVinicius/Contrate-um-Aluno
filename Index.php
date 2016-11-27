@@ -19,9 +19,8 @@
   </video>
   <img src="Images/Office.jpg" alt="" class="imgfundo">
     <div class="navbar-fixed">
-
        <nav>
-        <div class="nav-wrapper menuCor ">
+        <div class="nav-wrapper menuCor " style="width:100%">
           <a href="#!" class="brand-logo"></span> Contrate um Aluno</a>
 
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars" style="font-siz:20px margin-left:5%;"></i></a>
@@ -39,17 +38,25 @@
         </div>
       </nav>
    </div>
-    <div class="container zIndex abaixo-1">
+    <div class="container zIndex abaixo-1 ">
 
         <section class="section">
         <div class="row">
             <div class="center-align">
                 <h2 class="text-white">Contrate um Aluno</h2>
                 <p class="flow-text text-white">O lugar onde a oportunidade de emprego corre atrás do candidato</p>
-                <div class="m12">
-                    <a href="#modal1"><button data-target="modal1" class="abrirFormulario waves-effect waves-light btn-large btn-flat col s12 m5 text-white" data-page="Modal/CadastroAluno.html" style="border:1px solid white"><i class="fa fa-male text-white" style="margin-right:1%"></i>Sou Aluno</button></a>
+                <div class="col s12 m12">
                     <a href="#modal1">
-                        <button class="abrirFormulario waves-effect waves-light btn-large btn-flat col m5 s12 push-m1 text-white" data-page="Modal/CadastroEmpresa.html" style="border:1px solid white" data-target="modal1"><i class="fa fa-building text-white" style="margin-right:1%;"></i>Sou Empresa</button></a>
+                      <button data-target="modal1" class="abrirFormulario waves-effect waves-light btn-large btn-flat col s12 m5 text-white" data-page="Modal/CadastroAluno.html" style="border:1px solid white">
+                        <i class="fa fa-male text-white" style="margin-right:1%"></i>
+                        Sou Aluno
+                      </button>
+                    </a>
+                    <a href="#modal1">
+                        <button class="abaixo-mb-1 abrirFormulario waves-effect waves-light btn-large btn-flat col m5 s12 push-m1 text-white" data-page="Modal/CadastroEmpresa.html" style="border:1px solid white" data-target="modal1">
+                          <i class="fa fa-building text-white" style="margin-right:1%;"></i>Sou Empresa
+                        </button>
+                      </a>
                 </div>
             </div>
 
@@ -103,11 +110,11 @@
     <section class="section SobreOsDesenvolvedores menuCor">
             <h1 class="center-align white-text">Sobre os Fundadores</h1>
             <div class="row">
-              <div class="col s12  m6">
+              <div class="col s12 m12 l6">
                 <h1 class="center-align flow-text white-text">David Vinicius da Silva</h1>
                 <div class="row">
-                  <div class="col s6 m6 white-text">
-                    Desenvolvedor front end sssssssssssss sssssssssssssssssss
+                  <div class="col s6 m6 l6 white-text flow-text">
+                     Desenvolvedor front-end que adora dar seus pitacos no back-end.
                   </div>
                   <div class="col s3 pull-s1 m4 push-m2">
                     <img src="Images/Office.jpg" alt="" class=" circle" width="150px" height="150px">
@@ -121,14 +128,14 @@
                   </div>
                 </div>
               </div>
-              <div class="col s12 m6 abaixo-1">
+              <div class="col s12 m12 l6 ">
                 <h1 class="center-align flow-text white-text">Matheus Augusto Picioli</h1>
                 <div class="row">
-                  <div class="col s4 pull-s1 m4">
+                  <div class="col s4 m4">
                     <img src="Images/Office.jpg" alt="" class=" circle" width="150px" height="150px">
                   </div>
-                  <div class="col s6  m6">
-                    <span class="right white-text">Desenvolvedor Back-end <br>
+                  <div class="col s6 push-s2 m6">
+                    <span class="right white-text flow-text">Desenvolvedor Back-end
                     Adoro banco de dados, LOL é minha vidassssssssssss
 
                      </span>
@@ -225,7 +232,7 @@
             $('.parallax').parallax();
             $('.carousel').carousel();
             if ($(window).width() < 769) {
-              alert();
+              // alert();
               $('video').remove();
               $('.imgfundo').show();
             }

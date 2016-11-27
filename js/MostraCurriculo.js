@@ -114,6 +114,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
             }
 
     }
+    $('.modal-trigger').leanModal();
 
     $("[name=radio]").click(function(){
         $scope.tipo = $(this).val();

@@ -38,7 +38,7 @@ $(document).ready(function() {
         });
       });
 
-      
+
     $("#recusar").click(function(event) {
       /* Act on the event */
       // alert(candidato);
@@ -55,11 +55,13 @@ $(document).ready(function() {
     });
 
     $(".ApagarNotificacao").click(function(event) {
-        var tabela     = $(this).data('tabela');
-        var idMensagem = $(this).data('idnotificacao');
+        var tabela      = $(this).data('tabela');
+        var idMensagem  = $(this).data('idnotificacao');
         var Notificacao = $(this).parent().parent().hide();
-        var barra   = " <div class='progress'><div class='indeterminate'></div></div>";
+        var barra       = " <div class='progress'><div class='indeterminate'></div></div>";
+
         console.log("tabela:"+ tabela +"\n idMensagem:" +idMensagem);
+
         $.ajax({
           url: "Controller/ApagarNotificacao.php",
           method: "POST",
@@ -80,17 +82,37 @@ $(document).ready(function() {
           }
         });
 });
-    // var candidato = $(this).data("target");
-    // var $toastContent = $("<span> Você tem certeza? <a href=#"+candidato+" class='modal-abrir' data-target="+ candidato +"><button id='confirmar' class='btn red waves-effect waves-light'>confirmar</button></a></span>");
-    //
-    //  var confirmar = Materialize.toast($toastContent, 5000, '', function(){
-    //
-    //  });
+    $(".ApagarEntrevistasFinalizadas").click(function(event) {
+      var idEntrevista  = $(this).data('identrevista');
+      var linha         = $(this).data('linha');
+      var barra         = " <div class='progress'><div class='indeterminate'></div></div>";
+
+      $.ajax({
+        url:"Controller/ApagarEntrevistasFinalizadas.php",
+        method:"POST",
+        data:{idEntrevista:idEntrevista},
+        beforeSend:function(){
+          $("#barra").html(barra);
+        },
+        success:function(data){
+          console.log(data);
+          setTimeout(function () {
+            $("#barra").html('');
+            Materialize.toast("Apagado com sucesso",4000);
+            $("#"+linha).remove();
+          }, 1000);
+        },
+        error:function(err){
+          console.log(err);
+          $("#barra").html('');
+          Materialize.toast("Erro ao tentar apagar",4000);
+        }
+      });
+    });
+
     $('.remarcar').click(function(event) {
-      /* Act on the event */
       var codUsuario  = $(this).data("codusuario");
       var idmodal     = $(this).data("idmodal");
-      alert(codUsuario);
       var data        = $("#data"+codUsuario).val();
       var hora        = $("#hora"+codUsuario).val();
       var motivo      = $("#motivo"+codUsuario).val();
@@ -100,7 +122,10 @@ $(document).ready(function() {
       var nomeEmpresa  = $("#nomeEmpresa"+codUsuario).val();
       var empresa      = $("#empresa"+codUsuario).val();
       var codUsuarioAluno = $("#codUsuarioAluno"+codUsuario).val();
-      // alert(data + " " + hora + " " + motivo + " " + mensagem + " " + idAluno + " " + idEntrevista + " " + nomeEmpresa + " " + empresa + " " + codUsuarioAluno);
+      var barra         = " <div class='progress'><div class='indeterminate'></div></div>";
+
+      console.log(data + " " + hora + " " + motivo + " " + mensagem + " " + idAluno + " " + idEntrevista + " " + nomeEmpresa + " " + empresa + " " + codUsuarioAluno);
+
       if (data == "" || data == null) {
         Materialize.toast("O campo data está vazio",4000);
 
@@ -130,36 +155,66 @@ $(document).ready(function() {
             empresa:empresa,
             codUsuarioAluno:codUsuarioAluno
           },
+          beforeSend:function(){
+            $("#barra").html(barra);
+          },
           success:function(data){
             // alert(data);
-            Materialize.toast("A entrevista foi alterada e foi notificado ao aluno, clique para continuar",4000);
-            $("#"+idmodal).hide();
-
+            console.log(data);
+            setTimeout(function () {
+              $("#barra").html('');
+              Materialize.toast("A entrevista foi alterada e foi notificado ao aluno, clique para continuar",4000);
+              $("#"+idmodal).hide();
+            }, 1000);
+          },
+          error:function(err){
+            console.log(err);
+            Materialize.toast("Erro, Atualize a página e tente novamente");
           }
         });
       }
 
 
     });
-
+    var FormularioNegarCandidato;
     $(".cancelarCandidato").click(function(){
-      var Formulario     = $(this).data('form');
-      var idAluno        = $(this).data('idaluno');
-      var idCandidatouse = $(this).data("idcandidatouse");
-      console.log("Form id:" + Formulario + " \n idAluno:" + idAluno + " \n idCandidatouse: " + idCandidatouse);
-      $("#"+Formulario).submit(function(e){
+      var FormularioNegarCandidato  = $(this).data('form');
+      var linha                     = $(this).data("linha");
+      var barra   = " <div class='progress'><div class='indeterminate'></div></div>";
+      console.log("Form id:" + FormularioNegarCandidato);
+
+      $("#"+FormularioNegarCandidato).submit(function(e){
+        e.preventDefault();
+
         var dados = new FormData(this);
-        // e.preventDefault();
+
         $.ajax({
+          cache: false,
+          processData:false,
+          contentType: false,
+          mimeType:"multipart/form-data",
           url:"Controller/NegarCandidato.php",
           method:"POST",
           data: dados,
+          beforeSend:function(){
+            $("#barra").html(barra);
+          },
           success:function(data){
             console.log(data);
+            setTimeout(function () {
+              $("#barra").html('');
+              Materialize.toast("O candidato foi negado e recebeu a notificação",4000);
+              $("#"+linha).remove();
+            }, 1000);
+          },
+          error:function(data){
+            console.log(data);
+            Materialize.toast("Erro ao tentar negar a candidatura do aluno",4000);
           }
         });
       });
     });
+
 
       $("#CancelarEntrevistaEmpresa").submit(function(e){
           var dados = new FormData(this);
@@ -176,6 +231,7 @@ $(document).ready(function() {
               success: function(data)
               {
                 // alert(data);
+                console.log(data);
                 Materialize.toast("A entrevista foi cancelada e foi notificado ao aluno",4000);
                 $(apagarDiv).remove();
               }
@@ -187,26 +243,36 @@ $(document).ready(function() {
           var codUsuarioAluno = $(this).data('codusuarioaluno');
           var idEmpresa       = $(this).data("idempresa");
           var apagarDiv       = $(this).parent().parent().parent();
+          var barra   = " <div class='progress'><div class='indeterminate'></div></div>";
+
           $.ajax({
             url: "Controller/EntrevistaRealizada.php",
             method: "POST",
             data:{idEntrevista: idEntrevista, codUsuarioAluno:codUsuarioAluno, idEmpresa:idEmpresa},
+            beforeSendo:function(){
+              $("#barra").html(barra);
+            },
             success:function(data){
-                alert(data);
-                Materialize.toast("Status modificado, obrigado por utilizar o Contrate um Aluno", 4000);
-                $(apagarDiv).remove();
+                console.log(data);
+                setTimeout(function () {
+                  $("#barra").html('');
+                  Materialize.toast("Status modificado, obrigado por utilizar o Contrate um Aluno", 4000);
+                  $(apagarDiv).remove();
+                }, 1000);
 
             },
-            error:function(){
+            error:function(err){
               Materialize.toast("Erro tente novamente",4000);
+              console.log(err);
             }
           });
         });
         $(".marcar").click(function(){
-          var Formulario = $(this).data('form');
-          var Linha      = $(this).data('linha');
-          var idCandidatouse = $(this).data("idcandidatouse");
-          alert(idCandidatouse);
+          var Formulario      = $(this).data('form');
+          var Linha           = $(this).data('linha');
+          var idCandidatouse  = $(this).data("idcandidatouse");
+          var barra   = " <div class='progress'><div class='indeterminate'></div></div>";
+          // alert(idCandidatouse);
           $("#"+Formulario).submit(function(e){
             var dados = new FormData(this);
             e.preventDefault();
@@ -218,23 +284,29 @@ $(document).ready(function() {
               data: dados,
               type: 'POST',
               url: 'Controller/MarcarEntrevista.php',
+              beforeSend:function(){
+                $("#barra").html(barra);
+              },
               success: function(data)
               {
-                // alert(data);
-                Materialize.toast("Entrevista marcada com sucesso, clique para continuar",4000);
-                $(".modal").hide(1000);
-                $("#"+Linha).remove();
-                $.ajax({
-                  url: "Controller/ModificaStatusCandidatouse.php",
-                  method: "POST",
-                  data:{idCandidatouse:idCandidatouse},
-                  success:function(data){
-                    alert(data);
-                    Materiliaze.toast("Status modificado com sucesso",4000);
-                  },
-                  error:function(err){
-                    alert(err);
-                  }
+                console.log(data);
+                setTimeout(function () {
+                  $("#barra").html('');
+                  Materialize.toast("Entrevista marcada com sucesso, clique para continuar",4000);
+                  $(".modal").hide(1000);
+                  $("#"+Linha).remove();
+                  $.ajax({
+                    url: "Controller/ModificaStatusCandidatouse.php",
+                    method: "POST",
+                    data:{idCandidatouse:idCandidatouse},
+                    success:function(data){
+                      console.log(data);
+                      Materiliaze.toast("Status modificado com sucesso",4000);
+                    },
+                    error:function(err){
+                      console.log(err);
+                    }
+                }, 1000);
 
                 });
               }

@@ -24,6 +24,7 @@
         "cargaHoraria"  => (isset($_POST["cargaHoraria"])) ? $_POST["cargaHoraria"] : $msg,
         "salario"       => (isset($_POST["salario"])) ? $_POST["salario"] : $msg,
         "requisitos"    => (isset($_POST["requisitos"])) ? $_POST["requisitos"] : $msg,
+        "ativo"         => "S",
         "codEmpresa"    => $codEmpresa
     );
 

@@ -93,7 +93,7 @@
               //   # code...
            ?>
 
-                <!--<a class="carousel-item" href="#!">
+                <a class="carousel-item" href="#!">
                   <center>
                     <span class="center flow-text white-text">
                       <?= $Empresas -> nome ?>

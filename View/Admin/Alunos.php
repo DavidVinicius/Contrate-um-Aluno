@@ -1,6 +1,30 @@
 <?php
-  require_once "Model/ModelAluno.class.php";
-  $Aluno = new ModelAluno();
+
+    if(file_exists("Model/ModelAluno.class.php"))
+      require_once "Model/ModelAluno.class.php";
+    elseif(file_exists("../../Model/ModelAluno.class.php"))
+      require_once "../../Model/ModelAluno.class.php";
+    else
+      echo "<h1>Impossível encontrar o arquivo ModelAluno.class.php</h1>";
+
+    if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
+      require_once "Controller/PaginaPrivadaOuPublica.class.php";
+    elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
+      require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
+    else
+      echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
+
+  $pagina = new PaginaPrivadaOuPublica();
+  if(!$pagina->PrivadaOuPublica())
+    header("location: ../../Index.php");
+  else
+    header("location: ../../Home.php");
+
+  $Aluno = new ModelAluno() ? new ModelAluno() : null;
+  if( !$Aluno )
+    header("location: Index.php");
+
+
   $ConsultaNumAlunos = mysqli_num_rows($Aluno -> ReadAluno(""));
 
  ?>

@@ -4,6 +4,6 @@
 
 ###
     View -> Arquivos HTML
-    Model -> Arquivos que tem acesso ao banco
-    Controller -> Arquivos PHP
+    Model -> Arquivos que tem funções do para acesso ao banco
+    Controller -> Lógica
 ###

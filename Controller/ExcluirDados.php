@@ -12,6 +12,17 @@
         }
     }
 
+    if(isset($_POST['tabela']) == "empresa"){
+        require_once("../Model/ModelEmpresa.class.php");
+        $idLinha  = isset($_POST['idLinha'])  ? $_POST['idLinha']:null;
+        $empresa  = new ModelEmpresa();
+
+        if($empresa->UpdateEmpresa("ativo", "N", "where idEmpresa = $idLinha"))
+        {
+            echo 1;
+        }
+    }
+
     if(isset($_POST['tabela']) && $_POST['tabela'] == "experiencias")
     {
         require_once("../Model/ModelExperiencias.class.php");

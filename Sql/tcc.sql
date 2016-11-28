@@ -16,6 +16,7 @@ CREATE TABLE `aluno` (
   `objetivo` varchar(255) NOT NULL,
   `rg` varchar(20) NOT NULL,
   `visualizacoes` INT,
+  `ativo` char(1) NULL,
   `codUsuario` int(11) NOT NULL,
   CONSTRAINT `fk_aluno_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -29,6 +30,7 @@ CREATE TABLE `empresa` (
   `missao` varchar(255) NOT NULL,
   `visao` varchar(255) NOT NULL,
   `historia` text NOT NULL,
+  `ativo` char(1) NULL,
   `codUsuario` int(11) NOT NULL,
   CONSTRAINT `fk_empresa_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

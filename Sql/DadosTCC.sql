@@ -1,21 +1,8 @@
-use tcc;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: tcc
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.1.16-MariaDB
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
 --
 -- Dumping data for table `aluno`
 --
@@ -32,7 +19,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `empresa` WRITE;
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
-INSERT INTO `empresa` VALUES (1,'Programadores LTDA','11111111111111','ComÃ©rcio','9b9bc7bf30aac258075dcf7d67637ee2.jpg','Ser a melhor do nosso segmento','Aprender a valorizar sempre','ComeÃ§amos com muita vontade e desde sempre aprendamos a lidar com tudo\r\n                    ',2);
+INSERT INTO `empresa` VALUES (1,'Programadores LTDA','11111111111111','ComÃ©rcio','9b9bc7bf30aac258075dcf7d67637ee2.jpg','Ser a melhor do nosso segmento','Aprender a valorizar sempre','ComeÃ§amos com muita vontade e desde sempre aprendamos a lidar com tudo\r\n',2);
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,14 +92,4 @@ LOCK TABLES `valores` WRITE;
 INSERT INTO `valores` VALUES (1,'Responsabilidade',1),(2,'Aprendizagem',1);
 /*!40000 ALTER TABLE `valores` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
 -- Dump completed on 2016-11-13 23:30:40

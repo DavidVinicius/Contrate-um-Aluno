@@ -10,7 +10,7 @@
 
   $pagina = new PaginaPrivadaOuPublica();
   if($pagina->PrivadaOuPublica())
-    header("location: Home.php");
+    header("location: OnePage.php");
 ?>
 <html lang="en">
 <head>
@@ -78,7 +78,7 @@
             <h1 class="center-align white-text">A ideia</h1>
         </div>
     </section>
-    <div class="EmpresasParralax">
+    <!--<div class="EmpresasParralax">
       <div class="parallax-container">
         <div class="parallax">
           <img src="Images/Office.jpg" >
@@ -86,14 +86,14 @@
         <div class="carousel">
           <h3 class="center-align mytext white-text">Empresas cadastradas</h3>
           <?php
-              require_once "Model/ModelEmpresa.class.php";
-              $Empresa = new ModelEmpresa();
-              $ResultEmpresa = $Empresa -> ReadEmpresa("order by idEmpresa desc limit 5");
-              while ($Empresas = mysqli_fetch_object($ResultEmpresa) ) {
-                # code...
+              // require_once "Model/ModelEmpresa.class.php";
+              // $Empresa = new ModelEmpresa();
+              // $ResultEmpresa = $Empresa -> ReadEmpresa("order by idEmpresa desc limit 5");
+              // while ($Empresas = mysqli_fetch_object($ResultEmpresa) ) {
+              //   # code...
            ?>
 
-                <a class="carousel-item" href="#!">
+                <!--<a class="carousel-item" href="#!">
                   <center>
                     <span class="center flow-text white-text">
                       <?= $Empresas -> nome ?>
@@ -105,16 +105,16 @@
                       <?= $Empresas -> areaAtuacao ?>
                     </span>
                   </center>
-                </a>
+                </a>-->
 
         <?php
-              }
+              // }
          ?>
 
         </div>
       </div>
 
-    </div>
+    </div>-->
     <section class="section SobreOsDesenvolvedores menuCor">
             <h1 class="center-align white-text">Sobre os Fundadores</h1>
             <div class="row">
@@ -157,16 +157,16 @@
               </div>
             </div>
     </section>
-     <section class="AlunosParallax section ">
+     <!--<section class="AlunosParallax section ">
       <div class="parallax-container">
         <div class="parallax"><img src="Images/Office.jpg"></div>
         <div class="carousel">
           <h4 class="center-align mytext white-text">Alunos cadastrados</h4>
           <?php
-              require_once "Model/ModelAluno.class.php";
-              $Aluno = new ModelAluno();
-              $ResultAluno = $Aluno -> ReadAluno("order by idAluno desc limit 5");
-              while ($Alunos = mysqli_fetch_object($ResultAluno) ) {
+              // require_once "Model/ModelAluno.class.php";
+              // $Aluno = new ModelAluno();
+              // $ResultAluno = $Aluno -> ReadAluno("order by idAluno desc limit 5");
+              // while ($Alunos = mysqli_fetch_object($ResultAluno) ) {
                 # code...
            ?>
                 <a class="carousel-item" href="#!" class="white-text">
@@ -184,14 +184,14 @@
                  </a>
 
         <?php
-              }
+              //}
          ?>
           <p>
 
           </p>
         </div>
       </div>
-    </section>
+    </section>-->
     <section class="footer ">
       <footer class="page-footer grey darken-4">
         <div class="container  ">

@@ -28,38 +28,62 @@
     .tabs>li>a:hover{
       opacity: 0.5;
     }
+    @media screen and (min-width:320px) and (max-width:769px){
+      .tabsfont{
+        font-size: 10px;
+
+      }
+
+    }
   </style>
 
 </head>
 <body>
-  <div id="barra"></div>
+  <!-- <div id="barra"></div> -->
+  <div class="fixed-action-btn ">
+      <?= $notificacoes ?>
+    <a class="btn-floating btn-large blue">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul class="">
+      <li class="tab">
+        <a href="#Notificacao" class="btn-floating red conteudo tooltipped" data-position="left" data-delay="50" data-tooltip="Notificações" data-caminho="Notificacoes.php">
+        <?= $numMensagens ?>
+        <i class="material-icons">email</i>
+      </a>
+      </li>
+      <li>
+        <a href="#Candidato" class="btn-floating yellow darken-1 conteudo tooltipped" data-filho="Candidato" data-caminho="Candidataramse.php" data-position="left" data-delay="50" data-tooltip="Candidatos a vaga" >
+          <i class="material-icons">perm_identity</i>
+        </a>
+      </li>
+      <li>
+        <a href="#Entrevista" class="btn-floating green conteudo tooltipped"  data-caminho="Entrevistas.php" data-position="left" data-delay="50" data-tooltip="Suas entrevistas">
+          <i class="material-icons">alarm_on</i>
+        </a>
+      </li>
+      <li>
+        <a href="#finalizadas" class="btn-floating blue conteudo tooltipped" data-position="left" data-delay="50" data-tooltip="Entrevistas Finalizadas" data-caminho="EntrevistasFinalizadas.php" >
+          <i class="material-icons">done_all</i>
+        </a>
+      </li>
+    </ul>
+  </div>
     <div class="container">
       <div class="row">
-      </div>
-      <div class="row">
-        <div class="col s12 m12">
-          <ul class="tabs grey-text text-darken-4">
-            <li class="tab col s3 grey-text text-darken-4" >
-              <a href="#Notificacao" class="active grey-text text-darken-4" data-filho="Notificacao" data-caminho="Notificacoes.php">Notificações</a>
-            </li>
-            <li class="tab col s3 grey-text text-darken-4" >
-              <a href="#Candidato" class="grey-text text-darken-4" data-filho="Candidato" data-caminho="Candidataramse.php">Candidatos a vaga</a>
-            </li>
-            <li class="tab col s3 grey-text text-darken-4">
-              <a  href="#Entrevista" class="grey-text text-darken-4" data-filho="Entrevista" data-caminho="Entrevistas.php">Entrevistas</a>
-            </li>
-            <li class="tab col s3 grey-text text-darken-4">
-              <a  href="#finalizadas" class="grey-text text-darken-4" data-filho="finalizadas" data-caminho="EntrevistasFinalizadas.php">Entrevistas finalizadas</a>
-            </li>
 
-          </ul>
-          <div id="Notificacao" class="col s12">
+        <div class="col s12 m12">
+
+          <div id="conteudo" class="col s12 m12">
+
+
 
 
             <?php if ($totalNotificacao > 0 || $totalNotCandidatouse > 0) {
                $ConsultaNotificacao  = $Notificacao -> ReadMensagens("where codUsuario = $idUsuario order by codUsuario desc");
                 $ConsultaNotCandidatouse = $NotCandidatouse -> ReadNotificacoesCandidatouse("where codUsuario = $idUsuario order by codUsuario desc ");
               ?>
+              <h1 class="center-align flow-text">Suas Notificações</h1>
                 <ul class="collection">
               <?php
               while ($ResultNotCandidatouse = mysqli_fetch_object($ConsultaNotCandidatouse)) {

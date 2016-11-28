@@ -195,6 +195,7 @@
            </div>
            <div class="modal-footer">
              <input type="submit" value="Marcar entrevista" class="btn-flat waves-light waves-green marcar " data-form="form<?=$i?>" data-linha="<?= $idLinha ?>" data-idcandidatouse="<?= $idCandidatouse ?>">
+
              <a href="#!" class="btn-flat red-text modal-close">Cancelar</a>
 
            </form>
@@ -202,7 +203,7 @@
          </div>
        </div>
        <div class="modal modal-fixed-footer" id="<?= $ResultCandidataramse -> tokenRecusarEntrevista ?>">
-         <form action="Controller/CancelarEntrevistaEmpresa.php" method="post" id="<?= $cancelar.$i ?>">
+         <form action="Controller/CancelarEntrevistaEmpresa.php" method="post" id="cancelar<?= $i ?>">
          <div class="modal-content">
            Enviar Para:
            <div class="chip flow-text">
@@ -218,9 +219,11 @@
                <textarea name="mensagem" class="materialize-textarea" id="mensagem" rows="8" cols="40" required="true" length="255" maxlength="255"></textarea>
              </div>
              <input type="hidden" name="codUsuarioEmpresa" value="<?= $idUsuario ?>">
+             <input type="hidden" name="idAluno" value="<?= $codAluno ?>">
+             <input type="hidden" name="idCandidatouse" value="<?= $idCandidatouse?>">
          </div>
          <div class="modal-footer">
-           <button type="submit" class="btn btn-flat waves-effect waves-red cancelarCandidato" data-form="<?= $cancelar.$i ?>" data-idaluno="<?= $codAluno ?>" data-idcandidatouse="<?= $idCandidatouse?>">Negar Candidato</button>
+           <input type="submit" class="btn btn-flat waves-effect waves-red cancelarCandidato modal-close" data-form="<?= $cancelar.$i ?>"   data-linha="<?= $idLinha ?>" value="Negar Candidato">
          </form>
          <!-- <button class="btn btn-flat modal-close waves-effect waves-yellow">Cancelar</button> -->
          <a href="#!" class="btn btn-flat modal-close waves-effect waves-yellow">Cancelar</a>

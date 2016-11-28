@@ -9,7 +9,7 @@
     $pesquisa = isset($_GET['pesquisa'])?$_GET['pesquisa']:null;
     $filtro   = isset($_GET['filtro'])?$_GET['filtro']:null;
 
-    $Result = $DB->SearchQuery("vaga");
+    $Result = $DB->SearchQuery("vaga","where ativo = 'S'");
     $idUsuario = $_SESSION['id'];
     if ($filtro && $pesquisa) {
       echo "<input type='hidden' name='filtroSemPesquisa' value='".$filtro."' />
@@ -72,7 +72,7 @@
              $inicio = ($registros*$pagina)-$registros;
 
              //seleciona os itens por página
-             $queryVagas   = $DB->SearchQuery("vaga v", "order by idVaga desc limit $inicio,$registros");
+             $queryVagas   = $DB->SearchQuery("vaga v", "where ativo='S' order by idVaga desc limit $inicio,$registros");
              //$total1       = mysqli_num_rows($queryVagas);
             //  var_dump($aluno);
              foreach ($aluno as $valor) {

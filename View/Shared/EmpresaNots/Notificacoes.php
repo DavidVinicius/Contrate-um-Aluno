@@ -40,6 +40,7 @@
    $ConsultaNotCandidatouse = $NotCandidatouse -> ReadNotificacoesCandidatouse("where codUsuario = $idUsuario order by codUsuario desc limit $inicio, $registros ");
 
    ?>
+   <h1 class="center-align flow-text">Suas Notificações</h1>
      <ul class="collection">
    <?php
     while ($ResultNotCandidatouse = mysqli_fetch_object($ConsultaNotCandidatouse)) {

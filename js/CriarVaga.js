@@ -3,6 +3,7 @@ var app = angular.module("myapp",[]);
 app.controller("CriarVaga",["$scope",function($scope){
     $scope.vaga = [];
     $scope.beneficios = [];
+    var barra   = " <div class='progress '><div class='indeterminate'></div></div>";
     $scope.adicionarVaga = function(){
 
 
@@ -67,15 +68,6 @@ app.controller("CriarVaga",["$scope",function($scope){
 
     }
 
-//    $('form').submit(function(e){
-//        e.preventDefault();
-//        if( $scope.titulo == "")
-//        {
-//            Materialize.toast('Campo título está vazio',4000);
-//
-//        }
-//    });
-
 
    $scope.teste = "teste";
     $('.contentEditable').click(function(){
@@ -123,8 +115,7 @@ app.controller("CriarVaga",["$scope",function($scope){
      //  console.log($scope.qualificacoes);
  //                  alert(a);
  });
-  $(".chips").click(function(event) {
-
+  $(".chips").focusin(function(event) {
     Materialize.toast("Digite e aperte enter para adicionar benefícios",4000);
   });
 
@@ -140,14 +131,24 @@ app.controller("CriarVaga",["$scope",function($scope){
           data: dados,
           type: 'POST',
           url: 'Controller/ExcluirDadosEmpresa.php',
+          beforeSend:function(){
+            $("#barra").html(barra);
+          },
           success: function(data)
           {
+              console.log(data);
+              setTimeout(function () {
+                $("#barra").html('');
+                Materialize.toast("Excluido com sucesso",4000);
+                $(apagarDiv).remove();
+              }, 1000);
 
-              Materialize.toast("Excluido com sucesso",4000);
-              $(apagarDiv).remove();
-
-
+          },
+          error:function(err){
+            console.log(err);
+            Materialize.toast("Erro, Atualize a página e tente novamente");
           }
+
       });
     });
 }]);

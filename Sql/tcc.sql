@@ -124,6 +124,7 @@ CREATE TABLE `vaga` (
   `descricao` varchar(255) NOT NULL,
   `cargaHoraria` float(3,1) NOT NULL,
   `salario` float(6,2) DEFAULT NULL,
+  `ativo`	CHAR(1) NULL,
   `requisitos` varchar(255) DEFAULT NULL,
   `codEmpresa` int(11) NOT NULL,
   CONSTRAINT `fk_vaga_empresa` FOREIGN KEY (`codEmpresa`) REFERENCES `empresa` (`idEmpresa`)

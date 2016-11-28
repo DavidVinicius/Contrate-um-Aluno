@@ -286,11 +286,11 @@
 
                         <div class=" col s12 m12">
                         <div class="card col s12 m6" ng-repeat="x in experiencias">
-                            <span class="card-title" contenteditable="true"> {{x.cargo}}</span>
+                            <span class="card-title" contenteditable="true"> {{x.cargo}} - {{x.empresa}}</span>
                             <div class="card-content">
-                                <p>Data de início: <span class="flow-text">{{x.de}}</span></p>
-                                <p>Data de Saída:    <span class="flow-text">{{x.ate}}</span></p>
-                               <p> descrição: <br>{{x.descricao}}</p>
+                                <p>Data de início: <span class="">{{x.de}}</span></p>
+                                <p>Data de Saída:    <span class="">{{x.ate}}</span></p>
+                               <p> Descrição: <br>{{x.descricao}}</p>
                             </div>
                             <div class="card-action">
                                 <button class="btn red excluir">Excluir</button>
@@ -308,20 +308,25 @@
                                     <span class="card-title tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="empresa" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" >
                                       <?= $ResultExperiencia['empresa']?></span>
                                 <div class="card-content">
-                                  <p>
-                                    Data de Inicio:
-                                     <span class=" tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true" >
-                                         <?= $ResultExperiencia['dataInicio']?></span>
-                                  </p>
-                                  <p>
-                                    Data de Saída:
-                                    - <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataSaida" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>"  contenteditable="true"> <?= $ResultExperiencia['dataSaida']  ?></span>
+                                  <div class="row">
+                                    <div class="col s12 m6">
+                                      <label for="dataInicioE">Data de Inicio</label>
+                                      <input type="text" name="" id="dataInicioE" value="<?= date('d/m/Y', strtotime($ResultExperiencia['dataInicio']))?>" class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataInicio" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true">
 
-                                  </p>
+                                    </div>
+                                    <div class="col s12 m6">
+                                      <label for="dataSaidaF">Data de Saída:</label>
+                                      <input type="text" name="" id="dataSaidaF" value="<?=  date('d/m/Y', strtotime($ResultExperiencia['dataSaida']))  ?>" class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="dataSaida" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia']?>" contenteditable="true">
+                                    </div>
+                                  </div>
+                                  <div class="row">
+
+
                                     <p>
                                       Descrição: <br>
                                       <span class="tooltipped contentEditable" data-position="right" data-delay="50" data-tooltip="Click para editar" data-tabela="experiencias" data-campo="descricao" data-idaluno="<?= $idAluno?>" data-idexperiencia="<?= $ResultExperiencia['idExperiencia'] ?>" contenteditable="true"><?= $ResultExperiencia['descricao']  ?></span>
                                     </p>
+                                  </div>
                                 </div>
                                 <div class="card-action">
                                     <button class="btn red excluir" data-idlinha="<?= $ResultExperiencia['idExperiencia'] ?>" data-tabela="experiencias" >Excluir</button>
@@ -331,7 +336,93 @@
                     <?php
                         }
                     ?>
+                        </div> 
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <button data-target="curriculo" class="btn btn-large blue modal-trigger">Gerar currículo</button>
+                    <div class="modal modal-fixed-bottom" id="curriculo">
+                      <div class="modal-content">
+                        <h1 class="flow-text center-align">Gerar currículo</h1>
+                        <div class="col s12 m12 l12">
+                          <div class="row">
+                            <div class="col s12 m5 l5">
+                              <div class="input-field">
+                                <div class="switch">
+                                  <label>
+                                    Sem foto
+                                    <input type="checkbox" ng-model="comFoto">
+                                    <span class="lever"></span>
+                                    Com foto
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m7 l7">
+                              <div class="input-field">
+                                <div class="switch">
+                                  <label>
+                                    Sem competências
+                                    <input type="checkbox" ng-model="competencias">
+                                    <span class="lever"></span>
+                                    Com competências
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col s12 m7 l7">
+                              <div class="input-field">
+                                <div class="switch">
+                                  <label>
+                                    Não gerar PDF
+                                    <input type="checkbox" ng-model="pdf" checked="email">
+                                    <span class="lever"></span>
+                                     gerar PDF
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s12 m5 l5">
+                              <div class="input-field">
+                                <div class="switch">
+                                  <label>
+                                    Apenas gere
+                                    <input type="checkbox" ng-model="email">
+                                    <span class="lever"></span>
+                                    Enviar por email
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div> <br>
+                          <form class="" action="Controller/GerarCurriculo.php" method="post">
+                          <div class="row" ng-if="email">
+                              <p>
+                                 <input type="checkbox" id="enviarNoMeuEmail" name="enviarNoMeuEmail" ng-model="seuemail" />
+                                 <label for="enviarNoMeuEmail">Meu email</label>
+                              </p>
+                              <div class="input-field" ng-if="!seuemail" >
+                                <label for="emailE">Qual email?</label>
+                                <input type="email" name="enviarEmail" id="enviarEmail" ng-model="emailenviar">
+                              </div>
+                          </div>
                         </div>
+                      </div>
+                      <div class="modal-footer">
+
+
+                            <input type="hidden" name="enviarE" value="{{email}}">
+                            <input type="hidden" name="gerarPDF" id="" value="{{pdf}}">
+                            <input type="hidden" name="ComFoto" value="{{comFoto}}">
+                            <input type="hidden" name="comCompetencias" value="{{competencias}}">
+                            <button class="btn btn-flat" type="submit">Gerar currículo</button>
+                          <button class="btn btn-flat modal-close">Cancelar</button>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
                 </div>
 
 

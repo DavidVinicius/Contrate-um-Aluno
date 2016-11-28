@@ -13,18 +13,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="fonts/material-icons.css">
+    <link rel="stylesheet" href="css/main.css">
     <style>
         .menuCor{
             background-color: rgb(50,49,51);
-        }
+        } 
     </style>
 </head>
 <body>
-
      <div class="row">
       <?php
          include_once("View/Shared/Menu.php");
          ?>
+         <div id="barra"></div>
            <div class="teste blue">
                <div class="progress">
                   <div class="determinate blue" ></div>

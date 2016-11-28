@@ -43,25 +43,38 @@
 <body>
    <div id="barra"></div>
     <div class="container">
+      <div class="fixed-action-btn ">
+          <?= $notificacoes ?>
+        <a class="btn-floating btn-large blue">
+          <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul class="">
+          <li class="tab">
+            <a href="#Notificacao" class="btn-floating red conteudo tooltipped" data-position="left" data-delay="50" data-tooltip="Notificações" data-caminho="Notificacoes.php">
+            <?= $numMensagens ?>
+            <i class="material-icons">email</i>
+          </a>
+          </li>
+          <li>
+            <a href="#Entrevista" class="btn-floating green conteudo tooltipped"  data-caminho="Entrevistas.php" data-position="left" data-delay="50" data-tooltip="Suas entrevistas">
+              <?= $NumEntrevistas ?>
+              <i class="material-icons">alarm_on</i>
+            </a>
+          </li>
+          <li>
+            <a href="#Finalizadas" class="btn-floating blue conteudo tooltipped" data-position="left" data-delay="50" data-tooltip="Entrevistas Finalizadas" data-caminho="EntrevistasFinalizadas.php" >
+              <i class="material-icons">done_all</i>
+            </a>
+          </li>
+        </ul>
+      </div>
         <div class="row">
-          <div class="col s12 m12 ">
-            <ul class="tabs blue-text">
-              <li class="tab col s3 grey-text text-darken-4">
-                <a class="active  grey-text text-darken-4 " href="#Notificacao" data-filho="Notificacao" data-caminho="Notificacoes.php">Notificacões <?= $nots?></a>
-              </li>
-              <li class="tab col s3 grey-text text-darken-4">
-                <a href="#Entrevista" class="grey-text text-darken-4" data-filho="Entrevista" data-caminho="Entrevistas.php">Entrevistas <?= $badge ?></a>
-              </li>
-              <li class="tab col s3 grey-text text-darken-4">
-                <a href="#Finalizadas" class="grey-text text-darken-4" data-filho="Finalizadas" data-caminho="EntrevistasFinalizadas.php">Entrevistas Finalizadas</a>
-              </li>
+          <div id="conteudo" class="col s12 m12">
 
 
-            </ul>
-            <div id="Notificacao" class="col s12">
-              <ul class="collection">
               <?php
                     if ($total > 0) {
+                      echo "<h1 class='center-align flow-text'>Suas notificações</h1><ul class='collection'>";
                           $pagina = (isset( $_GET['pagina']) ) ? $_GET['pagina'] : 1;
                           $registros = 5;
 
@@ -131,11 +144,8 @@
                     }
                ?>
             </div>
-            <div id="Entrevista" class="col s12">
-            </div>
-            <div id="Finalizadas" class="col s12 m12 " >
-            </div>
-          </div>
+
+
         </div>
     </div>
 </body>

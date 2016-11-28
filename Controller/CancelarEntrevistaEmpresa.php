@@ -25,7 +25,7 @@ require_once "../Model/ModelRespostas.class.php";
   // $ResultEntrevista   = mysqli_fetch_object($Entrevista -> ReadEntrevista("where idEntrevista =  $idEntrevista"));
   // echo $idEntrevista."retorno";
   if ($Entrevista -> UpdateEntrevista("ativo",'',"where idEntrevista = $idEntrevista") && $Entrevista ->                 UpdateEntrevista("status",'Cancelado pela empresa',"where idEntrevista = $idEntrevista")) {
-      echo "deu certo cachorreira";
+      echo "Fez o update na tabela entrevista e update no status na tabela entrevista";
       $data = array(
         "titulo"         => $motivo,
         "de"             => $nomeEmpresa,
@@ -36,9 +36,11 @@ require_once "../Model/ModelRespostas.class.php";
         "codEntrevista"  => $idEntrevista
       );
       if ($Notificacao -> CreateMensagens($data)) {
-            echo "deu certo cachorreira 2";
+            echo "Criou notificação para o aluno";
 
       }
+  }else{
+    echo "Erro ao tentar fazer update na tabela entrevista";
   }
 
  ?>

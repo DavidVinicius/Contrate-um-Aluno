@@ -7,6 +7,13 @@
   require_once "../Model/ModelEnderecos.class.php";
   require_once "../Model/ModelTelefones.class.php";
 
+  $Aluno = new ModelAluno();
+  $Empresa = new ModelEmpresa();
+  $Experiencia = new Experiencias();
+  $Enderecos   = new Enderecos();
+  $Telefones   = new Telefones();
+  
+
   $ComFoto           = isset($_POST['ComFoto'])?$_POST['ComFoto']:null;
   $gerarPDF          = isset($_POST['gerarPDF'])?$_POST['gerarPDF']:null;
   $comCompetencias   = isset($_POST['comCompetencias'])?$_POST['comCompetencias']:null;

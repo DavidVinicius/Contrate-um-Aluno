@@ -17,7 +17,7 @@
     <style>
         .menuCor{
             background-color: rgb(50,49,51);
-        }
+        } 
     </style>
 </head>
 <body>

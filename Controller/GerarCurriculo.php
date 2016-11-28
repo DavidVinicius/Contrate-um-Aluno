@@ -2,23 +2,37 @@
   session_start();
 
   require_once "../Model/ModelAluno.class.php";
+  require_once "../Model/ModelEmpresa.class.php";
   require_once "../Model/ModelExperiencias.class.php";
   require_once "../Model/ModelFormacoes.class.php";
   require_once "../Model/ModelEnderecos.class.php";
   require_once "../Model/ModelTelefones.class.php";
+  require_once "../Model/ModelQualificacoes.class.php";
 
-  $Aluno = new ModelAluno();
-  $Empresa = new ModelEmpresa();
-  $Experiencia = new Experiencias();
-  $Enderecos   = new Enderecos();
-  $Telefones   = new Telefones();
-  
+  $Aluno             = new ModelAluno();
+  $Empresa           = new ModelEmpresa();
+  $Experiencia       = new Experiencias();
+  $Formacoes         = new Formacoes();
+  $Enderecos         = new Enderecos();
+  $Telefones         = new Telefones();
+  $Qualificacoes     = new ModelQualificacoes();
 
+  $codUsuario        = $_SESSION['id'];
   $ComFoto           = isset($_POST['ComFoto'])?$_POST['ComFoto']:null;
   $gerarPDF          = isset($_POST['gerarPDF'])?$_POST['gerarPDF']:null;
   $comCompetencias   = isset($_POST['comCompetencias'])?$_POST['comCompetencias']:null;
   $enviarNoMeuEmail  = isset($_POST['enviarNoMeuEmail'])?"true":"false";
   $enviar            = isset($_POST['enviarE'])?$_POST["enviarE"]:null;
+
+  $ResultAluno       = mysqli_fetch_object($Aluno -> ReadAluno("where codUsuario = $codUsuario"));
+  $idAluno           = $ResultAluno -> idAluno;
+
+  $ConsultaTelefones   = $Telefones -> ReadTelefones("where codUsuario = $codUsuario");
+  $ResultEnderecos     = mysqli_fetch_object($Enderecos -> ReadEnderecos("where codUsuario = $codUsuario"));
+  $ConsultaExperiencia = $Experiencia -> ReadExperiencias("where codAluno = $idAluno");
+  $ConsultaFormacoes   = $Formacoes -> ReadFormacoes("where codAluno = $idAluno");
+  $ConsultaQualificacoes = $Qualificacoes -> ReadQualificacoes("where codAluno = $idAluno");
+
 
   if ($enviar == "true") {
       if ($enviarNoMeuEmail == "false"){
@@ -34,3 +48,114 @@
 
 
  ?>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="../css/materialize.min.css">
+   <link rel="stylesheet" href="../css/imprimir.css">
+   <title>Document</title>
+ </head>
+   <body>
+     <div class="container">
+       <div class="row">
+         <h5 class="center-align flow-text">CURRÍCULO VITAE</h5>
+         <br>
+         <div class="col s8 m6 l6">
+            <b>Nome:</b> <?= $ResultAluno -> nome ?><br>
+            <b>RG:</b>  <?= $ResultAluno -> rg ?><br>
+            <b>CPF:</b> <?= $ResultAluno -> cpf?><br>
+            <b>Data de Nascimento:</b> <?=  date('d/m/Y', strtotime($ResultAluno -> dataNascimento));?><br>
+            <b>Endereço</b>: <?= $ResultEnderecos -> rua. ", ". $ResultEnderecos -> numero . ", " . $ResultEnderecos -> bairro. ", <br />". $ResultEnderecos -> cidade. " - ". $ResultEnderecos -> estado ?><br>
+            <b>Telefones: </b><?php
+                while ($ResultTelefone = mysqli_fetch_object($ConsultaTelefones)) {
+                  echo  $ResultTelefone -> telefone." ";
+                }
+             ?>
+
+         </div>
+         <div class="col s4 pull-s2 m4 push-m3 l4 push-l3">
+           <?php
+                if ($ComFoto == "true") {
+                    ?>
+                    <img src="../Images/Upload/<?= $ResultAluno -> foto ?>" alt="" class="circle img" width="150px" height="150px">
+                    <?php
+                }
+            ?>
+         </div>
+       </div>
+       <div class="row">
+            <h5 class="center-align flow-text">FORMAÇÕES</h5>
+            <br>
+            <div class="col s12 m12 l12">
+              <?php
+                  while ($ResultFormacoes = mysqli_fetch_object($ConsultaFormacoes)) {
+                    ?>
+                    <span class='flow-print'> <b>Ano de conclusão:</b> <?=$ResultFormacoes -> anoConclusao?><br>
+                      <b>Curso: </b><?= $ResultFormacoes -> curso?><br>
+                      <b>Instituição: </b> <?=$ResultFormacoes -> instituicao ?> </span><br><br>
+                    <?php
+                  }
+               ?>
+            </div>
+            <br>
+       </div>
+       <?php
+            if ($comCompetencias == "true") {
+              ?>
+              <div class="row">
+                <h5 class="center-align flow-text">HABILIDADES</h5>
+                <br>
+                <div class="col s12 m12 l12">
+                  <?php
+                      while ($ResultQualificacoes = mysqli_fetch_object($ConsultaQualificacoes)) {
+                        echo $ResultQualificacoes -> competencia.", ";
+                      }
+                   ?>
+                </div>
+              </div>
+
+              <?php
+            }
+        ?>
+        <div class="row">
+          <h5 class="center-align flow-text">EXPERIÊNCIAS</h5>
+          <br>
+          <div class="col s12 m12 l12">
+            <?php
+                while ($ResultExperiencias = mysqli_fetch_object($ConsultaExperiencia)) {
+                  ?>
+                  <b>Data de Início:</b> <?= date('d/m/Y', strtotime($ResultExperiencias -> dataInicio))  ?> <br>
+                 <b> Data de Saída:</b> <?=  date('d/m/Y', strtotime($ResultExperiencias -> dataSaida)) ?><br>
+                  <b>Empresa:</b> <?= $ResultExperiencias -> empresa ?><br>
+                    <b>Cargo:</b> <?= $ResultExperiencias -> cargo ?><br>
+                    <b>Descrição: </b> 
+                    <?= $ResultExperiencias -> descricao?>
+                  <?php
+                }
+             ?>
+          </div>
+          <br>
+        </div>
+        <div class="row">
+          <h5 class="center-align flow-text">INFORMAÇÕES ADICIONAIS</h5>
+          <br>
+          <div class="col s12 m12 l12">
+            <?= $ResultAluno -> informacoesAdicionais ?>
+          </div>
+          <br>
+        </div>
+        <div class="row rodape">
+          <p class="center-align">Currículo gerado por <b>Contrate um Aluno</b></p>
+        </div>
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <button class="btn btn-large blue esconde">Imprimir</button>
+            <button class="btn btn-large green esconde">Baixar PDF</button>
+          </div>
+        </div>
+     </div>
+   </body>
+ </html>

@@ -48,7 +48,7 @@
     else
       echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
 
-  $pagina = new PaginaPrivadaOuPublica();
+  $pagina = new PaginaPrivadaOuPublica() ? new PaginaPrivadaOuPublica() : null; 
   if(!$pagina->PrivadaOuPublica())
     header("location: ../../Index.php");
   else
@@ -58,14 +58,15 @@
    $idAluno                = $_GET['id'];
    $idUsuario              = $_GET['cod'];
    $idUsuarioEmpresa       = $_SESSION['id'];
-   $anterior               = isset($_GET['anterior'])?$_GET['anterior']:null;
-   $pagina                 = isset($_GET['pagina'])? '&pagina='.$_GET['pagina']:null;
-   $Aluno                  = new ModelAluno();
-   $Endereco               = new Enderecos();
-   $Telefone               = new Telefones();
-   $Formacao               = new Formacoes();
-   $Experiencia            = new Experiencias();
-   $Qualificacao           = new ModelQualificacoes();
+   $anterior               = isset($_GET['anterior'])   ? $_GET['anterior']         :null;
+   $pagina                 = isset($_GET['pagina'])     ? '&pagina='.$_GET['pagina']:null;
+   $Aluno                  = new ModelAluno()   ? new ModelAluno()  : null;
+   $Endereco               = new Enderecos()    ? new Enderecos()   : null;
+   $Telefone               = new Telefones()    ? new Telefones()   : null;
+   $Formacao               = new Formacoes()    ? new Formacoes()   : null;
+   $Experiencia            = new Experiencias() ? new Experiencias(): null;
+   $Qualificacao           = new ModelQualificacoes() ? new ModelQualificacoes() : null;
+
    $ResultAluno            = mysqli_fetch_assoc($Aluno -> ReadAluno("where idAluno = $idAluno"));
    $ConsultaTelefone       = $Telefone -> ReadTelefones("where codUsuario = $idUsuario");
    $ResultEndereco         = mysqli_fetch_assoc($Endereco-> ReadEnderecos("where codUsuario  = $idUsuario"));

@@ -1,7 +1,19 @@
 <?php
-    include_once "Model/DataBase.class.php";
-    //include_once "Model/ModelEmpresa.class.php";
-    $DB               = new DataBase();
+    if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
+      require_once "Controller/PaginaPrivadaOuPublica.class.php";
+    elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
+      require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
+    else
+      echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
+
+    if(file_exists("Controller/DataBase.class.php"))
+      require_once "Controller/DataBase.class.php";
+    elseif(file_exists("../../Controller/DataBase.class.php"))
+      require_once "../../Controller/DataBase.class.php";
+    else
+      echo "<h1>Impossível encontrar o arquivo DataBase.class.php</h1>";
+
+    $DB               = new DataBase() ? new DataBase() : null;
     $idUsuario        = $_SESSION['id'];
     $consultaEmpresa  = mysqli_fetch_assoc($DB->SearchQuery("empresa", "where codUsuario = $idUsuario"));
     $idEmpresa        = $consultaEmpresa['idEmpresa'];
@@ -95,7 +107,7 @@
                       Benefícios:
                     <?php
                     require_once "Model/ModelBeneficiosVaga.class.php";
-                    $Beneficio   = new ModelBeneficiosVaga();
+                    $Beneficio   = new ModelBeneficiosVaga() ? new ModelBeneficiosVaga() : null;
                     $Consulta    = $Beneficio->ReadBeneficiosVaga("where codVaga = $idVaga");
                       while ($ResultBeneficios = mysqli_fetch_object($Consulta)) {
                       ?>

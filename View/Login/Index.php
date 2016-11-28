@@ -1,9 +1,12 @@
 <?php
-include "VerificaSeEstaLogado.class.php";
+    if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
+      require_once "Controller/PaginaPrivadaOuPublica.class.php";
+    elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
+      require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
+    else
+      echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
 
-$Logado = new VerificaSeEstaLogado();
-if($Logado)
-    header("Location: OnePage.php");
-else
-    header("Location: Index.php");
+  $pagina = new PaginaPrivadaOuPublica();
+  if(!$pagina->PrivadaOuPublica())
+    header("location: ../../Index.php");
 ?>

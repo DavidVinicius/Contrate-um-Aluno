@@ -1,19 +1,45 @@
 <?php
-    include_once "Model/DataBase.class.php";
-    include_once "Model/ModelQualificacoes.class.php";
-    include_once "Model/ModelAluno.class.php";
+    if(file_exists("Controller/DataBase.class.php"))
+      require_once "Controller/DataBase.class.php";
+    elseif(file_exists("../../Controller/DataBase.class.php"))
+      require_once "../../Controller/DataBase.class.php";
+    else
+      echo "<h1>Impossível encontrar o arquivo DataBase.class.php</h1>";
 
-    $DB = new DataBase();
+      if(file_exists("Controller/ModelQualificacoes.class.php"))
+      require_once "Controller/ModelQualificacoes.class.php";
+    elseif(file_exists("../../Controller/ModelQualificacoes.class.php"))
+      require_once "../../Controller/ModelQualificacoes.class.php";
+    else
+      echo "<h1>Impossível encontrar o arquivo ModelQualificacoes.class.php</h1>";
+
+    if(file_exists("Controller/ModelAluno.class.php"))
+      require_once "Controller/ModelAluno.class.php";
+    elseif(file_exists("../../Controller/ModelAluno.class.php"))
+      require_once "../../Controller/ModelAluno.class.php";
+    else
+      echo "<h1>Impossível encontrar o arquivo ModelAluno.class.php</h1>";
+
+    if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
+      require_once "Controller/PaginaPrivadaOuPublica.class.php";
+    elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
+      require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
+    else
+      echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
+
+  $pagina = new PaginaPrivadaOuPublica();
+  if(!$pagina->PrivadaOuPublica())
+    header("location: ../../Index.php");
+  else
+    header("location: ../../Home.php");
+
+    $DB = new DataBase() ? new DataBase() : null;
     $id = $_SESSION['id'];
 
 
     $ConsultaAluno  = $DB->SearchQuery("aluno");
-    $Qualificacoes  = new ModelQualificacoes();
-    $Aluno      = new ModelAluno();
-
-    $Aluno  = new ModelAluno();
-    $DB     = new DataBase();
-    $id = $_SESSION['id'];
+    $Qualificacoes  = new ModelQualificacoes() ? new ModelQualificacoes() : null;
+    $Aluno          = new ModelAluno() ? new ModelAluno() : null;
 
 ?>
 <!DOCTYPE html>

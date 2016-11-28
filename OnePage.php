@@ -17,7 +17,7 @@
     <style>
         .menuCor{
             background-color: rgb(50,49,51);
-        } 
+        }
     </style>
 </head>
 <body>
@@ -28,7 +28,7 @@
          <div id="barra"></div>
            <div class="teste blue">
                <div class="progress">
-                  <div class="determinate blue" ></div>
+                  <div class="indeterminate blue" ></div>
                </div>
            </div>
             <section class="section">
@@ -69,8 +69,11 @@
     <script src="js/materialize.min.js"></script>
     <script>
             $(".teste").hide();
-            $(".nav-wrapper > li").click(function(){
+            $(".nav-wrapper > li").click(function(e){
+              // var barra = "<div class='progress'><div class='indeterminate blue' ></div></div>";
+              // $("#barra").html(barra);
                 $(".teste").show();
+
                function barra(){
 
 
@@ -87,7 +90,7 @@
                     clearInterval(aumenta);
                 }
 
-                alert(width);
+
 
             });
               // Initialize collapse button

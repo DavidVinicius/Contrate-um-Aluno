@@ -18,11 +18,11 @@
         $usuario  = new ModelUsuario();
 
         // $usuario->UpdateUsuario("ativo", "N", "where idAluno = $idAluno");
-        if($aluno->UpdateAluno("ativo", "N", "where idAluno = $idAluno"))
+        if($usuario->UpdateUsuario("ativo", "N", "where idUsuario = $idUsuario"))
         {
             echo "Update deu certo";
         } else{
-            echo "Update falhou".var_dump($aluno->UpdateAluno("ativo", "N", "where idAluno = $idAluno"));
+            echo "Update falhou ";
         }
     }
 

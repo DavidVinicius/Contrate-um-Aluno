@@ -2,7 +2,8 @@ CREATE TABLE `usuario` (
   `idUsuario` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `email` varchar(40) NOT NULL,
   `nivel` enum('1','2','3','4') NOT NULL,
-  `senha` varchar(15) NOT NULL
+  `senha` varchar(15) NOT NULL,
+  `ativo` char(1) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `aluno` (

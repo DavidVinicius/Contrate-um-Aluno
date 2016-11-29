@@ -1,16 +1,16 @@
  <!DOCTYPE html>
 <?php
     session_start();
-    if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
-      require_once "Controller/PaginaPrivadaOuPublica.class.php";
-    elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
-      require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
+    if(file_exists("Controller/EstaLogado.class.php"))
+      require_once "Controller/EstaLogado.class.php";
+    elseif(file_exists("../../Controller/EstaLogado.class.php"))
+      require_once "../../Controller/EstaLogado.class.php";
     else
-      echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
+      echo "<h1>Impossível encontrar o arquivo EstaLogado.class.php</h1>";
 
-  $pagina = new PaginaPrivadaOuPublica();
-  if($pagina->PrivadaOuPublica())
-    header("location: OnePage.php");
+  // $pagina = new EstaLogado();
+  // if($pagina->PrivadaOuPublica())
+  //   header("location: OnePage.php");
 ?>
 <html lang="en">
 <head>

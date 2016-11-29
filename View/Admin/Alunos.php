@@ -7,18 +7,16 @@
     else
       echo "<h1>Impossível encontrar o arquivo ModelAluno.class.php</h1>";
 
-    if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
-      require_once "Controller/PaginaPrivadaOuPublica.class.php";
-    elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
-      require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
+    if(file_exists("Controller/EstaLogado.class.php"))
+      require_once "Controller/EstaLogado.class.php";
+    elseif(file_exists("../../Controller/EstaLogado.class.php"))
+      require_once "../../Controller/EstaLogado.class.php";
     else
-      echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
+      echo "<h1>Impossível encontrar o arquivo EstaLogado.class.php</h1>";
 
-  // $pagina = new PaginaPrivadaOuPublica();
-  // if(!$pagina->PrivadaOuPublica())
-  //   header("location: ../../Index.php");
-  // else
-  //   header("location: ../../OnePage.php");
+  $pagina = new EstaLogado();
+  if(!$pagina->EstaLogado())//Se tentar acessar direto pela URL
+    header("location: ../../Index.php");
 
   $Aluno = new ModelAluno() ? new ModelAluno() : null;
   if( !$Aluno )
@@ -48,7 +46,7 @@
           $ConsultaAlunos = $Aluno -> ReadAluno("");
           echo "<ul class='collection'>";
           while ($ResultAluno = mysqli_fetch_object($ConsultaAlunos)) {
-
+            if(!$ResultAluno->ativo == "N"){
               ?>
               <li class="collection-item avatar">
                 <img src="Images/Upload/<?= $ResultAluno -> foto ?>" alt="foto perfil" class="circle">
@@ -58,11 +56,11 @@
                      Ver Perfil
                    </a>
                 </p>
-                <a href="#!" class="secondary-content"><i class="material-icons red-text">delete</i></a>
+                <a href="#!" class="secondary-content excluirAluno" data-id="<?= $ResultAluno->idAluno ?>"><i class="material-icons red-text">delete</i></a>
               </li>
 
               <?php
-
+            }
           }
           echo "</ul>";
         }else{
@@ -72,5 +70,23 @@
       </div>
     </div>
   </div>
+  <script src="js/jquery.js"> </script>
+  <script>
+    $('.excluirAluno').click(function(){
+      var idAluno = $(this).data('id');
+      var tabela    = "aluno";
+      $.ajax({
+        url: 'Controller/ExcluirDados.php',
+        method: 'post',
+        data: {
+          idAluno: idAluno,
+          tabela: tabela,
+        },
+        success: function(data){
+          alert('Resposta: ' + data);
+        }
+      });
+    });
+  </script>
 </body>
 </html>

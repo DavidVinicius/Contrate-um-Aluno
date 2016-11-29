@@ -146,7 +146,7 @@ app.controller("CriarVaga",["$scope",function($scope){
           },
           error:function(err){
             console.log(err);
-            Materialize.toast("Erro, Atualize a página e tente novamente");
+            Materialize.toast("Erro, Atualize ap");
           }
 
       });

@@ -106,6 +106,21 @@
         'codEntrevista' => $ultimaEntrevista
     );
 
-    $insertNotificacao = $notificacao->CreateMensagens($dadosNotificacoes);
-    var_dump($insertNotificacao);
+    if ($insertNotificacao = $notificacao->CreateMensagens($dadosNotificacoes)) {
+      require_once "Email.class.php";
+      require_once "../Model/ModelUsuario.class.php";
+
+      $Email = new Email();
+      $Usuario = new ModelUsuario();
+
+      $ResultUsuario = mysqli_fetch_object($Usuario -> ReadUsuario("where idUsuario = $codUsuarioAluno"));
+      $email = $ResultUsuario -> email;
+
+      if ($Email -> EnviarEmailEntrevista($email, $nomeEmpresa)) {
+        echo "\nemail Enviado com sucesso";
+      }else{
+        echo "\n não enviou o e-mail";
+      }
+    }
+    // var_dump($insertNotificacao);
  ?>

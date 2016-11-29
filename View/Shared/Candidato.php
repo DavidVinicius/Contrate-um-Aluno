@@ -41,20 +41,20 @@
     else
         echo "<h1>Impossível encontrar o arquivo ModelQualificacoes.class.php</h1>";
 
-    if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
-      require_once "Controller/PaginaPrivadaOuPublica.class.php";
-    elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
-      require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
-    else
-      echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
+    // if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
+    //   require_once "Controller/PaginaPrivadaOuPublica.class.php";
+    // elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
+    //   require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
+    // else
+    //   echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
 
-  $pagina = new PaginaPrivadaOuPublica() ? new PaginaPrivadaOuPublica() : null; 
-  if(!$pagina->PrivadaOuPublica())
-    header("location: ../../Index.php");
-  else
-    header("location: ../../Home.php");
+  // $pagina = new PaginaPrivadaOuPublica() ? new PaginaPrivadaOuPublica() : null;
+  // if(!$pagina->PrivadaOuPublica())
+  //   header("location: ../../Index.php");
+  // else
+  //   header("location: OnePage.php?link=HomeAluno");
 
-   
+
    $idAluno                = $_GET['id'];
    $idUsuario              = $_GET['cod'];
    $idUsuarioEmpresa       = $_SESSION['id'];
@@ -211,6 +211,7 @@
                 <div class="row">
                     <a href="#modal1" class="btn btn-large blue modal-trigger waves-effect waves-light">Marcar Entrevista</a>
                     <a href="OnePage.php?<?= $anterior.$pagina?>" class="btn btn-large blue darken-1 waves-effect waves-light">Voltar</a>
+                    
                 </div>
                 <div class="row">
                   <div id="modal1" class="modal modal-fixed-footer">
@@ -221,7 +222,7 @@
                           <div class="row">
                             <div class="input-field col s12 m6">
                               <label for="data">Data da Entrevista</label><br>
-                              <input type="date" name="data" id="data" required="true">
+                              <input type="date" name="data" id="data" required="true" min="<?= date("Y-m-d") ?>">
                             </div>
                             <div class="input-field col s12 m6">
                               <label for="hora">Hora da entrevista</label><br>

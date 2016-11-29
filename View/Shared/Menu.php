@@ -15,15 +15,15 @@ if($nivel == 1){
     $fetch = mysqli_fetch_assoc($aluno->ReadAluno("where codUsuario = $idUsuario"));
     $idAluno = $fetch['idAluno'];
 
-    $NumEntrevistas = mysqli_num_rows($Entrevista -> ReadEntrevista("where codAluno = $idAluno and ativo='S' "))
-    ?
-    mysqli_num_rows($Entrevista -> ReadEntrevista("where codAluno = $idAluno and ativo='S' "))
-    :'';
+    // $NumEntrevistas = mysqli_num_rows($Entrevista -> ReadEntrevista("where codAluno = $idAluno and ativo='S' "))
+    // ?
+    // mysqli_num_rows($Entrevista -> ReadEntrevista("where codAluno = $idAluno and ativo='S' "))
+    // :'';
 
     $numMensagens = mysqli_num_rows($Mensagem->ReadMensagens("where codUsuario = $idUsuario"));
 
     if($numMensagens != 0){
-     $totalnotificacoes = $NumEntrevistas + $numMensagens;
+     $totalnotificacoes =  $numMensagens;
      $notificacoes =  "<span class='chip red white-text'> $totalnotificacoes </span>";
     }
     else{

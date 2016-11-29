@@ -28,6 +28,11 @@
                               </script>";
                       }
                       else{
+                        require_once "Email.class.php";
+                        $Email = new Email();
+                        if($Email -> EnviarBoasVindas($_SESSION['usuario'])){
+                                  echo "enviou e-mail";
+                        }
                         echo "<script>
                                 window.location.href='../OnePage.php?link=VerCurriculo';
 
@@ -42,6 +47,11 @@
                                 </script>";
                         }
                         else{
+                          require_once "Email.class.php";
+                          $Email = new Email();
+                          if($Email -> EnviarBoasVindas($_SESSION['usuario'])){
+                                    echo "enviou e-mail";
+                          }
                           echo "<script>
                                   window.location.href='../OnePage.php?link=VerEmpresa';
 
@@ -65,7 +75,7 @@
                   else {
                         echo "<script>
                                 window.location.href='../OnePage.php';
-                                
+
                               </script>";
                     }
 

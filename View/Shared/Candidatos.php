@@ -1,22 +1,22 @@
 <?php
-    if(file_exists("Controller/DataBase.class.php"))
-      require_once "Controller/DataBase.class.php";
-    elseif(file_exists("../../Controller/DataBase.class.php"))
-      require_once "../../Controller/DataBase.class.php";
+    if(file_exists("Model/DataBase.class.php"))
+      require_once "Model/DataBase.class.php";
+    elseif(file_exists("../../Model/DataBase.class.php"))
+      require_once "../../Model/DataBase.class.php";
     else
       echo "<h1>Impossível encontrar o arquivo DataBase.class.php</h1>";
 
-      if(file_exists("Controller/ModelQualificacoes.class.php"))
-      require_once "Controller/ModelQualificacoes.class.php";
-    elseif(file_exists("../../Controller/ModelQualificacoes.class.php"))
-      require_once "../../Controller/ModelQualificacoes.class.php";
+      if(file_exists("Model/ModelQualificacoes.class.php"))
+      require_once "Model/ModelQualificacoes.class.php";
+    elseif(file_exists("../../Model/ModelQualificacoes.class.php"))
+      require_once "../../Model/ModelQualificacoes.class.php";
     else
       echo "<h1>Impossível encontrar o arquivo ModelQualificacoes.class.php</h1>";
 
-    if(file_exists("Controller/ModelAluno.class.php"))
-      require_once "Controller/ModelAluno.class.php";
-    elseif(file_exists("../../Controller/ModelAluno.class.php"))
-      require_once "../../Controller/ModelAluno.class.php";
+    if(file_exists("Model/ModelAluno.class.php"))
+      require_once "Model/ModelAluno.class.php";
+    elseif(file_exists("../../Model/ModelAluno.class.php"))
+      require_once "../../Model/ModelAluno.class.php";
     else
       echo "<h1>Impossível encontrar o arquivo ModelAluno.class.php</h1>";
 
@@ -27,11 +27,11 @@
     else
       echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
 
-  $pagina = new PaginaPrivadaOuPublica();
-  if(!$pagina->PrivadaOuPublica())
-    header("location: ../../Index.php");
-  else
-    header("location: ../../Home.php");
+  // $pagina = new PaginaPrivadaOuPublica();
+  // if(!$pagina->PrivadaOuPublica())
+  //   header("location: ../../Index.php");
+  // else
+  //   header("location: ../../Home.php");
 
     $DB = new DataBase() ? new DataBase() : null;
     $id = $_SESSION['id'];
@@ -56,7 +56,7 @@
 <body>
     <div class="container">
       <div class="row">
-        <form method="Controller/Pesquisa.php" class="" method="get" id="pesquisar">
+        <form method="Model/Pesquisa.php" class="" method="get" id="pesquisar">
         <div class="input-field col s12 m12">
           <label for="pesquisa">Pesquisa:</label>
           <input type="text" name="pesquisa" id="pesquisa" required>

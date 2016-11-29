@@ -131,7 +131,7 @@
                  <b> Data de Saída:</b> <?=  date('d/m/Y', strtotime($ResultExperiencias -> dataSaida)) ?><br>
                   <b>Empresa:</b> <?= $ResultExperiencias -> empresa ?><br>
                     <b>Cargo:</b> <?= $ResultExperiencias -> cargo ?><br>
-                    <b>Descrição: </b> 
+                    <b>Descrição: </b>
                     <?= $ResultExperiencias -> descricao?>
                   <?php
                 }
@@ -152,10 +152,18 @@
         </div>
         <div class="row">
           <div class="col s12 m12 l12">
-            <button class="btn btn-large blue esconde">Imprimir</button>
+            <button class="btn btn-large blue esconde" id="imprimir">Imprimir</button>
             <button class="btn btn-large green esconde">Baixar PDF</button>
+            <a href="../OnePage.php?link=VerCurriculo" class="btn btn-large yellow esconde">Voltar</a>
           </div>
         </div>
      </div>
+     <script type="text/javascript">
+       var imprimir = document.getElementById("imprimir");
+       var body     = document.getElementsByTagName('body')[0].innerHTML;
+       imprimir.addEventListener('click',function(){
+         window.print();
+       });
+     </script>
    </body>
  </html>

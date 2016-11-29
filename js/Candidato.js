@@ -58,6 +58,7 @@ app.controller("Candidato",["$scope", function($scope){
           success: function(data)
           {
               // alert(data);
+              console.log(data);
               Materialize.toast("Entrevista marcada com sucesso, clique para continuar",4000);
               $(".modal").hide(1000);
           }

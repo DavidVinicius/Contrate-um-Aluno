@@ -4,9 +4,9 @@
         significa que o usuário não está logado.
         ***Tratamento do false é feita na implementação
     */
-    class PaginaPrivadaOuPublica{
+    class EstaLogado{
 
-        public function PrivadaOuPublica(){
+        public function EstaLogado(){
             $usuario= isset($_SESSION['usuario'])   ? $_SESSION['usuario']  : null;
             $senha  = isset($_SESSION['senha'])     ? $_SESSION['senha']    : null;
             $id     = isset($_SESSION['id'])        ? $_SESSION['id']       : null;

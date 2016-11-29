@@ -45,6 +45,7 @@
             #UPDATE {table} SET {campoAlterar = valorNovo} WHERE id = {idUser}
             $Connection = $this->ConnectDataBase();
             $Query      = "UPDATE {$Table} SET {$Field} = '{$NewValue}' {$Condition}";
+            var_dump($Query);
             $Result     = $this->ExecuteQuery($Connection, $Query);
             $this->CloseConnectionDataBase($Connection);
             return $Result;

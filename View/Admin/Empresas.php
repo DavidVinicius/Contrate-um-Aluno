@@ -6,18 +6,16 @@
     else
       echo "<h1>Impossível encontrar o arquivo ModelEmpresa.class.php</h1>";
 
-    if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
-      require_once "Controller/PaginaPrivadaOuPublica.class.php";
-    elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
-      require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
+    if(file_exists("Controller/EstaLogado.class.php"))
+      require_once "Controller/EstaLogado.class.php";
+    elseif(file_exists("../../Controller/EstaLogado.class.php"))
+      require_once "../../Controller/EstaLogado.class.php";
     else
-      echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
+      echo "<h1>Impossível encontrar o arquivo EstaLogado.class.php</h1>";
 
-  // $pagina = new PaginaPrivadaOuPublica();
-  // if(!$pagina->PrivadaOuPublica())
-  //   header("location: Index.php");
-  // else
-  //   header("location: OnePage.php");
+  $pagina = new EstaLogado();
+  if(!$pagina->EstaLogado())//Se tentar acessar direto pela URL
+    header("location: ../../Index.php");
 
   $empresa = new ModelEmpresa();
 
@@ -43,6 +41,7 @@
           echo "<h1 class='center-align flow-text'>Empresas cadastradas</h1>";
           echo "<ul class='collection'>";
           while ($resultEmpresa = mysqli_fetch_object($consultaEmpresa)) {
+            if(!$resultEmpresa->ativo == "N"){
               ?>
               <li class="collection-item avatar">
                 <img src="Images/Upload/<?= $resultEmpresa -> foto ?>" alt="foto perfil" class="circle">
@@ -55,7 +54,7 @@
               </li>
 
               <?php
-
+              }
           }
           echo "</ul>";
         }else{

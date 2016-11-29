@@ -27,7 +27,7 @@
               <div class="card horizontal hoverable">
                   <div class="card-image activator">
                       <img src="Images/Upload/<?= $linha['foto'] ?>" alt="Imagem perfil" class="responsive-img circle" >
-                      <span class="card-title black-text"><?=$linha['nome']?></span>
+                      <span class="card-title  blue-grey-text text-lighten-3"><?=$linha['nome']?></span>
                   </div>
                   <div class="card-content">
                     <!-- <span class="center-align">Habilidades:</span> -->
@@ -65,7 +65,7 @@
             <div class="card horizontal hoverable">
                 <div class="card-image activator">
                     <img src="Images/Upload/<?= $linha['foto'] ?>" alt="Imagem perfil" class="responsive-img circle" >
-                    <span class="card-title black-text"><?=$linha['nome']?></span>
+                    <span class="card-title  blue-grey-text text-lighten-3"><?=$linha['nome']?></span>
                 </div>
                 <div class="card-content">
                   <!-- <span class="center-align">Habilidades:</span> -->
@@ -102,7 +102,7 @@
             <div class="card horizontal hoverable">
                 <div class="card-image activator">
                     <img src="Images/Upload/<?= $linha['foto'] ?>" alt="Imagem perfil" class="responsive-img circle" >
-                    <span class="card-title gray-text"><?=$linha['nome']?></span>
+                    <span class="card-title  blue-grey-text text-lighten-3"><?=$linha['nome']?></span>
                 </div>
                 <div class="card-content">
                   <span class="center-align flow-text">Experiências:</span><br>
@@ -140,7 +140,7 @@
             <div class="card horizontal hoverable">
                 <div class="card-image activator">
                     <img src="Images/Upload/<?= $linha['foto'] ?>" alt="Imagem perfil" class="responsive-img circle" >
-                    <span class="card-title black-text"><?=$linha['nome']?></span>
+                    <span class="card-title  blue-grey-text text-lighten-3"><?=$linha['nome']?></span>
                 </div>
                 <div class="card-content">
                   <span class="center-align flow-text">Formações:</span><br>

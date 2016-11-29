@@ -112,8 +112,9 @@
 
               </div>
           </div>
-
+          
           <div class="row">
+
               <form action="Controller/Candidatarse.php" method="post" id="candidatar">
                 <input type="hidden" name="idUsuario" value="<?= $codUsuarioEmpresa ?>">
                 <input type="hidden" name="idVaga" value="<?= $IdVaga ?>">
@@ -124,6 +125,7 @@
                 <a href="OnePage.php?<?=$anterior.$pesquisa.$filtro ?>"><button type="button" name="button" class="btn btn-large waves-effect waves-light">Voltar</button></a>
               </form>
           </div>
+          <div id="esperar"></div>
         </section>
     </div>
 

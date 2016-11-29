@@ -20,7 +20,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
     $scope.idtelefones      = [];
     $scope.competencia      = "";
     $scope.qualificacoes    = [];
-
+    var barra               = `<div class="progress"><div class="indeterminate"></div> </div>`;
     $scope.adicionarFormacao = function(){
                     if($scope.anoC == "")
                     {
@@ -103,7 +103,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                     }
                 });
 
-                        $scope.experiencias.push({de:$('[name=deExp]').val(), ate:ate, cargo:$scope.nomeExperiencia, descricao:$scope.textoExperiencia});
+                        $scope.experiencias.push({de:$('[name=deExp]').val(), ate:ate, cargo:$scope.nomeExperiencia, descricao:$scope.textoExperiencia, empresa:$scope.empresa});
 
                 $scope.deExp            = "";
                 $scope.ateExp           = "";
@@ -278,7 +278,7 @@ app.controller("MostraCurriculo",["$scope",function($scope){
                 var idFormacao      = $(this).data("idformacao") || null;
                 var idExperiencia   = $(this).data("idexperiencia") || null;
                 var idQualificacoes = $(this).data("idqualificacao") || null;
-                alert(valor);
+                // alert(valor);
                 $.ajax({
                     url:"Controller/AlterarDados.php",
                     method: "POST",

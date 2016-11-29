@@ -107,7 +107,7 @@
                     <div class="input-field col s12 m4" ng-repeat="x in telefones">
                       <label for="{{x.telefone}}">Telefone {{x.tipo}}:</label>
                       <input placeholder=" " type="tel" name="{{x.telefone}}" id="{{x.telefone}}" value="{{x.telefone}}" data-position="right" data-delay="50" data-tooltip="É preciso atualizar para editar ou excluir" class="tooltipped" readonly>
-                      <span class="yellow-text ">É preciso atualizar para editar ou excluir</span>
+                      <span class="yellow-text " onclick="window.location.reload()">É preciso atualizar para editar ou excluir</span>
 
                     </div>
                     <?php
@@ -215,7 +215,7 @@
                             <h6>{{x.ano}} - {{x.instituicao}}</h6>
                         </div>
                         <div class="card-action">
-                              <button class="btn yellow excluir" ng-click="excluirAngular()">Atualize a página para poder Excluir</button>
+                              <button class="btn yellow " onclick="window.location.reload()">Atualize a página para poder Excluir</button>
                         </div>
                     </div>
 
@@ -288,12 +288,22 @@
                         <div class="card col s12 m6" ng-repeat="x in experiencias">
                             <span class="card-title" contenteditable="true"> {{x.cargo}} - {{x.empresa}}</span>
                             <div class="card-content">
-                                <p>Data de início: <span class="">{{x.de}}</span></p>
-                                <p>Data de Saída:    <span class="">{{x.ate}}</span></p>
-                               <p> Descrição: <br>{{x.descricao}}</p>
+                                <div class="row">
+                                  <div class="col s12 m6 l6">
+                                    <label for="inicio">Data de Início:</label>
+                                    <input type="text" name="inicio" id="inicio" value="{{x.de}}" readonly="true">
+                                  </div>
+                                  <div class="col s12 m6 l6">
+                                    <label for="saida">Data de saída</label>
+                                    <input type="text" name="saida" value="saida" value="{{x.ate}}" readonly="true">
+                                  </div>
+                                </div>
+                               <div class="row">
+                                 <p> Descrição: <br>{{x.descricao}}</p>
+                               </div>
                             </div>
                             <div class="card-action">
-                                <button class="btn red excluir">Excluir</button>
+                                <button class="btn yellow" onclick="window.location.reload()">Atualize para editar ou excluir</button>
                             </div>
 
                         </div>
@@ -336,7 +346,7 @@
                     <?php
                         }
                     ?>
-                        </div> 
+                        </div>
                 </div>
                 <div class="row">
                   <div class="col s12 m12 l12">

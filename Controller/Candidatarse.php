@@ -43,20 +43,35 @@
       $resultObjectVaga = mysqli_fetch_object($vaga->ReadVaga("where idVaga = $idVaga"));
       $dataAtual = date("Y-m-d");
       $horaAtual = date("H:i:s");
-
+      $vaga = $resultObjectVaga -> titulo;
       $data22 = array(
         "titulo"          => "Nova candidatura",
         "de"              => $nome,
         "data"            => $dataAtual,
         "hora"            => $horaAtual,
-        "mensagem"        => "O aluno $nome candidatou-se à vaga $resultObjectVaga->titulo.",
+        "mensagem"        => "O aluno $nome candidatou-se à vaga $vaga.",
         "codCandidatouse" => $idcandidatouse,
         "codUsuario"      => $codUsuarioEmpresa
       );
       if($notfCandidatouse->CreateNotificacoesCandidatouse($data22))
-        echo "criou notificacao";
+        {
+
+          echo "\ncriou notificacao";
+          require_once "Email.class.php";
+          require_once "../Model/ModelUsuario.class.php";
+
+          $Email = new Email();
+          $Usuario = new ModelUsuario();
+          $ResultUsuario = mysqli_fetch_object($Usuario -> ReadUsuario("where idUsuario = $codUsuarioEmpresa"));
+          $email         = $ResultUsuario -> email;
+
+          if ($Email -> EnviarEmailCandidatouse($email,$nome, $vaga )) {
+            echo "\nEnviado";
+          }
+
+        }
       else
-        echo "não criou notificacao";
+        echo "\nnão criou notificacao";
   }
   else{
     echo "erro ao criar candidatura";

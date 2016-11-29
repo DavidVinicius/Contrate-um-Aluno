@@ -6,10 +6,10 @@
     else
       echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
 
-    if(file_exists("Controller/DataBase.class.php"))
-      require_once "Controller/DataBase.class.php";
-    elseif(file_exists("../../Controller/DataBase.class.php"))
-      require_once "../../Controller/DataBase.class.php";
+    if(file_exists("Model/DataBase.class.php"))
+      require_once "Model/DataBase.class.php";
+    elseif(file_exists("../../Model/DataBase.class.php"))
+      require_once "../../Model/DataBase.class.php";
     else
       echo "<h1>Impossível encontrar o arquivo DataBase.class.php</h1>";
 

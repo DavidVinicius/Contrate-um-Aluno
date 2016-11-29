@@ -20,18 +20,16 @@
     else
       echo "<h1>Impossível encontrar o arquivo ModelAluno.class.php</h1>";
 
-    if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
-      require_once "Controller/PaginaPrivadaOuPublica.class.php";
-    elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
-      require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
+    if(file_exists("Controller/EstaLogado.class.php"))
+      require_once "Controller/EstaLogado.class.php";
+    elseif(file_exists("../../Controller/EstaLogado.class.php"))
+      require_once "../../Controller/EstaLogado.class.php";
     else
-      echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
+      echo "<h1>Impossível encontrar o arquivo EstaLogado.class.php</h1>";
 
-  // $pagina = new PaginaPrivadaOuPublica();
-  // if(!$pagina->PrivadaOuPublica())
-  //   header("location: ../../Index.php");
-  // else
-  //   header("location: ../../Home.php");
+  $pagina = new EstaLogado();
+  if(!$pagina->EstaLogado())//Se tentar acessar direto pela URL
+    header("location: ../../Index.php");
 
     $DB = new DataBase() ? new DataBase() : null;
     $id = $_SESSION['id'];

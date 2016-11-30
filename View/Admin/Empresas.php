@@ -46,11 +46,11 @@
               <li class="collection-item avatar">
                 <img src="Images/Upload/<?= $resultEmpresa -> foto ?>" alt="foto perfil" class="circle">
                 <span class="title"><b>Nome:</b> <?= $resultEmpresa -> nome ?></span>
-                   <a href="#">
+                   <a href="OnePage.php?link=VerPerfilEmpresa<?= '&empresa='.$resultEmpresa -> idEmpresa.'&perfil='.$resultEmpresa -> codUsuario.'&anterior='.$_SERVER['QUERY_STRING'] ?>">
                      Ver Perfil
                    </a>
                 </p>
-                <a href="#!" class="secondary-content excluirEmpresa" data-id="<?= $resultEmpresa->idEmpresa ?>"><i class="material-icons red-text">delete</i></a>
+                <a href="#!" class="secondary-content excluirEmpresa" data-id="<?= $resultEmpresa->idEmpresa ?>"><i class="material-icons red-text">close</i></a>
               </li>
 
               <?php

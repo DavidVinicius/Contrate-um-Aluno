@@ -52,11 +52,11 @@
                 <img src="Images/Upload/<?= $ResultAluno -> foto ?>" alt="foto perfil" class="circle">
                 <span class="title"><b>Nome:</b> <?= $ResultAluno -> nome ?></span>
                 <p><b>visualizacoes perfil: </b><?= $ResultAluno -> visualizacoes ?><br>
-                   <a href="#">
+                   <a href="OnePage.php?link=MostraCandidato<?='&id='.$ResultAluno->idAluno.'&cod='.$ResultAluno -> codUsuario ?>">
                      Ver Perfil
                    </a>
                 </p>
-                <a href="#!" class="secondary-content excluirAluno" data-id="<?= $ResultAluno->idAluno ?>"><i class="material-icons red-text">delete</i></a>
+                <a href="#!" class="secondary-content excluirAluno" data-id="<?= $ResultAluno->idAluno ?>"><i class="material-icons red-text">close</i></a>
               </li>
 
               <?php

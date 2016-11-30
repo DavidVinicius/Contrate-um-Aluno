@@ -59,7 +59,7 @@
    <title>Document</title>
  </head>
    <body>
-     <div class="container">
+     <div class="container" id="pdf">
        <div class="row">
          <h5 class="center-align flow-text">CURRÍCULO VITAE</h5>
          <br>
@@ -150,17 +150,33 @@
         <div class="row rodape">
           <p class="center-align">Currículo gerado por <b>Contrate um Aluno</b></p>
         </div>
-        <div class="row">
-          <div class="col s12 m12 l12">
-            <button class="btn btn-large blue esconde" id="imprimir">Imprimir</button>
-            <button class="btn btn-large green esconde">Baixar PDF</button>
-            <a href="../OnePage.php?link=VerCurriculo" class="btn btn-large yellow esconde">Voltar</a>
-          </div>
-        </div>
      </div>
+     <div class="row">
+       <div class="col s12 m6 l6 push-m4 push-l4">
+         <button class="btn btn-large blue esconde" id="imprimir">Imprimir</button>
+         <button class="btn btn-large green esconde" id="gerarPDF">Baixar PDF</button>
+         <a href="../OnePage.php?link=VerCurriculo" class="btn btn-large yellow esconde">Voltar</a>
+       </div>
+     </div>
+     <script type="text/javascript" src="../js/jspdf.min.js"></script>
+     <script type="text/javascript" src="../js/html2canvas.js"></script>
      <script type="text/javascript">
        var imprimir = document.getElementById("imprimir");
        var body     = document.getElementsByTagName('body')[0].innerHTML;
+       var pdf      = document.getElementById('pdf');
+       var botaopdf = document.getElementById('gerarPDF');
+
+       botaopdf.addEventListener('click',function(){
+          html2canvas(document.getElementById('pdf'), {
+            onrendered: function (canvas) {
+              var img = canvas.toDataURL("image/png");
+
+              var doc = new jsPDF();
+              doc.addImage(img,'JPEG',10, 20, 180, 200);
+              doc.save('curriculo.pdf');
+            }
+          })
+       });
        imprimir.addEventListener('click',function(){
          window.print();
        });

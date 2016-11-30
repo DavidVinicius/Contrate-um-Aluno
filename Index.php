@@ -114,7 +114,7 @@
         </div>
       </div>
 
-    </div>-->
+    </div>
     <section class="section SobreOsDesenvolvedores menuCor">
             <h1 class="center-align white-text">Sobre os Fundadores</h1>
             <div class="row">

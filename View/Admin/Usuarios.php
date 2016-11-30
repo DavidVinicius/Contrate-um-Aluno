@@ -41,6 +41,7 @@
           echo "<h1 class='center-align flow-text'>Usuários cadastrados</h1>";
           echo "<ul class='collection'>";
           while ($resultUsuario = mysqli_fetch_object($consultaUsuario)) {
+            if(!$resultUsuario->ativo == "N"){
               ?>
               <li class="collection-item avatar">
                 <!--<img src="Images/Upload/" alt="foto perfil" class="circle">-->
@@ -52,6 +53,7 @@
                 <a href="#!" class="secondary-content excluirUsuario" data-id="<?= $resultUsuario -> idUsuario ?>"><i class="material-icons red-text">delete</i></a>
               </li>
               <?php
+              }
           }
           echo "</ul>";
         }else{

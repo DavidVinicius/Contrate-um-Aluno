@@ -10,27 +10,36 @@
   include_once "../../../Model/ModelEntrevistas.class.php";
   include_once "../../../Model/ModelMensagens.class.php";
   require_once "../../../Model/ModelEmpresa.class.php";
+  require_once "../../../Model/ModelCandidatouse.class.php";
+  require_once "../../../Model/ModelAluno.class.php";
 
 
-  $notfCandidatouse = new ModelNotificacoesCandidatouse();
+
+
+  $NotCandidatouse = new ModelNotificacoesCandidatouse();
   $Entrevista       = new ModelEntrevistas();
   $Notificacao      = new Mensagens();
   $Empresa          = new ModelEmpresa();
+  $Candidato        = new Candidatouse();
+  $Aluno            = new ModelAluno();
 
   $idUsuario        = $_SESSION['id'];
 
+  $ConsultaAluno    = mysqli_fetch_object($Aluno->ReadAluno("where codUsuario = $idUsuario"));
   $idAluno          = isset($ConsultaAluno->idAluno)?$ConsultaAluno->idAluno:null;
 
    if($Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = 'S' ")){
       $ConsultaNum  = mysqli_num_rows($Entrevista->ReadEntrevista("where codAluno = $idAluno and ativo = 'S'"));
       $badge        = "<span class='chip red white-text'>$ConsultaNum</span>";
-
   }
   else{
     $ConsultaNum    = 0;
     $badge          = "";
   }
+
   $total = mysqli_num_rows($Notificacao -> ReadMensagens("where codUsuario = $idUsuario"));
+  $totalNotCandidatouse = mysqli_num_rows($NotCandidatouse -> ReadNotificacoesCandidatouse("where codUsuario = $idUsuario"));
+
   if ($total > 0) {
      $nots = "<span class='white-text chip red'>$total</span>";
   }
@@ -40,17 +49,37 @@
   // $consultaNotfCandidatouse      = mysqli_fetch_object($notfCandidatouse->ReadNotificacoesCandidatouse());
  ?>
 
- <ul class="collection">
+
  <?php
-       if ($total > 0 ) {
+       if ($total > 0 || $totalNotCandidatouse > 0) {
              $pagina = (isset( $_GET['pagina']) ) ? $_GET['pagina'] : 1;
              $registros = 5;
-
+              echo "<h1 class='center-align flow-text'>Suas notificações</h1><ul class='collection'>";
              $numPaginas = ceil($total/$registros);
 
              $inicio = ($registros*$pagina)-$registros;
 
-             $ConsultaNot = $Notificacao -> ReadMensagens("where codUsuario = $idUsuario order by idMensagem desc limit $inicio, $registros") ;
+             $ConsultaNot = $Notificacao -> ReadMensagens("where codUsuario = $idUsuario order by idMensagem desc limit $inicio, $registros");
+
+              $ConsultaNotCandidatouse = $NotCandidatouse -> ReadNotificacoesCandidatouse("where codUsuario = $idUsuario order by idNotificacoesCandidatouse desc");
+
+              while ($ResultNotCandidatouse = mysqli_fetch_object($ConsultaNotCandidatouse)) {
+                      $ResultCandidatouse = mysqli_fetch_object($Candidato -> ReadCandidatouse("where codAluno = $idAluno"));
+                      $idEmpresa   = $ResultCandidatouse -> codEmpresa;
+                      $ResultEmpresa       = mysqli_fetch_object($Empresa -> ReadEmpresa("where idEmpresa = $idEmpresa "));
+                ?>
+                <li class="collection-item avatar">
+                  <img src="Images/Upload/<?= $ResultEmpresa -> foto?>" alt="" class="responsive-img circle">
+                  <span class="title"><b>Assunto: </b><?= $ResultNotCandidatouse -> titulo ?></span><br>
+                  <p><b>De:</b> <?= $ResultNotCandidatouse -> de ?> <br>
+                     <b>Mensagem:</b><br>
+                     <?= $ResultNotCandidatouse -> mensagem ?>
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons ApagarNotificacao" data-idnotificacao="<?= $ResultNotCandidatouse -> idNotificacoesCandidatouse ?>" data-tabela="notificacoesCandidatouse">delete</i></a>
+                </li>
+
+                <?php
+              }
 
              while ($ResultN = mysqli_fetch_object($ConsultaNot)) {
                    $codEntrevista = $ResultN -> codEntrevista;

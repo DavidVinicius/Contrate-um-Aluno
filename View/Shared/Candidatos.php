@@ -93,7 +93,7 @@
                 $total = mysqli_num_rows($alunos);
 
                 //seta a quantidade de itens por página, neste caso, 2 itens
-                $registros = 1;
+                $registros = 4;
 
                 //calcula o número de páginas arredondando o resultado para cima
                 $numPaginas = ceil($total/$registros);

@@ -29,6 +29,7 @@
      $j = "linha";
      $cancelar = "cancelar";
      ?>
+     <h1 class="center-align flow-text">Candidatos a sua vaga</h1>
       <ul class="collection">
 
      <?php

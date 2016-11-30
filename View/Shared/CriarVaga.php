@@ -1,10 +1,10 @@
 <?php
-    if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
-      require_once "Controller/PaginaPrivadaOuPublica.class.php";
-    elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
-      require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
-    else
-      echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
+    // if(file_exists("Controller/PaginaPrivadaOuPublica.class.php"))
+    //   require_once "Controller/PaginaPrivadaOuPublica.class.php";
+    // elseif(file_exists("../../Controller/PaginaPrivadaOuPublica.class.php"))
+    //   require_once "../../Controller/PaginaPrivadaOuPublica.class.php";
+    // else
+    //   echo "<h1>Impossível encontrar o arquivo PaginaPrivadaOuPublica.class.php</h1>";
 
     if(file_exists("Model/DataBase.class.php"))
       require_once "Model/DataBase.class.php";
@@ -14,6 +14,7 @@
       echo "<h1>Impossível encontrar o arquivo DataBase.class.php</h1>";
 
     $DB               = new DataBase() ? new DataBase() : null;
+
     $idUsuario        = $_SESSION['id'];
     $consultaEmpresa  = mysqli_fetch_assoc($DB->SearchQuery("empresa", "where codUsuario = $idUsuario"));
     $idEmpresa        = $consultaEmpresa['idEmpresa'];
@@ -88,7 +89,7 @@
                           <p class="truncate contentEditable" contenteditable="true">Descrição: {{x.descricao}}</p>
                         </div>
                         <div class="card-action">
-                          <button class="btn yellow" ng-click="atualizar()">Atualize para editar ou excluir</button>
+                          <button class="btn yellow" onclick="window.location.reload()">Atualize para editar ou excluir</button>
                         </div>
                       </div>
                 </div>

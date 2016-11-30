@@ -93,6 +93,7 @@ app.controller('Curriculo',['$scope',function($scope){
                     $scope.nomeExperiencia  = "";
                     $scope.textoExperiencia = "";
                     $scope.empresa          = ""
+                    Materialize.toast("Adicionado com sucesso",4000);
                 }
             }
 

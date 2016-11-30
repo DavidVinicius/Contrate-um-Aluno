@@ -12,6 +12,34 @@
 
     $Alteracao = $Banco -> UpdateQuery('usuario', $Campo, $ValorDeAlteracao, "WHERE idUsuario = $id");
 
+    if (isset($_POST['desativar'])) {
+      if ($Banco -> UpdateQuery('usuario', 'ativo', 'N', "WHERE idUsuario = $id")) {
+          echo "desativou perfil";
+          session_destroy();
+      }
+    }
+    if (isset($_POST['novoEmail'])) {
+      $email = isset($_POST['novoEmail'])?$_POST['novoEmail']:null;
+
+      if ($Banco -> UpdateQuery('usuario', 'email', $email, "WHERE idUsuario = $id")) {
+        echo "fez o update no email";
+      }else{
+        echo "Erro ao tentar fazer update";
+      }
+    }
+
+    if (isset($_POST['senha'])) {
+      $senha = isset($_POST['senha'])?$_POST['senha']:null;
+
+      $Banco = new DataBase();
+
+      if ($Banco -> UpdateQuery('usuario', 'senha', $senha, "WHERE idUsuario = $id")) {
+        echo "fez o update na senha";
+      }else{
+        echo "Erro ao tentar fazer update na senha";
+      }
+    }
+
     if($Alteracao){
         $Consulta = $Banco -> SearchQuery('usuario', "WHERE idUsuario = $id");
         $Assoc = mysqli_fetch_assoc($Consulta);
@@ -101,5 +129,5 @@
 
     }
 
-    
+
 ?>

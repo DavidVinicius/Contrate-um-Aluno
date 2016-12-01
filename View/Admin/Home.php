@@ -26,8 +26,16 @@
   require_once "Model/DataBase.class.php";
   $DB = new DataBase();
   $numUsuario = mysqli_num_rows($DB->SearchQuery('usuario','order by idUsuario desc'));
+  $numUsuarioInativos = mysqli_num_rows($DB->SearchQuery('usuario',"where ativo='N' order by idUsuario desc"));
+
   $numAluno   = mysqli_num_rows($DB->SearchQuery('aluno','order by idAluno desc'));
+  $numAlunosInativo = mysqli_num_rows($DB->SearchQuery('aluno',"where ativo='N' order by idAluno desc"));
+
   $numEmpresa = mysqli_num_rows($DB->SearchQuery('empresa','order by idEmpresa desc'));
+  $numEmpresaInativas = mysqli_num_rows($DB->SearchQuery("empresa","where ativo='N' order by idEmpresa desc"));
+
+  $numVagas   = mysqli_num_rows($DB->SearchQuery('vaga','order by idVaga desc'));
+  $numEntrevistas   = mysqli_num_rows($DB->SearchQuery('entrevistas','order by idEntrevista desc'));
 
 ?>
 
@@ -48,24 +56,34 @@
               <tr>
                   <th data-field="id">Tabela</th>
                   <th data-field="name">Registros</th>
-
+                  <th data-field="name">Inativos</th>
               </tr>
             </thead>
 
             <tbody>
               <tr>
                 <td>Usuarios</td>
-                <td><?= $numUsuario ?></td>
+                <td><span class="chip circle black white-text"><?= $numUsuario ?></span></td>
+                <td><?=$numUsuarioInativos?></td>
               </tr>
               <tr>
                 <td>Alunos</td>
-                <td><?= $numAluno ?></td>
+                <td><span class="chip circle yellow white-text"><?= $numAluno ?></span></td>
+                <td><?= $numAlunosInativo ?></td>
 
               </tr>
               <tr>
                 <td>Empresas</td>
                 <td><span class="chip circle blue white-text"><?= $numEmpresa ?></span></td>
-
+                <td><?= $numEmpresaInativas ?></td>
+              </tr>
+              <tr>
+                <td>Vagas</td>
+                <td><span class="chip circle orange white-text"><?=$numVagas?></span></td>
+              </tr>
+              <tr>
+                <td>Entrevistas</td>
+                <td><span class="chip circle blue white-text"><?= $numEntrevistas ?></span></td>
               </tr>
             </tbody>
           </table>

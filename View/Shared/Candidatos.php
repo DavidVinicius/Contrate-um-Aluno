@@ -35,7 +35,7 @@
     $id = $_SESSION['id'];
 
 
-    $ConsultaAluno  = $DB->SearchQuery("aluno");
+    $numCandidatos  = mysqli_num_rows($DB->SearchQuery('aluno',"where ativo=''"));
     $Qualificacoes  = new ModelQualificacoes() ? new ModelQualificacoes() : null;
     $Aluno          = new ModelAluno() ? new ModelAluno() : null;
 
@@ -53,6 +53,12 @@
 
 <body>
     <div class="container">
+      <?php
+            if ($numCandidatos > 0) {
+              # code...
+              $ConsultaAluno  = $DB->SearchQuery("aluno","where ativo=''");
+
+            ?>
       <div class="row">
         <form method="Model/Pesquisa.php" class="" method="get" id="pesquisar">
         <div class="input-field col s12 m12">
@@ -96,7 +102,7 @@
                 $registros = 4;
 
                 //calcula o número de páginas arredondando o resultado para cima
-                $numPaginas = ceil($total/$registros);
+                $numPaginas = ceil($total/$registros)?ceil($total/$registros):null;
 
                 //variavel para calcular o início da visualização com base na página atual
                 $inicio = ($registros*$pagina)-$registros;
@@ -107,7 +113,7 @@
                 while( $linha = mysqli_fetch_assoc($queryAlunos) ){
                   $idAluno = $linha['idAluno'];
                   $Qualificacao = new ModelQualificacoes();
-                  $ResultadoQ = $Qualificacao->ReadQualificacoes("where codAluno = $idAluno");
+                  $ResultadoQ = $Qualificacao->ReadQualificacoes("where codAluno = $idAluno limit 4");
 
                 ?>
 
@@ -169,6 +175,11 @@
         </div>
       </div>
     </div>
+    <?php
+  }else{
+    echo "<h1 class='center-align flow-text'>Desculpe mas não temos candidatos cadastrados</h1>";
+  }
+     ?>
 </body>
 
 </html>

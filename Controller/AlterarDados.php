@@ -12,11 +12,17 @@
 
     $Alteracao = $Banco -> UpdateQuery('usuario', $Campo, $ValorDeAlteracao, "WHERE idUsuario = $id");
 
+    
+
     if (isset($_POST['desativar'])) {
+
+      if ($Banco -> UpdateQuery('aluno','ativo','N',"where codUsuario = $id")) {
+        echo "\n desativou perfil aluno";    # code...
       if ($Banco -> UpdateQuery('usuario', 'ativo', 'N', "WHERE idUsuario = $id")) {
           echo "desativou perfil";
           session_destroy();
       }
+    }
     }
     if (isset($_POST['novoEmail'])) {
       $email = isset($_POST['novoEmail'])?$_POST['novoEmail']:null;

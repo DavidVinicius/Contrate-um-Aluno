@@ -19,7 +19,7 @@
 
   $usuario = new ModelUsuario();
 
-  $usuarioNumRows = mysqli_num_rows( $usuario->ReadUsuario("where ativo='' ") );
+  $usuarioNumRows = mysqli_num_rows( $usuario->ReadUsuario("where ativo='N'") );
 ?>
 
 <!DOCTYPE html>
@@ -36,12 +36,12 @@
     <div class="row">
       <div class="col s12 m12 l12">
         <?php
-        $consultaUsuario = $usuario->ReadUsuario("where ativo='' and email != 'admin@admin.com'");
+        $consultaUsuario = $usuario->ReadUsuario("where ativo='N'");
         if ($usuarioNumRows > 0 ) {
           echo "<h1 class='center-align flow-text'>Usuários cadastrados</h1>";
           echo "<ul class='collection'>";
           while ($resultUsuario = mysqli_fetch_object($consultaUsuario)) {
-            if(!$resultUsuario->ativo == "N"){
+            if($resultUsuario->ativo == "N"){
               ?>
               <li class="collection-item avatar">
                 <!--<img src="Images/Upload/" alt="foto perfil" class="circle">-->
@@ -50,14 +50,14 @@
                      Ver Perfil
                    </a>
                 </p>
-                <a href="#!" class="secondary-content excluirUsuario" data-id="<?= $resultUsuario -> idUsuario ?>"><i class="material-icons red-text">delete</i></a>
+                <a href="#!" class="secondary-content excluirUsuario" data-id="<?= $resultUsuario -> idUsuario ?>"><i class="material-icons green-text">check</i></a>
               </li>
               <?php
               }
           }
           echo "</ul>";
         }else{
-          echo "Sem usuários cadastrados, impossível cair aqui";
+          echo "<h1 class='center-align flow-text'>Sem usuários inativos</h1>";
         }
          ?>
       </div>
@@ -65,14 +65,14 @@
   </div>
 
   <script src="js/jquery.js"> </script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
   <script>
     $('.excluirUsuario').click(function(){
       var idUsuario = $(this).data('id');
       var tabela    = "usuario";
       var pai       = $(this).parent();
       $.ajax({
-        url: 'Controller/ExcluirDados.php',
+        url: 'Controller/AtivarUsuarios.php',
         method: 'post',
         data: {
           idUsuario: idUsuario,
@@ -80,7 +80,7 @@
         },
         success: function(data){
           console.log(data);
-          Materialize.toast("O usuario foi inativado",4000);
+          Materialize.toast("O usuario foi reativado",4000);
           $(pai).remove();
         }
       });

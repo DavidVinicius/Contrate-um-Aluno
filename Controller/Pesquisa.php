@@ -20,7 +20,7 @@
         {
           $idAluno         = $linha['idAluno'];
           $Qualificacao    = new ModelQualificacoes();
-          $ResultadoQ =    $Qualificacao -> ReadQualificacoes("where codAluno = $idAluno");
+          $ResultadoQ =    $Qualificacao -> ReadQualificacoes("where codAluno = $idAluno limit 4");
 
           ?>
           <div class="col s12 m6">
@@ -58,7 +58,7 @@
       {
         $idAluno         = $linha['idAluno'];
         $Qualificacao    = new ModelQualificacoes();
-        $ResultadoQ      =    $Qualificacao -> ReadQualificacoes("where codAluno = $idAluno");
+        $ResultadoQ      =    $Qualificacao -> ReadQualificacoes("where codAluno = $idAluno limit 4");
 
         ?>
         <div class="col s12 m6">

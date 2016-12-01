@@ -236,8 +236,11 @@ else{
               <ul class='right hide-on-med-and-down'>
                 <li><a href='OnePage.php?link=Home'>Home</a></li>
                 <li><a href='OnePage.php?link=Alunos'>Alunos</a></li>
+                <li><a href='OnePage.php?link=AlunosInativos'>Alunos inativos</a></li>
                 <li><a href='OnePage.php?link=Empresas'>Empresas</a></li>
+                <li><a href='OnePage.php?link=EmpresaInativas'>Empresas inativas</a></li>
                 <li><a href='OnePage.php?link=Usuarios'>Usuarios</a></li>
+                <li><a href='OnePage.php?link=UsuariosInativos'>Usuarios inativos</a></li>
                <li><a href='' data-activates='Configuracoes' class='abrir'><img src='Images/Padrao/PerfilPadrao.png' class='circle responsive-img valign' width='40px' style='margin-top:10px'></a></li>
                 <li><a href='./Controller/Sair.php'>Sair</a></li>
                 <li><span style='margin-right:5%'>&nbsp &nbsp</span></li>

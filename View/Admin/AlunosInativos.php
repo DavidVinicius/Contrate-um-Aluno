@@ -23,7 +23,7 @@
     header("location: Index.php");
 
 
-  $ConsultaNumAlunos = mysqli_num_rows($Aluno -> ReadAluno(""));
+  $ConsultaNumAlunos = mysqli_num_rows($Aluno -> ReadAluno("where ativo='N'"));
 
  ?>
 <!DOCTYPE html>
@@ -42,11 +42,11 @@
         <?php
 
         if ($ConsultaNumAlunos > 0 ) {
-          echo "<h1 class='center-align flow-text'>Alunos cadastrados</h1>";
-          $ConsultaAlunos = $Aluno -> ReadAluno("");
+          echo "<h1 class='center-align flow-text'>Alunos Inativos</h1>";
+          $ConsultaAlunos = $Aluno -> ReadAluno("where ativo='N'");
           echo "<ul class='collection'>";
           while ($ResultAluno = mysqli_fetch_object($ConsultaAlunos)) {
-            if(!$ResultAluno->ativo == "N"){
+            if($ResultAluno->ativo == "N"){
               ?>
               <li class="collection-item avatar">
                 <img src="Images/Upload/<?= $ResultAluno -> foto ?>" alt="foto perfil" class="circle">
@@ -56,7 +56,7 @@
                      Ver Perfil
                    </a>
                 </p>
-                <a href="#!" class="secondary-content excluirAluno" data-id="<?= $ResultAluno->idAluno ?>"><i class="material-icons red-text">close</i></a>
+                <a href="#!" class="secondary-content excluirAluno" data-id="<?= $ResultAluno->idAluno ?>"><i class="material-icons green-text">check</i></a>
               </li>
 
               <?php
@@ -64,7 +64,7 @@
           }
           echo "</ul>";
         }else{
-          echo "Sem alunos cadastrados";
+          echo "<h1 class='center-align flow-text'>Não possuem alunos inativados</h1>";
         }
          ?>
       </div>
@@ -78,15 +78,16 @@
       var tabela    = "aluno";
       var pai       = $(this).parent();
       $.ajax({
-        url: 'Controller/ExcluirDados.php',
+        url: 'Controller/AtivarUsuarios.php',
         method: 'post',
         data: {
           idAluno: idAluno,
           tabela: tabela,
         },
         success: function(data){
+          // alert('Resposta: ' + data);
           console.log(data);
-          Materialize.toast('O aluno foi inativado',4000);
+          Materialize.toast("O aluno foi reativado",4000);
           $(pai).remove();
         }
       });

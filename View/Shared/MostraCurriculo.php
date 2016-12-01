@@ -380,8 +380,8 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="row">
+                          </div><br><br>
+                          <!-- <div class="row">
                             <div class="col s12 m7 l7">
                               <div class="input-field">
                                 <div class="switch">
@@ -406,9 +406,9 @@
                                 </div>
                               </div>
                             </div>
-                          </div> <br>
+                          </div> <br> -->
                           <form class="" action="Controller/GerarCurriculo.php" method="post">
-                          <div class="row" ng-if="email">
+                          <!-- <div class="row" ng-if="email">
                               <p>
                                  <input type="checkbox" id="enviarNoMeuEmail" name="enviarNoMeuEmail" ng-model="seuemail" />
                                  <label for="enviarNoMeuEmail">Meu email</label>
@@ -417,7 +417,7 @@
                                 <label for="emailE">Qual email?</label>
                                 <input type="email" name="enviarEmail" id="enviarEmail" ng-model="emailenviar">
                               </div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                       <div class="modal-footer">

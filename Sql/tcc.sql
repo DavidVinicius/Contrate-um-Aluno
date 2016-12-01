@@ -17,7 +17,7 @@ CREATE TABLE `aluno` (
   `objetivo` varchar(255) NOT NULL,
   `rg` varchar(20) NOT NULL,
   `visualizacoes` INT,
-  `ativo` char(1) NULL,
+  `ativo` char(1),
   `codUsuario` int(11) NOT NULL,
   CONSTRAINT `fk_aluno_usuario` FOREIGN KEY (`codUsuario`) REFERENCES `usuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

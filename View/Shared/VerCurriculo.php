@@ -10,5 +10,5 @@
     if(mysqli_num_rows($Result) > 0)
         require_once "MostraCurriculo.php"; //Página que não deixa ele cadastrar aluno novo
     else
-        require_once "Curriculo.php"//Pode cadastrar um aluno
+        require_once "Curriculo.php";//Pode cadastrar um aluno
 ?>

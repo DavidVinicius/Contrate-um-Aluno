@@ -74,11 +74,18 @@
 
     </div>
     <section class="Aideia section">
-        <div class="row">
-            <h1 class="center-align white-text">A ideia</h1>
+        <div class="container">
+          <div class="row">
+              <h1 class="center-align white-text">A ideia</h1>
+              <div class="col s12 m12 l12">
+                <p class="flow-text white-text">
+                  O Contrate um Aluno é uma rede social criada em 2016 paa o trabalho de conclusão de curso da ETEC Philadepho Gouvêa Netto, criado por David Vinicius e Matheus Picioli com o instuito de melhorar o processo de divulgação de vagas de estágio e emprego.
+                </p>
+              </div>
+          </div>
         </div>
     </section>
-    <!--<div class="EmpresasParralax">
+    <div class="EmpresasParralax">
       <div class="parallax-container">
         <div class="parallax">
           <img src="Images/Office.jpg" >
@@ -86,11 +93,11 @@
         <div class="carousel">
           <h3 class="center-align mytext white-text">Empresas cadastradas</h3>
           <?php
-              // require_once "Model/ModelEmpresa.class.php";
-              // $Empresa = new ModelEmpresa();
-              // $ResultEmpresa = $Empresa -> ReadEmpresa("order by idEmpresa desc limit 5");
-              // while ($Empresas = mysqli_fetch_object($ResultEmpresa) ) {
-              //   # code...
+              require_once "Model/ModelEmpresa.class.php";
+              $Empresa = new ModelEmpresa();
+              $ResultEmpresa = $Empresa -> ReadEmpresa("order by idEmpresa desc limit 5");
+              while ($Empresas = mysqli_fetch_object($ResultEmpresa) ) {
+                # code...
            ?>
 
                 <a class="carousel-item" href="#!">
@@ -105,10 +112,10 @@
                       <?= $Empresas -> areaAtuacao ?>
                     </span>
                   </center>
-                </a>-->
+                </a>
 
         <?php
-              // }
+              }
          ?>
 
         </div>
@@ -125,13 +132,14 @@
                      Desenvolvedor front-end que adora dar seus pitacos no back-end.
                   </div>
                   <div class="col s3 pull-s1 m4 push-m2">
-                    <img src="Images/Office.jpg" alt="" class=" circle" width="150px" height="150px">
+                    <img src="Images/David.jpg" alt="" class=" circle" width="150px" height="150px">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col s12 pull-s2 m12">
                     <span class="right">
-                      <button class="btn-flat white-text"><i class="fa fa-facebook"></i></button>
+                    <a href="https://www.linkedin.com/in/david-vinicius-339510b9?trk=hp-identity-name" target="_blank">  <button class="btn-flat white-text"><i class="fa fa-linkedin"></i></button></a>
+                    <a href="https://github.com/De175v" target="_blank"><button class="btn-flat white-text"><i class="fa fa-github"></i></button></a>
                     </span>
                   </div>
                 </div>
@@ -140,7 +148,7 @@
                 <h1 class="center-align flow-text white-text">Matheus Augusto Picioli</h1>
                 <div class="row">
                   <div class="col s4 m4">
-                    <img src="Images/Office.jpg" alt="" class=" circle" width="150px" height="150px">
+                    <img src="Images/matheusViadao.jpg" alt="" class=" circle" width="150px" height="150px">
                   </div>
                   <div class="col s6 push-s2 m6">
                     <span class="right white-text flow-text">Desenvolvedor Back-end
@@ -151,22 +159,22 @@
                 </div>
                 <div class="row">
                   <div class="col s12 push-s2 m12">
-                    <button class="btn-flat white-text"><i class="fa fa-github"></i></button>
+                    <a href="https://www.linkedin.com/in/matheuspicioli?authType=NAME_SEARCH&authToken=hb4p&locale=pt_BR&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A523766391%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1480599859618%2Ctas%3Amatheus%20picioli" target="_blank">  <button class="btn-flat white-text"><i class="fa fa-linkedin" ></i></button></a>
                   </div>
                 </div>
               </div>
             </div>
     </section>
-     <!--<section class="AlunosParallax section ">
+     <section class="AlunosParallax section ">
       <div class="parallax-container">
         <div class="parallax"><img src="Images/Office.jpg"></div>
         <div class="carousel">
           <h4 class="center-align mytext white-text">Alunos cadastrados</h4>
           <?php
-              // require_once "Model/ModelAluno.class.php";
-              // $Aluno = new ModelAluno();
-              // $ResultAluno = $Aluno -> ReadAluno("order by idAluno desc limit 5");
-              // while ($Alunos = mysqli_fetch_object($ResultAluno) ) {
+              require_once "Model/ModelAluno.class.php";
+              $Aluno = new ModelAluno();
+              $ResultAluno = $Aluno -> ReadAluno("order by idAluno desc limit 5");
+              while ($Alunos = mysqli_fetch_object($ResultAluno) ) {
                 # code...
            ?>
                 <a class="carousel-item" href="#!" class="white-text">
@@ -184,21 +192,21 @@
                  </a>
 
         <?php
-              //}
+              }
          ?>
           <p>
 
           </p>
         </div>
       </div>
-    </section>-->
+    </section>
     <section class="footer ">
       <footer class="page-footer grey darken-4">
         <div class="container  ">
           <div class="row  ">
             <div class="col l6 s12">
-              <h5 class="white-text">Footer Content</h5>
-              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              <h5 class="white-text">Contrate um Aluno</h5>
+              <p class="grey-text text-lighten-4">O lugar onde a oportunidade de emprego corre atrás do candidato.</p>
             </div>
             <div class="col l4 offset-l2 s12">
               <h5 class="white-text">Links</h5>
@@ -213,7 +221,7 @@
         <div class="footer-copyright  ">
           <div class="container  ">
           © 2016 Copyright Text
-          <a class="grey-text text-lighten-4 right" href="#!">Produzido com <i class="fa fa-heart red-text" aria-hidden="true"></i> por David Vinicius e Matheus Picioli</a>
+          <a class="grey-text text-lighten-4 right" href="#!"><i class="fa fa-code white-text fa-2x"></i> com <i class="fa fa-heart red-text fa-2x" aria-hidden="true"></i> por David Vinicius e Matheus Picioli</a>
           </div>
         </div>
       </footer>
